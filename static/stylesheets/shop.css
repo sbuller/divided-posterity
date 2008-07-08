@@ -1,0 +1,21 @@
+#shopinventory input[type="text"]{
+	width:4em;
+	text-align:right;
+}
+
+#shopinventory img{
+	vertical-align:middle;
+}
+
+#shopinventory thead tr>*{
+  text-align:center;
+  border-bottom:1px black solid;
+}
+
+#shopinventory tfoot tr>*{
+  border-top:1px black solid;
+}
+
+#viewpane table{
+  border-collapse:collapse;
+}

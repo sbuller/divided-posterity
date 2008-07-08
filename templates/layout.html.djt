@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+	<head>
+		<title>Divided Posterity</title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<link rel="shortcut icon" href="/favicon.ico" />
+		<link rel="stylesheet" href="/stylesheets/base.css" type="text/css" media="screen" charset="utf-8" />
+		<link rel="stylesheet" href="/stylesheets/default.css" type="text/css" media="screen" charset="utf-8" />
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js"></script>
+		<script type="text/javascript" src="/js/jquery-ui-personalized-1.5.min.js"></script>
+		<script type="text/javascript" src="/js/test.js"></script>
+		{% block head %} {% endblock %}
+	</head>
+	<body>
+		<div id="viewpane">
+				  {% block viewpane %} {% endblock %}
+		</div>
+
+		<div id="heropane">
+			<h2>SketchySolid (#1234567)</h2>
+			<h3>Level 14 Bricksmith</h3>
+
+			<div id="image">
+				<h3><img alt="[-]" class="toggle" src="images/minus.png" />Image</h3>
+				<div><table class="centered"><tbody>
+							<tr><td><img alt="avatar" src="images/image.png" /></td></tr>
+				</tbody></table></div>
+			</div>
+
+			<div id="stats">
+				<h3><img alt="[-]" class="toggle" src="images/minus.png" />Stats</h3>
+				<div><table class="centered"><tbody>
+						<tr><td class="number" title="Base Brawn: 98"><em class="increased">102</em></td><td class="numbered">Brawn</td></tr>
+						<tr><td class="number" title="Base Magery: 72"><em class="uncreased">72</em></td><td class="numbered">Magery</td></tr>
+						<tr><td class="number" title="Base Stamina: 65"><em class="decreased">45</em></td><td class="numbered">Stamina</td></tr>
+						<tr><td class="number" title="Base Finesse: 62"><em class="increased">66</em></td><td class="numbered">Finesse</td></tr>
+						<tr><td class="number" title="Base Charm: 60"><em class="increased">64</em></td><td class="numbered">Charm</td></tr>
+						<tr><td class="number" title="Base Lore: 63"><em class="increased">67</em></td><td class="numbered">Lore</td></tr>
+				</tbody></table></div>
+			</div>
+
+			<div id="buffs">
+				<h3><img class="toggle" alt="[-]" src="images/minus.png" />Buffs</h3>
+				<div><table class="centered"><tbody>
+						<tr><td>Adrenaline Rush</td></tr>
+						<tr><td>Eyes of the Eagle</td></tr>
+						<tr><td>Sonnet of Suffrage</td></tr>
+						<tr><td>Shelter of Sand<em class="caster"> (<a href="#">TheMe</a>)</em></td></tr>
+				</tbody></table></div>
+			</div>
+
+			<div id="effects">
+				<h3><img class="toggle" alt="[-]" src="images/minus.png" />Other Effects</h3>
+				<div><table class="centered"><tbody>
+						<tr><td class="number">5</td><td class="numbered">Hot! Hot! Hot!</td></tr>
+						<tr><td class="number">5</td><td class="numbered">Open for Business</td></tr>
+						<tr><td class="number">7</td><td class="numbered">Cool Beans</td></tr>
+						<tr><td class="number">10</td><td class="numbered">Locked and Loaded</td></tr>
+						<tr><td class="number">10</td><td class="numbered">Irradiated</td></tr>
+						<tr><td class="number">25</td><td class="numbered">Warm and Cozy</td></tr>
+				</tbody></table></div>
+			</div>
+
+			<div id="vehicle">
+				<h3><img class="toggle" alt="[-]" src="images/minus.png" />Vehicle</h3>
+				<div><table class="centered"><tbody>
+						<tr><td><img src="images/dunebuggy.png" alt="Dune Buggy" /></td><td>Armored Dune-Buggy</td></tr>
+				</tbody></table></div>
+			</div>
+
+		</div>
+
+		<div id="messagepane">
+			Message.
+		</div>
+
+		<div id="chatpane">
+			<div id="chatview">
+				<h3>Divided Posterity: Chat.</h3>
+				<p><em class="chatme">SketchySolid:</em> Howdy Doody, Bub!</p>
+				<p><em class="chatname">RandomGuy17:</em> How u mine 4 fsh?</p>
+				<p><em class="chatclannie">N00bOfLuv:</em> [Shouting]</p>
+				<p><em class="chatme">SketchySolid:</em> Smarten up, yo!</p>
+				<p><em class="chatclannie">N00bOfLuv:</em> why hullo thar, skechy</p>
+				<p class="timeout">Chat has stopped responding, since you have been inactive for 15 minutes. <a href="#">Click here</a> to restart chat.</p>
+			</div>
+
+			<form id="chatform" action="javascript:;">
+				<div><textarea name="chatinput" class="chatinput" rows="2" cols="21">Type Here.</textarea></div>
+                        </form>
+
+		</div>
+	</body>
+</html>

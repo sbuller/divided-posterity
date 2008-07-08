@@ -1,0 +1,93 @@
+/* Stylesheet for Divided Posterity's main page */
+#heropane{
+  position:fixed;
+  top:0px;
+  bottom:0px;
+  left:0px;
+  background-color:#ccf;
+  width:180px;
+  overflow:auto;
+}
+
+/* Indicate that the panels can be moved */
+#heropane > div > h3 {
+	cursor: move;
+	background: #aaf;
+}
+#heropane > div > h3 > img {
+	cursor: pointer;
+	float:left;
+	margin-top:3px;
+}
+
+/* A fix to make the jQuery dragged item not jump as much */
+.ui-sortable-helper {
+	width:100%;
+	margin-top:-16px;
+}
+
+#viewpane{
+  position:fixed;
+  top:0px;
+  left:182px;
+  right:182px;
+  bottom:182px;
+  background-color:#fcc;
+  overflow:auto;
+}
+
+#messagepane{
+  position:fixed;
+  bottom:0px;
+  left:182px;
+  right:182px; 
+  background-color:#cfc;
+  height:180px;
+  overflow:auto;
+}
+
+#chatpane{
+  position:fixed;
+  top:0px;
+  bottom:0px;
+  right:0px;
+  background-color:#ccc;
+  width:180px;
+  overflow:auto;
+}
+
+#minichatpane{
+  position:fixed;
+  display:none;
+  right:0px;
+  bottom:0px;
+  background-color:#ffc;
+  height:180px;
+  width:180px;
+  overflow:auto;
+}
+
+#chatview{
+  position:absolute;
+  top:5px;
+  bottom:55px;
+  right:5px;
+  left:5px;
+  background-color:#fff;
+  overflow:auto;
+}
+
+#chatform textarea.chatinput{
+  position:absolute;
+  bottom:5px;
+  left:5px;
+  right:5px;
+  height:40px;
+  
+}
+
+/*
+javascript: void(document.getElementById('chat').style.display = 'none')
+javascript: void(document.getElementById('msgchat').style.display = 'block')
+javascript: void(document.getElementById('view').style.right = '0px')
+*/

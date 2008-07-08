@@ -1,0 +1,84 @@
+{% extends "layout.html.djt" %}
+
+{% block head %}
+<link rel="stylesheet" href="/stylesheets/shop.css" type="text/css" media="screen" charset="utf-8" />
+{% endblock %}
+
+{% block viewpane %}
+			<table class="centered"><tbody><tr>
+				<td><img class="npcimage" src="images/franca.png"></td>
+				<td>
+					<h2>Hasper and Son's Department Store</h2>
+					<h3>Franca, Shopkeeper</h3>
+					<p class="npctext"><em class="emote">Sigh.</em> Another customer. Look, just buy something and the get out, okay?</p>
+				</td>
+			</tr></tbody></table>
+			<table class="centered" id="shopinventory"><thead>
+				<tr>
+					<th>Qty</th><th>Price</th><th>Item</th><th>Subtotal</th>
+				</tr></thead><tbody><tr>
+					<td><input type="checkbox" checked="true"><input type="text" value="1"></td>
+					<td>x 350</td>
+					<td><img src="images/sandblastedspear.png" alt="[img]">Sandblasted Spear</td>
+					<td class="number">350</td>
+				</tr><tr>
+					<td><input type="checkbox"><input type="text"></td>
+					<td>x 175</td>
+					<td><img src="images/partyhat.png" alt="[img]">Party Hat</td>
+					<td class="number">0</td>
+				</tr><tr>
+					<td><input type="checkbox" checked="true"><input type="text" value="1"></td>
+					<td>x 1025</td>
+					<td><img src="images/leatherhauberk.png" alt="[img]">Leather Hauberk</td>
+					<td class="number">1025</td>
+				</tr><tr>
+					<td><input type="checkbox"><input type="text"></td>
+					<td>x 655</td>
+					<td><img src="images/redbelt.png" alt="[img]">Red Belt</td>
+					<td class="number">0</td>
+				</tr><tr>
+					<td><input type="checkbox"><input type="text"></td>
+					<td>x 450</td>
+					<td><img src="images/blackslacks.png" alt="[img]">Black Slacks</td>
+					<td class="number">0</td>
+				</tr><tr>
+					<td><input type="checkbox"><input type="text"></td>
+					<td>x 520</td>
+					<td><img src="images/bootsofstriding.png" alt="[img]">Boots of Striding</td>
+					<td class="number">0</td>
+				</tr><tr>
+					<td><input type="checkbox" checked="true"><input type="text" value="12"></td>
+					<td>x 120</td>
+					<td><img src="images/bloodstoneearrings.png" alt="[img]">Bloodstone Earrings</td>
+					<td class="number">1440</td>
+				</tr></tbody><tfoot><tr>
+					<td colspan="2"><input type="button" value="Purchase (2815)"></td>
+					<td class="number"><em>Total:</em></td>
+					<td class="number">2815</td>
+				</tr>
+			</tfoot></table>
+			
+			<table class="centered" id="purchaseReview"><thead>
+				<tr>
+					<th colspan="4">Purchase Review</th>
+				</tr></thead><tbody><tr>
+					<td class="number">1 x</td>
+					<td>Sandblasted Spear</td>
+					<td class="number">(350 ea):</td>
+					<td class="number">350</td>
+				</tr><tr>
+					<td class="number">1 x</td>
+					<td>Leather Hauberk</td>
+					<td class="number">(1025 ea):</td>
+					<td class="number">1025</td>
+				</tr><tr>
+					<td class="number">12 x</td>
+					<td>Bloodstone Earrings</td>
+					<td class="number">(120 ea):</td>
+					<td class="number">1440</td>
+				</tr></tbody><tfoot><tr>
+					<td colspan="2"><input type="button" value="Purchase (2815)"></td>
+					<td class="number">Total:</td>
+					<td class="number">2815</td>
+			</tfoot></table>
+{% endblock %}

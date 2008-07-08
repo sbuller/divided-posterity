@@ -1,0 +1,137 @@
+#skillrepository{
+	width:80%;
+}
+
+#skillrepository .repository{
+	margin:0px;
+	border:1px solid #333;
+	background-color:#ddd;
+}
+
+#skillrepository .tab{
+	float:left;
+	width:84px;
+	background-color:#ccc;
+	border:1px solid #333;
+	margin:-1px 2px 0px 2px;
+	mar\gin-top:0px;
+	text-align:center;
+}
+
+#skillrepository .first.tab{
+	clear:both;
+}
+
+#skillrepository .selected.tab{
+	background-color: #ddd;
+	border-top:0px;
+}
+
+#skillrepository .last.tab{
+	float:right;
+}
+
+.repository img{
+	float:left;
+	border:1px solid #333;
+	background-color:#ccc;
+	margin:2px;
+}
+
+.repository img.scroll{
+	background-color:transparent;
+	border:0px;
+}
+
+.repository img.unavailable{
+	background-color:#666;
+}
+
+.repository img.last{
+	float:none;
+}
+
+.terrain{
+	float:left;
+	height:24px;
+	width:24px;
+	border:1px solid #333;
+	margin:0px 3px 0px 3px;
+	background-position:50% 50%;
+	background-repeat:no-repeat;
+}
+
+.good.terrain{
+	background-color:#ccc;
+}
+
+.neutral.terrain{
+	background-color:#999;
+}
+
+.bad.terrain{
+	background-color:#666;
+}
+
+.terrain.startcombat{
+	background-image:url("/images/redstar.png");
+}
+
+.terrain.powerup{
+	background-image:url("/images/whitetriangle.png");
+}
+
+#enemy{
+	width:300px;
+}
+
+#enemyimage{
+	float:right;
+}
+
+#combattext p{
+	text-align:center;
+}
+
+#wellbeingbars{
+	width:95%;
+	/*position:absolute;
+	bottom:3px;*/
+}
+
+#wellbeingbars .bar{
+	height:1.3em;
+	width:49%;
+	background-color:#999;
+}
+
+#wellbeingbars h3{
+	margin:0px;
+	clear:both;
+	position:relative;
+	top:-1.45em;
+}
+
+#health{
+	float:left;
+}
+
+#energy{
+	float:right;
+}
+
+.barfill{
+	background-color:#fff;
+	border:1px solid #333;
+	height:100%;
+	position:relative;
+	top:-1px;
+}
+
+#health .barfill{
+	float:right;
+}
+
+#energy .barfill{
+	float:left;
+}

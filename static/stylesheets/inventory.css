@@ -1,0 +1,128 @@
+.item {
+	width:150px;
+	margin:5px;
+	border:solid gray 1px;
+	background-color:white;
+	overflow:hidden;
+}
+
+.invalid {
+	background-color:white;
+}
+
+.invalid>.item {
+	visibility:hidden;
+}
+
+.righthandslot,.lefthandslot,.headslot,.bodyslot,.legsslot,.accsslot {
+	width:150px;
+	border:solid black 2px;
+	padding-right:2px;
+	margin:5px;
+}
+.righthandslot>.item,.lefthandslot>.item,.headslot>.item,.bodyslot>.item,.legsslot>.item,.accsslot>.item {
+	margin:0;
+}
+
+#viewpane .item p {
+	overflow:hidden;
+	white-space:nowrap;
+	text-overflow:ellipsis;
+	margin:0;
+	margin-left:26px;
+}
+
+#viewpane .item img {
+	float:left;
+}
+
+#viewpane .item .equipdata {
+	font-size:smaller;
+	color:gray;
+}
+
+#viewpane > h1 {
+	float:right;
+	display:none;
+	margin-top:0px;
+}
+
+.showequipped {
+	float: left;
+}
+
+.showequipped h2 {
+	margin:5px;
+}
+
+#showaccessories {
+	float: left;
+}
+
+#inventoryitems {
+	margin-left:150px;
+	background-color:orange;
+}
+
+#inventoryitems .item {
+	float:left;
+}
+
+p.equipdata {
+	margin-top:-0.3em;
+}
+
+.clearboth {
+	clear:both;
+}
+
+#inventorymenu {
+	width: 150px;
+	float: left;
+	border:1px solid #5263AB;
+	margin:0px;
+	padding:0px;
+	text-indent:0px;
+	background-color:#E2E2E2;
+}
+#inventorymenu a.head {
+	cursor:pointer;
+	border:1px solid #CCCCCC;
+	background: #5263AB url(/images/collapsed.gif) no-repeat scroll 3px 4px;
+	color:#FFFFFF;
+	display:block;
+	font-weight:bold;
+	margin:0px;
+	padding:0px;
+	text-indent:14px;
+	text-decoration:none;
+}
+#inventorymenu a.head:hover {
+	color:#FFFF99;
+}
+#inventorymenu a.selected {
+	background-image: url(/images/expanded.gif);
+}
+#inventorymenu a.current {
+	background-color:#FFFF99;
+}
+#inventorymenu ul {
+	border-width:0px;
+	margin:0px;
+	padding:0px;
+	text-indent:0px;
+}
+#inventorymenu li {
+	list-style:none outside none; display:inline;
+}
+#inventorymenu li li a {
+	color:#000;
+	display:block;
+	text-indent:10px;
+	text-decoration:none;
+	cursor:pointer;
+}
+#inventorymenu li li a:hover {
+	background-color:#FFFF99;
+	color:#FF0000;
+}

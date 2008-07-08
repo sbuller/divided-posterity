@@ -1,0 +1,165 @@
+{% extends "layout.html.djt" %}
+
+{% block head %}
+<link rel="stylesheet" href="/stylesheets/inventory.css" type="text/css" media="screen" charset="utf-8" />
+{% endblock %}
+
+{% block viewpane %}
+			<h1>Inventory</h1>
+			<div> <!--for hr-->
+				<table class="centered"><tbody><tr><td>
+					<div id="showweapons" class="showequipped">
+						<h2>Hand Held</h2>
+						<div class="righthandslot slot">
+							<div class="item equipped">
+								<img src="images/sandblastedspear.png" alt="Sandblasted Spear" />
+								<p>Sandblasted Spear Of Smiting</p>
+								<p class="equipdata">(Left &amp; Right <a>[x]</a>)</p>
+							</div>
+						</div>
+						<div class="lefthandslot invalid">
+							<div class="item">
+								<p>&nbsp;</p>
+								<p class="equipdata">&nbsp;<a>&nbsp;</a></p>
+							</div>
+						</div>
+					</div>
+					<div id="showarmour" class="showequipped">
+						<h2>Armour</h2>
+						<div class="headslot slot">
+							<div class="item equipped">
+								<img src="images/partyhat.png" alt="Party Hat" />
+								<p>Party Hat</p>
+								<p class="equipdata">(Hat <a>[x]</a>)</p>
+							</div>
+						</div>
+
+						<div class="bodyslot slot">
+							<div class="item equipped">
+								<img src="images/leatherhauberk.png" alt="Leather Hauberk" />
+								<p>Leather Hauberk</p>
+								<p class="equipdata">(Shirt <a>[x]</a>)</p>
+							</div>
+						</div>
+
+						<div class="legsslot slot">
+							<div class="item equipped">
+								<img src="images/blackslacks.png" alt="Black Slacks" />
+								<p>Black Slacks</p>
+								<p class="equipdata">(Pants <a>[x]</a>)</p>
+							</div>
+						</div>
+					</div>
+
+					<div id="showaccessories" class="showequipped">
+						<h2>Accessories</h2>
+						<div class="accsslot slot">
+							<div class="item equipped">
+								<img src="images/redbelt.png" alt="Red Belt" />
+								<p>Red Belt</p>
+								<p class="equipdata">(*Belt <a>[x]</a>)</p>
+							</div>
+						</div>
+
+						<div class="accsslot slot">
+							<div class="item equipped">
+								<img src="images/bootsofstriding.png" alt="Boots of Striding" />
+								<p>Boots of Striding</p>
+								<p class="equipdata">(*Boots <a>[x]</a>)</p>
+							</div>
+						</div>
+
+						<div class="accsslot slot">
+							<div class="item equipped">
+								<img src="images/bloodstoneearrings.png" alt="Bloodstone Earrings" />
+								<p>Bloodstone Earrings</p>
+								<p class="equipdata">(*Earring <a>[x]</a>)</p>
+							</div>
+						</div>
+					</div>
+					<!--div id="unequip">
+						<div class="item">
+							<p>Drag stuff here&nbsp;</p>
+							<p class="equipdata">to unequip it&nbsp;<a>&nbsp;</a></p>
+						</div>
+					</div-->
+				</td></tr></tbody></table>
+				<hr class="clearboth" />
+			</div>
+
+
+			<ul id="inventorymenu">
+				<li>
+					<a class="head">Consumables</a>
+					<ul>
+						<li><a>types of consumables</a></li>
+					</ul>
+				</li>
+				<li>
+					<a class="head">Equipment</a>
+					<ul>
+						<li><a>Hats</a></li>
+						<li><a>Shirts</a></li>
+						<li><a>Weapons</a></li>
+						<li><a>Pants</a></li>
+						<li><a>Accessories</a></li>
+					</ul>
+				</li>
+				<li>
+					<a class="head">Pets</a>
+					<ul>
+						<li><a>types of pets</a></li>
+					</ul>
+				</li>
+				<li>
+					<a class="head">Vehicles</a>
+					<ul>
+						<li><a>types of vehicles</a></li>
+					</ul>
+				</li>
+				<li>
+					<a class="head">Key Items</a>
+					<ul>
+						<li><a>types of key items</a></li>
+					</ul>
+				</li>
+			</ul> <!-- #inventorymenu -->
+
+			<div id="inventoryitems">
+				<div class="item">
+					<img src="/images/partyhat.png" alt="Party Hat" />
+					<p>Party Hat</p>
+					<p class="equipdata">[Hat]</p>
+				</div>
+
+				<div class="item">
+					<img src="/images/partyhat.png" alt="Party Hat" />
+					<p>Party Hat</p>
+					<p class="equipdata">[Hat]</p>
+				</div>
+
+				<div class="item">
+					<img src="images/partyhat.png" alt="Party Hat" />
+					<p>Party Hat</p>
+					<p class="equipdata">[Hat]</p>
+				</div>
+
+				<div class="item">
+					<img src="images/partyhat.png" alt="Party Hat" />
+					<p>Party Hat</p>
+					<p class="equipdata">[Hat]</p>
+				</div>
+
+				<div class="item">
+					<img src="images/partyhat.png" alt="Party Hat" />
+					<p>Party Hat</p>
+					<p class="equipdata">[Hat]</p>
+				</div>
+
+				<div class="item">
+					<img src="images/partyhat.png" alt="Party Hat" />
+					<p>Party Hat</p>
+					<p class="equipdata">[Hat]</p>
+				</div>
+			</div>
+{% endblock %}

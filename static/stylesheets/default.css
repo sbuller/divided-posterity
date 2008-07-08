@@ -1,0 +1,82 @@
+body{
+  font-family:Helvetica, Arial, sans-serif;
+  font-size:10pt;
+  color:#000;
+  vertical-align:middle;
+}
+
+h2{
+  font-size:12pt;
+  text-align:center;
+}
+
+h3{
+  text-align:center;
+  font-variant:small-caps;
+  font-weight:normal;
+  font-size:10pt;
+}
+
+h3 img{
+  vertical-align:text-bottom;
+}
+
+em{
+  font-weight:bolder;
+  font-style:normal;
+}
+
+em.caster{
+  font-size:7pt;
+  vertical-align:top;
+}
+
+em.increased{
+  color:black;
+}
+
+em.decreased{
+  color:#f00;
+  font-weight:normal;
+}
+
+em.uncreased{
+  color:black;
+  font-weight:normal;
+}
+
+#chatview p{
+  font-size:9pt;
+  margin:2px 0px;
+  padding:4px;
+}
+
+#chatview p.timeout{
+  color:#080;
+}
+
+*.centered{
+  margin-left:auto;
+  margin-right:auto;
+}
+
+*.numbered{
+  text-align:left;
+}
+
+*.number{
+  text-align:right;
+}
+
+a:link, a:visited{
+  text-decoration:none;
+  color:#000;
+}
+
+a:hover{
+  color:#666;
+}
+
+a:active{
+  color:#999;
+}
