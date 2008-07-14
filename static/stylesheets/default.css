@@ -80,3 +80,11 @@ a:hover{
 a:active{
   color:#999;
 }
+
+.itemicon{
+	width:24px;
+	height:24px;
+	background-position:50%,50%;
+	background-color:transparent;
+	border:1px solid #333;
+}

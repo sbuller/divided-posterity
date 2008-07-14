@@ -19,37 +19,37 @@
 				</tr></thead><tbody><tr>
 					<td><input type="checkbox" checked="true"><input type="text" value="1"></td>
 					<td>x 350</td>
-					<td><img src="images/sandblastedspear.png" alt="[img]">Sandblasted Spear</td>
+					<td><div class="itemicon" style="background-image:url(/images/items/sandblastedspear.png);"></div>Sandblasted Spear</td>
 					<td class="number">350</td>
 				</tr><tr>
 					<td><input type="checkbox"><input type="text"></td>
 					<td>x 175</td>
-					<td><img src="images/partyhat.png" alt="[img]">Party Hat</td>
+					<td><div class="itemicon" style="background-image:url(/images/items/partyhat.png);"></div>Party Hat</td>
 					<td class="number">0</td>
 				</tr><tr>
 					<td><input type="checkbox" checked="true"><input type="text" value="1"></td>
 					<td>x 1025</td>
-					<td><img src="images/leatherhauberk.png" alt="[img]">Leather Hauberk</td>
+					<td><div class="itemicon" style="background-image:url(/images/items/partyhat.png);"></div>Leather Hauberk</td>
 					<td class="number">1025</td>
 				</tr><tr>
 					<td><input type="checkbox"><input type="text"></td>
 					<td>x 655</td>
-					<td><img src="images/redbelt.png" alt="[img]">Red Belt</td>
+					<td><div class="itemicon" style="background-image:url(/images/items/redbelt.png);"></div>Red Belt</td>
 					<td class="number">0</td>
 				</tr><tr>
 					<td><input type="checkbox"><input type="text"></td>
 					<td>x 450</td>
-					<td><img src="images/blackslacks.png" alt="[img]">Black Slacks</td>
+					<td><div class="itemicon" style="background-image:url(/images/items/blackslacks.png);"></div>Black Slacks</td>
 					<td class="number">0</td>
 				</tr><tr>
 					<td><input type="checkbox"><input type="text"></td>
 					<td>x 520</td>
-					<td><img src="images/bootsofstriding.png" alt="[img]">Boots of Striding</td>
+					<td><div class="itemicon" style="background-image:url(/images/items/bootsofstriding.png);"></div>Boots of Striding</td>
 					<td class="number">0</td>
 				</tr><tr>
 					<td><input type="checkbox" checked="true"><input type="text" value="12"></td>
 					<td>x 120</td>
-					<td><img src="images/bloodstoneearrings.png" alt="[img]">Bloodstone Earrings</td>
+					<td><div class="itemicon" style="background-image:url(/images/items/bloodstoneearrings.png);"></div>Bloodstone Earrings</td>
 					<td class="number">1440</td>
 				</tr></tbody><tfoot><tr>
 					<td colspan="2"><input type="button" value="Purchase (2815)"></td>
