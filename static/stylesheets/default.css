@@ -84,7 +84,8 @@ a:active{
 .itemicon{
 	width:24px;
 	height:24px;
-	background-position:50%,50%;
+	background-position:50% 50%;
 	background-color:transparent;
+	background-repeat:no-repeat;
 	border:1px solid #333;
 }
