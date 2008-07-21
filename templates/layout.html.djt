@@ -86,8 +86,8 @@
 			</div>
 
 			<form id="chatform" action="javascript:;">
-				<div><textarea name="chatinput" class="chatinput" rows="2" cols="18">Type Here.</textarea></div>
-                        </form>
+				<div><textarea name="chatinput" class="chatinput" rows="2" cols="18">Type Here.</textarea></div> 
+			</form>
 
 		</div>
 	</body>
