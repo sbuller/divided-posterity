@@ -12,7 +12,7 @@
 						<h2>Hand Held</h2>
 						<div class="righthandslot slot">
 							<div class="item equipped">
-                <div class="itemicon" style="background-image:url(/images/items/sandblastedspear.png);"></div>
+								<div class="itemicon" style="background-image:url(/images/items/sandblastedspear.png);"></div>
 								<p>Sandblasted Spear Of Smiting</p>
 								<p class="equipdata">(Left &amp; Right <a>[x]</a>)</p>
 							</div>
@@ -28,7 +28,7 @@
 						<h2>Armour</h2>
 						<div class="headslot slot">
 							<div class="item equipped">
-                <div class="itemicon" style="background-image:url(/images/items/partyhat.png);"></div>
+								<div class="itemicon" style="background-image:url(/images/items/partyhat.png);"></div>
 								<p>Party Hat</p>
 								<p class="equipdata">(Hat <a>[x]</a>)</p>
 							</div>
@@ -36,7 +36,7 @@
 
 						<div class="bodyslot slot">
 							<div class="item equipped">
-                <div class="itemicon" style="background-image:url(/images/items/leatherhauberk.png);"></div>
+								<div class="itemicon" style="background-image:url(/images/items/leatherhauberk.png);"></div> 
 								<p>Leather Hauberk</p>
 								<p class="equipdata">(Shirt <a>[x]</a>)</p>
 							</div>
@@ -44,7 +44,7 @@
 
 						<div class="legsslot slot">
 							<div class="item equipped">
-                <div class="itemicon" style="background-image:url(/images/items/blackslacks.png);"></div>
+								<div class="itemicon" style="background-image:url(/images/items/blackslacks.png);"></div> 
 								<p>Black Slacks</p>
 								<p class="equipdata">(Pants <a>[x]</a>)</p>
 							</div>
@@ -55,7 +55,7 @@
 						<h2>Accessories</h2>
 						<div class="accsslot slot">
 							<div class="item equipped">
-                <div class="itemicon" style="background-image:url(/images/items/redbelt.png);"></div>
+								<div class="itemicon" style="background-image:url(/images/items/redbelt.png);"></div> 
 								<p>Red Belt</p>
 								<p class="equipdata">(*Belt <a>[x]</a>)</p>
 							</div>
@@ -63,7 +63,7 @@
 
 						<div class="accsslot slot">
 							<div class="item equipped">
-                <div class="itemicon" style="background-image:url(/images/items/bootsofstriding.png);"></div>
+								<div class="itemicon" style="background-image:url(/images/items/bootsofstriding.png);"></div> 
 								<p>Boots of Striding</p>
 								<p class="equipdata">(*Boots <a>[x]</a>)</p>
 							</div>
@@ -71,7 +71,7 @@
 
 						<div class="accsslot slot">
 							<div class="item equipped">
-                <div class="itemicon" style="background-image:url(/images/items/bloodstoneearrings.png);"></div>
+								<div class="itemicon" style="background-image:url(/images/items/bloodstoneearrings.png);"></div> 
 								<p>Bloodstone Earrings</p>
 								<p class="equipdata">(*Earring <a>[x]</a>)</p>
 							</div>
@@ -127,37 +127,37 @@
 
 			<div id="inventoryitems">
 				<div class="item">
-          <div class="itemicon" style="background-image:url(/images/items/partyhat.png);"></div>
+					<div class="itemicon" style="background-image:url(/images/items/partyhat.png);"></div> 
 					<p>Party Hat</p>
 					<p class="equipdata">[Hat]</p>
 				</div>
 
 				<div class="item">
-          <div class="itemicon" style="background-image:url(/images/items/partyhat.png);"></div>
+					<div class="itemicon" style="background-image:url(/images/items/partyhat.png);"></div> 
 					<p>Party Hat</p>
 					<p class="equipdata">[Hat]</p>
 				</div>
 
 				<div class="item">
-          <div class="itemicon" style="background-image:url(/images/items/partyhat.png);"></div>
+					<div class="itemicon" style="background-image:url(/images/items/partyhat.png);"></div> 
 					<p>Party Hat</p>
 					<p class="equipdata">[Hat]</p>
 				</div>
 
 				<div class="item">
-          <div class="itemicon" style="background-image:url(/images/items/partyhat.png);"></div>
+					<div class="itemicon" style="background-image:url(/images/items/partyhat.png);"></div> 
 					<p>Party Hat</p>
 					<p class="equipdata">[Hat]</p>
 				</div>
 
 				<div class="item">
-          <div class="itemicon" style="background-image:url(/images/items/partyhat.png);"></div>
+					<div class="itemicon" style="background-image:url(/images/items/partyhat.png);"></div> 
 					<p>Party Hat</p>
 					<p class="equipdata">[Hat]</p>
 				</div>
 
 				<div class="item">
-          <div class="itemicon" style="background-image:url(/images/items/partyhat.png);"></div>
+					<div class="itemicon" style="background-image:url(/images/items/partyhat.png);"></div> 
 					<p>Party Hat</p>
 					<p class="equipdata">[Hat]</p>
 				</div>
