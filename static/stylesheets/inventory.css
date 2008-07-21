@@ -34,6 +34,8 @@
 
 #viewpane .item .itemicon {
 	float:left;
+	width:2em;
+	height:2em;
 }
 
 #viewpane .item .equipdata {

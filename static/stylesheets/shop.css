@@ -19,3 +19,15 @@
 #viewpane table{
   border-collapse:collapse;
 }
+
+#viewpane .itemicon{
+	float:left;
+	background-color:#fff;
+}
+
+#viewpane .itemicon + p{
+	position:relative;
+	top:4px;
+	margin:0px;
+	white-space:pre;
+}
