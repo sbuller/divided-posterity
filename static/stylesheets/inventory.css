@@ -79,19 +79,19 @@ p.equipdata {
 }
 
 #inventorymenu {
-	width: 150px;
-	float: left;
-	border:1px solid #5263AB;
+	width:150px;
+	float:left;
+	border:1px solid #999;
 	margin:0px;
 	padding:0px;
 	text-indent:0px;
-	background-color:#E2E2E2;
+	background-color:#fff;
 }
 #inventorymenu a.head {
 	cursor:pointer;
-	border:1px solid #CCCCCC;
-	background: #5263AB url(/images/collapsed.gif) no-repeat scroll 3px 4px;
-	color:#FFFFFF;
+	border:1px solid #ccc;
+	background: #999 url(/images/interface/rightarrow.png) no-repeat scroll 5px 50%;
+	color:#fff;
 	display:block;
 	font-weight:bold;
 	margin:0px;
@@ -100,13 +100,13 @@ p.equipdata {
 	text-decoration:none;
 }
 #inventorymenu a.head:hover {
-	color:#FFFF99;
+	color:#ddd;
 }
 #inventorymenu a.selected {
-	background-image: url(/images/expanded.gif);
+	background: #999 url(/images/interface/downarrow.png) no-repeat scroll 0px 50%;
 }
 #inventorymenu a.current {
-	background-color:#FFFF99;
+	background-color:#eee;
 }
 #inventorymenu ul {
 	border-width:0px;
@@ -125,6 +125,6 @@ p.equipdata {
 	cursor:pointer;
 }
 #inventorymenu li li a:hover {
-	background-color:#FFFF99;
-	color:#FF0000;
+	background-color:#eee;
+	color:#333;
 }

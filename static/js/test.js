@@ -1,16 +1,24 @@
 $(document).ready(function(){
 	$('.toggle').toggle(function(){
 		$(this).parent().next().slideUp('fast');
-		$(this).attr("src", "/images/plus.png");
+		$(this).children('img:first').attr("src", "/images/interface/rightarrow.png");
+		$(this).children('img:last').attr("src", "/images/interface/leftarrow.png");
 	},function(){
 		$(this).parent().next().slideDown('fast');
-		$(this).attr("src", "/images/minus.png");
+		$(this).children('img:first,img:last').attr("src", "/images/interface/downarrow.png");
 	});
 	$('#heropane').sortable({
 		axis: 'y',
-		cancel: ':input, button, img',
+		cancel: ":input, \
+		         button, \
+		         span, \
+		         img[src='/images/interface/downarrow.png'], \
+		         img[src='/images/interface/leftarrow.png'], \
+		         img[src='/images/interface/rightarrow.png'], \
+		         a, \
+		         .cancel",
 		cursor: 'move',
-		handle: $('#heropane h3'),
+		handle: $('#heropane>div'),
 		items:  '> div',
 		update: function(e,ui){
 			var helper = ui.helper.get(0);

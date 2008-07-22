@@ -1,4 +1,20 @@
 body{
+	background-color:#999;
+}
+
+body>div{
+	background-color:#ddd;
+}
+
+#heropane>div>div{
+	background-color:#fff;
+}
+
+#chatview{
+	background-color:#fff;
+}
+
+body{
   font-family:Helvetica, Arial, sans-serif;
   font-size:10pt;
   color:#000;
@@ -18,7 +34,7 @@ h3{
 }
 
 h3 img{
-  vertical-align:text-bottom;
+  vertical-align:middle;
 }
 
 em{
@@ -32,7 +48,7 @@ em.caster{
 }
 
 em.increased{
-  color:black;
+  color:#000;
 }
 
 em.decreased{
@@ -41,7 +57,7 @@ em.decreased{
 }
 
 em.uncreased{
-  color:black;
+  color:#000;
   font-weight:normal;
 }
 
@@ -89,3 +105,26 @@ a:active{
 	background-repeat:no-repeat;
 	border:1px solid #333;
 }
+
+/* Indicate that the panels can be moved */
+#heropane > div > h3 {
+	cursor:move;
+	color:#fff;
+	font-weight:bolder;
+	background:#999;
+	margin-bottom:0px;
+}
+
+#heropane>div>h3>span>img{
+	margin:0px 6px 0px 6px;
+}
+
+#heropane>div>h3>span{
+	cursor:pointer;
+}
+/*
+#heropane > div > h3 > img {
+	cursor:pointer;
+	float:left;
+	margin-top:2px;
+}*/

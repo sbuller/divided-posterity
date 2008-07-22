@@ -20,16 +20,15 @@
 			<h2>SketchySolid (#1234567)</h2>
 			<h3>Level 14 Bricksmith</h3>
 
-			<div id="image">
-				<h3><img alt="[-]" class="toggle" src="images/minus.png" />Image</h3>
+			<div id="avatar">
+				<h3><span class="toggle"><img alt="[-]" src="/images/interface/downarrow.png" />Avatar<img alt="[-]" src="/images/interface/downarrow.png" /></span></h3>
 				<div><table class="centered"><tbody>
-							<tr><td><img alt="avatar" src="images/image.png" /></td></tr>
+							<tr><td><img alt="avatar" src="/images/image.png" /></td></tr>
 				</tbody></table></div>
 			</div>
 
 			<div id="stats">
-				<h3><img alt="[-]" class="toggle" src="images/minus.png" />Stats</h3>
-				<div><table class="centered"><tbody>
+<h3><span class="toggle"><img alt="[-]" src="/images/interface/downarrow.png" />Stats<img alt="[-]" src="/images/interface/downarrow.png" /></span></h3>				<div><table class="centered"><tbody>
 						<tr><td class="number" title="Base Brawn: 98"><em class="increased">102</em></td><td class="numbered">Brawn</td></tr>
 						<tr><td class="number" title="Base Magery: 72"><em class="uncreased">72</em></td><td class="numbered">Magery</td></tr>
 						<tr><td class="number" title="Base Stamina: 65"><em class="decreased">45</em></td><td class="numbered">Stamina</td></tr>
@@ -40,7 +39,7 @@
 			</div>
 
 			<div id="buffs">
-				<h3><img class="toggle" alt="[-]" src="images/minus.png" />Buffs</h3>
+				<h3><span class="toggle"><img alt="[-]" src="/images/interface/downarrow.png" />Buffs<img alt="[-]" src="/images/interface/downarrow.png" /></span></h3>
 				<div><table class="centered"><tbody>
 						<tr><td>Adrenaline Rush</td></tr>
 						<tr><td>Eyes of the Eagle</td></tr>
@@ -50,7 +49,7 @@
 			</div>
 
 			<div id="effects">
-				<h3><img class="toggle" alt="[-]" src="images/minus.png" />Other Effects</h3>
+				<h3><span class="toggle"><img alt="[-]" src="/images/interface/downarrow.png" />Other Effects<img alt="[-]" src="/images/interface/downarrow.png" /></span></h3>
 				<div><table class="centered"><tbody>
 						<tr><td class="number">5</td><td class="numbered">Hot! Hot! Hot!</td></tr>
 						<tr><td class="number">5</td><td class="numbered">Open for Business</td></tr>
@@ -62,9 +61,9 @@
 			</div>
 
 			<div id="vehicle">
-				<h3><img class="toggle" alt="[-]" src="images/minus.png" />Vehicle</h3>
+				<h3><span class="toggle"><img alt="[-]" src="/images/interface/downarrow.png" />Vehicle<img alt="[-]" src="/images/interface/downarrow.png" /></span></h3>
 				<div><table class="centered"><tbody>
-						<tr><td><img src="images/dunebuggy.png" alt="Dune Buggy" /></td><td>Armored Dune-Buggy</td></tr>
+						<tr><td><img src="/images/dunebuggy.png" alt="Dune Buggy" /></td><td>Armored Dune-Buggy</td></tr>
 				</tbody></table></div>
 			</div>
 
