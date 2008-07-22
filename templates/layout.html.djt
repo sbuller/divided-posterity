@@ -23,7 +23,7 @@
 			<div id="avatar">
 				<h3><span class="toggle"><img alt="[-]" src="/images/interface/downarrow.png" />Avatar<img alt="[-]" src="/images/interface/downarrow.png" /></span></h3>
 				<div><table class="centered"><tbody>
-							<tr><td><img alt="avatar" src="/images/image.png" /></td></tr>
+							<tr><td><img alt="avatar" src="/images/avatars/avy1.png" /></td></tr>
 				</tbody></table></div>
 			</div>
 
@@ -63,7 +63,7 @@
 			<div id="vehicle">
 				<h3><span class="toggle"><img alt="[-]" src="/images/interface/downarrow.png" />Vehicle<img alt="[-]" src="/images/interface/downarrow.png" /></span></h3>
 				<div><table class="centered"><tbody>
-						<tr><td><img src="/images/dunebuggy.png" alt="Dune Buggy" /></td><td>Armored Dune-Buggy</td></tr>
+						<tr><td><img src="/images/items/dunebuggy.png" alt="Dune Buggy" /></td><td>Armored Dune-Buggy</td></tr>
 				</tbody></table></div>
 			</div>
 

@@ -6,7 +6,7 @@
 
 {% block viewpane %}
 			<table class="centered"><tbody><tr>
-				<td><img class="npcimage" src="images/franca.png"></td>
+				<td><img class="npcimage" src="images/npc/franca.png"></td>
 				<td>
 					<h2>Hasper and Son's Department Store</h2>
 					<h3>Franca, Shopkeeper</h3>

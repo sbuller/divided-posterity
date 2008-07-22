@@ -7,33 +7,33 @@
 {% block viewpane %}
       <table id="skillrepository" class="centered"><tbody><tr><td>
         <div class="repository">
-						<img src="images/surrender.png" alt="[s]" title="Surrender"/>
-						<img src="images/poisonblade.png" alt="[P]" title="Poison Blade"/>
-						<img src="images/defend.png" alt="[d]" title="Defend"/>
-						<img src="images/energyblast.png" alt="[E]" title="Energy Blast"/>
-						<img src="images/dash.png" alt="[d]" title="Dash"/>
-						<img src="images/poisonblade.png" alt="[P]" title="Poison Blade"/>
-						<img src="images/flameshield.png" alt="[f]" title="Flame Shield"/>
-						<img src="images/barrier.png" alt="[b]" title="Barrier"/>
-						<img src="images/plunge.png" alt="[P]" title="Plunge"/>
-						<img src="images/energyblast.png" alt="[E]" title="Energy Blast"/>
-						<img src="images/regenerate.png" alt="[r]" title="Regenerate"/>
-						<img src="images/attack.png" alt="[A]" title="Attack"/>
-						<img src="images/lunge.png" alt="[L]" title="Lunge"/>
-						<img src="images/poisonblade.png" alt="[P]" title="Poison Blade"/>
-						<img src="images/plunge.png" alt="[P]" title="Plunge"/>
-						<img src="images/defend.png" alt="[d]" title="Defend"/>
-						<img src="images/regenerate.png" alt="[r]" title="Regenerate"/>
-						<img src="images/flameshield.png" alt="[f]" title="Flame Shield"/>
-						<img src="images/energyblast.png" alt="[E]" title="Energy Blast"/>
-						<img src="images/barrier.png" alt="[b]" title="Barrier"/>
-						<img src="images/dash.png" alt="[d]" title="Dash"/>
-						<img src="images/surrender.png" alt="[s]" title="Surrender"/>
-						<img src="images/regenerate.png" alt="[r]" title="Regenerate"/>
-						<img src="images/barrier.png" alt="[b]" title="Barrier"/>
-						<img src="images/plunge.png" alt="[P]" title="Plunge"/>
-						<img src="images/flameshield.png" alt="[f]" title="Flame Shield"/>
-						<img src="images/surrender.png" alt="[s]" title="Surrender" class="last"/>
+						<img src="/images/skills/surrender.png" alt="[s]" title="Surrender"/>
+						<img src="/images/skills/poisonblade.png" alt="[P]" title="Poison Blade"/>
+						<img src="/images/skills/defend.png" alt="[d]" title="Defend"/>
+						<img src="/images/skills/energyblast.png" alt="[E]" title="Energy Blast"/>
+						<img src="/images/skills/dash.png" alt="[d]" title="Dash"/>
+						<img src="/images/skills/poisonblade.png" alt="[P]" title="Poison Blade"/>
+						<img src="/images/skills/flameshield.png" alt="[f]" title="Flame Shield"/>
+						<img src="/images/skills/barrier.png" alt="[b]" title="Barrier"/>
+						<img src="/images/skills/plunge.png" alt="[P]" title="Plunge"/>
+						<img src="/images/skills/energyblast.png" alt="[E]" title="Energy Blast"/>
+						<img src="/images/skills/regenerate.png" alt="[r]" title="Regenerate"/>
+						<img src="/images/skills/attack.png" alt="[A]" title="Attack"/>
+						<img src="/images/skills/lunge.png" alt="[L]" title="Lunge"/>
+						<img src="/images/skills/poisonblade.png" alt="[P]" title="Poison Blade"/>
+						<img src="/images/skills/plunge.png" alt="[P]" title="Plunge"/>
+						<img src="/images/skills/defend.png" alt="[d]" title="Defend"/>
+						<img src="/images/skills/regenerate.png" alt="[r]" title="Regenerate"/>
+						<img src="/images/skills/flameshield.png" alt="[f]" title="Flame Shield"/>
+						<img src="/images/skills/energyblast.png" alt="[E]" title="Energy Blast"/>
+						<img src="/images/skills/barrier.png" alt="[b]" title="Barrier"/>
+						<img src="/images/skills/dash.png" alt="[d]" title="Dash"/>
+						<img src="/images/skills/surrender.png" alt="[s]" title="Surrender"/>
+						<img src="/images/skills/regenerate.png" alt="[r]" title="Regenerate"/>
+						<img src="/images/skills/barrier.png" alt="[b]" title="Barrier"/>
+						<img src="/images/skills/plunge.png" alt="[P]" title="Plunge"/>
+						<img src="/images/skills/flameshield.png" alt="[f]" title="Flame Shield"/>
+						<img src="/images/skills/surrender.png" alt="[s]" title="Surrender" class="last"/>
         <div class="first tab">Items</div>
         <div class="selected tab">Skills</div>
         <div class="last tab">Hide</div>
@@ -41,24 +41,24 @@
       
       <table id="skillbar" class="centered"><tbody><tr><td>
 				<div class="repository">
-					<img src="images/scrollleft.png" alt="(&lt;]" title="Previous Page" class="scroll"/>
-					<img src="images/attack.png" alt="[A]" title="Attack"/>
-					<img src="images/lunge.png" alt="[L]" title="Lunge"/>
-					<img src="images/poisonblade.png" alt="[P]" title="Poison Blade" class="unavailable"/>
-					<img src="images/plunge.png" alt="[P]" title="Plunge" class="unavailable"/>
-					<img src="images/defend.png" alt="[d]" title="Defend"/>
-					<img src="images/regenerate.png" alt="[r]" title="Regenerate"/>
-					<img src="images/flameshield.png" alt="[f]" title="Flame Shield"/>
-					<img src="images/energyblast.png" alt="[E]" title="Energy Blast" class="unavailable"/>
-					<img src="images/barrier.png" alt="[b]" title="Barrier"/>
-					<img src="images/dash.png" alt="[d]" title="Dash"/>
-					<img src="images/surrender.png" alt="[s]" title="Surrender"/>
-					<img src="images/scrollright.png" alt="[&gt;)" title="Next Page" class="scroll last"/>
+					<img src="/images/interface/scrollleft.png" alt="(&lt;]" title="Previous Page" class="scroll"/>
+					<img src="/images/skills/attack.png" alt="[A]" title="Attack"/>
+					<img src="/images/skills/lunge.png" alt="[L]" title="Lunge"/>
+					<img src="/images/skills/poisonblade.png" alt="[P]" title="Poison Blade" class="unavailable"/>
+					<img src="/images/skills/plunge.png" alt="[P]" title="Plunge" class="unavailable"/>
+					<img src="/images/skills/defend.png" alt="[d]" title="Defend"/>
+					<img src="/images/skills/regenerate.png" alt="[r]" title="Regenerate"/>
+					<img src="/images/skills/flameshield.png" alt="[f]" title="Flame Shield"/>
+					<img src="/images/skills/energyblast.png" alt="[E]" title="Energy Blast" class="unavailable"/>
+					<img src="/images/skills/barrier.png" alt="[b]" title="Barrier"/>
+					<img src="/images/skills/dash.png" alt="[d]" title="Dash"/>
+					<img src="/images/skills/surrender.png" alt="[s]" title="Surrender"/>
+					<img src="/images/interface/scrollright.png" alt="[&gt;)" title="Next Page" class="scroll last"/>
 				</div>
       </td></tr></tbody></table>
       
       <table id="enemy" class="centered"><tbody><tr><td>
-				<img id="enemyimage" src="images/menacingstarlet.png" alt="[Enemy]"/>
+				<img id="enemyimage" src="/images/npc/menacingstarlet.png" alt="[Enemy]"/>
 				<h4>A Menacing Starlet</h4>
 				<h3>Level 13 Celestial</h3>
 				<p>Projected Battle Terrain</p>

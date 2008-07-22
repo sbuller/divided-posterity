@@ -74,11 +74,11 @@
 }
 
 .terrain.startcombat{
-	background-image:url("/images/redstar.png");
+	background-image:url("/images/interface/redstar.png");
 }
 
 .terrain.powerup{
-	background-image:url("/images/whitetriangle.png");
+	background-image:url("/images/interface/whitetriangle.png");
 }
 
 #enemy{
