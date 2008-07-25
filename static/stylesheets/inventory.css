@@ -83,7 +83,7 @@ p.equipdata {
 	float:left;
 	border:1px solid #999;
 	margin:0px;
-	padding:0px;
+	padding:0px 0px 1px 0px;
 	text-indent:0px;
 	background-color:#fff;
 }
@@ -105,7 +105,7 @@ p.equipdata {
 	background-position:5px 50%;
 	border:1px solid #ccc;
 	display:block;
-	margin:0px;
+	margin:0px 0px -1px 0px;
 	padding:0px;
 	text-indent:14px;
 	text-decoration:none;
