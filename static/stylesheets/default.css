@@ -6,8 +6,17 @@ body>div{
 	background-color:#ddd;
 }
 
-#heropane>div>div{
+.body1, .head2{
 	background-color:#fff;
+	color:#000;
+	border:1px solid #999;
+}
+
+.head1{
+	color:#fff;
+	font-weight:bolder;
+	background:#999;
+/*	border:1px solid #ccc;*/
 }
 
 #chatview{
@@ -109,10 +118,8 @@ a:active{
 /* Indicate that the panels can be moved */
 #heropane > div > h3 {
 	cursor:move;
-	color:#fff;
-	font-weight:bolder;
-	background:#999;
-	margin-bottom:0px;
+	margin-bottom:0em;
+	margin-top:0.5em;
 }
 
 #heropane>div>h3>span>img{

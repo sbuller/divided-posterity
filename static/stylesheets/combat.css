@@ -4,37 +4,38 @@
 
 #skillrepository .repository{
 	margin:0px;
-	border:1px solid #333;
-	background-color:#ddd;
+/*	border:1px solid #333;
+	background-color:#ddd;*/
 }
 
 #skillrepository .tab{
 	float:left;
 	width:84px;
-	background-color:#ccc;
-	border:1px solid #333;
+/*	background-color:#ccc;
+	border:1px solid #333;*/
 	margin:-1px 2px 0px 2px;
-	mar\gin-top:0px;
 	text-align:center;
 }
 
 #skillrepository .first.tab{
 	clear:both;
 }
-
+/*
 #skillrepository .selected.tab{
 	background-color: #ddd;
 	border-top:0px;
-}
+}*/
 
 #skillrepository .last.tab{
 	float:right;
 }
 
 .repository img{
+	/*width:24px;
+	height:24px;*/
 	float:left;
-	border:1px solid #333;
-	background-color:#ccc;
+	border:1px solid #666;
+	background-color:#ddd;
 	margin:2px;
 }
 
@@ -45,6 +46,7 @@
 
 .repository img.unavailable{
 	background-color:#666;
+	border-color:#333;
 }
 
 .repository img.last{

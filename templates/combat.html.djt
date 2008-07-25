@@ -6,7 +6,7 @@
 
 {% block viewpane %}
       <table id="skillrepository" class="centered"><tbody><tr><td>
-        <div class="repository">
+        <div class="repository body1">
 						<img src="/images/skills/surrender.png" alt="[s]" title="Surrender"/>
 						<img src="/images/skills/poisonblade.png" alt="[P]" title="Poison Blade"/>
 						<img src="/images/skills/defend.png" alt="[d]" title="Defend"/>
@@ -34,9 +34,9 @@
 						<img src="/images/skills/plunge.png" alt="[P]" title="Plunge"/>
 						<img src="/images/skills/flameshield.png" alt="[f]" title="Flame Shield"/>
 						<img src="/images/skills/surrender.png" alt="[s]" title="Surrender" class="last"/>
-        <div class="first tab">Items</div>
-        <div class="selected tab">Skills</div>
-        <div class="last tab">Hide</div>
+        <div class="first tab head1">Items</div>
+        <div class="selected tab head1">Skills</div>
+        <div class="last tab head1">Hide</div>
       </td></tr></tbody></table>
       
       <table id="skillbar" class="centered"><tbody><tr><td>

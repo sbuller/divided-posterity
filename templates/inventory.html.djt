@@ -90,37 +90,37 @@
 
 			<ul id="inventorymenu">
 				<li>
-					<a class="head">Consumables</a>
+					<a class="head1">Consumables</a>
 					<ul>
-						<li><a>types of consumables</a></li>
+						<li><a class="head2">types of consumables</a></li>
 					</ul>
 				</li>
 				<li>
-					<a class="head">Equipment</a>
+					<a class="head1">Equipment</a>
 					<ul>
-						<li><a>Hats</a></li>
-						<li><a>Shirts</a></li>
-						<li><a>Weapons</a></li>
-						<li><a>Pants</a></li>
-						<li><a>Accessories</a></li>
+						<li><a class="head2">Hats</a></li>
+						<li><a class="head2">Shirts</a></li>
+						<li><a class="head2">Weapons</a></li>
+						<li><a class="head2">Pants</a></li>
+						<li><a class="head2">Accessories</a></li>
 					</ul>
 				</li>
 				<li>
-					<a class="head">Pets</a>
+					<a class="head1">Pets</a>
 					<ul>
-						<li><a>types of pets</a></li>
+						<li><a class="head2">types of pets</a></li>
 					</ul>
 				</li>
 				<li>
-					<a class="head">Vehicles</a>
+					<a class="head1">Vehicles</a>
 					<ul>
-						<li><a>types of vehicles</a></li>
+						<li><a class="head2">types of vehicles</a></li>
 					</ul>
 				</li>
 				<li>
-					<a class="head">Key Items</a>
+					<a class="head1">Key Items</a>
 					<ul>
-						<li><a>types of key items</a></li>
+						<li><a class="head2">types of key items</a></li>
 					</ul>
 				</li>
 			</ul> <!-- #inventorymenu -->

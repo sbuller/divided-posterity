@@ -34,7 +34,7 @@ $(document).ready(function(){
 	});
 	$('#inventorymenu').accordion({
 		autoHeight: false,
-		header: '.head'
+		header: '.head1'
 	});
 	$('textarea').one("focus", function(){
 		$(this).attr("value","");

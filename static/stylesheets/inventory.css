@@ -87,27 +87,6 @@ p.equipdata {
 	text-indent:0px;
 	background-color:#fff;
 }
-#inventorymenu a.head {
-	cursor:pointer;
-	border:1px solid #ccc;
-	background: #999 url(/images/interface/rightarrow.png) no-repeat scroll 5px 50%;
-	color:#fff;
-	display:block;
-	font-weight:bold;
-	margin:0px;
-	padding:0px;
-	text-indent:14px;
-	text-decoration:none;
-}
-#inventorymenu a.head:hover {
-	color:#ddd;
-}
-#inventorymenu a.selected {
-	background: #999 url(/images/interface/downarrow.png) no-repeat scroll 0px 50%;
-}
-#inventorymenu a.current {
-	background-color:#eee;
-}
 #inventorymenu ul {
 	border-width:0px;
 	margin:0px;
@@ -115,16 +94,38 @@ p.equipdata {
 	text-indent:0px;
 }
 #inventorymenu li {
-	list-style:none outside none; display:inline;
+	list-style:none outside none;
+	display:inline;
 }
-#inventorymenu li li a {
-	color:#000;
+#inventorymenu a.head1 {
+	cursor:pointer;
+	background-image:url(/images/interface/rightarrow.png);
+	background-repeat:no-repeat;
+	background-attachment:scroll;
+	background-position:5px 50%;
+	border:1px solid #ccc;
+	display:block;
+	margin:0px;
+	padding:0px;
+	text-indent:14px;
+	text-decoration:none;
+}
+#inventorymenu a.head1:hover {
+	color:#eee;
+}
+#inventorymenu a.head1.selected {
+	background-image:url(/images/interface/downarrow.png);
+	background-position:0px 50%;
+}
+#inventorymenu a.current {
+	background-color:#eee;
+}
+#inventorymenu a.head2 {
 	display:block;
 	text-indent:10px;
-	text-decoration:none;
 	cursor:pointer;
 }
-#inventorymenu li li a:hover {
+#inventorymenu a.head2:hover {
 	background-color:#eee;
-	color:#333;
+	color:#666;
 }
