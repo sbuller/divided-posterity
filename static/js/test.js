@@ -11,7 +11,6 @@ $(document).ready(function(){
 		axis: 'y',
 		cancel: ":input, \
 		         button, \
-		         span, \
 		         img[src='/images/interface/downarrow.png'], \
 		         img[src='/images/interface/leftarrow.png'], \
 		         img[src='/images/interface/rightarrow.png'], \
