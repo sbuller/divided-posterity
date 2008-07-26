@@ -1,4 +1,8 @@
 $(document).ready(function(){
+
+/*
+ * Collapse/Expand widgets
+ */
 	$('.toggle').toggle(function(){
 		$(this).parent().next().slideUp('fast');
 		$(this).children('img:first').attr("src", "/images/interface/rightarrow.png");
@@ -7,13 +11,14 @@ $(document).ready(function(){
 		$(this).parent().next().slideDown('fast');
 		$(this).children('img:first,img:last').attr("src", "/images/interface/downarrow.png");
 	});
+
+/*
+ * Allow reordering of heropane widgets
+ */
 	$('#heropane').sortable({
 		axis: 'y',
 		cancel: ":input, \
 		         button, \
-		         img[src='/images/interface/downarrow.png'], \
-		         img[src='/images/interface/leftarrow.png'], \
-		         img[src='/images/interface/rightarrow.png'], \
 		         a, \
 		         .cancel",
 		cursor: 'move',
@@ -31,13 +36,25 @@ $(document).ready(function(){
 		scroll: true,
 		scrollSensitivity: 50
 	});
+	
+/*
+ * Inventory accordion menu
+ */
 	$('#inventorymenu').accordion({
 		autoHeight: false,
 		header: '.head1'
 	});
+	
+/*
+ * Textarea clearing
+ */
 	$('textarea').one("focus", function(){
 		$(this).attr("value","");
 	});
+	
+/*
+ * Drag 'n' Drop for the inventory
+ */
 	$('.slot>.item,#inventoryitems .item').draggable({
 		helper: 'clone'
 	});
@@ -57,4 +74,5 @@ $(document).ready(function(){
 		accept: ".equipped",
 		drop: function(ev,ui){$(ui.draggable).appendTo($('#inventoryitems'));}
 	});
+
 });
