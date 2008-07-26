@@ -15,7 +15,8 @@
 from django.conf.urls.defaults import *
 
 urlpatterns = patterns('',
-					 (r'^(?P<template>.*)$', 'dividedposterity.views.index')
+		(r'^new(?P<model>.*)$', 'dividedposterity.views.create'),
+		(r'^(?P<template>.*)$', 'dividedposterity.views.index')
     # Example:
     # (r'^foo/', include('foo.urls')),
 

@@ -9,19 +9,19 @@
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js"></script>
 		<script type="text/javascript" src="/js/jquery-ui-personalized-1.5.min.js"></script>
 		<script type="text/javascript" src="/js/test.js"></script>
-    <!--[if IE]>
-      <link rel="stylesheet" href="/stylesheets/iehacks.css" type="text/css" media="screen" charset="utf-8" />
-    <![endif]-->
+		<!--[if IE]>
+			<link rel="stylesheet" href="/stylesheets/iehacks.css" type="text/css" media="screen" charset="utf-8" />
+		<![endif]-->
 		{% block head %} {% endblock %}
 	</head>
 	<body>
 		<div id="viewpane">
-				  {% block viewpane %} {% endblock %}
+			{% block viewpane %} {% endblock %}
 		</div>
 
 		<div id="heropane">
-			<h2>SketchySolid (#1234567)</h2>
-			<h3>Level 14 Bricksmith</h3>
+			<h2>{{hero.name}} (#{{hero.key.id}})</h2>
+			<h3>Level 14 {{hero.cclass}}</h3>
 
 			<div id="avatar">
 				<h3 class="head1"><span class="toggle cancel"><img class="cancel" alt="[-]" src="/images/interface/downarrow.png" />Avatar<img class="cancel" alt="[-]" src="/images/interface/downarrow.png" /></span></h3>
@@ -31,50 +31,82 @@
 			</div>
 
 			<div id="stats">
-        <h3 class="head1"><span class="toggle cancel"><img class="cancel" alt="[-]" src="/images/interface/downarrow.png" />Stats<img class="cancel" alt="[-]" src="/images/interface/downarrow.png" /></span></h3>
-     		<div class="body1"><table class="centered"><tbody>
-          <tr><td class="number" title="Base Brawn: 98"><em class="increased">102</em></td><td class="numbered">Brawn</td></tr>
-          <tr><td class="number" title="Base Magery: 72"><em class="uncreased">72</em></td><td class="numbered">Magery</td></tr>
-          <tr><td class="number" title="Base Stamina: 65"><em class="decreased">45</em></td><td class="numbered">Stamina</td></tr>
-          <tr><td class="number" title="Base Finesse: 62"><em class="increased">66</em></td><td class="numbered">Finesse</td></tr>
-          <tr><td class="number" title="Base Charm: 60"><em class="increased">64</em></td><td class="numbered">Charm</td></tr>
-          <tr><td class="number" title="Base Lore: 63"><em class="increased">67</em></td><td class="numbered">Lore</td></tr>
+				<h3 class="head1"><span class="toggle cancel"></span><img class="cancel" alt="[-]" src="/images/interface/downarrow.png" />Stats<img class="cancel" alt="[-]" src="/images/interface/downarrow.png" /></span></h3>
+					<div class="body1"><table class="centered"><tbody>
+						{% for stat in stats %}
+						<tr><td class="number" title="Base {{stat.stat}}: {{stat.base}}"><em class="{{stat.change}}">{{stat.value}}</em></td><td class="numbered">{{stat.stat}}</td></tr>
+						{% endfor %}
 				</tbody></table></div>
 			</div>
 
 			<div id="buffs">
 				<h3 class="head1"><span class="toggle cancel"><img class="cancel" alt="[-]" src="/images/interface/downarrow.png" />Buffs<img class="cancel" alt="[-]" src="/images/interface/downarrow.png" /></span></h3>
-				<div class="body1"><table class="centered"><tbody>
-          <tr><td>Adrenaline Rush</td></tr>
-          <tr><td>Eyes of the Eagle</td></tr>
-          <tr><td>Sonnet of Suffrage</td></tr>
-          <tr><td>Shelter of Sand<em class="caster"> (<a href="#">TheMe</a>)</em></td></tr>
+					<div class="body1"><table class="centered"><tbody>
+						<!--tr><td>Adrenaline Rush</td></tr>
+						<tr><td>Eyes of the Eagle</td></tr>
+						<tr><td>Sonnet of Suffrage</td></tr>
+						<tr><td>Shelter of Sand<em class="caster"> (<a href="#">TheMe</a>)</em></td></tr-->
+						{% for buff in buffs %}
+							{% ifequal buff.source buff.target %}
+						<tr><td>{{ buff.buffname }}</td></tr>
+							{% else %}
+						<tr><td>{{ buff.buffname }}<em class="caster"> (<a href="#">{{ buff.sourcename }}</a>)</em></td></tr>
+							{% endifequal %}
+						{% endfor %}
 				</tbody></table></div>
 			</div>
 
 			<div id="effects">
 				<h3 class="head1"><span class="toggle cancel"><img class="cancel" alt="[-]" src="/images/interface/downarrow.png" />Other Effects<img class="cancel" alt="[-]" src="/images/interface/downarrow.png" /></span></h3>
 				<div class="body1"><table class="centered"><tbody>
-          <tr><td class="number">5</td><td class="numbered">Hot! Hot! Hot!</td></tr>
-          <tr><td class="number">5</td><td class="numbered">Open for Business</td></tr>
-          <tr><td class="number">7</td><td class="numbered">Cool Beans</td></tr>
-          <tr><td class="number">10</td><td class="numbered">Locked and Loaded</td></tr>
-          <tr><td class="number">10</td><td class="numbered">Irradiated</td></tr>
-          <tr><td class="number">25</td><td class="numbered">Warm and Cozy</td></tr>
+					<tr><td class="number">5</td><td class="numbered">Hot! Hot! Hot!</td></tr>
+					<tr><td class="number">5</td><td class="numbered">Open for Business</td></tr>
+					<tr><td class="number">7</td><td class="numbered">Cool Beans</td></tr>
+					<tr><td class="number">10</td><td class="numbered">Locked and Loaded</td></tr>
+					<tr><td class="number">10</td><td class="numbered">Irradiated</td></tr>
+					<tr><td class="number">25</td><td class="numbered">Warm and Cozy</td></tr>
 				</tbody></table></div>
 			</div>
 
 			<div id="vehicle">
 				<h3 class="head1"><span class="toggle cancel"><img class="cancel" alt="[-]" src="/images/interface/downarrow.png" />Vehicle<img class="cancel" alt="[-]" src="/images/interface/downarrow.png" /></span></h3>
 				<div class="body1"><table class="centered"><tbody>
-          <tr><td><img src="/images/items/dunebuggy.png" alt="Dune Buggy" /></td><td>Armored Dune-Buggy</td></tr>
+					<tr><td><img src="/images/items/dunebuggy.png" alt="Dune Buggy" /></td><td>Armored Dune-Buggy</td></tr>
 				</tbody></table></div>
 			</div>
 
 		</div>
 
 		<div id="messagepane">
-			Message.
+			<form action="/newhero" method="post">
+				<h2>Create Hero</h2>
+				<p>Name <input type="text" name="name" /></p>
+				<p>Id <input type="text" name="id" /></p>
+				<p>Class <input type="text" name="cclass" /></p>
+				<p>Brawn <input type="text" name="brawn" /><input type="text" name="basebrawn" /></p>
+				<p>Magery <input type="text" name="magery" /><input type="text" name="basemagery" /></p>
+				<p>Stamina <input type="text" name="stamina" /><input type="text" name="basestamina" /></p>
+				<p>Finesse <input type="text" name="finesse" /><input type="text" name="basefinesse" /></p>
+				<p>Charm <input type="text" name="charm" /><input type="text" name="basecharm" /></p>
+				<p>Lore <input type="text" name="lore" /><input type="text" name="baselore" /></p>
+				<input type="submit" />
+			</form>
+			<form action="/newbuff" method="post">
+				<h2>Buff a Hero</h2>
+				<p>Buff Name <input type="text" name="buffname" /></p>
+				<p>Hero Id <input type="text" name="target" /></p>
+				<p>Caster Id <input type="text" name="source" /></p>
+				<p>Caster Name <input type="text" name="sourcename" /></p>
+				<input type="submit" />
+			</form>
+			<form action="/neweffect" method="post">
+				<h2>Affect a Hero</h2>
+				<p>Effect Name <input type="text" name="effectname" /></p>
+				<p>Hero Id <input type="text" name="target" /></p>
+				<p>Duration <input type="text" name="quantity" /></p>
+				<p>Duration Units <input type="text" name="unit" /></p>
+				<input type="submit" />
+			</form>
 		</div>
 
 		<div id="chatpane">
