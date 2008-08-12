@@ -1,4 +1,4 @@
-{% extends "layout.html.djt" %}
+{% extends "layout.djt" %}
 
 {% block head %}
 <link rel="stylesheet" href="/stylesheets/shop.css" type="text/css" media="screen" charset="utf-8" />

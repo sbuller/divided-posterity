@@ -1,4 +1,4 @@
-{% extends "layout.html.djt" %}
+{% extends "layout.djt" %}
 
 {% block head %}
 <link rel="stylesheet" href="/stylesheets/inventory.css" type="text/css" media="screen" charset="utf-8" />

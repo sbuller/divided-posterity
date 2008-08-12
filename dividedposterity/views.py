@@ -32,47 +32,39 @@ def index(request, template):
 									statstuff(hero,"Lore")]
 	                     })))
 
-def createHero(request):
-	return Hero(
-			name=request.POST['name'],
-			ID=int(request.POST['id']),
-			cclass=request.POST['cclass'],
+def create(request, model):
+	{
+		'hero': lambda r: Hero(
+			name=r.POST['name'],
+			ID=int(r.POST['id']),
+			cclass=r.POST['cclass'],
 
-			brawn=int(request.POST['brawn']),
-			magery=int(request.POST['magery']),
-			stamina=int(request.POST['stamina']),
-			finesse=int(request.POST['finesse']),
-			charm=int(request.POST['charm']),
-			lore=int(request.POST['lore']),
+			brawn=int(r.POST['brawn']),
+			magery=int(r.POST['magery']),
+			stamina=int(r.POST['stamina']),
+			finesse=int(r.POST['finesse']),
+			charm=int(r.POST['charm']),
+			lore=int(r.POST['lore']),
 
-			basebrawn=int(request.POST['basebrawn']),
-			basemagery=int(request.POST['basemagery']),
-			basestamina=int(request.POST['basestamina']),
-			basefinesse=int(request.POST['basefinesse']),
-			basecharm=int(request.POST['basecharm']),
-			baselore=int(request.POST['baselore'])
-			)
-
-def createBuff(request):
-	return Buff(
+			basebrawn=int(r.POST['basebrawn']),
+			basemagery=int(r.POST['basemagery']),
+			basestamina=int(r.POST['basestamina']),
+			basefinesse=int(r.POST['basefinesse']),
+			basecharm=int(r.POST['basecharm']),
+			baselore=int(r.POST['baselore'])
+			),
+		'buff': lambda r: Buff(
 			target=Hero.get_by_id(int(request.POST['target'])),
 			source=Hero.get_by_id(int(request.POST['source'])),
 			sourcename=request.POST['sourcename'],
 			buffname=request.POST['buffname']
-			)
-
-def createEffect(request):
-	return Effect(
+			),
+		'effect': lambda r: Effect(
 			effectname=request.POST['effectname'],
 			target=Hero.get_by_id(int(request.POST['target'])),
 			quantity=int(request.POST['quantity']),
 			unit=request.POST['unit'],
 			order=1
 			)
-
-def create(request, model):
-	{'hero': createHero,
-	 'buff': createBuff,
-	 'effect': createEffect
 	}[model](request).save()
-	return HttpResponseRedirect('/inventory.html')
+	return HttpResponseRedirect('/inventory')

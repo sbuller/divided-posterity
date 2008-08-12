@@ -79,7 +79,7 @@
 
 		<div id="messagepane">
 			<form action="/newhero" method="post">
-				<h2>Create Hero</h2>
+				<h2>Effect a Hero</h2>
 				<p>Name <input type="text" name="name" /></p>
 				<p>Id <input type="text" name="id" /></p>
 				<p>Class <input type="text" name="cclass" /></p>
