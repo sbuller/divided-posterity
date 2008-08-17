@@ -90,6 +90,10 @@ em.uncreased{
   margin-right:auto;
 }
 
+*.centeredtext{
+	text-align:center;
+}
+
 *.numbered{
   text-align:left;
 }

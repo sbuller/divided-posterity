@@ -1,0 +1,128 @@
+{% extends "layout.html.djt" %}
+
+{% block head %}
+<link rel="stylesheet" href="/stylesheets/aftercombat.css" type="text/css" media="screen" charset="utf-8" />
+{% endblock %}
+
+{% block viewpane %}
+							<div class="header centeredtext">
+								<h1 class=head1>Combat Complete!</h1>
+								<p><a href=#>Return to &lt;Location&gt;</a></p>
+								<p><a href="/combat.html">Adventure again in &lt;Sublocation&gt;</a></p>
+							</div>
+							
+							<div id="rewardexperience" class="body1">
+								<h3>Experience:</h3>
+								<p>102 XP earned</p>
+								<div>
+									<div class="brawn bar">
+										<div class="barfill" style="width:63%;"></div>
+										<div class="recent barfill" style="width:5%;"></div>
+									</div>
+									<p>18 Brawn</p>
+								</div>
+								
+								<div>
+									<div class="magery bar">
+										<div class="barfill" style="width:57%;"></div>
+										<div class="recent barfill" style="width:3%;"></div>
+									</div>
+									<p>12 Magery</p>
+								</div>
+								
+								<div>								
+									<div class="stamina bar">
+										<div class="barfill" style="width:14%;"></div>
+										<div class="recent barfill" style="width:1%;"></div>
+									</div>
+									<p>14 Stamina</p>
+								</div>
+								
+								<div>								
+									<div class="finesse bar">
+										<div class="barfill" style="width:0%;"></div>
+										<div class="recent barfill" style="width:3%;"></div>
+										</div>
+									<p>13 Finesse <em class="statincrease">+1!</em></p>
+								</div>
+								
+								<div>								
+									<div class="lore bar">
+										<div class="barfill" style="width:88%;"></div>
+										<div class="recent barfill" style="width:9%;"></div>
+									</div>
+									<p>9 Lore</p>
+								</div>
+								
+								<div>								
+									<div class="charm bar">
+										<div class="barfill" style="width:33%;"></div>
+										<div class="recent barfill" style="width:10%;"></div>
+									</div>
+									<p>11 Charm</p>
+								</div>
+
+								<h3>Skills:</h3>
+								<div>
+									<div class="skill bar">
+										<div class="barfill" style="width:50%;"></div>
+										<div class="recent barfill" style="width:5%;"></div>
+									</div>
+									<p>Novice Fireball</p>
+								</div>
+								
+								<div>								
+									<div class="skill bar">
+										<div class="barfill" style="width:14%;"></div>
+										<div class="recent barfill" style="width:1%;"></div>
+									</div>
+									<p>Acolyte Lunge</p>
+								</div>
+								
+								<div>								
+									<div class="skill bar">
+										<div class="barfill" style="width:55%;"></div>
+										<div class="recent barfill" style="width:5%;"></div>
+									</div>
+									<p>Novice Eyes of the Eagle</p>
+								</div>
+							</div> <!--rewardexperience-->
+							
+							<div id="enemey">
+								<h3>Foe Defeated:</h3>
+								<p>Menacing Starlet</p>
+								<img id="enemyimage" src="/images/npc/menacingstarlet.png" alt="[Enemy]" />
+							</div>
+							
+							<div id="Loot">
+								<h3>Loot:</h3>
+								<p>78 Monets</p>
+								<p>Red Belt</p><img src="/images/items/redbelt.png" alt="[ ]" />
+							</div>
+							
+							<div id="combatlog">
+							<table class="centered"><tbody><tr><td>
+								<h3 class="head1">Combat Log</h3>
+								<div class="body1">
+									<table><tbody><tr>
+										<td><div class="neutral terrain startcombat" /></td>
+										<td><p>Lost initiative</p>
+											<p>Lost 12 health. (Attack)</p></td>
+									</tr><tr>
+										<td><div class="good terrain" /></td>
+										<td><p>Dealt 14 damage. (Attack)</p>
+											<p>Evaded attack. (Jump Kick)</p></td>
+									</tr><tr>
+										<td><div class="good terrain powerup" /></td>
+										<td><p>Dealt 31 damage. (Fireball)</p>
+											<p>Rover found an item. (Rubber Bone)</p>
+											<p>Lost 19 health. (Roundhouse Kick)</p></td>
+									</tr><tr>
+										<td><div class="bad terrain" /></td>
+										<td><p>Missed enemy. (Attack)</p>
+											<p>Lost 26 Health. (Feint)</p></td>
+									</tr></tbody></table>
+								</div>
+							</td></tr></tbody></table>
+							</div> <!--combatlog-->
+{% endblock %}
