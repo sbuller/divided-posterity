@@ -11,6 +11,9 @@
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js"></script>
 		<script type="text/javascript" src="/js/jquery-ui-personalized-1.5.min.js"></script>
 		<script type="text/javascript" src="/js/test.js"></script>
+    <!--[if IE]>
+      <link rel="stylesheet" href="/stylesheets/iehacks.css" type="text/css" media="screen" charset="utf-8" />
+    <![endif]-->
 		{% block head %} {% endblock %}
 	</head>
 	<body>
@@ -23,14 +26,14 @@
 			<h3>Level 14 Bricksmith</h3>
 
 			<div id="avatar">
-				<h3 class="head1"><span class="toggle"><img alt="[-]" src="/images/interface/downarrow.png" />Avatar<img alt="[-]" src="/images/interface/downarrow.png" /></span></h3>
+				<h3 class="head1"><span class="toggle cancel"><img class="cancel" alt="[-]" src="/images/interface/downarrow.png" />Avatar<img class="cancel" alt="[-]" src="/images/interface/downarrow.png" /></span></h3>
 				<div class="body1"><table class="centered"><tbody>
 					<tr><td><img alt="avatar" src="/images/avatars/avy1.png" /></td></tr>
 				</tbody></table></div>
 			</div>
 
 			<div id="stats">
-        <h3 class="head1"><span class="toggle"><img alt="[-]" src="/images/interface/downarrow.png" />Stats<img alt="[-]" src="/images/interface/downarrow.png" /></span></h3>
+        <h3 class="head1"><span class="toggle cancel"><img class="cancel" alt="[-]" src="/images/interface/downarrow.png" />Stats<img class="cancel" alt="[-]" src="/images/interface/downarrow.png" /></span></h3>
      		<div class="body1"><table class="centered"><tbody>
           <tr><td class="number" title="Base Brawn: 98"><em class="increased">102</em></td><td class="numbered">Brawn</td></tr>
           <tr><td class="number" title="Base Magery: 72"><em class="uncreased">72</em></td><td class="numbered">Magery</td></tr>
@@ -42,7 +45,7 @@
 			</div>
 
 			<div id="buffs">
-				<h3 class="head1"><span class="toggle"><img alt="[-]" src="/images/interface/downarrow.png" />Buffs<img alt="[-]" src="/images/interface/downarrow.png" /></span></h3>
+				<h3 class="head1"><span class="toggle cancel"><img class="cancel" alt="[-]" src="/images/interface/downarrow.png" />Buffs<img class="cancel" alt="[-]" src="/images/interface/downarrow.png" /></span></h3>
 				<div class="body1"><table class="centered"><tbody>
           <tr><td>Adrenaline Rush</td></tr>
           <tr><td>Eyes of the Eagle</td></tr>
@@ -52,7 +55,7 @@
 			</div>
 
 			<div id="effects">
-				<h3 class="head1"><span class="toggle"><img alt="[-]" src="/images/interface/downarrow.png" />Other Effects<img alt="[-]" src="/images/interface/downarrow.png" /></span></h3>
+				<h3 class="head1"><span class="toggle cancel"><img class="cancel" alt="[-]" src="/images/interface/downarrow.png" />Other Effects<img class="cancel" alt="[-]" src="/images/interface/downarrow.png" /></span></h3>
 				<div class="body1"><table class="centered"><tbody>
           <tr><td class="number">5</td><td class="numbered">Hot! Hot! Hot!</td></tr>
           <tr><td class="number">5</td><td class="numbered">Open for Business</td></tr>
@@ -64,7 +67,7 @@
 			</div>
 
 			<div id="vehicle">
-				<h3 class="head1"><span class="toggle"><img alt="[-]" src="/images/interface/downarrow.png" />Vehicle<img alt="[-]" src="/images/interface/downarrow.png" /></span></h3>
+				<h3 class="head1"><span class="toggle cancel"><img class="cancel" alt="[-]" src="/images/interface/downarrow.png" />Vehicle<img class="cancel" alt="[-]" src="/images/interface/downarrow.png" /></span></h3>
 				<div class="body1"><table class="centered"><tbody>
           <tr><td><img src="/images/items/dunebuggy.png" alt="Dune Buggy" /></td><td>Armored Dune-Buggy</td></tr>
 				</tbody></table></div>

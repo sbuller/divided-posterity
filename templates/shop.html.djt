@@ -13,10 +13,10 @@
 					<p class="npctext"><em class="emote">Sigh.</em> Another customer. Look, just buy something and the get out, okay?</p>
 				</td>
 			</tr></tbody></table>
-			<table class="centered" id="shopinventory"><thead>
+			<table class="centered" id="shopinventory"><thead class="head1">
 				<tr>
 					<th>Qty</th><th>Price</th><th>Item</th><th>Subtotal</th>
-				</tr></thead><tbody><tr>
+				</tr></thead><tbody class="body1"><tr>
 					<td><input type="checkbox" checked="true"><input type="text" value="1"></td>
 					<td>x 350</td>
 					<td><div class="itemicon" style="background-image:url(/images/items/sandblastedspear.png);"></div><p>Sandblasted Spear</p></td>
@@ -51,7 +51,7 @@
 					<td>x 120</td>
 					<td><div class="itemicon" style="background-image:url(/images/items/bloodstoneearrings.png);"></div><p>Bloodstone Earrings</p></td>
 					<td class="number">1440</td>
-				</tr></tbody><tfoot><tr>
+				</tr></tbody><tfoot class="head2"><tr>
 					<td colspan="2"><input type="button" value="Purchase (2815)"></td>
 					<td class="number"><em>Total:</em></td>
 					<td class="number">2815</td>
