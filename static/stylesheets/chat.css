@@ -1,0 +1,127 @@
+div.chat_ChatWindow
+{
+	margin: 0px;
+	margin-left:2px;
+	margin-right:2px;
+	border-top: solid Black;
+}
+
+p.chat_chatline
+{
+	margin: 0px;
+}
+
+#chat_introtext_p
+{
+	font-family:arial;
+	font-size:14pt;
+	font-weight: bold;
+	border-bottom: dotted RosyBrown;
+}
+
+#chat_userprofile
+{
+    height: 90%;
+    font-family:arial;
+    font-size:8pt;
+}
+
+#chat_username_input
+{
+	width:150px;
+	font-size:10pt;
+}
+
+#chat_password_input
+{
+	width:150px;
+	font-size:10pt;
+}
+
+
+#chat_roomname_input
+{
+	width:150px;
+	font-size:10pt;
+}
+
+#chat_joinroom_div
+{
+    font-family:arial;
+    font-size:10pt;
+}
+
+#chat_main
+{
+    font-family:arial;
+    font-size:10pt;
+}
+
+#chat_roomname_label
+{
+        margin:4px 4px 4px 4px;
+	font-size:12pt;
+        background-color:lightblue;
+}
+
+#chat_messages_div
+{
+	font-family:arial;
+	margin: 0px;
+	position:absolute;
+	top:28px;
+	font-size:10pt;
+	bottom:67px;
+	right:0px;
+	left:0px;
+	overflow-x:hidden;
+    overflow-y:auto;
+}
+
+#chat_user_message_div
+{
+
+}
+
+
+#chat_message_textarea
+{
+	font-family:arial;
+	font-size:10pt;
+	position:absolute;
+	bottom:16px;
+	height:55px;
+	left:0px;
+	right:50px;
+	overflow-x:auto;
+    overflow-y:auto;
+}
+
+
+#chat_exitroom_button
+{
+	position:absolute;
+	bottom:17px;
+	right:0px;
+	height:55px;
+	width:50px;
+}
+
+#chat_messages_p
+{
+	width:100%;
+}
+
+#chat_pendingmessage_label
+{
+	position:absolute;
+	bottom: 0px;
+	right: 0px;
+	left: 0px;
+	height: 16px;
+	margin: 0px;
+	background-color: white;
+	overflow: hidden;
+	display: hidden
+	white-space: "nowrap";
+}

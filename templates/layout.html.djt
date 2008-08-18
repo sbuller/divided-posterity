@@ -1,3 +1,5 @@
+{% include "chatpane.html.djt" %}
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
 	<head>
@@ -74,21 +76,7 @@
 			Message.
 		</div>
 
-		<div id="chatpane">
-			<div id="chatview">
-				<h3>Divided Posterity: Chat.</h3>
-				<p><em class="chatme">SketchySolid:</em> Howdy Doody, Bub!</p>
-				<p><em class="chatname">RandomGuy17:</em> How u mine 4 fsh?</p>
-				<p><em class="chatclannie">N00bOfLuv:</em> [Shouting]</p>
-				<p><em class="chatme">SketchySolid:</em> Smarten up, yo!</p>
-				<p><em class="chatclannie">N00bOfLuv:</em> why hullo thar, skechy</p>
-				<p class="timeout">Chat has stopped responding, since you have been inactive for 15 minutes. <a href="#">Click here</a> to restart chat.</p>
-			</div>
-
-			<form id="chatform" action="javascript:;">
-				<div><textarea name="chatinput" class="chatinput" rows="2" cols="18">Type Here.</textarea></div> 
-			</form>
-
-		</div>
+		{% block chatpane %} {% endblock %}
+			
 	</body>
 </html>
