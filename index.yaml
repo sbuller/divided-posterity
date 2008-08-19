@@ -16,7 +16,7 @@ indexes:
   - name: roomname
   - name: id
 
-# Used 166 times in query history.
+# Used 234 times in query history.
 - kind: Chatline
   ancestor: yes
   properties:

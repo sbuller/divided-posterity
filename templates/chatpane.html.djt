@@ -35,6 +35,9 @@ function chat_show_login()
 	passinput.disabled=false;
 	$("#chat_password_input").val('*****');
 
+	document.getElementById("chat_button_userpass").disabled = false;
+	document.getElementById("chat_button_createuserpass").disabled = false;
+
 	userinput.style.color = "#D3D3D3";
 	passinput.style.color = "#D3D3D3";
 
