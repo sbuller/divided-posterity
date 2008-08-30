@@ -1,4 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+{% include "chatpane.djt" %}
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
 	<head>
 		<title>Divided Posterity</title>
@@ -9,9 +10,9 @@
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js"></script>
 		<script type="text/javascript" src="/js/jquery-ui-personalized-1.5.min.js"></script>
 		<script type="text/javascript" src="/js/test.js"></script>
-		<!--[if IE]>
-			<link rel="stylesheet" href="/stylesheets/iehacks.css" type="text/css" media="screen" charset="utf-8" />
-		<![endif]-->
+	<!--[if IE]>
+		<link rel="stylesheet" href="/stylesheets/iehacks.css" type="text/css" media="screen" charset="utf-8" />
+	<![endif]-->
 		{% block head %} {% endblock %}
 	</head>
 	<body>
@@ -41,18 +42,18 @@
 
 			<div id="buffs">
 				<h3 class="head1"><span class="toggle cancel"><img class="cancel" alt="[-]" src="/images/interface/downarrow.png" />Buffs<img class="cancel" alt="[-]" src="/images/interface/downarrow.png" /></span></h3>
-					<div class="body1"><table class="centered"><tbody>
-						<!--tr><td>Adrenaline Rush</td></tr>
-						<tr><td>Eyes of the Eagle</td></tr>
-						<tr><td>Sonnet of Suffrage</td></tr>
-						<tr><td>Shelter of Sand<em class="caster"> (<a href="#">TheMe</a>)</em></td></tr-->
-						{% for buff in buffs %}
-							{% ifequal buff.source buff.target %}
-						<tr><td>{{ buff.buffname }}</td></tr>
-							{% else %}
-						<tr><td>{{ buff.buffname }}<em class="caster"> (<a href="#">{{ buff.sourcename }}</a>)</em></td></tr>
-							{% endifequal %}
-						{% endfor %}
+				<div class="body1"><table class="centered"><tbody>
+					<!--tr><td>Adrenaline Rush</td></tr>
+					<tr><td>Eyes of the Eagle</td></tr>
+					<tr><td>Sonnet of Suffrage</td></tr>
+					<tr><td>Shelter of Sand<em class="caster"> (<a href="#">TheMe</a>)</em></td></tr-->
+					{% for buff in buffs %}
+						{% ifequal buff.source buff.target %}
+					<tr><td>{{ buff.buffname }}</td></tr>
+						{% else %}
+					<tr><td>{{ buff.buffname }}<em class="caster"> (<a href="#">{{ buff.sourcename }}</a>)</em></td></tr>
+						{% endifequal %}
+					{% endfor %}
 				</tbody></table></div>
 			</div>
 
@@ -109,21 +110,7 @@
 			</form>
 		</div>
 
-		<div id="chatpane">
-			<div id="chatview">
-				<h3>Divided Posterity: Chat.</h3>
-				<p><em class="chatme">SketchySolid:</em> Howdy Doody, Bub!</p>
-				<p><em class="chatname">RandomGuy17:</em> How u mine 4 fsh?</p>
-				<p><em class="chatclannie">N00bOfLuv:</em> [Shouting]</p>
-				<p><em class="chatme">SketchySolid:</em> Smarten up, yo!</p>
-				<p><em class="chatclannie">N00bOfLuv:</em> why hullo thar, skechy</p>
-				<p class="timeout">Chat has stopped responding, since you have been inactive for 15 minutes. <a href="#">Click here</a> to restart chat.</p>
-			</div>
-
-			<form id="chatform" action="javascript:;">
-				<div><textarea name="chatinput" class="chatinput" rows="2" cols="18">Type Here.</textarea></div> 
-			</form>
-
-		</div>
+		{% block chatpane %} {% endblock %}
+			
 	</body>
 </html>

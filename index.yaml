@@ -10,20 +10,27 @@ indexes:
 # automatically uploaded to the admin console when you next deploy
 # your application using appcfg.py.
 
-# Unused in query history -- copied from input.
-- kind: Buff
-  properties:
-  - name: target
-  - name: buffname
-
-# Used 5 times in query history.
+# Used 18 times in query history.
 - kind: Buff
   properties:
   - name: target
   - name: sourcename
   - name: buffname
 
-# Used 5 times in query history.
+# Unused in query history -- copied from input.
+- kind: Chatline
+  properties:
+  - name: roomname
+  - name: id
+
+# Unused in query history -- copied from input.
+- kind: Chatline
+  ancestor: yes
+  properties:
+  - name: roomname
+  - name: id
+
+# Used 18 times in query history.
 - kind: Effect
   properties:
   - name: target
