@@ -22,6 +22,13 @@ class Hero(BaseModel):
 	basecharm = db.IntegerProperty()
 	basemagery = db.IntegerProperty()
 	basefinesse = db.IntegerProperty()
+	
+	hp = db.IntegerProperty()
+	mp = db.IntegerProperty()
+	
+	# f(x) = mx + b
+	resists_m = db.ListProperty(float)
+	resists_b = db.ListProperty(int)
 
 	adventure_total = db.IntegerProperty()
 	adventure = db.IntegerProperty()
@@ -41,3 +48,34 @@ class Effect(BaseModel):
 	unit = db.StringProperty(choices=set(["adventure","combat","day","turn"]))
 	order = db.IntegerProperty()
 
+class Monster(BaseModel):
+	brawn = db.IntegerProperty()
+	lore = db.IntegerProperty()
+	stamina = db.IntegerProperty()
+	charm = db.IntegerProperty()
+	magery = db.IntegerProperty()
+	finesse = db.IntegerProperty()
+	
+	hp = db.IntegerProperty()
+	mp = db.IntegerProperty()
+	
+	# f(x) = mx + b
+	resists_m = db.ListProperty(float)
+	resists_b = db.ListProperty(int)
+	
+	# victory & loss conditions, Combat Strategies, Initiative Script
+	behaviour = db.IntegerProperty()
+	
+class PVMCombat(BaseModel):
+	player_hp_lost = db.IntegerProperty()
+	player_mp_used = db.IntegerProperty()
+	
+	monster_hp_lost = db.IntegerProperty()
+	monster_mp_used = db.IntegerProperty()
+	
+	# don't forget ID & duration
+	effects = db.ListProperty(str)
+	behaviour_data = db.StringProperty()
+
+	turn = db.IntegerProperty()
+	

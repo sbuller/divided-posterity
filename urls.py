@@ -14,12 +14,21 @@
 
 from django.conf.urls.defaults import *
 
-urlpatterns = patterns('',
-		(r'^new(?P<model>.*)$', 'dividedposterity.views.create'),
-		(r'^(?P<template>.*)$', 'dividedposterity.views.index')
+urlpatterns = patterns('dividedposterity.views',
+		(r'^(?P<template>.*)$', 'index')
     # Example:
     # (r'^foo/', include('foo.urls')),
 
     # Uncomment this for admin:
 #     (r'^admin/', include('django.contrib.admin.urls')),
 )
+
+if 0:
+	urlpatterns += patterns('chat.views',
+		(r'', '')
+	)
+
+if settings.DEBUG:
+	urlpatterns += patterns('dividedposterity.views',
+		(r'^new(?P<model>.*)$', 'create')
+	)
