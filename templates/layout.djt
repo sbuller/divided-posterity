@@ -90,6 +90,8 @@
 				<p>Finesse <input type="text" name="finesse" /><input type="text" name="basefinesse" /></p>
 				<p>Charm <input type="text" name="charm" /><input type="text" name="basecharm" /></p>
 				<p>Lore <input type="text" name="lore" /><input type="text" name="baselore" /></p>
+				<p>HP <input type="text" name="hp" /></p>
+				<p>MP <input type="text" name="mp" /></p>
 				<input type="submit" />
 			</form>
 			<form action="/newbuff" method="post">

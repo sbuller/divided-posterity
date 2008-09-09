@@ -13,8 +13,18 @@
 # limitations under the License.
 
 from django.conf.urls.defaults import *
+import settings
 
-urlpatterns = patterns('dividedposterity.views',
+urlpatterns = patterns('dividedposterity.views', (r'help', 'help'))
+
+if settings.DEBUG:
+	urlpatterns += patterns('dividedposterity.views',
+		(r'^new(?P<model>.*)$', 'create')
+	)
+
+urlpatterns += patterns('dividedposterity.views',
+		(r'^combat$', 'combat'),
+		(r'^startcombat$', 'startcombat'),
 		(r'^(?P<template>.*)$', 'index')
     # Example:
     # (r'^foo/', include('foo.urls')),
@@ -26,9 +36,4 @@ urlpatterns = patterns('dividedposterity.views',
 if 0:
 	urlpatterns += patterns('chat.views',
 		(r'', '')
-	)
-
-if settings.DEBUG:
-	urlpatterns += patterns('dividedposterity.views',
-		(r'^new(?P<model>.*)$', 'create')
 	)

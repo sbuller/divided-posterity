@@ -86,14 +86,14 @@
       
       <table id="wellbeingbars" class="centered"><tbody><tr><td>
 				<div id="health" class="bar">
-					<div class="barfill" style="width:79.17%;">
+					<div class="barfill" style="width:{{wellbeing.percenthp}}%;">
 					</div>
-					<h3>Health: 57 / 72</h3>
+					<h3>Health: {{wellbeing.hp}} / {{hero.hp}}</h3>
 				</div>
 				<div id="energy" class="bar">
-					<div class="barfill" style="width:48%;">
+					<div class="barfill" style="width:{{wellbeing.percentmp}}%;">
 					</div>
-					<h3>Energy: 12 / 25</h3>
+					<h3>Energy: {{wellbeing.mp}} / {{hero.mp}}</h3>
 				</div>
       </td></tr></tbody></table>
 {% endblock %}
