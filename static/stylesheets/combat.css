@@ -39,9 +39,17 @@
 	margin:2px;
 }
 
+.repository img:hover{
+	border-width: 2px;
+	border-color: #333;
+	margin:0px 2px 2px 0px;
+	cursor:pointer;
+}
+
 .repository img.scroll{
 	background-color:transparent;
 	border:0px;
+	margin:2px;
 }
 
 .repository img.unavailable{
