@@ -1,14 +1,15 @@
-{% extends "layout.html.djt" %}
+{% extends "layout.djt" %}
 
 {% block head %}
 <link rel="stylesheet" href="/stylesheets/aftercombat.css" type="text/css" media="screen" charset="utf-8" />
 {% endblock %}
 
 {% block viewpane %}
+						<div id="aftercombat">
 							<div class="header centeredtext">
 								<h1 class=head1>Combat Complete!</h1>
 								<p><a href=#>Return to &lt;Location&gt;</a></p>
-								<p><a href="/combat.html">Adventure again in &lt;Sublocation&gt;</a></p>
+								<p><a href="/combat">Adventure again in &lt;Sublocation&gt;</a></p>
 							</div>
 							
 							<div id="rewardexperience" class="body1">
@@ -125,4 +126,5 @@
 								</div>
 							</td></tr></tbody></table>
 							</div> <!--combatlog-->
+						</div> <!--aftercombat-->
 {% endblock %}

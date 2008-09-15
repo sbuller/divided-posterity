@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block viewpane %}
+		<div id="combat">
       <table id="skillrepository" class="centered"><tbody><tr><td>
         <div class="repository body1">
 						<img src="/images/skills/surrender.png" alt="[s]" title="Surrender"/>
@@ -96,4 +97,5 @@
 					<h3>Energy: {{wellbeing.mp}} / {{hero.mp}}</h3>
 				</div>
       </td></tr></tbody></table>
+		</div> <!--combat-->
 {% endblock %}

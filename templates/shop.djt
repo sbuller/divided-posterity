@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block viewpane %}
+		<div id="shop">
 			<table class="centered"><tbody><tr>
 				<td><img class="npcimage" src="images/npc/franca.png"></td>
 				<td>
@@ -81,4 +82,5 @@
 					<td class="number">Total:</td>
 					<td class="number">2815</td>
 			</tfoot></table>
+		</div> <!--shop-->
 {% endblock %}

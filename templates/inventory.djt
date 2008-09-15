@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block viewpane %}
+		<div id="inventory">
 			<h1>Inventory</h1>
 			<div> <!--for hr-->
 				<table class="centered"><tbody><tr><td>
@@ -162,4 +163,5 @@
 					<p class="equipdata">[Hat]</p>
 				</div>
 			</div>
+		</div> <!--inventory-->
 {% endblock %}
