@@ -1,3 +1,4 @@
 *.pyc
 Thumbs.db
 .google_appengine
+index.yaml
