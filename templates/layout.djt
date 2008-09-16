@@ -21,61 +21,7 @@
 		</div>
 
 		<div id="heropane">
-			<h2>{{hero.name}} (#{{hero.key.id}})</h2>
-			<h3>Level 14 {{hero.cclass}}</h3>
-
-			<div id="avatar">
-				<h3 class="head1"><span class="toggle cancel"><img class="cancel" alt="[-]" src="/images/interface/downarrow.png" />Avatar<img class="cancel" alt="[-]" src="/images/interface/downarrow.png" /></span></h3>
-				<div class="body1"><table class="centered"><tbody>
-					<tr><td><img alt="avatar" src="/images/avatars/avy1.png" /></td></tr>
-				</tbody></table></div>
-			</div>
-
-			<div id="stats">
-				<h3 class="head1"><span class="toggle cancel"><img class="cancel" alt="[-]" src="/images/interface/downarrow.png" />Stats<img class="cancel" alt="[-]" src="/images/interface/downarrow.png" /></span></h3>
-					<div class="body1"><table class="centered"><tbody>
-						{% for stat in stats %}
-						<tr><td class="number" title="Base {{stat.stat}}: {{stat.base}}"><em class="{{stat.change}}">{{stat.value}}</em></td><td class="numbered">{{stat.stat}}</td></tr>
-						{% endfor %}
-				</tbody></table></div>
-			</div>
-
-			<div id="buffs">
-				<h3 class="head1"><span class="toggle cancel"><img class="cancel" alt="[-]" src="/images/interface/downarrow.png" />Buffs<img class="cancel" alt="[-]" src="/images/interface/downarrow.png" /></span></h3>
-				<div class="body1"><table class="centered"><tbody>
-					<!--tr><td>Adrenaline Rush</td></tr>
-					<tr><td>Eyes of the Eagle</td></tr>
-					<tr><td>Sonnet of Suffrage</td></tr>
-					<tr><td>Shelter of Sand<em class="caster"> (<a href="#">TheMe</a>)</em></td></tr-->
-					{% for buff in buffs %}
-						{% ifequal buff.source buff.target %}
-					<tr><td>{{ buff.buffname }}</td></tr>
-						{% else %}
-					<tr><td>{{ buff.buffname }}<em class="caster"> (<a href="#">{{ buff.sourcename }}</a>)</em></td></tr>
-						{% endifequal %}
-					{% endfor %}
-				</tbody></table></div>
-			</div>
-
-			<div id="effects">
-				<h3 class="head1"><span class="toggle cancel"><img class="cancel" alt="[-]" src="/images/interface/downarrow.png" />Other Effects<img class="cancel" alt="[-]" src="/images/interface/downarrow.png" /></span></h3>
-				<div class="body1"><table class="centered"><tbody>
-					<tr><td class="number">5</td><td class="numbered">Hot! Hot! Hot!</td></tr>
-					<tr><td class="number">5</td><td class="numbered">Open for Business</td></tr>
-					<tr><td class="number">7</td><td class="numbered">Cool Beans</td></tr>
-					<tr><td class="number">10</td><td class="numbered">Locked and Loaded</td></tr>
-					<tr><td class="number">10</td><td class="numbered">Irradiated</td></tr>
-					<tr><td class="number">25</td><td class="numbered">Warm and Cozy</td></tr>
-				</tbody></table></div>
-			</div>
-
-			<div id="vehicle">
-				<h3 class="head1"><span class="toggle cancel"><img class="cancel" alt="[-]" src="/images/interface/downarrow.png" />Vehicle<img class="cancel" alt="[-]" src="/images/interface/downarrow.png" /></span></h3>
-				<div class="body1"><table class="centered"><tbody>
-					<tr><td><img src="/images/items/dunebuggy.png" alt="Dune Buggy" /></td><td>Armored Dune-Buggy</td></tr>
-				</tbody></table></div>
-			</div>
-
+{% include "heropane.djt" %}
 		</div>
 
 		<div id="messagepane">
@@ -113,6 +59,6 @@
 		</div>
 
 		{% block chatpane %} {% endblock %}
-			
+
 	</body>
 </html>
