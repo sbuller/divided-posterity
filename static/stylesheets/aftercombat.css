@@ -1,19 +1,19 @@
-#viewpane div h3, #viewpane h1{
+#aftercombat div h3, #aftercombat h1{
 	margin:0em;
 }
 
-#viewpane>div{
+#aftercombat>div{
 	margin:10px 0px;
 }
 
-#rewardexperience{
+#aftercombat #rewardexperience{
 	float:right;
 	padding:5px;
 	width:66%;
 	max-width:400px;
 }
 
-#rewardexperience .bar{
+#aftercombat #rewardexperience .bar{
 	margin-right:5px;
 	float:left;
 	clear:left;
@@ -24,82 +24,35 @@
 	top:3px;
 }
 
-#combatlog{
+#aftercombat #combatlog{
 	clear:both;
 }
 
-#combatlog>table{
+#aftercombat #combatlog>table{
 	padding:5px;
 	width:75%;
 	max-width:500px;
 }
 
-#combatlog h3+div{
+#aftercombat #combatlog h3+div{
 	overflow:auto;
 	max-height:150px;
 }
 
-#rewardexperience>div{
+#aftercombat #rewardexperience>div{
 	margin:1px;
 }
 
-#viewpane p{
+#aftercombat  p{
 	margin:0px;
 }
 
-.barfill{
-	background-color:#ddd;
-	border:1px solid #999;
+#aftercombat .barfill{
+	border-color:#999;
 	border-width:1px 0px 1px 1px;
-	height:100%;
-	position:relative;
-	top:-1px;
 	left:-1px;
 }
 
-.recent.barfill{
-	background-color:#fff;
+#aftercombat .increase.barfill{
 	border-width:1px 1px 1px 0px;
 }
-
-.bar .barfill{
-	float:left;
-}
-
-.terrain{
-	float:left;
-	height:24px;
-	width:24px;
-	border:1px solid #333;
-	margin:0px 3px 0px 3px;
-	background-position:50% 50%;
-	background-repeat:no-repeat;
-}
-
-.good.terrain{
-	background-color:#ccc;
-}
-
-.neutral.terrain{
-	background-color:#999;
-}
-
-.bad.terrain{
-	background-color:#666;
-}
-
-.terrain.startcombat{
-	background-image:url("/images/interface/redstar.png");
-}
-
-.terrain.powerup{
-	background-image:url("/images/interface/whitetriangle.png");
-}
-/*
-#messagepane{
-	display:none;
-}
-
-#viewpane{
-	bottom:0px;
-}/**/

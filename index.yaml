@@ -10,7 +10,7 @@ indexes:
 # automatically uploaded to the admin console when you next deploy
 # your application using appcfg.py.
 
-# Used 36 times in query history.
+# Used 43 times in query history.
 - kind: Buff
   properties:
   - name: target
@@ -30,7 +30,7 @@ indexes:
   - name: roomname
   - name: id
 
-# Used 36 times in query history.
+# Used 43 times in query history.
 - kind: Effect
   properties:
   - name: target

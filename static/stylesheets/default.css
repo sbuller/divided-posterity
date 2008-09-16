@@ -1,3 +1,8 @@
+@import url('combat.css');
+@import url('aftercombat.css');
+@import url('shop.css');
+@import url('inventory.css');
+
 body{
 	background-color:#999;
 }
@@ -100,6 +105,10 @@ em.uncreased{
 
 *.number{
   text-align:right;
+}
+
+*.clearboth {
+	clear:both;
 }
 
 a:link, a:visited{

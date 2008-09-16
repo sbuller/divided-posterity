@@ -1,9 +1,5 @@
 {% extends "layout.djt" %}
 
-{% block head %}
-<link rel="stylesheet" href="/stylesheets/aftercombat.css" type="text/css" media="screen" charset="utf-8" />
-{% endblock %}
-
 {% block viewpane %}
 						<div id="aftercombat">
 							<div class="header centeredtext">
@@ -18,7 +14,7 @@
 								<div>
 									<div class="brawn bar">
 										<div class="barfill" style="width:63%;"></div>
-										<div class="recent barfill" style="width:5%;"></div>
+										<div class="increase barfill" style="width:5%;"></div>
 									</div>
 									<p>18 Brawn</p>
 								</div>
@@ -26,7 +22,7 @@
 								<div>
 									<div class="magery bar">
 										<div class="barfill" style="width:57%;"></div>
-										<div class="recent barfill" style="width:3%;"></div>
+										<div class="increase barfill" style="width:3%;"></div>
 									</div>
 									<p>12 Magery</p>
 								</div>
@@ -34,7 +30,7 @@
 								<div>								
 									<div class="stamina bar">
 										<div class="barfill" style="width:14%;"></div>
-										<div class="recent barfill" style="width:1%;"></div>
+										<div class="increase barfill" style="width:1%;"></div>
 									</div>
 									<p>14 Stamina</p>
 								</div>
@@ -42,7 +38,7 @@
 								<div>								
 									<div class="finesse bar">
 										<div class="barfill" style="width:0%;"></div>
-										<div class="recent barfill" style="width:3%;"></div>
+										<div class="increase barfill" style="width:3%;"></div>
 										</div>
 									<p>13 Finesse <em class="statincrease">+1!</em></p>
 								</div>
@@ -50,7 +46,7 @@
 								<div>								
 									<div class="lore bar">
 										<div class="barfill" style="width:88%;"></div>
-										<div class="recent barfill" style="width:9%;"></div>
+										<div class="increase barfill" style="width:9%;"></div>
 									</div>
 									<p>9 Lore</p>
 								</div>
@@ -58,7 +54,7 @@
 								<div>								
 									<div class="charm bar">
 										<div class="barfill" style="width:33%;"></div>
-										<div class="recent barfill" style="width:10%;"></div>
+										<div class="increase barfill" style="width:10%;"></div>
 									</div>
 									<p>11 Charm</p>
 								</div>
@@ -67,7 +63,7 @@
 								<div>
 									<div class="skill bar">
 										<div class="barfill" style="width:50%;"></div>
-										<div class="recent barfill" style="width:5%;"></div>
+										<div class="increase barfill" style="width:5%;"></div>
 									</div>
 									<p>Novice Fireball</p>
 								</div>
@@ -75,7 +71,7 @@
 								<div>								
 									<div class="skill bar">
 										<div class="barfill" style="width:14%;"></div>
-										<div class="recent barfill" style="width:1%;"></div>
+										<div class="increase barfill" style="width:1%;"></div>
 									</div>
 									<p>Acolyte Lunge</p>
 								</div>
@@ -83,7 +79,7 @@
 								<div>								
 									<div class="skill bar">
 										<div class="barfill" style="width:55%;"></div>
-										<div class="recent barfill" style="width:5%;"></div>
+										<div class="increase barfill" style="width:5%;"></div>
 									</div>
 									<p>Novice Eyes of the Eagle</p>
 								</div>
