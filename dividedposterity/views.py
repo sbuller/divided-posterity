@@ -58,7 +58,7 @@ def create(request, model):
 			basefinesse=int(r.POST['basefinesse']),
 			basecharm=int(r.POST['basecharm']),
 			baselore=int(r.POST['baselore']),
-			
+
 			hp=int(r.POST['hp']),
 			mp=int(r.POST['mp'])
 			),
@@ -114,4 +114,6 @@ def startcombat(request):
 	hero.combat = combat
 	hero.put()
 	return HttpResponseRedirect('/combat')
-	
+
+def defaultredirect(request):
+	return HttpResponseRedirect('/combat')

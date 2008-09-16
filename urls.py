@@ -23,6 +23,7 @@ if settings.DEBUG:
 	)
 
 urlpatterns += patterns('dividedposterity.views',
+		(r'^$', 'defaultredirect'),
 		(r'^combat$', 'combat'),
 		(r'^startcombat$', 'startcombat'),
 		(r'^(?P<template>.*)$', 'index')
