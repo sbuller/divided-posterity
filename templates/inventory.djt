@@ -1,9 +1,5 @@
 {% extends "layout.djt" %}
 
-{% block head %}
-<link rel="stylesheet" href="/stylesheets/inventory.css" type="text/css" media="screen" charset="utf-8" />
-{% endblock %}
-
 {% block viewpane %}
 		<div id="inventory">
 			<h1>Inventory</h1>

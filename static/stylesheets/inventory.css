@@ -6,25 +6,26 @@
 	overflow:hidden;
 }
 
-.invalid {
+#inventory .invalid {
 	background-color:white;
 }
 
-.invalid>.item {
+#inventory .invalid>.item {
 	visibility:hidden;
 }
 
-.righthandslot,.lefthandslot,.headslot,.bodyslot,.legsslot,.accsslot {
+#inventory .righthandslot,.lefthandslot,.headslot,.bodyslot,.legsslot,.accsslot {
 	width:150px;
 	border:solid black 2px;
 	padding-right:2px;
 	margin:5px;
 }
-.righthandslot>.item,.lefthandslot>.item,.headslot>.item,.bodyslot>.item,.legsslot>.item,.accsslot>.item {
+
+#inventory .righthandslot>.item,.lefthandslot>.item,.headslot>.item,.bodyslot>.item,.legsslot>.item,.accsslot>.item {
 	margin:0;
 }
 
-#viewpane .item p {
+#inventory .item p {
 	overflow:hidden;
 	white-space:nowrap;
 	text-overflow:ellipsis;
@@ -32,53 +33,49 @@
 	margin-left:26px;
 }
 
-#viewpane .item .itemicon {
+#inventory .item .itemicon {
 	float:left;
 	width:2em;
 	height:2em;
 }
 
-#viewpane .item .equipdata {
+#inventory .item .equipdata {
 	font-size:smaller;
 	color:gray;
 }
 
-#viewpane > h1 {
+#inventory>h1 {
 	float:right;
 	display:none;
 	margin-top:0px;
 }
 
-.showequipped {
+#inventory .showequipped {
 	float: left;
 }
 
-.showequipped h2 {
+#inventory .showequipped h2 {
 	margin:5px;
 }
 
-#showaccessories {
+#inventory #showaccessories {
 	float: left;
 }
 
-#inventoryitems {
+#inventory #inventoryitems {
 	margin-left:150px;
 	background-color:orange;
 }
 
-#inventoryitems .item {
+#inventory #inventoryitems .item {
 	float:left;
 }
 
-p.equipdata {
+#inventory p.equipdata {
 	margin-top:-0.3em;
 }
 
-.clearboth {
-	clear:both;
-}
-
-#inventorymenu {
+#inventory #inventorymenu {
 	width:150px;
 	float:left;
 	border:1px solid #999;
@@ -87,17 +84,20 @@ p.equipdata {
 	text-indent:0px;
 	background-color:#fff;
 }
-#inventorymenu ul {
+
+#inventory #inventorymenu ul {
 	border-width:0px;
 	margin:0px;
 	padding:0px;
 	text-indent:0px;
 }
-#inventorymenu li {
+
+#inventory #inventorymenu li {
 	list-style:none outside none;
 	display:inline;
 }
-#inventorymenu a.head1 {
+
+#inventory #inventorymenu a.head1 {
 	cursor:pointer;
 	background-image:url(/images/interface/rightarrow.png);
 	background-repeat:no-repeat;
@@ -110,22 +110,27 @@ p.equipdata {
 	text-indent:14px;
 	text-decoration:none;
 }
-#inventorymenu a.head1:hover {
+
+#inventory #inventorymenu a.head1:hover {
 	color:#eee;
 }
-#inventorymenu a.head1.selected {
+
+#inventory #inventorymenu a.head1.selected {
 	background-image:url(/images/interface/downarrow.png);
 	background-position:0px 50%;
 }
-#inventorymenu a.current {
+
+#inventory #inventorymenu a.current {
 	background-color:#eee;
 }
-#inventorymenu a.head2 {
+
+#inventory #inventorymenu a.head2 {
 	display:block;
 	text-indent:10px;
 	cursor:pointer;
 }
-#inventorymenu a.head2:hover {
+
+#inventory #inventorymenu a.head2:hover {
 	background-color:#eee;
 	color:#666;
 }

@@ -1,14 +1,14 @@
-#skillrepository{
+#combat #skillrepository{
 	width:80%;
 }
 
-#skillrepository .repository{
+#combat #skillrepository .repository{
 	margin:0px;
 /*	border:1px solid #333;
 	background-color:#ddd;*/
 }
 
-#skillrepository .tab{
+#combat #skillrepository .tab{
 	float:left;
 	width:84px;
 /*	background-color:#ccc;
@@ -17,7 +17,7 @@
 	text-align:center;
 }
 
-#skillrepository .first.tab{
+#combat #skillrepository .first.tab{
 	clear:both;
 }
 /*
@@ -26,7 +26,7 @@
 	border-top:0px;
 }*/
 
-#skillrepository .last.tab{
+#combat #skillrepository .last.tab{
 	float:right;
 }
 
@@ -91,57 +91,71 @@
 	background-image:url("/images/interface/whitetriangle.png");
 }
 
-#enemy{
+#combat #enemy{
 	width:300px;
 }
 
-#enemyimage{
+#combat #enemyimage{
 	float:right;
 }
 
-#combattext p{
+#combat #combattext p{
 	text-align:center;
 }
 
-#wellbeingbars{
+#combat #wellbeingbars{
 	width:95%;
 	/*position:absolute;
 	bottom:3px;*/
 }
 
-#wellbeingbars .bar{
+#combat #wellbeingbars .bar{
 	height:1.3em;
 	width:49%;
 	background-color:#999;
 }
 
-#wellbeingbars h3{
+#combat #wellbeingbars h3{
 	margin:0px;
 	clear:both;
 	position:relative;
 	top:-1.45em;
 }
 
-#health{
+#combat #health{
 	float:left;
 }
 
-#energy{
+#combat #energy{
 	float:right;
 }
 
 .barfill{
-	background-color:#fff;
-	border:1px solid #333;
+	background-color:#ccc;
+	border-color:#333;
+	border-width:1px;
+	border-style:solid;
 	height:100%;
 	position:relative;
 	top:-1px;
 }
 
-#health .barfill{
+.increase.barfill{
+	background-color:#fff;
+}
+
+.decrease.barfill{
+	background-color:#999;
+}
+
+.bar .barfill{
+	float:left;
+}
+
+#combat #health .barfill{
 	float:right;
 }
 
-#energy .barfill{
+#combat #energy .barfill{
 	float:left;
 }

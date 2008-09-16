@@ -1,31 +1,31 @@
-#shopinventory input[type="text"]{
+#shop #shopinventory input[type="text"]{
 	width:4em;
 	text-align:right;
 }
 
-#shopinventory img{
+#shop #shopinventory img{
 	vertical-align:middle;
 }
 
-#shopinventory thead tr>*{
+#shop #shopinventory thead tr>*{
   text-align:center;
   border-bottom:1px black solid;
 }
 
-#shopinventory tfoot tr>*{
+#shop #shopinventory tfoot tr>*{
   border-top:1px black solid;
 }
 
-#viewpane table{
+#shop table{
   border-collapse:collapse;
 }
 
-#viewpane .itemicon{
+#shop .itemicon{
 	float:left;
 	background-color:#fff;
 }
 
-#viewpane .itemicon + p{
+#shop .itemicon + p{
 	position:relative;
 	top:4px;
 	margin:0px;
