@@ -7,7 +7,7 @@ from dividedposterity.models import Hero, Buff, Effect, PVMCombat
 
 def statstuff(hero,stat):
 	if hero == None:
-		return {'stat':stat, 'base':'-', 'value':'-', 'change':'-'}
+		return {'stat':stat, 'base':'#', 'value':'#', 'change':'-'}
 	base = getattr(hero, "base%s" % stat.lower())
 	value = getattr(hero, stat.lower())
 	#change = (changed>base)?"increased":(changed<base)?"decreased":"uncreased"
@@ -90,22 +90,38 @@ def combat(request):
 	#             'percenthp': (hero.hp - hero.combat.player_hp_lost) / hero.hp,
 	#             'percentmp': (hero.mp - hero.combat.player_mp_used) / hero.mp
 	#            }
-	return HttpResponse (t.render(Context({
-	                     'hero':hero,
-	                     'buffs':buffs,
-	                     'effects':effects,
-	                     'stats':[ statstuff(hero,"Brawn"),
-	                               statstuff(hero,"Magery"),
-	                               statstuff(hero,"Stamina"),
-	                               statstuff(hero,"Finesse"),
-	                               statstuff(hero,"Charm"),
-	                               statstuff(hero,"Lore")],
-	                     'wellbeing':{"hp":(hero.hp - hero.combat.player_hp_lost),
-	                                  "mp":(hero.mp - hero.combat.player_mp_used),
-	                                  "percenthp":(100*(hero.hp - hero.combat.player_hp_lost) / hero.hp),
-	                                  "percentmp":(100*(hero.mp - hero.combat.player_mp_used) / hero.mp)
-	                                 }
-	                     })))
+	if hero:
+		c = Context({
+			'hero':hero,
+			'buffs':buffs,
+			'effects':effects,
+			'stats':[ statstuff(hero,"Brawn"),
+				statstuff(hero,"Magery"),
+				statstuff(hero,"Stamina"),
+				statstuff(hero,"Finesse"),
+				statstuff(hero,"Charm"),
+				statstuff(hero,"Lore")],
+			'wellbeing':{"hp":(hero.hp - hero.combat.player_hp_lost),
+				"mp":(hero.mp - hero.combat.player_mp_used),
+				"percenthp":(100*(hero.hp - hero.combat.player_hp_lost) / hero.hp),
+				"percentmp":(100*(hero.mp - hero.combat.player_mp_used) / hero.mp)
+				}
+			})
+	else:
+		c = Context({
+			'hero':{'name':'DNE','key':{'id':'-1'}, 'cclass':'N/A'},
+			'buffs':{},
+			'effects':{},
+			'stats':[ statstuff(hero,"Brawn"),
+				statstuff(hero,"Magery"),
+				statstuff(hero,"Stamina"),
+				statstuff(hero,"Finesse"),
+				statstuff(hero,"Charm"),
+				statstuff(hero,"Lore")],
+			'wellbeing':{"hp":'-', "mp":'-', "percenthp":0, "percentmp":0}
+			})
+	return HttpResponse (t.render(c))
+
 def startcombat(request):
 	hero = Hero.all().get()
 	combat = PVMCombat(player_hp_lost=0, player_mp_used=0, monster_hp_lost=0,
