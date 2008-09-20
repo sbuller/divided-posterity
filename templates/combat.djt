@@ -2,8 +2,8 @@
 
 {% block viewpane %}
 		<div id="combat">
-      <table id="skillrepository" class="centered"><tbody><tr><td>
-        <div class="repository body1">
+			<table id="skillrepository" class="centered"><tbody><tr><td>
+				<div class="repository body1">
 						<img src="/images/skills/surrender.png" alt="[s]" title="Surrender"/>
 						<img src="/images/skills/poisonblade.png" alt="[P]" title="Poison Blade"/>
 						<img src="/images/skills/defend.png" alt="[d]" title="Defend"/>
@@ -31,12 +31,12 @@
 						<img src="/images/skills/plunge.png" alt="[P]" title="Plunge"/>
 						<img src="/images/skills/flameshield.png" alt="[f]" title="Flame Shield"/>
 						<img src="/images/skills/surrender.png" alt="[s]" title="Surrender" class="last"/>
-        <div class="first tab head1">Items</div>
-        <div class="selected tab head1">Skills</div>
-        <div class="last tab head1">Hide</div>
-      </td></tr></tbody></table>
-      
-      <table id="skillbar" class="centered"><tbody><tr><td>
+				<div class="first tab head1">Items</div>
+				<div class="selected tab head1">Skills</div>
+				<div class="last tab head1">Hide</div>
+			</td></tr></tbody></table>
+
+			<table id="skillbar" class="centered"><tbody><tr><td>
 				<div class="repository">
 					<img src="/images/interface/scrollleft.png" alt="(&lt;]" title="Previous Page" class="scroll"/>
 					<img src="/images/skills/attack.png" alt="[A]" title="Attack"/>
@@ -52,9 +52,9 @@
 					<img src="/images/skills/surrender.png" alt="[s]" title="Surrender"/>
 					<img src="/images/interface/scrollright.png" alt="[&gt;)" title="Next Page" class="scroll last"/>
 				</div>
-      </td></tr></tbody></table>
-      
-      <table id="enemy" class="centered"><tbody><tr><td>
+			</td></tr></tbody></table>
+
+			<table id="enemy" class="centered"><tbody><tr><td>
 				<img id="enemyimage" src="/images/npc/menacingstarlet.png" alt="[Enemy]"/>
 				<h4>A Menacing Starlet</h4>
 				<h3>Level 13 Celestial</h3>
@@ -69,9 +69,9 @@
 					<div class="bad terrain">
 					</div>
 				</td></tr></tbody></table>
-      </td></tr></tbody></table>
-      
-      <table id="combattext" class="centered"><tbody><tr><td>
+			</td></tr></tbody></table>
+
+			<table id="combattext" class="centered"><tbody><tr><td>
 				<p>A Menacing Starlet ambushes you.</p>
 				<p>This is a star that fell from the heavens when the world underwent transmogrification.
 					It's been through some tough times, and it's pumped to beat you down. Hiya!</p>
@@ -79,9 +79,9 @@
 					12 damages, to be precise.</p>
 				<p>Battle moves towards higher ground. You scramble to the top of a hill, gaining a
 					slight combat advantage.</p>
-      </td></tr></tbody></table>
-      
-      <table id="wellbeingbars" class="centered"><tbody><tr><td>
+			</td></tr></tbody></table>
+
+			<table id="wellbeingbars" class="centered"><tbody><tr><td>
 				<div id="health" class="bar">
 					<div class="barfill" style="width:{{wellbeing.percenthp}}%;">
 					</div>
@@ -92,6 +92,6 @@
 					</div>
 					<h3>Energy: {{wellbeing.mp}} / {{hero.mp}}</h3>
 				</div>
-      </td></tr></tbody></table>
+			</td></tr></tbody></table>
 		</div> <!--combat-->
 {% endblock %}
