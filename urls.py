@@ -15,18 +15,17 @@
 from django.conf.urls.defaults import *
 import settings
 
-urlpatterns = patterns('dividedposterity.views', (r'help', 'help'))
+urlpatterns = patterns('dividedposterity.controllers', (r'^$', 'utility.defaultredirect'))
 
 if settings.DEBUG:
-	urlpatterns += patterns('dividedposterity.views',
-		(r'^new(?P<model>.*)$', 'create')
+	urlpatterns += patterns('dividedposterity.controllers',
+		(r'^new(?P<model>.*)$', 'create.route')
 	)
 
-urlpatterns += patterns('dividedposterity.views',
-		(r'^$', 'defaultredirect'),
-		(r'^combat$', 'combat'),
-		(r'^startcombat$', 'startcombat'),
-		(r'^(?P<template>.*)$', 'index')
+urlpatterns += patterns('dividedposterity.controllers',
+		(r'^combat$', 'combat.route'),
+		(r'^startcombat$', 'startcombat.route'),
+		(r'^(?P<template>.*)$', 'utility.template')
     # Example:
     # (r'^foo/', include('foo.urls')),
 
