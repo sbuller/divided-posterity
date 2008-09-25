@@ -1,5 +1,4 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-{% include "chatpane.djt" %}
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
 	<head>
 		<title>Divided Posterity</title>
@@ -7,8 +6,10 @@
 		<link rel="shortcut icon" href="/favicon.ico" />
 		<link rel="stylesheet" href="/stylesheets/base.css" type="text/css" media="screen" charset="utf-8" />
 		<link rel="stylesheet" href="/stylesheets/default.css" type="text/css" media="screen" charset="utf-8" />
+		<link rel="stylesheet" href="/stylesheets/chat.css" type="text/css" media="screen" charset="utf-8" />
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js"></script>
 		<script type="text/javascript" src="/js/jquery-ui-personalized-1.5.min.js"></script>
+		<script type="text/javascript" src="/js/chat.js"></script>
 		<script type="text/javascript" src="/js/test.js"></script>
 	<!--[if IE]>
 		<link rel="stylesheet" href="/stylesheets/iehacks.css" type="text/css" media="screen" charset="utf-8" />
@@ -58,7 +59,9 @@
 			</form>
 		</div>
 
-		{% block chatpane %} {% endblock %}
+		<div id="chatpane">
+			{% include "chatpane.djt" %}
+		</div>
 
 	</body>
 </html>

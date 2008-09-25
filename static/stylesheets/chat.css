@@ -122,6 +122,6 @@ p.chat_chatline
 	margin: 0px;
 	background-color: white;
 	overflow: hidden;
-	display: hidden
+	display: hidden;
 	white-space: "nowrap";
 }
