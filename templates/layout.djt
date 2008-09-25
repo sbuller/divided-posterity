@@ -21,7 +21,7 @@
 		</div>
 
 		<div id="heropane">
-{% include "heropane.djt" %}
+			{% include "heropane.djt" %}
 		</div>
 
 		<div id="messagepane">
