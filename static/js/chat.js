@@ -470,3 +470,16 @@ function chat_Logout()
 //////////////////////////
 //	End Of Functions
 //////////////////////////
+
+$(document).ready(function(){
+	$("#chat_username_input").removeAttr("disabled");
+	$("#chat_username_input").val('Type in your username...');
+
+	$("#chat_password_input").removeAttr("disabled");
+	$("#chat_password_input").val('*****');
+
+
+	$("#chat_roomname_input").css("width","100%");
+
+	$("#chat_pendingmessage_label").hide(0);
+})

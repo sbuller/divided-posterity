@@ -1,57 +1,43 @@
 {% block chatpane %}
-	<div class="chat_ChatWindow" id="chat_userprofile">
-		<p id="chat_introtext_p">Ed's Chat Box</p><br><br>
-		<form id="chat_username_form" onsubmit="return chat_Login()">
-		Username:<br>
-		<input type="text" disabled="false" id="chat_username_input" style="color:#D3D3D3" onfocus="chat_username_focused(this)" value="Type in your username..."/>
-		<SCRIPT LANGUAGE="JavaScript">
-		document.getElementById("chat_username_input").disabled=false;
-		$("#chat_username_input").val('Type in your username...');
-		</SCRIPT>
-		</form>
+			<div class="chat_ChatWindow" id="chat_userprofile">
+				<p id="chat_introtext_p">Ed's Chat Box</p><br><br>
+				<form id="chat_username_form" onsubmit="return chat_Login()">
+				Username:<br>
+				<input type="text" disabled="false" id="chat_username_input" style="color:#D3D3D3" onfocus="chat_username_focused(this)" value="Type in your username..."/>
+				</form>
 
-		<form id="chat_password_form" onsubmit="return chat_Login()">
-		Password:<br>
-		<input type="password" disabled="false" id="chat_password_input" style="color:#D3D3D3" onfocus="chat_password_focused(this)" value="Type in your password..."/>
-		<SCRIPT LANGUAGE="JavaScript">
-		document.getElementById("chat_password_input").disabled=false;
-		$("#chat_password_input").val('*****');
-		</SCRIPT>
-		</form>
+				<form id="chat_password_form" onsubmit="return chat_Login()">
+				Password:<br>
+				<input type="password" disabled="false" id="chat_password_input" style="color:#D3D3D3" onfocus="chat_password_focused(this)" value="Type in your password..."/>
+				</form>
 
-		<button enabled="true" type="button" style="color:blue" value="Login" id="chat_button_userpass" onclick="chat_Login()">Login</button>
-		<button enabled="true" type="button" style="color:blue" value="Login" id="chat_button_createuserpass" onclick="chat_CreateUser()">Create User</button>
-	</div>
+				<button enabled="true" type="button" style="color:blue" value="Login" id="chat_button_userpass" onclick="chat_Login()">Login</button>
+				<button enabled="true" type="button" style="color:blue" value="Login" id="chat_button_createuserpass" onclick="chat_CreateUser()">Create User</button>
+			</div>
 
-	<div class="chat_ChatWindow" style="display:none" id="chat_joinroom_div">
+			<div class="chat_ChatWindow" style="display:none" id="chat_joinroom_div">
 
-		<p id="chat_username_label"></p><br><br>
+				<p id="chat_username_label"></p><br><br>
 
-		<form id="chat_room_form" onsubmit="return chat_JoinRoom()">
-		Chatroom:<br>
-		<input id="chat_roomname_input" style="color:#D3D3D3; width:100%;" onfocus="chat_roomname_focused(this)"/>
-		<SCRIPT LANGUAGE="JavaScript">
-		$("#chat_roomname_input").css("width","100%");
-		</SCRIPT>
-		</form>
+				<form id="chat_room_form" onsubmit="return chat_JoinRoom()">
+				Chatroom:<br>
+				<input id="chat_roomname_input" style="color:#D3D3D3; width:100%;" onfocus="chat_roomname_focused(this)"/>
+				</form>
 
-		<button type="button" style="color:green" id="chat_joinroom_button" onclick="chat_JoinRoom()">Join</button>
-		<button type="button" style="color:blue" id="chat_logout_button" onclick="chat_Logout()">Logout</button>
+				<button type="button" style="color:green" id="chat_joinroom_button" onclick="chat_JoinRoom()">Join</button>
+				<button type="button" style="color:blue" id="chat_logout_button" onclick="chat_Logout()">Logout</button>
 
-	</div>
+			</div>
 
-	<div class="chat_ChatWindow" id="chat_main" style="display:none">
-		<p id="chat_pendingmessage_label"></p>
-		<SCRIPT LANGUAGE = "JavaScript">
-		$("#chat_pendingmessage_label").hide(0);
-		</SCRIPT>
-		<p id="chat_roomname_label"></p>
-		<div id="chat_messages_div">
-			<p id="chat_messages_p"></p>
-		</div>
-		<div id="chat_user_message_div">
-			<textarea id="chat_message_textarea" value=""></textarea>
-			<button id="chat_exitroom_button" onclick="chat_ExitRoom()" style="margin:0px;">Exit</button>
-		</div>
-	</div>
+			<div class="chat_ChatWindow" id="chat_main" style="display:none">
+				<p id="chat_pendingmessage_label"></p>
+				<p id="chat_roomname_label"></p>
+				<div id="chat_messages_div">
+					<p id="chat_messages_p"></p>
+				</div>
+				<div id="chat_user_message_div">
+					<textarea id="chat_message_textarea" value=""></textarea>
+					<button id="chat_exitroom_button" onclick="chat_ExitRoom()" style="margin:0px;">Exit</button>
+				</div>
+			</div>
 {% endblock %}
