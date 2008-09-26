@@ -4,6 +4,9 @@ from dividedposterity.models import Hero, PVMCombat
 
 def route(request):
 	hero = Hero.all().get()
+	if hero.combat != None:
+		return HttpResponseRedirect('/combat')
+
 	combat = PVMCombat(player_hp_lost=0, player_mp_used=0, monster_hp_lost=0,
                      monster_mp_used=0, effects=[], behaviour_data="", turn=0)
 	combat.put()

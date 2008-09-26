@@ -6,7 +6,7 @@
 							<div class="header centeredtext">
 								<h1 class=head1>Combat Complete!</h1>
 								<p><a href=#>Return to &lt;Location&gt;</a></p>
-								<p><a href="{% dpurl combat %}">Adventure again in &lt;Sublocation&gt;</a></p>
+								<p><a href="{% dpurl startcombat %}">Adventure again in &lt;Sublocation&gt;</a></p>
 							</div>
 
 							<div id="rewardexperience" class="body1">
