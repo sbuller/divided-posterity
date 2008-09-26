@@ -19,6 +19,7 @@ import types
 
 from google.appengine.ext import db
 
+from django import VERSION
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.models.fields import Field
 from django.db.models.options import Options
@@ -132,8 +133,11 @@ class PropertiedClassWithDjango(db.PropertiedClass):
       # This metaclass only acts on subclasses of BaseModel.
       return
 
-    cls._meta.fields = [PropertyWrapper(p) for p in cls._properties.values()]
-
+    fields = [PropertyWrapper(p) for p in cls._properties.values()]
+    if VERSION >= (0, 97, None):
+      cls._meta.local_fields = fields
+    else:
+      cls._meta.fields = fields
 
 class BaseModel(db.Model):
   """Combined appengine and Django model.
@@ -153,6 +157,14 @@ class BaseModel(db.Model):
   def _get_pk_val(self):
     """Return the string representation of the model's key"""
     return unicode(self.key())
+
+  def __repr__(self):
+    # Returns a string representation that can be used to construct an
+    # equivalent object. First, creates a dictionary of property names and
+    # values. Note that property values, not property objects, has to be passed
+    # in to constructor.
+    d = dict([(k, self.__getattribute__(k)) for k in self.properties()])
+    return "%s(**%s)" % (self.__class__.__name__, repr(d))
 
 
 class RegistrationTestModel(BaseModel):

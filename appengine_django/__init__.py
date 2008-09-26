@@ -60,10 +60,17 @@ except ImportError, e:
            os.path.join(PARENT_DIR, 'google_appengine'),
            '/usr/local/google_appengine']
   # Then if on windows, look for where the Windows SDK installed it.
+  for path in os.environ.get('PATH', '').split(';'):
+    path = path.rstrip('\\')
+    if path.endswith('google_appengine'):
+      paths.append(path)
   try:
-    import win32api
-    ROOT_PATH = os.path.dirname(win32api.GetWindowsDirectory())
-    paths.append(os.path.join(ROOT_PATH, 'Program Files', 'Google',
+    from win32com.shell import shell
+    from win32com.shell import shellcon
+    id_list = shell.SHGetSpecialFolderLocation(
+        0, shellcon.CSIDL_PROGRAM_FILES)
+    program_files = shell.SHGetPathFromIDList(id_list)
+    paths.append(os.path.join(program_files, 'Google',
                               'google_appengine'))
   except ImportError, e:
     # Not windows.
@@ -185,6 +192,51 @@ def PatchTestDBCreationFunctions():
   logging.debug("Installed test database create/destroy functions")
 
 
+def InstallGoogleMemcache():
+  """Installs the Google memcache into Django.
+
+  By default django tries to import standard memcache module.
+  Because appengine memcache is API compatible with Python memcache module,
+  we can trick Django to think it is installed and to use it.
+  
+  Now you can use CACHE_BACKEND = 'memcached://' in settings.py. IP address
+  and port number are not required.
+  """
+  from google.appengine.api import memcache
+  sys.modules['memcache'] = memcache
+  logging.debug("Installed App Engine memcache backend")
+
+
+def InstallDjangoModuleReplacements():
+  """Replaces internal Django modules with App Engine compatible versions."""
+
+  # Replace the session module with a partial replacement overlay using
+  # __path__ so that portions not replaced will fall through to the original
+  # implementation. 
+  try:
+    from django.contrib import sessions
+    orig_path = sessions.__path__[0]
+    sessions.__path__.insert(0, os.path.join(DIR_PATH, 'sessions'))
+    from django.contrib.sessions import backends
+    backends.__path__.append(os.path.join(orig_path, 'backends'))
+  except ImportError:
+    logging.debug("No Django session support available")
+
+  # Replace incompatible dispatchers.
+  import django.core.signals
+  import django.db
+  import django.dispatch.dispatcher
+
+  # Rollback occurs automatically on Google App Engine. Disable the Django
+  # rollback handler.
+  try:
+    django.dispatch.dispatcher.disconnect(
+        django.db._rollback_on_exception,
+        django.core.signals.got_request_exception)
+  except django.dispatch.errors.DispatcherKeyError, e:
+    logging.debug("Django rollback handler appears to be already disabled.")
+
+
 def PatchDjangoSerializationModules():
   """Monkey patches the Django serialization modules.
 
@@ -277,12 +329,16 @@ def CleanupDjangoSettings():
   # Remove incompatible middleware modules.
   mw_mods = list(getattr(settings, "MIDDLEWARE_CLASSES", ()))
   disallowed_middleware_mods = (
-    'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.doc.XViewMiddleware',)
+  if VERSION < (0, 97, None):
+      # Sessions are only supported with Django 0.97.
+      disallowed_middleware_mods += (
+          'django.contrib.sessions.middleware.SessionMiddleware',)
   for modname in mw_mods[:]:
     if modname in disallowed_middleware_mods:
-      # Currently only the CommonMiddleware has been ported.  As other base modules 
-      # are converted, remove from the disallowed_middleware_mods tuple.
+      # Currently only the CommonMiddleware has been ported.  As other base
+      # modules are converted, remove from the disallowed_middleware_mods
+      # tuple.
       mw_mods.remove(modname)
       logging.warn("Middleware module '%s' is not compatible. Removed!" %
                    modname)
@@ -292,13 +348,22 @@ def CleanupDjangoSettings():
   app_mods = list(getattr(settings, "INSTALLED_APPS", ()))
   disallowed_apps = (
     'django.contrib.contenttypes',
-    'django.contrib.sessions',
     'django.contrib.sites',)
+  if VERSION < (0, 97, None):
+      # Sessions are only supported with Django 0.97.
+      disallowed_apps += ('django.contrib.sessions',)
   for app in app_mods[:]:
     if app in disallowed_apps:
       app_mods.remove(app)
       logging.warn("Application module '%s' is not compatible. Removed!" % app)
   setattr(settings, "INSTALLED_APPS", tuple(app_mods))
+
+  # Remove incompatible session backends.
+  session_backend = getattr(settings, "SESSION_ENGINE", "")
+  if session_backend.endswith("file"):
+    logging.warn("File session backend is not compatible. Overriden "
+                 "to use db backend!")
+    setattr(settings, "SESSION_ENGINE", "django.contrib.sessions.backends.db")
 
 
 def ModifyAvailableCommands():
@@ -315,8 +380,15 @@ def ModifyAvailableCommands():
     management.DEFAULT_ACTION_MAPPING['flush'] = flush.v096_command
     from appengine_django.management.commands import reset
     management.DEFAULT_ACTION_MAPPING['reset'] = reset.v096_command
+    # startapp command for django 0.96 
+    management.PROJECT_TEMPLATE_DIR = os.path.join(__path__[0], 'conf',
+                                                   '%s_template')
   else:
-    management.get_commands()
+    project_directory = os.path.join(__path__[0], "../")
+    management.get_commands(project_directory=project_directory)
+    # Replace startapp command which is set by previous call to get_commands().
+    from appengine_django.management.commands.startapp import ProjectCommand
+    management._commands['startapp'] = ProjectCommand(project_directory) 
     RemoveCommands(management._commands)
     # Django 0.97 will install the replacements automatically.
   logging.debug("Removed incompatible Django manage.py commands")
@@ -366,6 +438,9 @@ def InstallAppengineHelperForDjango():
   LoadAppengineEnvironment()
   InstallReplacementImpModule()
   InstallAppengineDatabaseBackend()
+  InstallModelForm()
+  InstallGoogleMemcache()
+  InstallDjangoModuleReplacements()
   PatchDjangoSerializationModules()
   CleanupDjangoSettings()
   ModifyAvailableCommands()
@@ -389,17 +464,43 @@ def InstallGoogleSMTPConnection():
 
 
 def InstallAuthentication():
-  logging.debug("Installing authentication framework")
-  from appengine_django.auth import models as helper_models
-  from django.contrib.auth import models
-  models.User = helper_models.User
-  models.Group = helper_models.Group
-  models.Permission = helper_models.Permission
-  models.Message = helper_models.Message
-  from django.contrib.auth import middleware as django_middleware
-  from appengine_django.auth.middleware import AuthenticationMiddleware
-  django_middleware.AuthenticationMiddleware = AuthenticationMiddleware
-  if VERSION >= (0, 97, None):
-    from appengine_django.auth import tests
-    from django.contrib.auth import tests as django_tests
-    django_tests.__doc__ = tests.__doc__
+  try:
+    from appengine_django.auth import models as helper_models
+    from django.contrib.auth import models
+    models.User = helper_models.User
+    models.Group = helper_models.Group
+    models.Permission = helper_models.Permission
+    models.Message = helper_models.Message
+    from django.contrib.auth import middleware as django_middleware
+    from appengine_django.auth.middleware import AuthenticationMiddleware
+    django_middleware.AuthenticationMiddleware = AuthenticationMiddleware
+    from django.contrib.auth import decorators as django_decorators
+    from appengine_django.auth.decorators import login_required
+    django_decorators.login_required = login_required
+    if VERSION >= (0, 97, None):
+      from appengine_django.auth import tests
+      from django.contrib.auth import tests as django_tests
+      django_tests.PasswordResetTest = None
+      django_tests.__test__ = {}
+      django_tests.__doc__ = tests.__doc__
+    logging.debug("Installing authentication framework")
+  except ImportError:
+    logging.debug("No Django authentication support available")
+
+
+def InstallModelForm():
+  """Replace Django ModelForm with the AppEngine ModelForm."""
+  # This MUST happen as early as possible, but after any auth model patching.
+  from google.appengine.ext.db import djangoforms as aeforms
+  from django import newforms as forms
+  forms.ModelForm = aeforms.ModelForm
+
+  # Extend ModelForm with support for EmailProperty
+  # TODO: This should be submitted to the main App Engine SDK.
+  from google.appengine.ext.db import EmailProperty
+  def get_form_field(self, **kwargs):
+    """Return a Django form field appropriate for an email property."""
+    defaults = {'form_class': forms.EmailField}
+    defaults.update(kwargs)
+    return super(EmailProperty, self).get_form_field(**defaults)
+  EmailProperty.get_form_field = get_form_field

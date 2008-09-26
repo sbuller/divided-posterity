@@ -19,9 +19,13 @@
 
 import unittest
 
+from django import VERSION
 from django.db.models import get_models
+from django import newforms as forms
 
+from google.appengine.ext.db import djangoforms
 from google.appengine.ext import db
+
 from appengine_django.models import BaseModel
 from appengine_django.models import ModelManager
 from appengine_django.models import ModelOptions
@@ -62,9 +66,13 @@ class ModelTest(unittest.TestCase):
 
   def testDjangoModelFields(self):
     """Tests that a combined model class has (faked) Django fields."""
-    self.assertEqual(3, len(TestModelWithProperties._meta.fields))
+    if VERSION >= (0, 97, None):
+      fields = TestModelWithProperties._meta.local_fields
+    else:
+      fields = TestModelWithProperties._meta.fields
+    self.assertEqual(3, len(fields))
     # Check each fake field has the minimal properties that Django needs.
-    for field in TestModelWithProperties._meta.fields:
+    for field in fields:
       # The Django serialization code looks for rel to determine if the field
       # is a relationship/reference to another model.
       self.assert_(hasattr(field, "rel"))
@@ -108,3 +116,7 @@ class ModelTest(unittest.TestCase):
     self.assert_(pk)
     new_obj = RegistrationTestModel.get(pk)
     self.assertEqual(obj.key(), new_obj.key())
+
+  def testModelFormPatched(self):
+    """Tests that the Django ModelForm is being successfully patched."""
+    self.assertEqual(djangoforms.ModelForm, forms.ModelForm)
