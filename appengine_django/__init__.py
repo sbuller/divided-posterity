@@ -16,8 +16,7 @@
 
 """Support for integrating a Django project with the appengine infrastructure.
 
-This works with both Django 0.96 (via much monkey patching) and Django
-0.97.pre1.
+This requires Django 1.0beta1 or greater.
 
 This module enables you to use the Django manage.py utility and *some* of it's
 subcommands. View the help of manage.py for exact details.
@@ -41,6 +40,7 @@ eg:
 import logging
 import os
 import sys
+import unittest
 
 
 DIR_PATH = os.path.abspath(os.path.dirname(__file__))
@@ -230,12 +230,23 @@ def InstallDjangoModuleReplacements():
   # Rollback occurs automatically on Google App Engine. Disable the Django
   # rollback handler.
   try:
-    django.dispatch.dispatcher.disconnect(
-        django.db._rollback_on_exception,
-        django.core.signals.got_request_exception)
-  except django.dispatch.errors.DispatcherKeyError, e:
-    logging.debug("Django rollback handler appears to be already disabled.")
+    # pre 1.0
+    from django.dispatch import errors
+    CheckedException = errors.DispatcherKeyError
+    def _disconnectSignal():
+      django.dispatch.dispatcher.disconnect(
+          django.db._rollback_on_exception,
+          django.core.signals.got_request_exception)
+  except ImportError:
+    CheckedException = KeyError
+    def _disconnectSignal():
+      django.core.signals.got_request_exception.disconnect(
+          django.db._rollback_on_exception)
 
+  try:
+    _disconnectSignal()
+  except CheckedException, e:
+    logging.debug("Django rollback handler appears to be already disabled.")
 
 def PatchDjangoSerializationModules():
   """Monkey patches the Django serialization modules.
@@ -385,7 +396,7 @@ def ModifyAvailableCommands():
                                                    '%s_template')
   else:
     project_directory = os.path.join(__path__[0], "../")
-    management.get_commands(project_directory=project_directory)
+    management.get_commands()
     # Replace startapp command which is set by previous call to get_commands().
     from appengine_django.management.commands.startapp import ProjectCommand
     management._commands['startapp'] = ProjectCommand(project_directory) 
@@ -478,11 +489,10 @@ def InstallAuthentication():
     from appengine_django.auth.decorators import login_required
     django_decorators.login_required = login_required
     if VERSION >= (0, 97, None):
-      from appengine_django.auth import tests
+      from django.contrib import auth as django_auth
       from django.contrib.auth import tests as django_tests
-      django_tests.PasswordResetTest = None
-      django_tests.__test__ = {}
-      django_tests.__doc__ = tests.__doc__
+      django_auth.suite = unittest.TestSuite
+      django_tests.suite = unittest.TestSuite
     logging.debug("Installing authentication framework")
   except ImportError:
     logging.debug("No Django authentication support available")
@@ -492,7 +502,12 @@ def InstallModelForm():
   """Replace Django ModelForm with the AppEngine ModelForm."""
   # This MUST happen as early as possible, but after any auth model patching.
   from google.appengine.ext.db import djangoforms as aeforms
-  from django import newforms as forms
+  try:
+    # pre 1.0
+    from django import newforms as forms
+  except ImportError:
+    from django import forms
+
   forms.ModelForm = aeforms.ModelForm
 
   # Extend ModelForm with support for EmailProperty

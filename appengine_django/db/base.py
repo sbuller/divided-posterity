@@ -21,6 +21,7 @@ import os
 
 from appengine_django import appid
 from appengine_django import have_appserver
+from appengine_django.db.creation import DatabaseCreation
 
 
 try:
@@ -111,11 +112,12 @@ class DatabaseWrapper(BaseDatabaseWrapper):
   by the appengine libraries if they have not already been initialised by an
   appserver.
   """
-  features = DatabaseFeatures()
-  ops = DatabaseOperations()
 
   def __init__(self, *args, **kwargs):
     super(DatabaseWrapper, self).__init__(*args, **kwargs)
+    self.features = DatabaseFeatures()
+    self.ops = DatabaseOperations()
+    self.creation = DatabaseCreation(self)
     self.use_test_datastore = kwargs.get("use_test_datastore", False)
     self.test_datastore_inmemory = kwargs.get("test_datastore_inmemory", True)
     if have_appserver:
