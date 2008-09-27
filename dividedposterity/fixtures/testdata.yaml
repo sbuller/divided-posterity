@@ -1,14 +1,4 @@
 - fields:
-    behaviour_data: !!python/unicode ''
-    effects: []
-    monster_hp_lost: !!python/long '0'
-    monster_mp_used: !!python/long '0'
-    player_hp_lost: !!python/long '0'
-    player_mp_used: !!python/long '0'
-    turn: !!python/long '0'
-  model: dividedposterity.pvmcombat
-  pk: ahFkaXZpZGVkLXBvc3Rlcml0eXIPCxIJUFZNQ29tYmF0GAIM
-- fields:
     adventure: null
     adventure_total: null
     basebrawn: !!python/long '5'
@@ -20,7 +10,6 @@
     brawn: !!python/long '4'
     cclass: !!python/unicode 'Jade Shaman'
     charm: !!python/long '5'
-    combat: !!python/unicode 'ahFkaXZpZGVkLXBvc3Rlcml0eXIPCxIJUFZNQ29tYmF0GAIM'
     finesse: !!python/long '5'
     gender: !!python/unicode 'male'
     hp: !!python/long '15'
