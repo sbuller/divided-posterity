@@ -1,8 +1,11 @@
 {% extends "layout.djt" %}
+{% load dp_extras %}
 
 {% block viewpane %}
-<form action="/new{{model}}" method="post">
-{{form.as_p}}
-<input type="submit" />
-</form>
+		<form action={% dpurl create model=model %} method="post">
+			<table><tbody>
+			{{form.as_table}}
+			</tbody></table>
+			<input type="submit" />
+		</form>
 {% endblock %}
