@@ -4,18 +4,29 @@ from django.template.defaulttags import URLNode
 register = template.Library()
 
 def dpurl(parser, token):
-	bits = token.contents.split(' ', 2)
+	bits = token.contents.split(' ')
 	if len(bits) < 2:
-		raise TemplateSyntaxError, "'%s' takes at least one argument (path t    o a view)" % bits[0]
+		raise TemplateSyntaxError("'%s' takes at least one argument"
+		                          " (path t    o a view)" % bits[0])
+	viewname = bits[1]
 	args = []
 	kwargs = {}
+	asvar = None
+	
 	if len(bits) > 2:
-		for arg in bits[2].split(','):
-			if '=' in arg:
-				k, v = arg.split('=', 1)
-				kwargs[k] = parser.compile_filter(v)
+		bits = iter(bits[2:])
+		for bit in bits:
+			if bit == 'as':
+				asvar = bits.next()
+				break
 			else:
-				args.append(parser.compile_filter(arg))
-	return URLNode("dividedposterity.controllers.%s.route" % bits[1], args, kwargs)
+				for arg in bit.split(","):
+					if '=' in arg:
+						k, v = arg.split('=', 1)
+						k = k.strip()
+						kwargs[k] = parser.compile_filter(v)
+					elif arg:
+						args.append(parser.compile_filter(arg))
+	return URLNode("dividedposterity.controllers.%s.route" % viewname, args, kwargs, asvar)
 
 dpurl = register.tag(dpurl)
