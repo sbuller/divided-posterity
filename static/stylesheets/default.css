@@ -29,10 +29,6 @@ body>div{
 	color:#000;
 }
 
-/*#chatview{
-	background-color:#fff;
-}*/
-
 body{
   font-family:Helvetica, Arial, sans-serif;
   font-size:10pt;
@@ -79,16 +75,6 @@ em.uncreased{
   color:#000;
   font-weight:normal;
 }
-
-/*#chatview p{
-  font-size:9pt;
-  margin:2px 0px;
-  padding:4px;
-}
-
-#chatview p.timeout{
-  color:#080;
-}*/
 
 *.centered{
   margin-left:auto;
