@@ -26,37 +26,7 @@
 		</div>
 
 		<div id="messagepane">
-			<form action="/newhero" method="post">
-				<h2>Effect a Hero</h2>
-				<p>Name <input type="text" name="name" /></p>
-				<p>Id <input type="text" name="id" /></p>
-				<p>Class <input type="text" name="cclass" /></p>
-				<p>Brawn <input type="text" name="brawn" /><input type="text" name="basebrawn" /></p>
-				<p>Magery <input type="text" name="magery" /><input type="text" name="basemagery" /></p>
-				<p>Stamina <input type="text" name="stamina" /><input type="text" name="basestamina" /></p>
-				<p>Finesse <input type="text" name="finesse" /><input type="text" name="basefinesse" /></p>
-				<p>Charm <input type="text" name="charm" /><input type="text" name="basecharm" /></p>
-				<p>Lore <input type="text" name="lore" /><input type="text" name="baselore" /></p>
-				<p>HP <input type="text" name="hp" /></p>
-				<p>MP <input type="text" name="mp" /></p>
-				<input type="submit" />
-			</form>
-			<form action="/newbuff" method="post">
-				<h2>Buff a Hero</h2>
-				<p>Buff Name <input type="text" name="buffname" /></p>
-				<p>Hero Id <input type="text" name="target" /></p>
-				<p>Caster Id <input type="text" name="source" /></p>
-				<p>Caster Name <input type="text" name="sourcename" /></p>
-				<input type="submit" />
-			</form>
-			<form action="/neweffect" method="post">
-				<h2>Affect a Hero</h2>
-				<p>Effect Name <input type="text" name="effectname" /></p>
-				<p>Hero Id <input type="text" name="target" /></p>
-				<p>Duration <input type="text" name="quantity" /></p>
-				<p>Duration Units <input type="text" name="unit" /></p>
-				<input type="submit" />
-			</form>
+			Message Pane
 		</div>
 
 		<div id="chatpane">
