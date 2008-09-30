@@ -24,6 +24,7 @@ if settings.DEBUG:
 
 urlpatterns += patterns('dividedposterity.controllers',
 		(r'^combat$', 'combat.route'),
+		(r'^forms$', 'forms.route'),
 		(r'^startcombat$', 'startcombat.route'),
 		(r'^(?P<template>.*)$', 'utility.template')
     # Example:
