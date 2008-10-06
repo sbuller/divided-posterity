@@ -4,28 +4,28 @@
 {% block viewpane %}
 		<div id="modelforms">
 			<h1>Effect a Hero</h1>
-			<form action={% dpurl create model="hero" %} method="post">
+			<form action="{% dpurl create model="hero" %}" method="post">
 				<table><tbody>
 					{{heroform.as_table}}
 				</tbody></table>
 				<input type="submit" />
 			</form>
 			<h1>Buff a Hero</h1>
-			<form action={% dpurl create model="buff" %} method="post">
+			<form action="{% dpurl create model="buff" %}" method="post">
 				<table><tbody>
 					{{buffform.as_table}}
 				</tbody></table>
 				<input type="submit" />
 			</form>
 			<h1>Affect a Hero</h1>
-			<form action={% dpurl create model="effect" %} method="post">
+			<form action="{% dpurl create model="effect" %}" method="post">
 				<table><tbody>
 					{{effectform.as_table}}
 				</tbody></table>
 				<input type="submit" />
 			</form>
 			<h1>Monster Combat?</h1>
-			<form action={% dpurl create model="pvmcombat" %} method="post">
+			<form action="{% dpurl create model="pvmcombat" %}" method="post">
 				<table><tbody>
 					{{pvmcombatform.as_table}}
 				</tbody></table>
