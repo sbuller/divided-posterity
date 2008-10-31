@@ -133,6 +133,34 @@ a:active{
 #heropane>div>h3>span{
 	cursor:pointer;
 }
+
+#welcome span{
+	margin:0px 10px;
+}
+
+#welcome #login{
+	float:right;
+}
+
+#welcome #login p{
+	margin-bottom:1px;
+}
+
+#welcome #login input[type="button"]{
+	/*float:right;*/
+	display:block;
+	margin-top:3px;
+	clear:both;
+}
+
+#welcome #news tr>td{
+	white-space:nowrap;
+}
+
+#welcome #news tr>td+td{
+	white-space:normal;
+}
+
 /*
 #heropane > div > h3 > img {
 	cursor:pointer;
