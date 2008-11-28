@@ -7,6 +7,8 @@ from google.appengine.api import users
 from google.appengine.ext import webapp
 from google.appengine.api import memcache
 
+from django.contrib.auth.models import User
+
 #Model
   
 class Room(db.Model):
@@ -176,6 +178,11 @@ class CreateUserRequest(webapp.RequestHandler):
 		username = self.request.get('username')
 		password = self.request.get("password")
 		
+		user = User.create_user(username,'lennon@thebeatles.com', password)
+		user.is_staff = True
+		user.save() 
+
+
 		if not IsValidString(username) or not IsValidString(password):
 			self.response.out.write("Error: username or password contained illegal characters")
 		else:
