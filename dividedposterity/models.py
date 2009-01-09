@@ -1,86 +1,84 @@
-#from django.db import models
-from appengine_django.models import BaseModel
-from google.appengine.ext import db
+from django.db import models
 
 # Create your models here.
 
-class PVMCombat(BaseModel):
-	player_hp_lost = db.IntegerProperty()
-	player_mp_used = db.IntegerProperty()
+class PVMCombat(models.Model):
+	player_hp_lost = models.IntegerField()
+	player_mp_used = models.IntegerField()
 
-	monster_hp_lost = db.IntegerProperty()
-	monster_mp_used = db.IntegerProperty()
+	monster_hp_lost = models.IntegerField()
+	monster_mp_used = models.IntegerField()
 
 	# don't forget ID & duration
 	effects = db.ListProperty(str)
 	behaviour_data = db.StringProperty()
 
-	turn = db.IntegerProperty()
+	turn = models.IntegerField()
 
-class Hero(BaseModel):
+class Hero(models.Model):
 	name = db.StringProperty(required=True)
 	gender = db.StringProperty(choices=set(["male","female"]))
-	id = db.IntegerProperty()
+	id = models.IntegerField()
 
-	brawn = db.IntegerProperty()
-	lore = db.IntegerProperty()
-	stamina = db.IntegerProperty()
-	charm = db.IntegerProperty()
-	magery = db.IntegerProperty()
-	finesse = db.IntegerProperty()
+	brawn = models.IntegerField()
+	lore = models.IntegerField()
+	stamina = models.IntegerField()
+	charm = models.IntegerField()
+	magery = models.IntegerField()
+	finesse = models.IntegerField()
 
-	basebrawn = db.IntegerProperty()
-	baselore = db.IntegerProperty()
-	basestamina = db.IntegerProperty()
-	basecharm = db.IntegerProperty()
-	basemagery = db.IntegerProperty()
-	basefinesse = db.IntegerProperty()
+	basebrawn = models.IntegerField()
+	baselore = models.IntegerField()
+	basestamina = models.IntegerField()
+	basecharm = models.IntegerField()
+	basemagery = models.IntegerField()
+	basefinesse = models.IntegerField()
 
-	hp = db.IntegerProperty()
-	mp = db.IntegerProperty()
+	hp = models.IntegerField()
+	mp = models.IntegerField()
 
 	# f(x) = mx + b
 	resists_m = db.ListProperty(float,default=[])
 	resists_b = db.ListProperty(int,default=[])
 
-	adventure_total = db.IntegerProperty()
-	adventure = db.IntegerProperty()
+	adventure_total = models.IntegerField()
+	adventure = models.IntegerField()
 
 	cclass = db.StringProperty(choices=set(["Book Crook","Shape Shifter","Eagle Archer","Dune Watcher","Bricksmith","Jade Shaman"]))
 
 	combat = db.ReferenceProperty(PVMCombat)
 
 
-class Buff(BaseModel):
+class Buff(models.Model):
 	target = db.ReferenceProperty(Hero,collection_name='target_set')
 	source = db.ReferenceProperty(Hero,collection_name='source_set')
 	sourcename = db.StringProperty()
 	buffname = db.StringProperty()
 
-class Effect(BaseModel):
+class Effect(models.Model):
 	effectname = db.StringProperty()
 	target = db.ReferenceProperty(Hero)
-	quantity = db.IntegerProperty()
+	quantity = models.IntegerField()
 	unit = db.StringProperty(choices=set(["adventure","combat","day","turn"]))
-	order = db.IntegerProperty()
+	order = models.IntegerField()
 
-class Monster(BaseModel):
-	brawn = db.IntegerProperty()
-	lore = db.IntegerProperty()
-	stamina = db.IntegerProperty()
-	charm = db.IntegerProperty()
-	magery = db.IntegerProperty()
-	finesse = db.IntegerProperty()
+class Monster(models.Model):
+	brawn = models.IntegerField()
+	lore = models.IntegerField()
+	stamina = models.IntegerField()
+	charm = models.IntegerField()
+	magery = models.IntegerField()
+	finesse = models.IntegerField()
 
-	hp = db.IntegerProperty()
-	mp = db.IntegerProperty()
+	hp = models.IntegerField()
+	mp = models.IntegerField()
 
 	# f(x) = mx + b
 	resists_m = db.ListProperty(float)
 	resists_b = db.ListProperty(int)
 
 	# victory & loss conditions, Combat Strategies, Initiative Script
-	behaviour = db.IntegerProperty()
+	behaviour = models.IntegerField()
 
 ###############################################################################
 # Convenience functions requiring multiple model definitions                  #
