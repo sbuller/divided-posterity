@@ -21,7 +21,7 @@
 		"pk": 1,
 		"fields": {
 			"action": "enemy hits",
-			"message": "{en[Ey]} {words[0]} you from atop a {loc[platform]}.",
+			"message": "{en.cEy} {words[0]} you from atop a {loc[platform]}.",
 			"words": "[[\"hits\",\"hit\"]]"
 		}
 	},
@@ -30,7 +30,7 @@
 		"pk": 2,
 		"fields": {
 			"action": "enemy hits",
-			"message": "You are wounded by {en[eir]} vicious strike.",
+			"message": "You are wounded by {en.eir} vicious strike.",
 			"words": "[]"
 		}
 	},
@@ -39,7 +39,7 @@
 		"pk": 3,
 		"fields": {
 			"action": "enemy misses",
-			"message": "{en[Ey]} {words[0]} to hit you, but {words[1]}. {en[Ey]} {words[2]} into the corner to cry.",
+			"message": "{en.cEy} {words[0]} to hit you, but {words[1]}. {en.cEy} {words[2]} into the corner to cry.",
 			"words": "[[\"tries\",\"try\"],[\"misses\",\"miss\"],[\"goes\",\"go\"]]"
 		}
 	},
@@ -48,7 +48,7 @@
 		"pk": 4,
 		"fields": {
 			"action": "enemy misses",
-			"message": "You deftly dodge {en[eir]} {words[0]}.",
+			"message": "You deftly dodge {en.eir} {words[0]}.",
 			"words": "[[\"attack\",\"attacks\"]]"
 		}
 	},
@@ -66,7 +66,7 @@
 		"pk": 6,
 		"fields": {
 			"action": "you hit",
-			"message": "You shoot {en[em]} for some damage.",
+			"message": "You shoot {en.em} for some damage.",
 			"words": "[]"
 		}
 	},
@@ -84,7 +84,7 @@
 		"pk": 8,
 		"fields": {
 			"action": "you miss",
-			"message": "You miss {en[em]} by a mile.",
+			"message": "You miss {en.em} by a mile.",
 			"words": "[]"
 		}
 	},
@@ -93,7 +93,7 @@
 		"pk": 9,
 		"fields": {
 			"action": "who",
-			"message": "You are fighting {en[name]}, the {en[variety]}",
+			"message": "You are fighting {en.name}, the {en.variety}",
 			"words": "[]"
 		}
 	},
@@ -102,7 +102,7 @@
 		"pk": 10,
 		"fields": {
 			"action": "who",
-			"message": "{en[name]} is standing here, looking menacing.",
+			"message": "{en.name} is standing here, looking menacing.",
 			"words": "[]"
 		}
 	}
