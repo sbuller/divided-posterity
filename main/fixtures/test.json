@@ -1,0 +1,109 @@
+[
+	{
+		"model": "main.Enemy",
+		"pk": 1,
+		"fields": {
+			"variety": "[\"Giant\", \"Undead\", \"Kobold\"]",
+			"name": "Billy-Joe",
+			"em": "him",
+			"ey": "he",
+			"eir": "his",
+			"emself": "himself",
+			"cEm": "Him",
+			"cEy": "He",
+			"cEir": "His",
+			"cEmself": "Himself",
+			"plurality": 0
+		}
+	},
+	{
+		"model": "main.CombatMessage",
+		"pk": 1,
+		"fields": {
+			"action": "enemy hits",
+			"message": "{en[Ey]} {words[0]} you from atop a {loc[platform]}.",
+			"words": "[[\"hits\",\"hit\"]]"
+		}
+	},
+	{
+		"model": "main.CombatMessage",
+		"pk": 2,
+		"fields": {
+			"action": "enemy hits",
+			"message": "You are wounded by {en[eir]} vicious strike.",
+			"words": "[]"
+		}
+	},
+	{
+		"model": "main.CombatMessage",
+		"pk": 3,
+		"fields": {
+			"action": "enemy misses",
+			"message": "{en[Ey]} {words[0]} to hit you, but {words[1]}. {en[Ey]} {words[2]} into the corner to cry.",
+			"words": "[[\"tries\",\"try\"],[\"misses\",\"miss\"],[\"goes\",\"go\"]]"
+		}
+	},
+	{
+		"model": "main.CombatMessage",
+		"pk": 4,
+		"fields": {
+			"action": "enemy misses",
+			"message": "You deftly dodge {en[eir]} {words[0]}.",
+			"words": "[[\"attack\",\"attacks\"]]"
+		}
+	},
+	{
+		"model": "main.CombatMessage",
+		"pk": 5,
+		"fields": {
+			"action": "you hit",
+			"message": "You swing your weapon. It connects!",
+			"words": "[]"
+		}
+	},
+	{
+		"model": "main.CombatMessage",
+		"pk": 6,
+		"fields": {
+			"action": "you hit",
+			"message": "You shoot {en[em]} for some damage.",
+			"words": "[]"
+		}
+	},
+	{
+		"model": "main.CombatMessage",
+		"pk": 7,
+		"fields": {
+			"action": "you miss",
+			"message": "Your swing goes wide.",
+			"words": "[]"
+		}
+	},
+	{
+		"model": "main.CombatMessage",
+		"pk": 8,
+		"fields": {
+			"action": "you miss",
+			"message": "You miss {en[em]} by a mile.",
+			"words": "[]"
+		}
+	},
+	{
+		"model": "main.CombatMessage",
+		"pk": 9,
+		"fields": {
+			"action": "who",
+			"message": "You are fighting {en[name]}, the {en[variety]}",
+			"words": "[]"
+		}
+	},
+	{
+		"model": "main.CombatMessage",
+		"pk": 10,
+		"fields": {
+			"action": "who",
+			"message": "{en[name]} is standing here, looking menacing.",
+			"words": "[]"
+		}
+	}
+]
