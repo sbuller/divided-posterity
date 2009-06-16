@@ -3,7 +3,7 @@
 		"model": "main.Enemy",
 		"pk": 1,
 		"fields": {
-			"variety": "[\"Giant\", \"Undead\", \"Kobold\"]",
+			"json_variety": "[\"Giant\", \"Undead\", \"Kobold\"]",
 			"name": "Billy-Joe",
 			"em": "him",
 			"ey": "he",
@@ -93,7 +93,7 @@
 		"pk": 9,
 		"fields": {
 			"action": "who",
-			"message": "You are fighting {en.name}, the {en.variety}",
+			"message": "You are fighting {en.name}, the {en.variety}.",
 			"words": "[]"
 		}
 	},

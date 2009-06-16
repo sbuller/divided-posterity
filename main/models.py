@@ -6,7 +6,7 @@ import json
 # Create your models here.
 
 class Enemy(models.Model):
-	variety = models.CharField(max_length=50)
+	json_variety = models.CharField(max_length=50)
 	name = models.CharField(max_length=50)
 	em = models.CharField(max_length=10)
 	ey = models.CharField(max_length=10)
@@ -17,6 +17,10 @@ class Enemy(models.Model):
 	cEir = models.CharField(max_length=10)
 	cEmself = models.CharField(max_length=10)
 	plurality = models.BooleanField()
+
+	def _get_variety(self):
+		return " ".join(json.loads(self.json_variety))
+	variety = property(_get_variety)
 
 class CombatMessage(models.Model):
 	action = models.CharField(max_length=50)
