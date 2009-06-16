@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from django.db import models
 
+import json
+
 # Create your models here.
 
 class Enemy(models.Model):
@@ -20,3 +22,7 @@ class CombatMessage(models.Model):
 	action = models.CharField(max_length=50)
 	message = models.TextField()
 	words = models.TextField()
+
+	def transmogrify(self, enemy):
+		return self.message.format(en=enemy, words=map(lambda x: x[enemy.plurality], json.loads(self.words)))
+

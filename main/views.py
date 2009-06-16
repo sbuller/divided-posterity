@@ -22,8 +22,8 @@ def combat(request):
 	enemymessage = random.choice(enemy_miss)
 	c = Context({
 			'combat_text': [
-			whomessage.message.format(en=enemy, words=map(lambda x: x[enemy.plurality], json.loads(whomessage.words))),
-			youmessage.message.format(en=enemy,words=map(lambda x: x[enemy.plurality], json.loads(youmessage.words))),
-			enemymessage.message.format(en=enemy,words=map(lambda x: x[enemy.plurality],json.loads(enemymessage.words))),]
+			whomessage.transmogrify(enemy),
+			youmessage.transmogrify(enemy),
+			enemymessage.transmogrify(enemy)]
 		})
 	return HttpResponse(t.render(c))
