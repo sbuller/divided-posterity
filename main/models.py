@@ -11,10 +11,12 @@ class Enemy(models.Model):
 	em = models.CharField(max_length=10)
 	ey = models.CharField(max_length=10)
 	eir = models.CharField(max_length=10)
+	eirs = models.CharField(max_length=10)
 	emself = models.CharField(max_length=10)
 	cEm = models.CharField(max_length=10)
 	cEy = models.CharField(max_length=10)
 	cEir = models.CharField(max_length=10)
+	cEirs = models.CharField(max_length=10)
 	cEmself = models.CharField(max_length=10)
 	plurality = models.BooleanField()
 
