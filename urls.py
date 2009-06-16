@@ -7,6 +7,7 @@ from django.conf.urls.defaults import *
 
 urlpatterns = patterns('',
 	(r'^$', 'dp.main.views.index'),
+	(r'^combat/', 'dp.main.views.combat'),
 	# Example:
 	# (r'^dp/', include('dp.foo.urls')),
 

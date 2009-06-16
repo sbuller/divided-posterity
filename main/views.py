@@ -2,6 +2,7 @@
 # Create your views here.
 from django.template import Context, loader
 from django.http import HttpResponse
+from django.shortcuts import render_to_response
 import random
 
 ref_strings = {
@@ -51,7 +52,10 @@ enemy = {'type': ["Giant", "Undead", "Kobold"],
 
 
 def index(request):
-	t = loader.get_template('main/index.djt')
+	return render_to_response('main/index.djt',{})
+
+def combat(request):
+	t = loader.get_template('main/combat.djt')
 	whomessage = random.choice(ref_strings['combat_status'])
 	youmessage = random.choice(ref_strings['hit'])
 	enemymessage = random.choice(ref_strings['enemy_miss'])

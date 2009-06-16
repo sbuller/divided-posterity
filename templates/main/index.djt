@@ -1,15 +1,8 @@
 <html>
-	<head>
-		<title>A Title</title>
-	</head>
-	<body>
-		<h1>Combat!</h1>
-		{% if combat_text %}
-			{% for paragraph in combat_text %}
-				<p> {{paragraph}} </p>
-			{% endfor %}
-		{% else %}
-			<p> Error: No combat text available at this time. </p>
-		{% endif %}
-	</body>
+ <head>
+  <title>Divided Posterity</title>
+ </head>
+ <body>
+  <a href="combat/">Combat</a>
+ </body>
 </html>
