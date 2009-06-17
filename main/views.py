@@ -13,22 +13,31 @@ def index(request):
 
 def startcombat(request):
 	enemy = random.choice(Enemy.objects.all())
-	request.session['enemy'] = enemy
-	return HttpResponseRedirect('/combat/')
+	combat = {}
+	combat['enemy'] = enemy
+	combat['turn'] = 0
+	request.session['combat'] = combat
+	return HttpResponseRedirect('/combat')
 
 def combat(request):
 	t = loader.get_template('main/combat.djt')
-	enemy = request.session['enemy']
+	combat = request.session['combat']
+	combat['turn'] += 1
+
 	combat_status = CombatMessage.objects.filter(action='who')
 	hit = CombatMessage.objects.filter(action='you hit')
 	enemy_miss = CombatMessage.objects.filter(action='enemy misses')
+
 	whomessage = random.choice(combat_status)
 	youmessage = random.choice(hit)
 	enemymessage = random.choice(enemy_miss)
+
+	request.session['combat'] = combat
 	c = Context({
 			'combat_text': [
-			whomessage.transmogrify(enemy),
-			youmessage.transmogrify(enemy),
-			enemymessage.transmogrify(enemy)]
+			whomessage.transmogrify(combat['enemy']),
+			youmessage.transmogrify(combat['enemy']),
+			enemymessage.transmogrify(combat['enemy'])],
+			'turn': combat['turn']
 		})
 	return HttpResponse(t.render(c))

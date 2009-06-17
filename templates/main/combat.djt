@@ -1,9 +1,10 @@
 <html>
 	<head>
 		<title>A Title</title>
+		<meta http-equiv="Content-Script-Type" content="text/javascript">
 	</head>
 	<body>
-		<h1>Combat!</h1>
+		<h1>Combat! Round {{turn}}</h1>
 		{% if combat_text %}
 			{% for paragraph in combat_text %}
 				<p> {{paragraph}} </p>
@@ -11,5 +12,11 @@
 		{% else %}
 			<p> Error: No combat text available at this time. </p>
 		{% endif %}
+		<form action="/combat" method="POST">
+			<input type="submit" name="hit" value="hit" />
+			<input type="submit" name="miss" value="miss" />
+			<input type="submit" name="win" value="win" />
+			<input type="submit" name="lose" value="lose" />
+		</form>
 	</body>
 </html>
