@@ -16,13 +16,32 @@ def startcombat(request):
 	combat = {}
 	combat['enemy'] = enemy
 	combat['turn'] = 0
+	combat['done'] = False
 	request.session['combat'] = combat
 	return HttpResponseRedirect('/combat')
 
 def combat(request):
-	t = loader.get_template('main/combat.djt')
 	combat = request.session['combat']
 	combat['turn'] += 1
+
+	if 'hit' in request.POST:
+		#do hit stuff
+		1
+	elif 'miss' in request.POST:
+		#do miss stuff
+		1
+	elif 'win' in request.POST:
+		#do win stuff
+		combat['result'] = 'won'
+		combat['done'] = True
+	elif 'lose' in request.POST:
+		#do lose stuff
+		combat['result'] = 'lost'
+		combat['done'] = True
+
+	request.session['combat'] = combat
+	if combat['done']:
+		return HttpResponseRedirect('/aftercombat')
 
 	combat_status = CombatMessage.objects.filter(action='who')
 	hit = CombatMessage.objects.filter(action='you hit')
@@ -32,7 +51,7 @@ def combat(request):
 	youmessage = random.choice(hit)
 	enemymessage = random.choice(enemy_miss)
 
-	request.session['combat'] = combat
+	t = loader.get_template('main/combat.djt')
 	c = Context({
 			'combat_text': [
 			whomessage.transmogrify(combat['enemy']),
@@ -41,3 +60,6 @@ def combat(request):
 			'turn': combat['turn']
 		})
 	return HttpResponse(t.render(c))
+
+def aftercombat(request):
+	return render_to_response('main/aftercombat.djt', request.session['combat'])

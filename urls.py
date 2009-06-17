@@ -9,6 +9,7 @@ urlpatterns = patterns('',
 	(r'^$', 'dp.main.views.index'),
 	(r'^combat', 'dp.main.views.combat'),
 	(r'^startcombat', 'dp.main.views.startcombat'),
+	(r'^aftercombat', 'dp.main.views.aftercombat'),
 	# Example:
 	# (r'^dp/', include('dp.foo.urls')),
 

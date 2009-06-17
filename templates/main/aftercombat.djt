@@ -1,0 +1,11 @@
+<html>
+	<head>
+		<title>A Title</title>
+		<meta http-equiv="Content-Script-Type" content="text/javascript">
+	</head>
+	<body>
+		<h1>Combat Over!</h1>
+		<h2>You {{result}}</h2>
+		<a href="/">Back to index</a>
+	</body>
+</html>
