@@ -6,6 +6,11 @@ import json
 # Create your models here.
 
 class Enemy(models.Model):
+	"""
+	>>> en = Enemy.objects.create(json_variety='["a","b","c"]')
+	>>> en.variety
+	u'a b c'
+	"""
 	json_variety = models.CharField(max_length=50)
 	name = models.CharField(max_length=50)
 	em = models.CharField(max_length=10)
@@ -25,6 +30,12 @@ class Enemy(models.Model):
 	variety = property(_get_variety)
 
 class CombatMessage(models.Model):
+	"""
+	>>> message = CombatMessage.objects.create(message="Test {en.name} {words[0]}",words='[["hi","hello"]]')
+	>>> enemy = Enemy.objects.create(name='fred',plurality=0)
+	>>> message.transmogrify(enemy)
+	'Test fred hi'
+	"""
 	action = models.CharField(max_length=50)
 	message = models.TextField()
 	words = models.TextField()

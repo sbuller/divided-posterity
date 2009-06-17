@@ -31,15 +31,13 @@ def combat(request):
 
 	if 'hit' in request.POST:
 		#do hit stuff
-		you_messages = []
-		you_messages += CombatMessage.objects.filter(action='you hit')
+		you_messages = CombatMessage.objects.filter(action='you hit')
 		you_message = random.choice(you_messages)
 		you_message = you_message.transmogrify(combat['enemy'])
 		combat_text.append(you_message)
 	elif 'miss' in request.POST:
 		#do miss stuff
-		you_messages = []
-		you_messages += CombatMessage.objects.filter(action='you miss')
+		you_messages = CombatMessage.objects.filter(action='you miss')
 		you_message = random.choice(you_messages)
 		you_message = you_message.transmogrify(combat['enemy'])
 		combat_text.append(you_message)
