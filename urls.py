@@ -5,11 +5,11 @@ from django.conf.urls.defaults import *
 # from django.contrib import admin
 # admin.autodiscover()
 
-urlpatterns = patterns('',
-	(r'^$', 'dp.main.views.index'),
-	(r'^combat', 'dp.main.views.combat'),
-	(r'^startcombat', 'dp.main.views.startcombat'),
-	(r'^aftercombat', 'dp.main.views.aftercombat'),
+urlpatterns = patterns('dp.main.views',
+	(r'^$', 'index'),
+	(r'^combat', 'combat'),
+	(r'^startcombat', 'startcombat'),
+	(r'^aftercombat', 'aftercombat'),
 	# Example:
 	# (r'^dp/', include('dp.foo.urls')),
 
