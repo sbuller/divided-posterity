@@ -23,14 +23,27 @@ def startcombat(request):
 def combat(request):
 	combat = request.session['combat']
 	combat['turn'] += 1
+	combat_text = []
+
+	combat_status = CombatMessage.objects.filter(action='who')
+	who_message = random.choice(combat_status)
+	combat_text.append(who_message.transmogrify(combat['enemy']))
 
 	if 'hit' in request.POST:
 		#do hit stuff
-		1
+		you_messages = []
+		you_messages += CombatMessage.objects.filter(action='you hit')
+		you_message = random.choice(you_messages)
+		you_message = you_message.transmogrify(combat['enemy'])
+		combat_text.append(you_message)
 	elif 'miss' in request.POST:
 		#do miss stuff
-		1
-	elif 'win' in request.POST:
+		you_messages = []
+		you_messages += CombatMessage.objects.filter(action='you miss')
+		you_message = random.choice(you_messages)
+		you_message = you_message.transmogrify(combat['enemy'])
+		combat_text.append(you_message)
+	if 'win' in request.POST:
 		#do win stuff
 		combat['result'] = 'won'
 		combat['done'] = True
@@ -43,20 +56,14 @@ def combat(request):
 	if combat['done']:
 		return HttpResponseRedirect('/aftercombat')
 
-	combat_status = CombatMessage.objects.filter(action='who')
-	hit = CombatMessage.objects.filter(action='you hit')
-	enemy_miss = CombatMessage.objects.filter(action='enemy misses')
 
-	whomessage = random.choice(combat_status)
-	youmessage = random.choice(hit)
-	enemymessage = random.choice(enemy_miss)
+	enemy_miss = CombatMessage.objects.filter(action='enemy misses')
+	enemy_message = random.choice(enemy_miss)
+	combat_text.append(enemy_message.transmogrify(combat['enemy']))
 
 	t = loader.get_template('main/combat.djt')
 	c = Context({
-			'combat_text': [
-			whomessage.transmogrify(combat['enemy']),
-			youmessage.transmogrify(combat['enemy']),
-			enemymessage.transmogrify(combat['enemy'])],
+			'combat_text': combat_text,
 			'turn': combat['turn']
 		})
 	return HttpResponse(t.render(c))
