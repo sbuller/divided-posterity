@@ -9,7 +9,7 @@ from models import CombatMessage, Enemy
 import random, json
 
 def index(request):
-	return render_to_response('main/index.djt',{})
+	return render_to_response('main/index.djt')
 
 def startcombat(request):
 	enemy = random.choice(Enemy.objects.all())
@@ -18,7 +18,7 @@ def startcombat(request):
 	combat['turn'] = 0
 	combat['done'] = False
 	request.session['combat'] = combat
-	return HttpResponseRedirect('/combat')
+	return render_to_response("main/combat.djt",{'turn':combat['turn']})
 
 def combat(request):
 	combat = request.session['combat']
@@ -29,13 +29,13 @@ def combat(request):
 	who_message = random.choice(combat_status)
 	combat_text.append(who_message.transmogrify(combat['enemy']))
 
-	if 'hit' in request.POST:
+	if request.POST['youhit'] == 'true':
 		#do hit stuff
 		you_messages = CombatMessage.objects.filter(action='you hit')
 		you_message = random.choice(you_messages)
 		you_message = you_message.transmogrify(combat['enemy'])
 		combat_text.append(you_message)
-	elif 'miss' in request.POST:
+	elif request.POST['youhit'] == 'false':
 		#do miss stuff
 		you_messages = CombatMessage.objects.filter(action='you miss')
 		you_message = random.choice(you_messages)
@@ -54,17 +54,14 @@ def combat(request):
 	if combat['done']:
 		return HttpResponseRedirect('/aftercombat')
 
-
 	enemy_miss = CombatMessage.objects.filter(action='enemy misses')
 	enemy_message = random.choice(enemy_miss)
 	combat_text.append(enemy_message.transmogrify(combat['enemy']))
 
-	t = loader.get_template('main/combat.djt')
-	c = Context({
+	return render_to_response('main/combat.djt', {
 			'combat_text': combat_text,
 			'turn': combat['turn']
 		})
-	return HttpResponse(t.render(c))
 
 def aftercombat(request):
 	return render_to_response('main/aftercombat.djt', request.session['combat'])
