@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.db import models
+from django.template import Context,Template
 
 import json
 
@@ -31,15 +32,22 @@ class Enemy(models.Model):
 
 class CombatMessage(models.Model):
 	"""
-	>>> message = CombatMessage.objects.create(message="Test {en.name} {words[0]}",words='[["hi","hello"]]')
+	>>> message = CombatMessage.objects.create(message="Test {{en.name}} {{words.0}}",json_words='[["hi","hello"]]')
 	>>> enemy = Enemy.objects.create(name='fred',plurality=0)
 	>>> message.transmogrify(enemy)
-	'Test fred hi'
+	u'Test fred hi'
 	"""
 	action = models.CharField(max_length=50)
 	message = models.TextField()
-	words = models.TextField()
+	json_words = models.TextField()
+
+	def _get_words(self):
+		return json.loads(self.json_words)
+	words = property(_get_words)
 
 	def transmogrify(self, enemy):
-		return self.message.format(en=enemy, words=map(lambda x: x[enemy.plurality], json.loads(self.words)))
+		t = Template(self.message)
+		words = map(lambda x: x[enemy.plurality], self.words)
+		c = Context({'en':enemy, 'words':words})
+		return t.render(c)
 
