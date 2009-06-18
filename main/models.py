@@ -8,7 +8,7 @@ import json
 
 class Enemy(models.Model):
 	"""
-	>>> en = Enemy.objects.create(json_variety='["a","b","c"]')
+	>>> en = Enemy.objects.create(json_variety='["a","b","c"]',count=1)
 	>>> en.variety
 	u'a b c'
 	"""
@@ -19,12 +19,7 @@ class Enemy(models.Model):
 	eir = models.CharField(max_length=10)
 	eirs = models.CharField(max_length=10)
 	emself = models.CharField(max_length=10)
-	cEm = models.CharField(max_length=10)
-	cEy = models.CharField(max_length=10)
-	cEir = models.CharField(max_length=10)
-	cEirs = models.CharField(max_length=10)
-	cEmself = models.CharField(max_length=10)
-	plurality = models.BooleanField()
+	count = models.IntegerField()
 
 	def _get_variety(self):
 		return " ".join(json.loads(self.json_variety))
@@ -32,22 +27,16 @@ class Enemy(models.Model):
 
 class CombatMessage(models.Model):
 	"""
-	>>> message = CombatMessage.objects.create(message="Test {{en.name}} {{words.0}}",json_words='[["hi","hello"]]')
-	>>> enemy = Enemy.objects.create(name='fred',plurality=0)
+	>>> message = CombatMessage.objects.create(message='Test {{en.name}} h{{en.count|pluralize:"i,ello"}}')
+	>>> enemy = Enemy.objects.create(name='fred', count=1)
 	>>> message.transmogrify(enemy)
 	u'Test fred hi'
 	"""
 	action = models.CharField(max_length=50)
 	message = models.TextField()
-	json_words = models.TextField()
-
-	def _get_words(self):
-		return json.loads(self.json_words)
-	words = property(_get_words)
 
 	def transmogrify(self, enemy):
 		t = Template(self.message)
-		words = map(lambda x: x[enemy.plurality], self.words)
-		c = Context({'en':enemy, 'words':words})
+		c = Context({'en':enemy})
 		return t.render(c)
 

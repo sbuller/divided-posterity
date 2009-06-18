@@ -10,12 +10,7 @@
 			"eir": "his",
 			"eirs": "his",
 			"emself": "himself",
-			"cEm": "Him",
-			"cEy": "He",
-			"cEir": "His",
-			"cEirs": "His",
-			"cEmself": "Himself",
-			"plurality": 0
+			"count": 1
 		}
 	},
 	{
@@ -29,12 +24,7 @@
 			"eir": "their",
 			"eirs": "theirs",
 			"emself": "themselves",
-			"cEm": "Them",
-			"cEy": "They",
-			"cEir": "Their",
-			"cEirs": "Theirs",
-			"cEmself": "Themselves",
-			"plurality": 1
+			"count": 3
 		}
 	},
 	{
@@ -42,8 +32,7 @@
 		"pk": 1,
 		"fields": {
 			"action": "enemy hits",
-			"message": "{{en.cEy}} {{words.0}} you from atop a {loc[platform]}.",
-			"json_words": "[[\"hits\",\"hit\"]]"
+			"message": "{{en.ey|capfirst}} hit{{en.count|pluralize:\"s,\"}} you from atop a {loc[platform]}."
 		}
 	},
 	{
@@ -51,8 +40,7 @@
 		"pk": 2,
 		"fields": {
 			"action": "enemy hits",
-			"message": "You are wounded by {{en.eir}} vicious strike.",
-			"json_words": "[]"
+			"message": "You are wounded by {{en.eir}} vicious strike{{en.count|pluralize}}."
 		}
 	},
 	{
@@ -60,8 +48,7 @@
 		"pk": 3,
 		"fields": {
 			"action": "enemy misses",
-			"message": "{{en.cEy}} {{words.0}} to hit you, but {{words.1}}. {{en.cEy}} {{words.2}} into the corner to cry.",
-			"json_words": "[[\"tries\",\"try\"],[\"misses\",\"miss\"],[\"goes\",\"go\"]]"
+			"message": "{{en.ey|capfirst}} tr{{en.count|pluralize:\"ies,y\"}} to hit you, but miss{{en.count|pluralize:\"es,\"}}. {{en.ey|capfirst}} go{{en.count|pluralize:\"es,\"}} into the corner to cry."
 		}
 	},
 	{
@@ -69,8 +56,7 @@
 		"pk": 4,
 		"fields": {
 			"action": "enemy misses",
-			"message": "You deftly dodge {{en.eir}} {{words.0}}.",
-			"json_words": "[[\"attack\",\"attacks\"]]"
+			"message": "You deftly dodge {{en.eir}} attack{{en.count|pluralize}}."
 		}
 	},
 	{
@@ -78,8 +64,7 @@
 		"pk": 5,
 		"fields": {
 			"action": "you hit",
-			"message": "You swing your weapon. It connects!",
-			"json_words": "[]"
+			"message": "You swing your weapon. It connects!"
 		}
 	},
 	{
@@ -87,8 +72,7 @@
 		"pk": 6,
 		"fields": {
 			"action": "you hit",
-			"message": "You shoot {{en.em}} for some damage.",
-			"json_words": "[]"
+			"message": "You shoot {{en.em}} for some damage."
 		}
 	},
 	{
@@ -96,8 +80,7 @@
 		"pk": 7,
 		"fields": {
 			"action": "you miss",
-			"message": "Your swing goes wide.",
-			"json_words": "[]"
+			"message": "Your swing goes wide."
 		}
 	},
 	{
@@ -105,8 +88,7 @@
 		"pk": 8,
 		"fields": {
 			"action": "you miss",
-			"message": "You miss {{en.em}} by a mile.",
-			"json_words": "[]"
+			"message": "You miss {{en.em}} by a mile."
 		}
 	},
 	{
@@ -114,8 +96,7 @@
 		"pk": 9,
 		"fields": {
 			"action": "who",
-			"message": "You are fighting {{en.name}}, the {{en.variety}}.",
-			"json_words": "[]"
+			"message": "You are fighting {{en.name}}, the {{en.variety}}."
 		}
 	},
 	{
@@ -123,8 +104,7 @@
 		"pk": 10,
 		"fields": {
 			"action": "who",
-			"message": "{{en.name}} {{words.0}} standing here, looking menacing.",
-			"json_words": "[[\"is\",\"are\"]]"
+			"message": "{{en.name}} {{en.count|pluralize:\"is,are\"}} standing here, looking menacing."
 		}
 	}
 ]
