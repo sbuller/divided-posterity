@@ -14,12 +14,25 @@ class Enemy(models.Model):
 	"""
 	json_variety = models.CharField(max_length=50)
 	name = models.CharField(max_length=50)
-	em = models.CharField(max_length=10)
-	ey = models.CharField(max_length=10)
-	eir = models.CharField(max_length=10)
-	eirs = models.CharField(max_length=10)
-	emself = models.CharField(max_length=10)
 	count = models.IntegerField()
+	gender = models.CharField(max_length=1)#m/f/n/r
+
+	def unspivak(self, x):
+		table = [ #m,f,n,p
+			['him','her','it','them'], #em
+			['he','she','it','they'], #ey
+			['his','her','its','their'], #eir
+			['his','hers','its','theirs'], #eirs
+			['himself','herself','itself','themselves'] #emself
+		]
+		gender = ['m','f','n','p']
+		val = table[x][(3,gender.index(self.gender))[not self.count-1]]
+		return val
+	em = property(lambda s: s.unspivak(0))
+	ey = property(lambda s: s.unspivak(1))
+	eir = property(lambda s: s.unspivak(2))
+	eirs = property(lambda s: s.unspivak(3))
+	emself = property(lambda s: s.unspivak(4))
 
 	def _get_variety(self):
 		return " ".join(json.loads(self.json_variety))

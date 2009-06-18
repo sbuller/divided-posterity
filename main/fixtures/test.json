@@ -5,11 +5,7 @@
 		"fields": {
 			"json_variety": "[\"Giant\", \"Undead\", \"Kobold\"]",
 			"name": "Billy-Joe",
-			"em": "him",
-			"ey": "he",
-			"eir": "his",
-			"eirs": "his",
-			"emself": "himself",
+			"gender": "m",
 			"count": 1
 		}
 	},
@@ -19,11 +15,7 @@
 		"fields": {
 			"json_variety": "[\"Squirrels\"]",
 			"name": "Chimby, Chirly, and Flan",
-			"em": "them",
-			"ey": "they",
-			"eir": "their",
-			"eirs": "theirs",
-			"emself": "themselves",
+			"gender": "f",
 			"count": 3
 		}
 	},
