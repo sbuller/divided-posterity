@@ -25,22 +25,30 @@ def combat(request):
 	combat['turn'] += 1
 	combat_text = []
 
-	combat_status = CombatMessage.objects.filter(action='who')
+	messages = CombatMessage.objects
+
+	combat_status = messages.filter(action='who')
 	who_message = random.choice(combat_status)
 	combat_text.append(who_message.transmogrify(combat['enemy']))
 
-	if request.POST['youhit'] == 'true':
-		#do hit stuff
-		you_messages = CombatMessage.objects.filter(action='you hit')
+	if 'youhit' in request.POST:
+		if request.POST['youhit'] == 'true':
+			you_messages = messages.filter(action='you hit')
+		else:
+			you_messages = messages.filter(action='you miss')
 		you_message = random.choice(you_messages)
 		you_message = you_message.transmogrify(combat['enemy'])
 		combat_text.append(you_message)
-	elif request.POST['youhit'] == 'false':
-		#do miss stuff
-		you_messages = CombatMessage.objects.filter(action='you miss')
-		you_message = random.choice(you_messages)
-		you_message = you_message.transmogrify(combat['enemy'])
-		combat_text.append(you_message)
+
+	if 'theyhit' in request.POST:
+		if request.POST['theyhit'] == 'true':
+			enemy_messages = messages.filter(action='enemy hits')
+		else:
+			enemy_messages = messages.filter(action='enemy misses')
+		enemy_message = random.choice(enemy_messages)
+		enemy_message = enemy_message.transmogrify(combat['enemy'])
+		combat_text.append(enemy_message)
+
 	if 'win' in request.POST:
 		#do win stuff
 		combat['result'] = 'won'
@@ -53,10 +61,6 @@ def combat(request):
 	request.session['combat'] = combat
 	if combat['done']:
 		return HttpResponseRedirect('/aftercombat')
-
-	enemy_miss = CombatMessage.objects.filter(action='enemy misses')
-	enemy_message = random.choice(enemy_miss)
-	combat_text.append(enemy_message.transmogrify(combat['enemy']))
 
 	return render_to_response('main/combat.djt', {
 			'combat_text': combat_text,
