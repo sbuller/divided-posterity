@@ -42,7 +42,7 @@
 		"pk": 1,
 		"fields": {
 			"action": "enemy hits",
-			"message": "{en.cEy} {words[0]} you from atop a {loc[platform]}.",
+			"message": "{en.cEy} {words[0]} you from atop a {{loc[platform]}}.",
 			"words": "[[\"hits\",\"hit\"]]"
 		}
 	},

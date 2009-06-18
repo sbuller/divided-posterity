@@ -18,7 +18,7 @@ def startcombat(request):
 	combat['turn'] = 0
 	combat['done'] = False
 	request.session['combat'] = combat
-	return render_to_response("main/combat.djt",{'turn':combat['turn']})
+	return render_to_response('main/combat.djt',{'turn':combat['turn']})
 
 def combat(request):
 	combat = request.session['combat']
