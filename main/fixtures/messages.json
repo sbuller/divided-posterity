@@ -85,5 +85,6 @@
 		"fields": {
 			"action": "loot",
 			"message": "You stand over your fallen foe{{en.count|pluralize}}. Among {{en.eir}} possessions you find {item.article} {{item.name}}."
+		}
 	}
 ]
