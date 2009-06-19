@@ -71,20 +71,33 @@ def combat(request):
 
 def aftercombat(request):
 	combat = request.session['combat']
-	inventory = []
-	winitems = []
+	inventory = {}
+	winitems = {}
 	if 'inventory' in request.session:
 		inventory = request.session['inventory']
 	if combat['result'] == 'won':
-		winitems = [random.choice(Item.objects.all())]
+		winitems[random.choice(Item.objects.all()).id] = 1
 		while random.choice([True,False]):
-			winitems += [random.choice(Item.objects.all())]
-	inventory += winitems
+			item = random.choice(Item.objects.all())
+			if not item.id in winitems:
+				winitems[item.id] = 1
+			else:
+				winitems[item.id] += 1
+	outputitems = []
+	for key in winitems.keys():
+		outputitems.append({'count':winitems[key], 'name':Item.objects.get(id=key).name})
+		if key in inventory:
+			inventory[key] += winitems[key]
+		else:
+			inventory[key] = winitems[key]
 	request.session['inventory'] = inventory
-	return render_to_response('main/aftercombat.djt', {'combat': request.session['combat'], 'items': winitems})
+	return render_to_response('main/aftercombat.djt', {'combat': request.session['combat'], 'items': outputitems})
 
 def inventory(request):
 	inventory = []
+	outputitems = []
 	if 'inventory' in request.session:
 		inventory = request.session['inventory']
-	return render_to_response('main/inventory.djt', {'items':inventory})
+	for key in inventory.keys():
+		outputitems.append({'count':inventory[key], 'name':Item.objects.get(id=key).name})
+	return render_to_response('main/inventory.djt', {'items':outputitems})
