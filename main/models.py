@@ -53,3 +53,5 @@ class CombatMessage(models.Model):
 		c = Context({'en':enemy})
 		return t.render(c)
 
+class Item(models.Model):
+	name = models.CharField(max_length=50)
