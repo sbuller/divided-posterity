@@ -5,7 +5,17 @@
 	</head>
 	<body>
 		<h1>Combat Over!</h1>
-		<h2>You {{result}}</h2>
+		<h2>You {{combat.result}}</h2>
+		<p>The enemy gives you:
+		{% if items %}
+		<ul>
+		{% for item in items %}
+		<li>{{item.name}}</li>
+		{% endfor %}
+		</ul>
+		{% else %}
+		nothing.
+		{% endif %}</p>
 		<a href="/">Back to index</a>
 	</body>
 </html>

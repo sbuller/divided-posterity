@@ -75,9 +75,12 @@ def aftercombat(request):
 	if 'inventory' in request.session:
 		inventory = request.session['inventory']
 	if combat['result'] == 'won':
-		inventory += [random.choice(Item.objects.all())]
+		winitems = [random.choice(Item.objects.all())]
+		while random.choice([True,False]):
+			winitems += [random.choice(Item.objects.all())]
+	inventory += winitems
 	request.session['inventory'] = inventory
-	return render_to_response('main/aftercombat.djt', request.session['combat'])
+	return render_to_response('main/aftercombat.djt', {'combat': request.session['combat'], 'items': winitems})
 
 def inventory(request):
 	return render_to_response('main/inventory.djt', {'items':request.session['inventory']})
