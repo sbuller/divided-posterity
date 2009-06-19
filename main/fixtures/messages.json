@@ -4,8 +4,7 @@
 		"pk": 1,
 		"fields": {
 			"action": "enemy hits",
-			"message": "{{en.ey|capfirst}} hit{{en.count|pluralize:\"s,\"}} you
-from atop a {loc[platform]}."
+			"message": "{{en.ey|capfirst}} hit{{en.count|pluralize:\"s,\"}} you from atop a {loc[platform]}."
 		}
 	},
 	{
@@ -13,8 +12,7 @@ from atop a {loc[platform]}."
 		"pk": 2,
 		"fields": {
 			"action": "enemy hits",
-			"message": "You are wounded by {{en.eir}} vicious
-strike{{en.count|pluralize}}."
+			"message": "You are wounded by {{en.eir}} vicious strike{{en.count|pluralize}}."
 		}
 	},
 	{
@@ -22,9 +20,7 @@ strike{{en.count|pluralize}}."
 		"pk": 3,
 		"fields": {
 			"action": "enemy misses",
-			"message": "{{en.ey|capfirst}} tr{{en.count|pluralize:\"ies,y\"}} to
-hit you, but miss{{en.count|pluralize:\"es,\"}}. {{en.ey|capfirst}}
-go{{en.count|pluralize:\"es,\"}} into the corner to cry."
+			"message": "{{en.ey|capfirst}} tr{{en.count|pluralize:\"ies,y\"}} to hit you, but miss{{en.count|pluralize:\"es,\"}}. {{en.ey|capfirst}} go{{en.count|pluralize:\"es,\"}} into the corner to cry."
 		}
 	},
 	{
@@ -80,8 +76,14 @@ go{{en.count|pluralize:\"es,\"}} into the corner to cry."
 		"pk": 10,
 		"fields": {
 			"action": "who",
-			"message": "{{en.name}} {{en.count|pluralize:\"is,are\"}} standing
-here, looking menacing."
+			"message": "{{en.name}} {{en.count|pluralize:\"is,are\"}} standing here, looking menacing."
 		}
+	},
+	{
+		"model": "main.CombatMessage",
+		"pk": 11,
+		"fields": {
+			"action": "loot",
+			"message": "You stand over your fallen foe{{en.count|pluralize}}. Among {{en.eir}} possessions you find {item.article} {{item.name}}."
 	}
 ]

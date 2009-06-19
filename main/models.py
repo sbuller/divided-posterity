@@ -55,3 +55,4 @@ class CombatMessage(models.Model):
 
 class Item(models.Model):
 	name = models.CharField(max_length=50)
+	article = models.CharField(max_length=20)

@@ -3,42 +3,48 @@
 		"model": "main.Item",
 		"pk": 1,
 		"fields": {
-			"name": "frying pan"
+			"name": "frying pan",
+			"article": "a"
 		}
 	},
 	{
 		"model": "main.Item",
 		"pk": 2,
 		"fields": {
-			"name": "writhing mass"
+			"name": "writhing mass",
+			"article": "a"
 		}
 	},
 	{
 		"model": "main.Item",
 		"pk": 3,
 		"fields": {
-			"name": "solid gold hub cap"
+			"name": "solid gold hub cap",
+			"article": "a"
 		}
 	},
 	{
 		"model": "main.Item",
 		"pk": 4,
 		"fields": {
-			"name": "sunglasses"
+			"name": "sunglasses",
+			"article": "a pair of"
 		}
 	},
 	{
 		"model": "main.Item",
 		"pk": 5,
 		"fields": {
-			"name": "pen"
+			"name": "pen",
+			"article": "a"
 		}
 	},
 	{
 		"model": "main.Item",
 		"pk": 6,
 		"fields": {
-			"name": "wheel"
+			"name": "wheel",
+			"article": "a"
 		}
 	}
 ]
