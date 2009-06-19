@@ -10,6 +10,7 @@ urlpatterns = patterns('dp.main.views',
 	(r'^combat', 'combat'),
 	(r'^startcombat', 'startcombat'),
 	(r'^aftercombat', 'aftercombat'),
+	(r'^inventory', 'inventory'),
 	# Example:
 	# (r'^dp/', include('dp.foo.urls')),
 

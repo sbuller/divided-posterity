@@ -69,3 +69,6 @@ def combat(request):
 
 def aftercombat(request):
 	return render_to_response('main/aftercombat.djt', request.session['combat'])
+
+def inventory(request):
+	return render_to_response('main/inventory.djt')
