@@ -15,7 +15,7 @@ class Enemy(models.Model):
 	json_variety = models.CharField(max_length=50)
 	name = models.CharField(max_length=50)
 	count = models.IntegerField()
-	gender = models.CharField(max_length=1)#m/f/n/r
+	gender = models.CharField(max_length=1, choices=(('m','Male'),('f','Female'),('n','Neutral'),('r','Randomly male or female')))
 
 	def unspivak(self, x):
 		table = [ #m,f,n,p

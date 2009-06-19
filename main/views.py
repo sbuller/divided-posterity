@@ -67,8 +67,6 @@ def combat(request):
 			'turn': combat['turn']
 		})
 
-
-
 def aftercombat(request):
 	combat = request.session['combat']
 	inventory = {}
