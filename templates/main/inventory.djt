@@ -5,5 +5,12 @@
 	<body>
 		<h1>Inventory</h1>
 		<a href="/">Index</a>
+		{% if items %}
+			{% for item in items %}
+				<p>{{item}}</p>
+			{% endfor %}
+		{% else %}
+			<p> Error: No items available at this time. </p>
+		{% endif %}
 	</body>
 </html>

@@ -71,4 +71,4 @@ def aftercombat(request):
 	return render_to_response('main/aftercombat.djt', request.session['combat'])
 
 def inventory(request):
-	return render_to_response('main/inventory.djt')
+	return render_to_response('main/inventory.djt', {"items": ["sunglasses","pen","wheel"]})
