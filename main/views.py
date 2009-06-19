@@ -72,6 +72,7 @@ def combat(request):
 def aftercombat(request):
 	combat = request.session['combat']
 	inventory = []
+	winitems = []
 	if 'inventory' in request.session:
 		inventory = request.session['inventory']
 	if combat['result'] == 'won':
@@ -83,4 +84,7 @@ def aftercombat(request):
 	return render_to_response('main/aftercombat.djt', {'combat': request.session['combat'], 'items': winitems})
 
 def inventory(request):
-	return render_to_response('main/inventory.djt', {'items':request.session['inventory']})
+	inventory = []
+	if 'inventory' in request.session:
+		inventory = request.session['inventory']
+	return render_to_response('main/inventory.djt', {'items':inventory})
