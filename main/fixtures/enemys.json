@@ -1,0 +1,22 @@
+[
+	{
+		"model": "main.Enemy",
+		"pk": 1,
+		"fields": {
+			"json_variety": "[\"Giant\", \"Undead\", \"Kobold\"]",
+			"name": "Billy-Joe",
+			"gender": "m",
+			"count": 1
+		}
+	},
+	{
+		"model": "main.Enemy",
+		"pk": 2,
+		"fields": {
+			"json_variety": "[\"Squirrels\"]",
+			"name": "Chimby, Chirly, and Flan",
+			"gender": "f",
+			"count": 3
+		}
+	}
+]

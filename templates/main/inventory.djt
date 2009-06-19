@@ -4,13 +4,15 @@
 	</head>
 	<body>
 		<h1>Inventory</h1>
-		<a href="/">Index</a>
 		{% if items %}
+			<ul>
 			{% for item in items %}
-				<p>{{item}}</p>
+				<li>{{item.name}}</li>
 			{% endfor %}
+			</ul>
 		{% else %}
 			<p> Error: No items available at this time. </p>
 		{% endif %}
+		<a href="/">Index</a>
 	</body>
 </html>

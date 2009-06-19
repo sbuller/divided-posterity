@@ -1,0 +1,44 @@
+[
+	{
+		"model": "main.Item",
+		"pk": 1,
+		"fields": {
+			"name": "frying pan"
+		}
+	},
+	{
+		"model": "main.Item",
+		"pk": 2,
+		"fields": {
+			"name": "writhing mass"
+		}
+	},
+	{
+		"model": "main.Item",
+		"pk": 3,
+		"fields": {
+			"name": "solid gold hub cap"
+		}
+	},
+	{
+		"model": "main.Item",
+		"pk": 4,
+		"fields": {
+			"name": "sunglasses"
+		}
+	},
+	{
+		"model": "main.Item",
+		"pk": 5,
+		"fields": {
+			"name": "pen"
+		}
+	},
+	{
+		"model": "main.Item",
+		"pk": 6,
+		"fields": {
+			"name": "wheel"
+		}
+	}
+]

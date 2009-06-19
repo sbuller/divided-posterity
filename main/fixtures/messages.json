@@ -1,25 +1,5 @@
 [
 	{
-		"model": "main.Enemy",
-		"pk": 1,
-		"fields": {
-			"json_variety": "[\"Giant\", \"Undead\", \"Kobold\"]",
-			"name": "Billy-Joe",
-			"gender": "m",
-			"count": 1
-		}
-	},
-	{
-		"model": "main.Enemy",
-		"pk": 2,
-		"fields": {
-			"json_variety": "[\"Squirrels\"]",
-			"name": "Chimby, Chirly, and Flan",
-			"gender": "f",
-			"count": 3
-		}
-	},
-	{
 		"model": "main.CombatMessage",
 		"pk": 1,
 		"fields": {
@@ -102,48 +82,6 @@ go{{en.count|pluralize:\"es,\"}} into the corner to cry."
 			"action": "who",
 			"message": "{{en.name}} {{en.count|pluralize:\"is,are\"}} standing
 here, looking menacing."
-		}
-	},
-	{
-		"model": "main.Item",
-		"pk": 1,
-		"fields": {
-			"name": "frying pan"
-		}
-	},
-	{
-		"model": "main.Item",
-		"pk": 2,
-		"fields": {
-			"name": "writhing mass"
-		}
-	},
-	{
-		"model": "main.Item",
-		"pk": 3,
-		"fields": {
-			"name": "solid gold hub cap"
-		}
-	},
-	{
-		"model": "main.Item",
-		"pk": 4,
-		"fields": {
-			"name": "sunglasses"
-		}
-	},
-	{
-		"model": "main.Item",
-		"pk": 5,
-		"fields": {
-			"name": "pen"
-		}
-	},
-	{
-		"model": "main.Item",
-		"pk": 6,
-		"fields": {
-			"name": "wheel"
 		}
 	}
 ]

@@ -4,7 +4,7 @@ from django.template import Context, loader
 from django.http import HttpResponse,HttpResponseRedirect
 from django.shortcuts import render_to_response
 
-from models import CombatMessage, Enemy
+from models import CombatMessage, Enemy, Item
 
 import random, json
 
@@ -71,4 +71,4 @@ def aftercombat(request):
 	return render_to_response('main/aftercombat.djt', request.session['combat'])
 
 def inventory(request):
-	return render_to_response('main/inventory.djt', {"items": ["sunglasses","pen","wheel"]})
+	return render_to_response('main/inventory.djt', {'items':Item.objects.all()})
