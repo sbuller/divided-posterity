@@ -93,7 +93,7 @@ def aftercombat(request):
 	return render_to_response('main/aftercombat.djt', {'combat': request.session['combat'], 'items': outputitems})
 
 def inventory(request):
-	inventory = []
+	inventory = {}
 	outputitems = []
 	if 'inventory' in request.session:
 		inventory = request.session['inventory']
