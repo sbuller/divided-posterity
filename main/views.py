@@ -67,8 +67,17 @@ def combat(request):
 			'turn': combat['turn']
 		})
 
+
+
 def aftercombat(request):
+	combat = request.session['combat']
+	inventory = []
+	if 'inventory' in request.session:
+		inventory = request.session['inventory']
+	if combat['result'] == 'won':
+		inventory += [random.choice(Item.objects.all())]
+	request.session['inventory'] = inventory
 	return render_to_response('main/aftercombat.djt', request.session['combat'])
 
 def inventory(request):
-	return render_to_response('main/inventory.djt', {'items':Item.objects.all()})
+	return render_to_response('main/inventory.djt', {'items':request.session['inventory']})
