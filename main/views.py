@@ -101,3 +101,6 @@ def inventory(request):
 	for itemid, count in inventory.iteritems():
 		outputitems.append({'count':count, 'name':keymap[itemid].name})
 	return render_to_response('main/inventory.djt', {'items':outputitems})
+	
+def location(request):
+	return HttpResponse('a string')

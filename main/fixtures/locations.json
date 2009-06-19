@@ -1,0 +1,18 @@
+[
+	{
+		"model": "main.Location",
+		"pk": 1,
+		"fields": {
+			"name": "Root",
+			"parent": null
+		}
+	},
+	{
+		"model": "main.Location",
+		"pk": 2,
+		"fields": {
+			"name": "Forest",
+			"parent": 1
+		}
+	}
+]

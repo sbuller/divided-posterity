@@ -56,3 +56,10 @@ class CombatMessage(models.Model):
 class Item(models.Model):
 	name = models.CharField(max_length=50)
 	article = models.CharField(max_length=20)
+	
+class Location(models.Model):
+	name = models.CharField(max_length=50)
+	parent = models.ForeignKey('self', null=True, blank=True)
+	def __unicode__(self):
+		return self.name
+		
