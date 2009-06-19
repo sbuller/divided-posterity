@@ -84,12 +84,13 @@ def aftercombat(request):
 			else:
 				winitems[item.id] += 1
 	outputitems = []
-	for key in winitems.keys():
-		outputitems.append({'count':winitems[key], 'name':Item.objects.get(id=key).name})
+	keymap = Item.objects.in_bulk(winitems.keys())
+	for key,value in winitems.iteritems():
+		outputitems.append({'count':value, 'name':keymap[key].name})
 		if key in inventory:
-			inventory[key] += winitems[key]
+			inventory[key] += value
 		else:
-			inventory[key] = winitems[key]
+			inventory[key] = value
 	request.session['inventory'] = inventory
 	return render_to_response('main/aftercombat.djt', {'combat': request.session['combat'], 'items': outputitems})
 
