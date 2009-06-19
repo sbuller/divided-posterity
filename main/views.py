@@ -98,6 +98,7 @@ def inventory(request):
 	outputitems = []
 	if 'inventory' in request.session:
 		inventory = request.session['inventory']
-	for key in inventory.keys():
-		outputitems.append({'count':inventory[key], 'name':Item.objects.get(id=key).name})
+	keymap = Item.objects.in_bulk(inventory.keys())
+	for itemid, count in inventory.iteritems():
+		outputitems.append({'count':count, 'name':keymap[itemid].name})
 	return render_to_response('main/inventory.djt', {'items':outputitems})
