@@ -2,7 +2,7 @@
 from django.db import models
 from django.template import Context,Template
 
-import json
+import json, random
 
 # Create your models here.
 
@@ -67,19 +67,19 @@ class Location(models.Model):
 	json_hole = models.CharField(max_length=50)
 
 	def _get_platform(self):
-		return json.loads(self.json_platform)
+		return random.choice(json.loads(self.json_platform))
 
 	def _get_floor(self):
-		return json.loads(self.json_floor)
+		return random.choice(json.loads(self.json_floor))
 
 	def _get_wall(self):
-		return json.loads(self.json_wall)
+		return random.choice(json.loads(self.json_wall))
 
 	def _get_tool(self):
-		return json.loads(self.json_tool)
+		return random.choice(json.loads(self.json_tool))
 
 	def _get_hole(self):
-		return json.loads(self.json_hole)
+		return random.choice(json.loads(self.json_hole))
 
 	platform = property(_get_platform)
 	floor = property(_get_floor)
