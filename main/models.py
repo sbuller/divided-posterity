@@ -66,26 +66,14 @@ class Location(models.Model):
 	json_tool = models.CharField(max_length=50)
 	json_hole = models.CharField(max_length=50)
 
-	def _get_platform(self):
-		return random.choice(json.loads(self.json_platform))
+	def _get_prop(self, prop):
+		return random.choice(json.loads(prop))
 
-	def _get_floor(self):
-		return random.choice(json.loads(self.json_floor))
-
-	def _get_wall(self):
-		return random.choice(json.loads(self.json_wall))
-
-	def _get_tool(self):
-		return random.choice(json.loads(self.json_tool))
-
-	def _get_hole(self):
-		return random.choice(json.loads(self.json_hole))
-
-	platform = property(_get_platform)
-	floor = property(_get_floor)
-	wall = property(_get_wall)
-	tool = property(_get_tool)
-	hole = property(_get_hole)
+	platform = property(lambda s: s._get_prop(s.json_platform))
+	floor = property(lambda s: s._get_prop(s.json_floor))
+	wall = property(lambda s: s._get_prop(s.json_wall))
+	tool = property(lambda s: s._get_prop(s.json_tool))
+	hole = property(lambda s: s._get_prop(s.json_hole))
 
 	def __unicode__(self):
 		return self.name
