@@ -4,7 +4,12 @@
 		"pk": 1,
 		"fields": {
 			"name": "Root",
-			"parent": null
+			"parent": null,
+			"json_platform": "['platform']",
+			"json_floor": "['floor']",
+			"json_wall": "['wall']",
+			"json_tool": "['tool']",
+			"json_hole": "['hole']"
 		}
 	},
 	{
@@ -12,7 +17,12 @@
 		"pk": 2,
 		"fields": {
 			"name": "Forest",
-			"parent": 1
+			"parent": 1,
+			"json_platform": "['stump', 'low-hanging branch']",
+			"json_floor": "['ground']",
+			"json_wall": "['stand of trees', 'ancient oak']",
+			"json_tool": "['hefty branch', 'handful of twigs', 'rabid chipmunk']",
+			"json_hole": "['gopher hole']"
 		}
 	},
 	{
@@ -20,7 +30,12 @@
 		"pk": 3,
 		"fields": {
 			"name": "Mountain",
-			"parent": 1
+			"parent": 1,
+			"json_platform": "['giant rock']",
+			"json_floor": "['ground', 'bare rock']",
+			"json_wall": "['sheer cliff face']",
+			"json_tool": "['sharp stone', 'rock']",
+			"json_hole": "['crevasse']"
 		}
 	},
 	{
@@ -28,7 +43,12 @@
 		"pk": 4,
 		"fields": {
 			"name": "Tree Village",
-			"parent": 2
+			"parent": 2,
+			"json_platform": "['tree stump', 'fence post']",
+			"json_floor": "['ground', 'roadside', 'road']",
+			"json_wall": "['fence', 'decorative cherry tree']",
+			"json_tool": "['discarded handsaw']",
+			"json_hole": "['sewer grating', 'bottomless pothole']"
 		}
 	},
 	{
@@ -36,7 +56,12 @@
 		"pk": 5,
 		"fields": {
 			"name": "Yert's Hut",
-			"parent": 4
+			"parent": 4,
+			"json_platform": "['lawn chair', 'picnic table']",
+			"json_floor": "['ground', 'verdent lawn']",
+			"json_wall": "['side of Yert's Hut']",
+			"json_tool": "['lawn chair', 'rake']",
+			"json_hole": "['gopher hole']"
 		}
 	},
 	{
@@ -44,7 +69,12 @@
 		"pk": 6,
 		"fields": {
 			"name": "Helkea's Pass",
-			"parent": 3
+			"parent": 3,
+			"json_platform": "['heap of rocks']",
+			"json_floor": "['trail', 'side of the trail', 'rocky ground']",
+			"json_wall": "['sheer cliff face', 'guidepost']",
+			"json_tool": "['petrified trail ration']",
+			"json_hole": "['crevasse', 'crack']"
 		}
 	},
 	{
@@ -52,7 +82,12 @@
 		"pk": 7,
 		"fields": {
 			"name": "Witch's Cottage",
-			"parent": 4
+			"parent": 4,
+			"json_platform": "['small wooden table', 'small wooden chair']",
+			"json_floor": "['small wooden floor', 'hardwood floor']",
+			"json_wall": "['small wooden wall', 'small wood-burning stove']",
+			"json_tool": "['small wooden doll', 'small wooden puzzle']",
+			"json_hole": "['small wood-burning stove']"
 		}
 	}
 ]

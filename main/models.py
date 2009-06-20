@@ -56,10 +56,36 @@ class CombatMessage(models.Model):
 class Item(models.Model):
 	name = models.CharField(max_length=50)
 	article = models.CharField(max_length=20)
-	
+
 class Location(models.Model):
 	name = models.CharField(max_length=50)
 	parent = models.ForeignKey('self', null=True, blank=True)
+	json_platform = models.CharField(max_length=50)
+	json_floor = models.CharField(max_length=50)
+	json_wall = models.CharField(max_length=50)
+	json_tool = models.CharField(max_length=50)
+	json_hole = models.CharField(max_length=50)
+
+	def _get_platform(self):
+		return json.loads(self.json_platform)
+
+	def _get_floor(self):
+		return json.loads(self.json_floor)
+
+	def _get_wall(self):
+		return json.loads(self.json_wall)
+
+	def _get_tool(self):
+		return json.loads(self.json_tool)
+
+	def _get_hole(self):
+		return json.loads(self.json_hole)
+
+	platform = property(_get_platform)
+	floor = property(_get_floor)
+	wall = property(_get_wall)
+	tool = property(_get_tool)
+	hole = property(_get_hole)
+
 	def __unicode__(self):
 		return self.name
-		
