@@ -12,6 +12,8 @@ def index(request):
 	return render_to_response('main/index.djt')
 
 def startcombat(request):
+	if not 'location' in request.session:
+		request.session['location'] = random.choice(Location.objects.all())
 	enemy = random.choice(Enemy.objects.all())
 	combat = {}
 	combat['enemy'] = enemy
@@ -25,11 +27,13 @@ def combat(request):
 	combat['turn'] += 1
 	combat_text = []
 
+	location = request.session['location']
+
 	messages = CombatMessage.objects
 
 	combat_status = messages.filter(action='who')
 	who_message = random.choice(combat_status)
-	combat_text.append(who_message.transmogrify(combat['enemy']))
+	combat_text.append(who_message.transmogrify(combat['enemy'], location))
 
 	if 'youhit' in request.POST:
 		if request.POST['youhit'] == 'true':
@@ -37,7 +41,7 @@ def combat(request):
 		else:
 			you_messages = messages.filter(action='you miss')
 		you_message = random.choice(you_messages)
-		you_message = you_message.transmogrify(combat['enemy'])
+		you_message = you_message.transmogrify(combat['enemy'], location)
 		combat_text.append(you_message)
 
 	if 'theyhit' in request.POST:
@@ -46,7 +50,7 @@ def combat(request):
 		else:
 			enemy_messages = messages.filter(action='enemy misses')
 		enemy_message = random.choice(enemy_messages)
-		enemy_message = enemy_message.transmogrify(combat['enemy'])
+		enemy_message = enemy_message.transmogrify(combat['enemy'], location)
 		combat_text.append(enemy_message)
 
 	if 'win' in request.POST:
@@ -106,4 +110,5 @@ def locationMap(request, location_id=1):
 	location = Location.objects.get(id=location_id)
 	children = Location.objects.filter(parent=location)
 	siblings = Location.objects.filter(parent=location.parent).exclude(id=location_id)
+	request.session['location'] = location
 	return render_to_response('main/map.djt', {'location':location,'children':children,'siblings':siblings})

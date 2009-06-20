@@ -48,9 +48,9 @@ class CombatMessage(models.Model):
 	action = models.CharField(max_length=50)
 	message = models.TextField()
 
-	def transmogrify(self, enemy):
+	def transmogrify(self, enemy, location):
 		t = Template(self.message)
-		c = Context({'en':enemy})
+		c = Context({'en':enemy, 'loc':location})
 		return t.render(c)
 
 class Item(models.Model):

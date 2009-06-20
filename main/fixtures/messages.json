@@ -4,7 +4,7 @@
 		"pk": 1,
 		"fields": {
 			"action": "enemy hits",
-			"message": "{{en.ey|capfirst}} hit{{en.count|pluralize:\"s,\"}} you from atop a {loc[platform]}."
+			"message": "{{en.ey|capfirst}} hit{{en.count|pluralize:\"s,\"}} you from atop a {{loc.platform}}."
 		}
 	},
 	{
@@ -84,7 +84,7 @@
 		"pk": 11,
 		"fields": {
 			"action": "loot",
-			"message": "You stand over your fallen foe{{en.count|pluralize}}. Among {{en.eir}} possessions you find {item.article} {{item.name}}."
+			"message": "You stand over your fallen foe{{en.count|pluralize}}. Among {{en.eir}} possessions you find {{item.article}} {{item.name}}."
 		}
 	}
 ]
