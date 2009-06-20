@@ -9,16 +9,19 @@
 		{% if children %}
 		<ul><h3>Sub locations</h3>
 		{% for child in children %}
-		<li><a href="{{child.href}}">{{child.name}}</a></li>
+		<li><a href="{% url main.views.locationMap child.id %}">{{child.name}}</a></li>
 		{% endfor %}
 		</ul>
 		{% endif %}
 		{% if siblings %}
 		<ul><h3>Sibling locations</h3>
 		{% for sibling in siblings %}
-		<li><a href="{{sibling.href}}">{{sibling.name}}</a></li>
+		<li><a href="{% url main.views.locationMap sibling.id%}">{{sibling.name}}</a></li>
 		{% endfor %}
 		</ul>
+		{% endif %}
+		{% if location.parent %}
+		<a href="{% url main.views.locationMap location.parent.id %}">{{location.parent.name}}</a><br/>
 		{% endif %}
 		<a href="/">Back to index</a>
 	</body>

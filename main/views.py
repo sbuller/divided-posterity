@@ -102,11 +102,8 @@ def inventory(request):
 		outputitems.append({'count':count, 'name':keymap[itemid].name})
 	return render_to_response('main/inventory.djt', {'items':outputitems})
 
-def locationMap(request):
-	if 'location' in request.session:
-		location = request.session['location']
-	else:
-		location = Location.objects.get(id=1)
+def locationMap(request, location_id=1):
+	location = Location.objects.get(id=location_id)
 	children = Location.objects.filter(parent=location)
 	siblings = Location.objects.filter(parent=location.parent)
 	return render_to_response('main/map.djt', {'location':location,'children':children,'siblings':siblings})

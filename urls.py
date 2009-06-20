@@ -7,11 +7,12 @@ admin.autodiscover()
 
 urlpatterns = patterns('dp.main.views',
 	(r'^$', 'index'),
-	(r'^combat', 'combat'),
-	(r'^startcombat', 'startcombat'),
-	(r'^aftercombat', 'aftercombat'),
-	(r'^inventory', 'inventory'),
-	(r'^map', 'locationMap'),
+	(r'^combat$', 'combat'),
+	(r'^startcombat$', 'startcombat'),
+	(r'^aftercombat$', 'aftercombat'),
+	(r'^inventory$', 'inventory'),
+	(r'^map$', 'locationMap',{'location_id':1}),
+	(r'^map/(?P<location_id>[\w\d]+)$', 'locationMap'),
 	# Example:
 	# (r'^dp/', include('dp.foo.urls')),
 
