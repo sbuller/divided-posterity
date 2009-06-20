@@ -105,5 +105,5 @@ def inventory(request):
 def locationMap(request, location_id=1):
 	location = Location.objects.get(id=location_id)
 	children = Location.objects.filter(parent=location)
-	siblings = Location.objects.filter(parent=location.parent)
+	siblings = Location.objects.filter(parent=location.parent).exclude(id=location_id)
 	return render_to_response('main/map.djt', {'location':location,'children':children,'siblings':siblings})

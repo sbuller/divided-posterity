@@ -14,5 +14,45 @@
 			"name": "Forest",
 			"parent": 1
 		}
+	},
+	{
+		"model": "main.Location",
+		"pk": 3,
+		"fields": {
+			"name": "Mountain",
+			"parent": 1
+		}
+	},
+	{
+		"model": "main.Location",
+		"pk": 4,
+		"fields": {
+			"name": "Tree Village",
+			"parent": 2
+		}
+	},
+	{
+		"model": "main.Location",
+		"pk": 5,
+		"fields": {
+			"name": "Yert's Hut",
+			"parent": 4
+		}
+	},
+	{
+		"model": "main.Location",
+		"pk": 6,
+		"fields": {
+			"name": "Helkea's Pass",
+			"parent": 3
+		}
+	},
+	{
+		"model": "main.Location",
+		"pk": 7,
+		"fields": {
+			"name": "Witch's Cottage",
+			"parent": 4
+		}
 	}
 ]
