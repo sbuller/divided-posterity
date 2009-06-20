@@ -4,7 +4,7 @@ from django.template import Context, loader
 from django.http import HttpResponse,HttpResponseRedirect
 from django.shortcuts import render_to_response
 
-from models import CombatMessage, Enemy, Item
+from models import CombatMessage, Enemy, Item, Location
 
 import random, json
 
@@ -101,6 +101,12 @@ def inventory(request):
 	for itemid, count in inventory.iteritems():
 		outputitems.append({'count':count, 'name':keymap[itemid].name})
 	return render_to_response('main/inventory.djt', {'items':outputitems})
-	
-def location(request):
-	return HttpResponse('a string')
+
+def locationMap(request):
+	if 'location' in request.session:
+		location = request.session['location']
+	else:
+		location = Location.objects.get(id=1)
+	children = Location.objects.filter(parent=location)
+	siblings = Location.objects.filter(parent=location.parent)
+	return render_to_response('main/map.djt', {'location':location,'children':children,'siblings':siblings})

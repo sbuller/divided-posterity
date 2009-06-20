@@ -6,7 +6,7 @@
 		<ul>
 			<li><a href="/startcombat">Combat</a></li>
 			<li><a href="/inventory">Inventory</a></li>
-			<li><a href="/location">Location</a></li>
+			<li><a href="/map">Map</a></li>
 			<li><a href="/admin">Admin</a></li>
 		</ul>
 	</body>

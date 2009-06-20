@@ -1,0 +1,25 @@
+<html>
+	<head>
+		<title>A Title</title>
+		<meta http-equiv="Content-Script-Type" content="text/javascript">
+	</head>
+	<body>
+		<h1>The Map</h1>
+		<h2>You are at {{location.name}}</h2>
+		{% if children %}
+		<ul><h3>Sub locations</h3>
+		{% for child in children %}
+		<li><a href="{{child.href}}">{{child.name}}</a></li>
+		{% endfor %}
+		</ul>
+		{% endif %}
+		{% if siblings %}
+		<ul><h3>Sibling locations</h3>
+		{% for sibling in siblings %}
+		<li><a href="{{sibling.href}}">{{sibling.name}}</a></li>
+		{% endfor %}
+		</ul>
+		{% endif %}
+		<a href="/">Back to index</a>
+	</body>
+</html>
