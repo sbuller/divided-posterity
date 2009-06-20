@@ -3,6 +3,7 @@ from django.db import models
 from django.template import Context,Template
 
 import json, random
+import JSONField
 
 # Create your models here.
 
