@@ -13,7 +13,7 @@ class Enemy(models.Model):
 	>>> en.variety
 	u'a b c'
 	"""
-	variety = JSONField(max_length=50)
+	variety = JSONField()
 	name = models.CharField(max_length=50)
 	count = models.IntegerField()
 	gender = models.CharField(max_length=1, choices=(('m','Male'),('f','Female'),('n','Neutral'),('r','Randomly male or female')))
@@ -57,11 +57,11 @@ class Item(models.Model):
 class Location(models.Model):
 	name = models.CharField(max_length=50)
 	parent = models.ForeignKey('self', null=True, blank=True)
-	platform = JSONField(max_length=50)
-	floor = JSONField(max_length=50)
-	wall = JSONField(max_length=50)
-	tool = JSONField(max_length=50)
-	hole = JSONField(max_length=50)
+	platform = JSONField()
+	floor = JSONField()
+	wall = JSONField()
+	tool = JSONField()
+	hole = JSONField()
 
 	def __unicode__(self):
 		return self.name
