@@ -6,7 +6,7 @@
 	<body>
 		<h1>The Map</h1>
 		<h2>You are at {{location.name}}</h2>
-		<p>You see a {{location.platform}} and a {{location.tool}} on the {{location.floor}}. Next to a {{location.wall}} there is a {{location.hole}} in the {{location.floor}}.</p>
+		<p>You see a {{location.platform|random}} and a {{location.tool|random}} on the {{location.floor|random}}. Next to a {{location.wall|random}} there is a {{location.hole|random}} in the {{location.floor|random}}.</p>
 		{% if children %}
 		<ul><h3>Sub locations</h3>
 		{% for child in children %}

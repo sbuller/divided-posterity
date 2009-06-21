@@ -4,7 +4,7 @@
 		"pk": 1,
 		"fields": {
 			"action": "enemy hits",
-			"message": "{{en.ey|capfirst}} hit{{en.count|pluralize:\"s,\"}} you from atop a {{loc.platform}}."
+			"message": "{{en.ey|capfirst}} hit{{en.count|pluralize:\"s,\"}} you from atop a {{loc.platform|random}}."
 		}
 	},
 	{
@@ -68,7 +68,7 @@
 		"pk": 9,
 		"fields": {
 			"action": "who",
-			"message": "You are fighting {{en.name}}, the {{en.variety}}."
+			"message": "You are fighting {{en.name}}, the {{en.variety|join:\" \"}}."
 		}
 	},
 	{

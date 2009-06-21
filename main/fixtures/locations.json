@@ -5,11 +5,11 @@
 		"fields": {
 			"name": "Root",
 			"parent": null,
-			"json_platform": "[\"platform\"]",
-			"json_floor": "[\"floor\"]",
-			"json_wall": "[\"wall\"]",
-			"json_tool": "[\"tool\"]",
-			"json_hole": "[\"hole\"]"
+			"platform": "[\"platform\"]",
+			"floor": "[\"floor\"]",
+			"wall": "[\"wall\"]",
+			"tool": "[\"tool\"]",
+			"hole": "[\"hole\"]"
 		}
 	},
 	{
@@ -18,11 +18,11 @@
 		"fields": {
 			"name": "Forest",
 			"parent": 1,
-			"json_platform": "[\"stump\", \"low-hanging branch\"]",
-			"json_floor": "[\"ground\"]",
-			"json_wall": "[\"stand of trees\", \"ancient oak\"]",
-			"json_tool": "[\"hefty branch\", \"handful of twigs\", \"rabid chipmunk\"]",
-			"json_hole": "[\"gopher hole\"]"
+			"platform": "[\"stump\", \"low-hanging branch\"]",
+			"floor": "[\"ground\"]",
+			"wall": "[\"stand of trees\", \"ancient oak\"]",
+			"tool": "[\"hefty branch\", \"handful of twigs\", \"rabid chipmunk\"]",
+			"hole": "[\"gopher hole\"]"
 		}
 	},
 	{
@@ -31,11 +31,11 @@
 		"fields": {
 			"name": "Mountain",
 			"parent": 1,
-			"json_platform": "[\"giant rock\"]",
-			"json_floor": "[\"ground\", \"bare rock\"]",
-			"json_wall": "[\"sheer cliff face\"]",
-			"json_tool": "[\"sharp stone\", \"rock\"]",
-			"json_hole": "[\"crevasse\"]"
+			"platform": "[\"giant rock\"]",
+			"floor": "[\"ground\", \"bare rock\"]",
+			"wall": "[\"sheer cliff face\"]",
+			"tool": "[\"sharp stone\", \"rock\"]",
+			"hole": "[\"crevasse\"]"
 		}
 	},
 	{
@@ -44,11 +44,11 @@
 		"fields": {
 			"name": "Tree Village",
 			"parent": 2,
-			"json_platform": "[\"tree stump\", \"fence post\"]",
-			"json_floor": "[\"ground\", \"roadside\", \"road\"]",
-			"json_wall": "[\"fence\", \"decorative cherry tree\"]",
-			"json_tool": "[\"discarded handsaw\"]",
-			"json_hole": "[\"sewer grating\", \"pothole\"]"
+			"platform": "[\"tree stump\", \"fence post\"]",
+			"floor": "[\"ground\", \"roadside\", \"road\"]",
+			"wall": "[\"fence\", \"decorative cherry tree\"]",
+			"tool": "[\"discarded handsaw\"]",
+			"hole": "[\"sewer grating\", \"pothole\"]"
 		}
 	},
 	{
@@ -57,11 +57,11 @@
 		"fields": {
 			"name": "Yert's Hut",
 			"parent": 4,
-			"json_platform": "[\"lawn chair\", \"picnic table\"]",
-			"json_floor": "[\"ground\", \"verdent lawn\"]",
-			"json_wall": "[\"side of Yert's Hut\"]",
-			"json_tool": "[\"lawn chair\", \"rake\"]",
-			"json_hole": "[\"gopher hole\"]"
+			"platform": "[\"lawn chair\", \"picnic table\"]",
+			"floor": "[\"ground\", \"verdent lawn\"]",
+			"wall": "[\"side of Yert's Hut\"]",
+			"tool": "[\"lawn chair\", \"rake\"]",
+			"hole": "[\"gopher hole\"]"
 		}
 	},
 	{
@@ -70,11 +70,11 @@
 		"fields": {
 			"name": "Helkea's Pass",
 			"parent": 3,
-			"json_platform": "[\"heap of rocks\"]",
-			"json_floor": "[\"trail\", \"side of the trail\", \"rocky ground\"]",
-			"json_wall": "[\"sheer cliff face\", \"guidepost\"]",
-			"json_tool": "[\"petrified trail ration\"]",
-			"json_hole": "[\"crevasse\", \"crack\"]"
+			"platform": "[\"heap of rocks\"]",
+			"floor": "[\"trail\", \"side of the trail\", \"rocky ground\"]",
+			"wall": "[\"sheer cliff face\", \"guidepost\"]",
+			"tool": "[\"petrified trail ration\"]",
+			"hole": "[\"crevasse\", \"crack\"]"
 		}
 	},
 	{
@@ -83,11 +83,11 @@
 		"fields": {
 			"name": "Witch's Cottage",
 			"parent": 4,
-			"json_platform": "[\"small wooden table\", \"small wooden chair\"]",
-			"json_floor": "[\"small wooden floor\", \"hardwood floor\"]",
-			"json_wall": "[\"small wooden wall\", \"small wood-burning stove\"]",
-			"json_tool": "[\"small wooden doll\", \"small wooden puzzle\"]",
-			"json_hole": "[\"small wood-burning stove\"]"
+			"platform": "[\"small wooden table\", \"small wooden chair\"]",
+			"floor": "[\"small wooden floor\", \"hardwood floor\"]",
+			"wall": "[\"small wooden wall\", \"small wood-burning stove\"]",
+			"tool": "[\"small wooden doll\", \"small wooden puzzle\"]",
+			"hole": "[\"small wood-burning stove\"]"
 		}
 	}
 ]

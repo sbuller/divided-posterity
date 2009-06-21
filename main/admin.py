@@ -4,7 +4,7 @@ from dp.main.models import Enemy, CombatMessage, Item, Location
 #from django.contrib.sessions import session
 
 class EnemyAdmin(admin.ModelAdmin):
-	list_display = ('name', 'json_variety', 'count', 'gender')
+	list_display = ('name', 'variety', 'count', 'gender')
 
 class CombatMessageAdmin(admin.ModelAdmin):
 	list_display = ('action', 'message')

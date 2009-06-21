@@ -3,7 +3,7 @@ from django.db import models
 from django.template import Context,Template
 
 import json, random
-import JSONField
+from JSONField import JSONField
 
 # Create your models here.
 
@@ -13,7 +13,7 @@ class Enemy(models.Model):
 	>>> en.variety
 	u'a b c'
 	"""
-	json_variety = models.CharField(max_length=50)
+	variety = JSONField(max_length=50)
 	name = models.CharField(max_length=50)
 	count = models.IntegerField()
 	gender = models.CharField(max_length=1, choices=(('m','Male'),('f','Female'),('n','Neutral'),('r','Randomly male or female')))
@@ -34,10 +34,6 @@ class Enemy(models.Model):
 	eir = property(lambda s: s.unspivak(2))
 	eirs = property(lambda s: s.unspivak(3))
 	emself = property(lambda s: s.unspivak(4))
-
-	def _get_variety(self):
-		return " ".join(json.loads(self.json_variety))
-	variety = property(_get_variety)
 
 class CombatMessage(models.Model):
 	"""
@@ -61,20 +57,11 @@ class Item(models.Model):
 class Location(models.Model):
 	name = models.CharField(max_length=50)
 	parent = models.ForeignKey('self', null=True, blank=True)
-	json_platform = models.CharField(max_length=50)
-	json_floor = models.CharField(max_length=50)
-	json_wall = models.CharField(max_length=50)
-	json_tool = models.CharField(max_length=50)
-	json_hole = models.CharField(max_length=50)
-
-	def _get_prop(self, prop):
-		return random.choice(json.loads(prop))
-
-	platform = property(lambda s: s._get_prop(s.json_platform))
-	floor = property(lambda s: s._get_prop(s.json_floor))
-	wall = property(lambda s: s._get_prop(s.json_wall))
-	tool = property(lambda s: s._get_prop(s.json_tool))
-	hole = property(lambda s: s._get_prop(s.json_hole))
+	platform = JSONField(max_length=50)
+	floor = JSONField(max_length=50)
+	wall = JSONField(max_length=50)
+	tool = JSONField(max_length=50)
+	hole = JSONField(max_length=50)
 
 	def __unicode__(self):
 		return self.name

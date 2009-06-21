@@ -16,6 +16,7 @@ class JSONField(models.TextField):
 		if value == "":
 			return None
 
+
 		try:
 			if isinstance(value, basestring):
 				return json.loads(value)
@@ -30,7 +31,7 @@ class JSONField(models.TextField):
 		if value == "":
 			return None
 
-		if isinstance(value, dict):
-			value = json.dumps(value, cls=DjangoJSONEncoder)
+		#if isinstance(value, dict): We're totally using non-standard json. Bad us.
+		value = json.dumps(value, cls=DjangoJSONEncoder)
 
 		return super(JSONField, self).get_db_prep_save(value)
