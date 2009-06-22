@@ -3,6 +3,7 @@
 from django.template import Context, loader
 from django.http import HttpResponse,HttpResponseRedirect
 from django.shortcuts import render_to_response
+from django.contrib.auth.decorators import login_required
 
 from models import CombatMessage, Enemy, Item, Location, Combat
 
@@ -11,6 +12,7 @@ import random, json
 def index(request):
 	return render_to_response('main/index.djt')
 
+@login_required
 def startcombat(request):
 	if not 'location' in request.session:
 		request.session['location'] = random.choice(Location.objects.all())
@@ -20,6 +22,7 @@ def startcombat(request):
 
 	return render_to_response('main/combat.djt',{'turn':combat.turn})
 
+@login_required
 def combat(request):
 	combat = request.session['combat']
 	combat.next_round()
@@ -74,6 +77,7 @@ def combat(request):
 			'turn': combat.turn
 		})
 
+@login_required
 def aftercombat(request):
 	combat = request.session['combat']
 	inventory = {}
@@ -99,6 +103,7 @@ def aftercombat(request):
 	request.session['inventory'] = inventory
 	return render_to_response('main/aftercombat.djt', {'combat': request.session['combat'], 'items': outputitems})
 
+@login_required
 def inventory(request):
 	inventory = {}
 	outputitems = []
@@ -109,6 +114,7 @@ def inventory(request):
 		outputitems.append({'count':count, 'name':keymap[itemid].name})
 	return render_to_response('main/inventory.djt', {'items':outputitems})
 
+@login_required
 def locationMap(request, location_id=1):
 	location = Location.objects.get(id=location_id)
 	children = Location.objects.filter(parent=location)
