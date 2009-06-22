@@ -7,7 +7,7 @@
 		{% if items %}
 			<ul>
 			{% for item in items %}
-				<li>{{item.name}} <b>x</b>{{item.count}}</li>
+				<li>{{item.item.name}} <b>x</b>{{item.quantity}}</li>
 			{% endfor %}
 			</ul>
 		{% else %}

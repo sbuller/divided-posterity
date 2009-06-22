@@ -5,7 +5,7 @@ from django.http import HttpResponse,HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.contrib.auth.decorators import login_required
 
-from models import CombatMessage, Enemy, Item, Location, Combat
+from models import CombatMessage, Enemy, Item, Location, Combat, InventoryItem
 
 import random, json
 
@@ -80,10 +80,7 @@ def combat(request):
 @login_required
 def aftercombat(request):
 	combat = request.session['combat']
-	inventory = {}
 	winitems = {}
-	if 'inventory' in request.session:
-		inventory = request.session['inventory']
 	if combat.result == 'won':
 		winitems[random.choice(Item.objects.all()).id] = 1
 		while random.choice([True,False]):
@@ -96,23 +93,13 @@ def aftercombat(request):
 	keymap = Item.objects.in_bulk(winitems.keys())
 	for key,value in winitems.iteritems():
 		outputitems.append({'count':value, 'name':keymap[key].name})
-		if key in inventory:
-			inventory[key] += value
-		else:
-			inventory[key] = value
-	request.session['inventory'] = inventory
+		InventoryItem.add_item(request.user,keymap[key],value)
 	return render_to_response('main/aftercombat.djt', {'combat': request.session['combat'], 'items': outputitems})
 
 @login_required
 def inventory(request):
-	inventory = {}
-	outputitems = []
-	if 'inventory' in request.session:
-		inventory = request.session['inventory']
-	keymap = Item.objects.in_bulk(inventory.keys())
-	for itemid, count in inventory.iteritems():
-		outputitems.append({'count':count, 'name':keymap[itemid].name})
-	return render_to_response('main/inventory.djt', {'items':outputitems})
+	inventory = InventoryItem.objects.filter(owner=request.user)
+	return render_to_response('main/inventory.djt', {'items':inventory})
 
 @login_required
 def locationMap(request, location_id=1):
