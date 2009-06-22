@@ -80,3 +80,19 @@ class Combat:
 	def lose(self):
 		self.done = True
 		self.result = 'lost'
+
+	def next_round(self):
+		self.turn += 1
+		self._youhit = False
+		self._theyhit = False
+
+	def youhit(self):
+		self._youhit = True
+		pass
+	def youmiss(self):
+		pass
+	def theyhit(self):
+		self._theyhit = True
+		pass
+	def theymiss(self):
+		pass

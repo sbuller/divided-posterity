@@ -22,34 +22,21 @@ def startcombat(request):
 
 def combat(request):
 	combat = request.session['combat']
-	combat.turn += 1
+	combat.next_round()
 	combat_text = []
 
 	location = request.session['location']
 
-	messages = CombatMessage.objects
-
-	combat_status = messages.filter(action='who')
-	who_message = random.choice(combat_status)
-	combat_text.append(who_message.transmogrify(combat.enemy, location))
-
 	if 'youhit' in request.POST:
 		if request.POST['youhit'] == 'true':
-			you_messages = messages.filter(action='you hit')
+			combat.youhit()
 		else:
-			you_messages = messages.filter(action='you miss')
-		you_message = random.choice(you_messages)
-		you_message = you_message.transmogrify(combat.enemy, location)
-		combat_text.append(you_message)
-
+			combat.youmiss()
 	if 'theyhit' in request.POST:
 		if request.POST['theyhit'] == 'true':
-			enemy_messages = messages.filter(action='enemy hits')
+			combat.theyhit()
 		else:
-			enemy_messages = messages.filter(action='enemy misses')
-		enemy_message = random.choice(enemy_messages)
-		enemy_message = enemy_message.transmogrify(combat.enemy, location)
-		combat_text.append(enemy_message)
+			combat.theymiss()
 
 	if 'win' in request.POST:
 		combat.win()
@@ -59,6 +46,28 @@ def combat(request):
 	request.session['combat'] = combat
 	if combat.done:
 		return HttpResponseRedirect('/aftercombat')
+
+	messages = CombatMessage.objects
+
+	combat_status = messages.filter(action='who')
+	who_message = random.choice(combat_status)
+	combat_text.append(who_message.transmogrify(combat.enemy, location))
+
+	if combat._youhit:
+		you_messages = messages.filter(action='you hit')
+	else:
+		you_messages = messages.filter(action='you miss')
+	you_message = random.choice(you_messages)
+	you_message = you_message.transmogrify(combat.enemy, location)
+	combat_text.append(you_message)
+
+	if combat._theyhit:
+		enemy_messages = messages.filter(action='enemy hits')
+	else:
+		enemy_messages = messages.filter(action='enemy misses')
+	enemy_message = random.choice(enemy_messages)
+	enemy_message = enemy_message.transmogrify(combat.enemy, location)
+	combat_text.append(enemy_message)
 
 	return render_to_response('main/combat.djt', {
 			'combat_text': combat_text,
