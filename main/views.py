@@ -4,7 +4,7 @@ from django.template import Context, loader
 from django.http import HttpResponse,HttpResponseRedirect
 from django.shortcuts import render_to_response
 
-from models import CombatMessage, Enemy, Item, Location
+from models import CombatMessage, Enemy, Item, Location, Combat
 
 import random, json
 
@@ -14,17 +14,15 @@ def index(request):
 def startcombat(request):
 	if not 'location' in request.session:
 		request.session['location'] = random.choice(Location.objects.all())
-	enemy = random.choice(Enemy.objects.all())
-	combat = {}
-	combat['enemy'] = enemy
-	combat['turn'] = 0
-	combat['done'] = False
+
+	combat = Combat()
 	request.session['combat'] = combat
-	return render_to_response('main/combat.djt',{'turn':combat['turn']})
+
+	return render_to_response('main/combat.djt',{'turn':combat.turn})
 
 def combat(request):
 	combat = request.session['combat']
-	combat['turn'] += 1
+	combat.turn += 1
 	combat_text = []
 
 	location = request.session['location']
@@ -33,7 +31,7 @@ def combat(request):
 
 	combat_status = messages.filter(action='who')
 	who_message = random.choice(combat_status)
-	combat_text.append(who_message.transmogrify(combat['enemy'], location))
+	combat_text.append(who_message.transmogrify(combat.enemy, location))
 
 	if 'youhit' in request.POST:
 		if request.POST['youhit'] == 'true':
@@ -41,7 +39,7 @@ def combat(request):
 		else:
 			you_messages = messages.filter(action='you miss')
 		you_message = random.choice(you_messages)
-		you_message = you_message.transmogrify(combat['enemy'], location)
+		you_message = you_message.transmogrify(combat.enemy, location)
 		combat_text.append(you_message)
 
 	if 'theyhit' in request.POST:
@@ -50,25 +48,21 @@ def combat(request):
 		else:
 			enemy_messages = messages.filter(action='enemy misses')
 		enemy_message = random.choice(enemy_messages)
-		enemy_message = enemy_message.transmogrify(combat['enemy'], location)
+		enemy_message = enemy_message.transmogrify(combat.enemy, location)
 		combat_text.append(enemy_message)
 
 	if 'win' in request.POST:
-		#do win stuff
-		combat['result'] = 'won'
-		combat['done'] = True
+		combat.win()
 	elif 'lose' in request.POST:
-		#do lose stuff
-		combat['result'] = 'lost'
-		combat['done'] = True
+		combat.lose()
 
 	request.session['combat'] = combat
-	if combat['done']:
+	if combat.done:
 		return HttpResponseRedirect('/aftercombat')
 
 	return render_to_response('main/combat.djt', {
 			'combat_text': combat_text,
-			'turn': combat['turn']
+			'turn': combat.turn
 		})
 
 def aftercombat(request):
@@ -77,7 +71,7 @@ def aftercombat(request):
 	winitems = {}
 	if 'inventory' in request.session:
 		inventory = request.session['inventory']
-	if combat['result'] == 'won':
+	if combat.result == 'won':
 		winitems[random.choice(Item.objects.all()).id] = 1
 		while random.choice([True,False]):
 			item = random.choice(Item.objects.all())

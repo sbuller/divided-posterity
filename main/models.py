@@ -65,3 +65,18 @@ class Location(models.Model):
 
 	def __unicode__(self):
 		return self.name
+
+class Combat:
+	def __init__(self):
+		enemy = random.choice(Enemy.objects.all())
+		self.enemy = enemy
+		self.turn = 0
+		self.done = False
+
+	def win(self):
+		self.done = True
+		self.result = 'won'
+
+	def lose(self):
+		self.done = True
+		self.result = 'lost'
