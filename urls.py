@@ -23,3 +23,6 @@ urlpatterns = patterns('dp.main.views',
 	# Uncomment the next line to enable the admin:
 	(r'^admin/(.*)', admin.site.root),
 )
+urlpatterns += patterns('',
+	(r'^accounts/login/?$', 'django.contrib.auth.views.login'),
+)

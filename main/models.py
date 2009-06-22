@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from django.db import models
 from django.template import Context,Template
+from django.contrib.auth.models import User
+from django.core.exceptions import ObjectDoesNotExist
 
 import json, random
 from JSONField import JSONField
@@ -53,6 +55,8 @@ class CombatMessage(models.Model):
 class Item(models.Model):
 	name = models.CharField(max_length=50)
 	article = models.CharField(max_length=20)
+	def __unicode__(self):
+		return self.name
 
 class Location(models.Model):
 	name = models.CharField(max_length=50)
@@ -65,3 +69,51 @@ class Location(models.Model):
 
 	def __unicode__(self):
 		return self.name
+
+class Combat:
+	def __init__(self):
+		enemy = random.choice(Enemy.objects.all())
+		self.enemy = enemy
+		self.turn = 0
+		self.done = False
+
+	def win(self):
+		self.done = True
+		self.result = 'won'
+
+	def lose(self):
+		self.done = True
+		self.result = 'lost'
+
+	def next_round(self):
+		self.turn += 1
+		self._youhit = False
+		self._theyhit = False
+
+	def youhit(self):
+		self._youhit = True
+		pass
+	def youmiss(self):
+		pass
+	def theyhit(self):
+		self._theyhit = True
+		pass
+	def theymiss(self):
+		pass
+
+class InventoryItem(models.Model):
+	owner = models.ForeignKey(User)
+	item = models.ForeignKey(Item)
+	quantity = models.IntegerField()
+
+	def add_item(cls, owner, item, quantity=1):
+		try:
+			prior = cls.objects.get(owner=owner, item=item)
+			prior.quantity += quantity
+			prior.save()
+		except ObjectDoesNotExist:
+			cls(owner=owner, item=item, quantity=quantity).save()
+	add_item=classmethod(add_item)
+
+	def __unicode__(self):
+		return self.owner.username + "'s " + self.item.name + "(s)"
