@@ -44,7 +44,7 @@ class CombatMessage(models.Model):
 	>>> message.transmogrify(enemy)
 	u'Test fred hi'
 	"""
-	action = models.CharField(max_length=50)
+	action = models.CharField(max_length=50, db_index=True)
 	message = models.TextField()
 
 	def transmogrify(self, enemy, location):
@@ -60,7 +60,8 @@ class Item(models.Model):
 
 class Location(models.Model):
 	name = models.CharField(max_length=50)
-	parent = models.ForeignKey('self', null=True, blank=True)
+	parent = models.ForeignKey('self', null=True, blank=True, db_index=True)
+	enemies = models.ManyToManyField(Enemy)
 	platform = JSONField()
 	floor = JSONField()
 	wall = JSONField()
@@ -76,6 +77,7 @@ class Combat:
 		self.enemy = enemy
 		self.turn = 0
 		self.done = False
+		self.location = location
 
 	def win(self):
 		self.done = True
@@ -100,7 +102,7 @@ class Combat:
 		pass
 
 class InventoryItem(models.Model):
-	owner = models.ForeignKey(User)
+	owner = models.ForeignKey(User, db_index=True)
 	item = models.ForeignKey(Item)
 	quantity = models.IntegerField()
 
