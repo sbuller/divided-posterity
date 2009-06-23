@@ -4,9 +4,9 @@
 		<meta http-equiv="Content-Script-Type" content="text/javascript">
 	</head>
 	<body>
-		<h1>Combat! Round {{turn}}</h1>
-		{% if combat_text %}
-			{% for paragraph in combat_text %}
+		<h1>Combat! Round {{combat.turn}}</h1>
+		{% if combat.messages %}
+			{% for paragraph in combat.messages %}
 				<p>{{paragraph}}</p>
 			{% endfor %}
 		{% else %}

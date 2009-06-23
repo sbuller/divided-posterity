@@ -48,31 +48,8 @@ def combat(request):
 	if combat.done:
 		return HttpResponseRedirect('/aftercombat')
 
-	messages = CombatMessage.objects
-
-	combat_status = messages.filter(action='who')
-	who_message = random.choice(combat_status)
-	combat_text.append(who_message.transmogrify(combat.enemy, combat.location))
-
-	if combat._youhit:
-		you_messages = messages.filter(action='you hit')
-	else:
-		you_messages = messages.filter(action='you miss')
-	you_message = random.choice(you_messages)
-	you_message = you_message.transmogrify(combat.enemy, combat.location)
-	combat_text.append(you_message)
-
-	if combat._theyhit:
-		enemy_messages = messages.filter(action='enemy hits')
-	else:
-		enemy_messages = messages.filter(action='enemy misses')
-	enemy_message = random.choice(enemy_messages)
-	enemy_message = enemy_message.transmogrify(combat.enemy, combat.location)
-	combat_text.append(enemy_message)
-
 	return render_to_response('main/combat.djt', {
-			'combat_text': combat_text,
-			'turn': combat.turn
+			'combat': combat
 		})
 
 @login_required

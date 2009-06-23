@@ -89,17 +89,24 @@ class Combat:
 
 	def next_round(self):
 		self.turn += 1
-		self._youhit = False
-		self._theyhit = False
+		who_message = random.choice(CombatMessage.objects.filter(action='who'))
+		self.messages = [who_message.transmogrify(self.enemy, self.location)]
 
 	def youhit(self):
-		self._youhit = True
+		you_message = random.choice(CombatMessage.objects.filter(action='you hit'))
+		self.messages.append(you_message.transmogrify(self.enemy, self.location))
+
 	def youmiss(self):
-		pass
+		you_message = random.choice(CombatMessage.objects.filter(action='you miss'))
+		self.messages.append(you_message.transmogrify(self.enemy, self.location))
+
 	def theyhit(self):
-		self._theyhit = True
+		you_message = random.choice(CombatMessage.objects.filter(action='enemy hits'))
+		self.messages.append(you_message.transmogrify(self.enemy, self.location))
+
 	def theymiss(self):
-		pass
+		you_message = random.choice(CombatMessage.objects.filter(action='enemy misses'))
+		self.messages.append(you_message.transmogrify(self.enemy, self.location))
 
 class InventoryItem(models.Model):
 	owner = models.ForeignKey(User, db_index=True)
