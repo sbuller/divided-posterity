@@ -92,12 +92,10 @@ class Combat:
 
 	def youhit(self):
 		self._youhit = True
-		pass
 	def youmiss(self):
 		pass
 	def theyhit(self):
 		self._theyhit = True
-		pass
 	def theymiss(self):
 		pass
 
