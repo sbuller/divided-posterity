@@ -83,6 +83,9 @@ class Combat:
 		self.done = True
 		self.result = 'won'
 
+	def won(self):
+		return self.result == 'won'
+
 	def lose(self):
 		self.done = True
 		self.result = 'lost'
@@ -107,6 +110,7 @@ class Combat:
 	def theymiss(self):
 		you_message = random.choice(CombatMessage.objects.filter(action='enemy misses'))
 		self.messages.append(you_message.transmogrify(self.enemy, self.location))
+
 
 class InventoryItem(models.Model):
 	owner = models.ForeignKey(User, db_index=True)

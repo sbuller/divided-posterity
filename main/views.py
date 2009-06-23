@@ -53,7 +53,7 @@ def combat(request):
 def aftercombat(request):
 	combat = request.session['combat']
 	winitems = {}
-	if combat.result == 'won':
+	if combat.won():
 		winitems[random.choice(Item.objects.all()).id] = 1
 		while random.choice([True,False]):
 			item = random.choice(Item.objects.all())
