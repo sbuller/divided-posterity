@@ -17,7 +17,7 @@ def startcombat(request):
 	if not 'location' in request.session:
 		request.session['location'] = random.choice(Location.objects.all())
 
-	combat = Combat()
+	combat = Combat(request.session['location'])
 	request.session['combat'] = combat
 
 	return render_to_response('main/combat.djt',{'turn':combat.turn})
@@ -27,8 +27,6 @@ def combat(request):
 	combat = request.session['combat']
 	combat.next_round()
 	combat_text = []
-
-	location = request.session['location']
 
 	if 'youhit' in request.POST:
 		if request.POST['youhit'] == 'true':
@@ -54,14 +52,14 @@ def combat(request):
 
 	combat_status = messages.filter(action='who')
 	who_message = random.choice(combat_status)
-	combat_text.append(who_message.transmogrify(combat.enemy, location))
+	combat_text.append(who_message.transmogrify(combat.enemy, combat.location))
 
 	if combat._youhit:
 		you_messages = messages.filter(action='you hit')
 	else:
 		you_messages = messages.filter(action='you miss')
 	you_message = random.choice(you_messages)
-	you_message = you_message.transmogrify(combat.enemy, location)
+	you_message = you_message.transmogrify(combat.enemy, combat.location)
 	combat_text.append(you_message)
 
 	if combat._theyhit:
@@ -69,7 +67,7 @@ def combat(request):
 	else:
 		enemy_messages = messages.filter(action='enemy misses')
 	enemy_message = random.choice(enemy_messages)
-	enemy_message = enemy_message.transmogrify(combat.enemy, location)
+	enemy_message = enemy_message.transmogrify(combat.enemy, combat.location)
 	combat_text.append(enemy_message)
 
 	return render_to_response('main/combat.djt', {

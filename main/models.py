@@ -71,7 +71,7 @@ class Location(models.Model):
 		return self.name
 
 class Combat:
-	def __init__(self):
+	def __init__(self, location):
 		enemy = random.choice(Enemy.objects.all())
 		self.enemy = enemy
 		self.turn = 0
