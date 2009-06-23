@@ -26,7 +26,6 @@ def startcombat(request):
 def combat(request):
 	combat = request.session['combat']
 	combat.next_round()
-	combat_text = []
 
 	if 'youhit' in request.POST:
 		if request.POST['youhit'] == 'true':
@@ -48,9 +47,7 @@ def combat(request):
 	if combat.done:
 		return HttpResponseRedirect('/aftercombat')
 
-	return render_to_response('main/combat.djt', {
-			'combat': combat
-		})
+	return render_to_response('main/combat.djt', {'combat': combat})
 
 @login_required
 def aftercombat(request):
