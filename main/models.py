@@ -95,22 +95,14 @@ class Combat:
 		who_message = random.choice(CombatMessage.objects.filter(action='who'))
 		self.messages = [who_message.transmogrify(self.enemy, self.location)]
 
-	def youhit(self):
-		you_message = random.choice(CombatMessage.objects.filter(action='you hit'))
-		self.messages.append(you_message.transmogrify(self.enemy, self.location))
+	def addmessage(self, action):
+		message = random.choice(CombatMessage.objects.filter(action=action))
+		self.messages.append(message.transmogrify(self.enemy, self.location))
 
-	def youmiss(self):
-		you_message = random.choice(CombatMessage.objects.filter(action='you miss'))
-		self.messages.append(you_message.transmogrify(self.enemy, self.location))
-
-	def theyhit(self):
-		you_message = random.choice(CombatMessage.objects.filter(action='enemy hits'))
-		self.messages.append(you_message.transmogrify(self.enemy, self.location))
-
-	def theymiss(self):
-		you_message = random.choice(CombatMessage.objects.filter(action='enemy misses'))
-		self.messages.append(you_message.transmogrify(self.enemy, self.location))
-
+	def youhit(self): self.addmessage('you hit')
+	def youmiss(self): self.addmessage('you miss')
+	def theyhit(self): self.addmessage('enemy hits')
+	def theymiss(self): self.addmessage('enemy misses')
 
 class InventoryItem(models.Model):
 	owner = models.ForeignKey(User, db_index=True)
