@@ -4,15 +4,15 @@ from django.template import Context,Template
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
 
-import json, random
+import random
 from JSONField import JSONField
 
 # Create your models here.
 
 class Enemy(models.Model):
 	"""
-	>>> en = Enemy.objects.create(json_variety='["a","b","c"]',count=1)
-	>>> en.variety
+	>>> en = Enemy.objects.create(variety='["a","b","c"]',count=1)
+	>>> " ".join(en.variety)
 	u'a b c'
 	"""
 	variety = JSONField()
@@ -37,12 +37,32 @@ class Enemy(models.Model):
 	eirs = property(lambda s: s.unspivak(3))
 	emself = property(lambda s: s.unspivak(4))
 
+class Hero(models.Model):
+	name = models.CharField(max_length=50)
+	variety = models.CharField(max_length=50)
+	family_name = models.CharField(max_length=50)
+	gender = models.CharField(max_length=1, choices=(('m','Male'),('f','Female')))
+	user = models.ForeignKey(User, db_index=True)
+	
+	brawn = models.IntegerField()
+	charm = models.IntegerField()
+	finesse = models.IntegerField()
+	lore = models.IntegerField()
+	magery = models.IntegerField()
+	stamina = models.IntegerField()
+	
+	
+	
+	def __unicode__(self):
+		return self.name + " " + self.family_name
+
 class CombatMessage(models.Model):
 	"""
-	>>> message = CombatMessage.objects.create(message='Test {{en.name}} h{{en.count|pluralize:"i,ello"}}')
+	>>> message = CombatMessage.objects.create(message='Test {{en.name}} h{{en.count|pluralize:"i,ello"}} {{loc.tool|random}}')
 	>>> enemy = Enemy.objects.create(name='fred', count=1)
-	>>> message.transmogrify(enemy)
-	u'Test fred hi'
+	>>> loc = Location.objects.create(tool='["barbell"]')
+	>>> message.transmogrify(enemy,loc)
+	u'Test fred hi barbell'
 	"""
 	action = models.CharField(max_length=50, db_index=True)
 	message = models.TextField()
@@ -105,7 +125,7 @@ class Combat:
 	def theymiss(self): self.addmessage('enemy misses')
 
 class InventoryItem(models.Model):
-	owner = models.ForeignKey(User, db_index=True)
+	owner = models.ForeignKey(Hero, db_index=True)
 	item = models.ForeignKey(Item)
 	quantity = models.IntegerField()
 
@@ -117,6 +137,3 @@ class InventoryItem(models.Model):
 		except ObjectDoesNotExist:
 			cls(owner=owner, item=item, quantity=quantity).save()
 	add_item=classmethod(add_item)
-
-	def __unicode__(self):
-		return self.owner.username + "'s " + self.item.name + "(s)"
