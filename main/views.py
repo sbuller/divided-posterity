@@ -20,7 +20,7 @@ def startcombat(request):
 	combat = Combat(request.session['location'])
 	request.session['combat'] = combat
 
-	return render_to_response('main/combat.djt',{'turn':combat.turn})
+	return render_to_response('main/combat.djt',{'combat':combat})
 
 @login_required
 def combat(request):
