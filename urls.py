@@ -24,5 +24,6 @@ urlpatterns = patterns('dp.main.views',
 	(r'^admin/(.*)', admin.site.root),
 )
 urlpatterns += patterns('',
-	(r'^accounts/login/?$', 'django.contrib.auth.views.login'),
+	(r'^login$', 'django.contrib.auth.views.login'),
+	(r'^logout$', 'django.contrib.auth.views.logout', {'next_page':'/'}),
 )

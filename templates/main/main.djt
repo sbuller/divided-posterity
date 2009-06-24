@@ -1,0 +1,14 @@
+<html>
+	<head>
+		<title>Divided Posterity - Main</title>
+	</head>
+	<body>
+		<ul>
+			<li><a href="/startcombat">Combat</a></li>
+			<li><a href="/inventory">Inventory</a></li>
+			<li><a href="/map">Map</a></li>
+			<li><a href="/admin">Admin</a></li>
+			<li><a href="/logout">Logout</a></li>
+		</ul>
+	</body>
+</html>

@@ -10,7 +10,10 @@ from models import CombatMessage, Enemy, Item, Location, Combat, InventoryItem, 
 import random, json
 
 def index(request):
-	return render_to_response('main/index.djt')
+	if request.user.is_authenticated():
+		return render_to_response('main/main.djt')
+	else:
+		return render_to_response('main/index.djt')
 
 @login_required
 def startcombat(request):

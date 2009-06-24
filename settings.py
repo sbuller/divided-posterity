@@ -82,3 +82,5 @@ INSTALLED_APPS = (
 	'django.contrib.admin',
 	'django.contrib.admindocs',
 )
+
+LOGIN_REDIRECT_URL = '/'
