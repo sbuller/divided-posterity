@@ -1,0 +1,38 @@
+* html #heropane{
+	position:absolute;
+	background-color:#ddd;
+}
+
+* html #viewpane{
+	position:absolute;
+	background-color:#ddd;
+}
+
+* html #messagepane{
+	position:absolute;
+	background-color:#ddd;
+}
+
+* html #chatpane{
+	position:absolute;
+	background-color:#ddd;
+}
+
+* html #minichatpane{
+	position:absolute;
+	background-color:#ddd;
+}
+
+* html #heropane div h3{
+	cursor:move;
+	margin-bottom:0em;
+	margin-top:0.5em;
+}
+
+* html #heropane div h3 span img{
+	margin:0px 6px 0px 6px;
+}
+
+* html #heropane div h3 span{
+	cursor:pointer;
+}

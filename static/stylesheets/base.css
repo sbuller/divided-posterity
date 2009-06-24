@@ -1,0 +1,77 @@
+/* Stylesheet for Divided Posterity's main page */
+#heropane{
+  position:fixed;
+  top:0px;
+  bottom:0px;
+  left:0px;
+  width:180px;
+  overflow:auto;
+}
+
+/* A fix to make the jQuery dragged item not jump as much */
+.ui-sortable-helper {
+	width:100%;
+	margin-top:-16px;
+}
+
+#viewpane{
+  position:fixed;
+  top:0px;
+  left:182px;
+  right:182px;
+  bottom:132px;
+  overflow:auto;
+}
+
+#messagepane{
+  position:fixed;
+  bottom:0px;
+  left:182px;
+  right:182px; 
+  height:130px;
+  overflow:auto;
+}
+
+#chatpane{
+  margin:0px;
+  position:fixed;
+  top:0px;
+  bottom:0px;
+  right:0px;
+  width:180px;
+  overflow:auto;
+}
+
+#minichatpane{
+  position:fixed;
+  display:none;
+  right:0px;
+  bottom:0px;
+  height:180px;
+  width:180px;
+  overflow:auto;
+}
+
+#chatview{
+  position:absolute;
+  top:5px;
+  bottom:55px;
+  right:5px;
+  left:5px;
+  overflow:auto;
+}
+
+#chatform textarea.chatinput{
+  position:absolute;
+  bottom:5px;
+  left:5px;
+  right:5px;
+  height:40px;
+  
+}
+
+/*
+javascript: void(document.getElementById('chat').style.display = 'none')
+javascript: void(document.getElementById('msgchat').style.display = 'block')
+javascript: void(document.getElementById('view').style.right = '0px')
+*/

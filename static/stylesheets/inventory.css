@@ -1,0 +1,136 @@
+.item {
+	width:150px;
+	margin:5px;
+	border:solid gray 1px;
+	background-color:white;
+	overflow:hidden;
+}
+
+#inventory .invalid {
+	background-color:white;
+}
+
+#inventory .invalid>.item {
+	visibility:hidden;
+}
+
+#inventory .righthandslot,.lefthandslot,.headslot,.bodyslot,.legsslot,.accsslot {
+	width:150px;
+	border:solid black 2px;
+	padding-right:2px;
+	margin:5px;
+}
+
+#inventory .righthandslot>.item,.lefthandslot>.item,.headslot>.item,.bodyslot>.item,.legsslot>.item,.accsslot>.item {
+	margin:0;
+}
+
+#inventory .item p {
+	overflow:hidden;
+	white-space:nowrap;
+	text-overflow:ellipsis;
+	margin:0;
+	margin-left:26px;
+}
+
+#inventory .item .itemicon {
+	float:left;
+	width:2em;
+	height:2em;
+}
+
+#inventory .item .equipdata {
+	font-size:smaller;
+	color:gray;
+}
+
+#inventory>h1 {
+	float:right;
+	display:none;
+	margin-top:0px;
+}
+
+#inventory .showequipped {
+	float: left;
+}
+
+#inventory .showequipped h2 {
+	margin:5px;
+}
+
+#inventory #showaccessories {
+	float: left;
+}
+
+#inventory #inventoryitems {
+	margin-left:150px;
+	background-color:orange;
+}
+
+#inventory #inventoryitems .item {
+	float:left;
+}
+
+#inventory p.equipdata {
+	margin-top:-0.3em;
+}
+
+#inventory #inventorymenu {
+	width:150px;
+	float:left;
+	border:1px solid #999;
+	margin:0px;
+	padding:0px 0px 1px 0px;
+	text-indent:0px;
+	background-color:#fff;
+}
+
+#inventory #inventorymenu ul {
+	border-width:0px;
+	margin:0px;
+	padding:0px;
+	text-indent:0px;
+}
+
+#inventory #inventorymenu li {
+	list-style:none outside none;
+	display:inline;
+}
+
+#inventory #inventorymenu a.head1 {
+	cursor:pointer;
+	background-image:url(/images/interface/rightarrow.png);
+	background-repeat:no-repeat;
+	background-attachment:scroll;
+	background-position:5px 50%;
+	border:1px solid #ccc;
+	display:block;
+	margin:0px 0px -1px 0px;
+	padding:0px;
+	text-indent:14px;
+	text-decoration:none;
+}
+
+#inventory #inventorymenu a.head1:hover {
+	color:#eee;
+}
+
+#inventory #inventorymenu a.head1.selected {
+	background-image:url(/images/interface/downarrow.png);
+	background-position:0px 50%;
+}
+
+#inventory #inventorymenu a.current {
+	background-color:#eee;
+}
+
+#inventory #inventorymenu a.head2 {
+	display:block;
+	text-indent:10px;
+	cursor:pointer;
+}
+
+#inventory #inventorymenu a.head2:hover {
+	background-color:#eee;
+	color:#666;
+}

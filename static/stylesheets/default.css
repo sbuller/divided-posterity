@@ -1,0 +1,169 @@
+@import url('combat.css');
+@import url('aftercombat.css');
+@import url('shop.css');
+@import url('inventory.css');
+
+body{
+	background-color:#999;
+}
+
+body>div{
+	background-color:#ddd;
+}
+
+.body1{
+	background-color:#fff;
+	color:#000;
+	border:1px solid #999;
+}
+
+.head1{
+	color:#fff;
+	font-weight:bolder;
+	background:#999;
+	border:1px solid #999;
+}
+
+.head2{
+	background-color:#fff;
+	color:#000;
+}
+
+body{
+  font-family:Helvetica, Arial, sans-serif;
+  font-size:10pt;
+  color:#000;
+  vertical-align:middle;
+}
+
+h2{
+  font-size:12pt;
+  text-align:center;
+}
+
+h3{
+  text-align:center;
+  font-variant:small-caps;
+  font-weight:normal;
+  font-size:10pt;
+}
+
+h3 img{
+  vertical-align:middle;
+}
+
+em{
+  font-weight:bolder;
+  font-style:normal;
+}
+
+em.caster{
+  font-size:7pt;
+  vertical-align:top;
+}
+
+em.increased{
+  color:#000;
+}
+
+em.decreased{
+  color:#f00;
+  font-weight:normal;
+}
+
+em.uncreased{
+  color:#000;
+  font-weight:normal;
+}
+
+*.centered{
+  margin-left:auto;
+  margin-right:auto;
+}
+
+*.centeredtext{
+	text-align:center;
+}
+
+*.numbered{
+  text-align:left;
+}
+
+*.number{
+  text-align:right;
+}
+
+*.clearboth {
+	clear:both;
+}
+
+a:link, a:visited{
+  text-decoration:none;
+  color:#000;
+}
+
+a:hover{
+  color:#666;
+}
+
+a:active{
+  color:#999;
+}
+
+.itemicon{
+	width:24px;
+	height:24px;
+	background-position:50% 50%;
+	background-color:transparent;
+	background-repeat:no-repeat;
+	border:1px solid #333;
+}
+
+/* Indicate that the panels can be moved */
+#heropane>div>h3{
+	cursor:move;
+	margin-bottom:0em;
+	margin-top:0.5em;
+}
+
+#heropane>div>h3>span>img{
+	margin:0px 6px 0px 6px;
+}
+
+#heropane>div>h3>span{
+	cursor:pointer;
+}
+
+#welcome span{
+	margin:0px 10px;
+}
+
+#welcome #login{
+	float:right;
+}
+
+#welcome #login p{
+	margin-bottom:1px;
+}
+
+#welcome #login input[type="button"]{
+	/*float:right;*/
+	display:block;
+	margin-top:3px;
+	clear:both;
+}
+
+#welcome #news tr>td{
+	white-space:nowrap;
+}
+
+#welcome #news tr>td+td{
+	white-space:normal;
+}
+
+/*
+#heropane > div > h3 > img {
+	cursor:pointer;
+	float:left;
+	margin-top:2px;
+}*/
