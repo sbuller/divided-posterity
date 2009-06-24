@@ -75,6 +75,8 @@ class CombatMessage(models.Model):
 class Item(models.Model):
 	name = models.CharField(max_length=50)
 	article = models.CharField(max_length=20)
+	image_url = models.URLField()
+	variety = JSONField()
 	def __unicode__(self):
 		return self.name
 

@@ -4,7 +4,9 @@
 		"pk": 1,
 		"fields": {
 			"name": "frying pan",
-			"article": "a"
+			"article": "a",
+			"image_url": "/static/item_images/frying_pan.png",
+			"variety": "[\"equip:weapon\",\"combat_usable\"]"
 		}
 	},
 	{
@@ -12,7 +14,9 @@
 		"pk": 2,
 		"fields": {
 			"name": "writhing mass",
-			"article": "a"
+			"article": "a",
+			"image_url": "/static/item_images/writhing_mass.png",
+			"variety": "[\"combat_usable\"]"
 		}
 	},
 	{
@@ -20,7 +24,9 @@
 		"pk": 3,
 		"fields": {
 			"name": "solid gold hub cap",
-			"article": "a"
+			"article": "a",
+			"image_url": "/static/item_images/solid_gold_hubcap.png",
+			"variety": "[\"equip:offhand\"]"
 		}
 	},
 	{
@@ -28,7 +34,9 @@
 		"pk": 4,
 		"fields": {
 			"name": "sunglasses",
-			"article": "a pair of"
+			"article": "a pair of",
+			"image_url": "/static/item_images/sunglasses.png",
+			"variety": "[\"equip:face\"]"
 		}
 	},
 	{
@@ -36,7 +44,9 @@
 		"pk": 5,
 		"fields": {
 			"name": "pen",
-			"article": "a"
+			"article": "a",
+			"image_url": "/static/item_images/pen.png",
+			"variety": "[\"combat_usable\"]"
 		}
 	},
 	{
@@ -44,7 +54,9 @@
 		"pk": 6,
 		"fields": {
 			"name": "wheel",
-			"article": "a"
+			"article": "a",
+			"image_url": "/static/item_images/wheel.png",
+			"variety": "[\"combat_usable\"]"
 		}
 	}
 ]
