@@ -43,16 +43,14 @@ class Hero(models.Model):
 	family_name = models.CharField(max_length=50)
 	gender = models.CharField(max_length=1, choices=(('m','Male'),('f','Female')))
 	user = models.ForeignKey(User, db_index=True)
-	
+
 	brawn = models.IntegerField()
 	charm = models.IntegerField()
 	finesse = models.IntegerField()
 	lore = models.IntegerField()
 	magery = models.IntegerField()
 	stamina = models.IntegerField()
-	
-	
-	
+
 	def __unicode__(self):
 		return self.name + " " + self.family_name
 
@@ -100,6 +98,7 @@ class Combat:
 		self.turn = 0
 		self.done = False
 		self.location = location
+		self.next_round()
 
 	def win(self):
 		self.done = True

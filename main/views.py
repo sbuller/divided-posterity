@@ -11,7 +11,8 @@ import random, json
 
 def index(request):
 	if request.user.is_authenticated():
-		return render_to_response('main/main.djt')
+		hero = Hero.objects.get(user=request.user)
+		return render_to_response('main/main.djt', {'hero':hero,'user':request.user})
 	else:
 		return render_to_response('main/index.djt')
 
