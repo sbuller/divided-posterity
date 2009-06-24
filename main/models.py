@@ -42,7 +42,19 @@ class Hero(models.Model):
 	variety = models.CharField(max_length=50)
 	family_name = models.CharField(max_length=50)
 	gender = models.CharField(max_length=1, choices=(('m','Male'),('f','Female')))
+	user = models.ForeignKey(User, db_index=True)
 	
+	brawn = models.IntegerField()
+	charm = models.IntegerField()
+	finesse = models.IntegerField()
+	lore = models.IntegerField()
+	magery = models.IntegerField()
+	stamina = models.IntegerField()
+	
+	
+	
+	def __unicode__(self):
+		return self.name + " " + self.family_name
 
 class CombatMessage(models.Model):
 	"""
@@ -121,7 +133,7 @@ class Combat:
 
 
 class InventoryItem(models.Model):
-	owner = models.ForeignKey(User, db_index=True)
+	owner = models.ForeignKey(Hero, db_index=True)
 	item = models.ForeignKey(Item)
 	quantity = models.IntegerField()
 
@@ -133,6 +145,3 @@ class InventoryItem(models.Model):
 		except ObjectDoesNotExist:
 			cls(owner=owner, item=item, quantity=quantity).save()
 	add_item=classmethod(add_item)
-
-	def __unicode__(self):
-		return self.owner.username + "'s " + self.item.name + "(s)"

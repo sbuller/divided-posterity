@@ -5,7 +5,7 @@ from django.http import HttpResponse,HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.contrib.auth.decorators import login_required
 
-from models import CombatMessage, Enemy, Item, Location, Combat, InventoryItem
+from models import CombatMessage, Enemy, Item, Location, Combat, InventoryItem, Hero
 
 import random, json
 
@@ -63,14 +63,16 @@ def aftercombat(request):
 				winitems[item.id] += 1
 	outputitems = []
 	keymap = Item.objects.in_bulk(winitems.keys())
+	owner = Hero.objects.get(user=request.user)
 	for key,value in winitems.iteritems():
 		outputitems.append({'count':value, 'name':keymap[key].name})
-		InventoryItem.add_item(request.user,keymap[key],value)
+		InventoryItem.add_item(owner,keymap[key],value)
 	return render_to_response('main/aftercombat.djt', {'combat': request.session['combat'], 'items': outputitems})
 
 @login_required
 def inventory(request):
-	inventory = InventoryItem.objects.filter(owner=request.user)
+	owner = Hero.objects.get(user=request.user)
+	inventory = InventoryItem.objects.filter(owner=owner)
 	return render_to_response('main/inventory.djt', {'items':inventory})
 
 @login_required
