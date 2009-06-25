@@ -92,16 +92,27 @@ class Location(models.Model):
 		return self.name
 
 class Combat:
-	def __init__(self, location):
-		enemy = random.choice(Enemy.objects.all())
-		self.enemy = enemy
+	def __init__(self, location, user):
+		self.hero = Hero.objects.get(user=user)
+		self.enemy = random.choice(Enemy.objects.all())
 		self.turn = 0
 		self.done = False
 		self.location = location
 		self.next_round()
 
 	def win(self):
+		winitems = {}
+		winitems[random.choice(Item.objects.all())] = 1
+		while random.choice([True,False]):
+			item = random.choice(Item.objects.all())
+			if not item in winitems:
+				winitems[item] = 1
+			else:
+				winitems[item] += 1
+		for key,value in winitems.iteritems():
+			InventoryItem.add_item(self.hero,key,value)
 		self.done = True
+		self.winitems = winitems
 		self.result = 'won'
 
 	def won(self):
