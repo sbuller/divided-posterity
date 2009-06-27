@@ -54,20 +54,20 @@ class Hero(models.Model):
 	def __unicode__(self):
 		return self.name + " " + self.family_name
 
-class CombatMessage(models.Model):
+class Message(models.Model):
 	"""
-	>>> message = CombatMessage.objects.create(message='Test {{en.name}} h{{en.count|pluralize:"i,ello"}} {{loc.tool|random}}')
+	>>> message = Message.objects.create(message='Test {{en.name}} h{{en.count|pluralize:"i,ello"}} {{loc.tool|random}}')
 	>>> enemy = Enemy.objects.create(name='fred', count=1)
 	>>> loc = Location.objects.create(tool='["barbell"]')
-	>>> message.transmogrify(enemy,loc)
+	>>> message.transmogrify({'en':enemy,'loc':loc})
 	u'Test fred hi barbell'
 	"""
 	action = models.CharField(max_length=50, db_index=True)
 	message = models.TextField()
 
-	def transmogrify(self, enemy, location):
+	def transmogrify(self, a):
 		t = Template(self.message)
-		c = Context({'en':enemy, 'loc':location})
+		c = Context(a)
 		return t.render(c)
 
 class Item(models.Model):
@@ -124,12 +124,12 @@ class Combat:
 
 	def next_round(self):
 		self.turn += 1
-		who_message = random.choice(CombatMessage.objects.filter(action='who'))
-		self.messages = [who_message.transmogrify(self.enemy, self.location)]
+		who_message = random.choice(Message.objects.filter(action='who'))
+		self.messages = [who_message.transmogrify({'en':self.enemy, 'loc':self.location})]
 
 	def addmessage(self, action):
-		message = random.choice(CombatMessage.objects.filter(action=action))
-		self.messages.append(message.transmogrify(self.enemy, self.location))
+		message = random.choice(Message.objects.filter(action=action))
+		self.messages.append(message.transmogrify({'en':self.enemy, 'loc':self.location}))
 
 	def youhit(self): self.addmessage('you hit')
 	def youmiss(self): self.addmessage('you miss')

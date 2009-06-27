@@ -5,7 +5,7 @@ from django.http import HttpResponse,HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.contrib.auth.decorators import login_required
 
-from models import CombatMessage, Enemy, Item, Location, Combat, InventoryItem, Hero
+from models import Message, Enemy, Item, Location, Combat, InventoryItem, Hero
 
 import random, json
 

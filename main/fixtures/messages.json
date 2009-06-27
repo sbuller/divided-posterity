@@ -1,6 +1,6 @@
 [
 	{
-		"model": "main.CombatMessage",
+		"model": "main.Message",
 		"pk": 1,
 		"fields": {
 			"action": "enemy hits",
@@ -8,7 +8,7 @@
 		}
 	},
 	{
-		"model": "main.CombatMessage",
+		"model": "main.Message",
 		"pk": 2,
 		"fields": {
 			"action": "enemy hits",
@@ -16,7 +16,7 @@
 		}
 	},
 	{
-		"model": "main.CombatMessage",
+		"model": "main.Message",
 		"pk": 3,
 		"fields": {
 			"action": "enemy misses",
@@ -24,7 +24,7 @@
 		}
 	},
 	{
-		"model": "main.CombatMessage",
+		"model": "main.Message",
 		"pk": 4,
 		"fields": {
 			"action": "enemy misses",
@@ -32,7 +32,7 @@
 		}
 	},
 	{
-		"model": "main.CombatMessage",
+		"model": "main.Message",
 		"pk": 5,
 		"fields": {
 			"action": "you hit",
@@ -40,7 +40,7 @@
 		}
 	},
 	{
-		"model": "main.CombatMessage",
+		"model": "main.Message",
 		"pk": 6,
 		"fields": {
 			"action": "you hit",
@@ -48,7 +48,7 @@
 		}
 	},
 	{
-		"model": "main.CombatMessage",
+		"model": "main.Message",
 		"pk": 7,
 		"fields": {
 			"action": "you miss",
@@ -56,7 +56,7 @@
 		}
 	},
 	{
-		"model": "main.CombatMessage",
+		"model": "main.Message",
 		"pk": 8,
 		"fields": {
 			"action": "you miss",
@@ -64,7 +64,7 @@
 		}
 	},
 	{
-		"model": "main.CombatMessage",
+		"model": "main.Message",
 		"pk": 9,
 		"fields": {
 			"action": "who",
@@ -72,7 +72,7 @@
 		}
 	},
 	{
-		"model": "main.CombatMessage",
+		"model": "main.Message",
 		"pk": 10,
 		"fields": {
 			"action": "who",
@@ -80,7 +80,7 @@
 		}
 	},
 	{
-		"model": "main.CombatMessage",
+		"model": "main.Message",
 		"pk": 11,
 		"fields": {
 			"action": "loot",
