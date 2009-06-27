@@ -70,13 +70,26 @@ class Hero(models.Model):
 
 	def new_combatant(self):
 		c = Combatant(hero=self, enemy=None, brawn=self.base_brawn,
-		charm=self.base_charm, finesse=self.base_finesse,
-		lore=self.base_lore, magery=self.base_magery,
-		stamina=self.base_stamina)
+			charm=self.base_charm, finesse=self.base_finesse,
+			lore=self.base_lore, magery=self.base_magery,
+			stamina=self.base_stamina)
 		return c
 
 	def __unicode__(self):
 		return self.name + " " + self.family_name
+
+class Effect(models.Model):
+	name = models.CharField(max_length=50)
+
+class Combatant(models.Model):
+	pass
+
+class EffectInstance(models.Model):
+	effect = models.ForeignKey(Effect)
+	target = models.ForeignKey(Combatant)
+	duration = models.IntegerField()
+	unit = models.CharField(max_length=1, choices=(
+		('a','Attack'),('c','Combat'),('d','Day'),('v','Adventure'),('r','Round of Combat')))
 
 class Combatant(models.Model):
 	hero = models.ForeignKey(Hero, null=True, blank=True, db_index=True)
@@ -89,9 +102,10 @@ class Combatant(models.Model):
 	magery = models.IntegerField()
 	stamina = models.IntegerField()
 
+	effects = models.ManyToManyField(Effect, through=EffectInstance)
+
 	def __unicode__(self):
 		return (self.hero or self.enemy).__unicode__()
-
 
 class Message(models.Model):
 	"""

@@ -21,10 +21,10 @@ class InventoryAdmin(admin.ModelAdmin):
 class CombatantAdmin(admin.ModelAdmin):
 	list_display = ('hero', 'enemy')
 
-admin.site.register(Enemy, EnemyAdmin)
-admin.site.register(Message, MessageAdmin)
-admin.site.register(Item)
-admin.site.register(Location, LocationAdmin)
-admin.site.register(InventoryItem, InventoryAdmin)
-admin.site.register(Hero, HeroAdmin)
-admin.site.register(Combatant, CombatantAdmin)
+#admin.site.register(Enemy, EnemyAdmin)
+#admin.site.register(Message, MessageAdmin)
+#admin.site.register(Item)
+#admin.site.register(Location, LocationAdmin)
+#admin.site.register(InventoryItem, InventoryAdmin)
+#admin.site.register(Hero, HeroAdmin)
+#admin.site.register(Combatant, CombatantAdmin)
