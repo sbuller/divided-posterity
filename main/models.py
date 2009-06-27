@@ -37,12 +37,50 @@ class Enemy(models.Model):
 	eirs = property(lambda s: s.unspivak(3))
 	emself = property(lambda s: s.unspivak(4))
 
+	base_brawn = models.IntegerField()
+	base_charm = models.IntegerField()
+	base_finesse = models.IntegerField()
+	base_lore = models.IntegerField()
+	base_magery = models.IntegerField()
+	base_stamina = models.IntegerField()
+
+	def new_combatant(self):
+		c = Combatant(hero=None, enemy=self, brawn=self.base_brawn,
+			charm=self.base_charm, finesse=self.base_finesse,
+			lore=self.base_lore, magery=self.base_magery,
+			stamina=self.base_stamina)
+		return c
+
+	def __unicode__(self):
+		return self.name
+
 class Hero(models.Model):
 	name = models.CharField(max_length=50)
 	variety = models.CharField(max_length=50)
 	family_name = models.CharField(max_length=50)
 	gender = models.CharField(max_length=1, choices=(('m','Male'),('f','Female')))
 	user = models.ForeignKey(User, db_index=True)
+
+	base_brawn = models.IntegerField()
+	base_charm = models.IntegerField()
+	base_finesse = models.IntegerField()
+	base_lore = models.IntegerField()
+	base_magery = models.IntegerField()
+	base_stamina = models.IntegerField()
+
+	def new_combatant(self):
+		c = Combatant(hero=self, enemy=None, brawn=self.base_brawn,
+		charm=self.base_charm, finesse=self.base_finesse,
+		lore=self.base_lore, magery=self.base_magery,
+		stamina=self.base_stamina)
+		return c
+
+	def __unicode__(self):
+		return self.name + " " + self.family_name
+
+class Combatant(models.Model):
+	hero = models.ForeignKey(Hero, null=True, blank=True, db_index=True)
+	enemy = models.ForeignKey(Enemy, null=True, blank=True, db_index=True)
 
 	brawn = models.IntegerField()
 	charm = models.IntegerField()
@@ -52,7 +90,8 @@ class Hero(models.Model):
 	stamina = models.IntegerField()
 
 	def __unicode__(self):
-		return self.name + " " + self.family_name
+		return (self.hero or self.enemy).__unicode__()
+
 
 class Message(models.Model):
 	"""

@@ -8,13 +8,13 @@
 			"family_name" : "Lewis",
 			"gender" : "m",
 			"user" : 1,
-			
-			"brawn" : 2,
-			"charm" : 4,
-			"finesse" : 3,
-			"lore" : 3,
-			"magery" : 2,
-			"stamina" : 2
+
+			"base_brawn" : 2,
+			"base_charm" : 4,
+			"base_finesse" : 3,
+			"base_lore" : 3,
+			"base_magery" : 2,
+			"base_stamina" : 2
 		}
 	}
 ]

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.contrib import admin
-from dp.main.models import Enemy, Message, Item, Location, InventoryItem, Hero
+from dp.main.models import Enemy, Message, Item, Location, InventoryItem, Hero, Combatant
 #from django.contrib.sessions import session
 
 class EnemyAdmin(admin.ModelAdmin):
@@ -18,9 +18,13 @@ class HeroAdmin(admin.ModelAdmin):
 class InventoryAdmin(admin.ModelAdmin):
 	list_display = ('owner', 'item', 'quantity')
 
+class CombatantAdmin(admin.ModelAdmin):
+	list_display = ('hero', 'enemy')
+
 admin.site.register(Enemy, EnemyAdmin)
 admin.site.register(Message, MessageAdmin)
 admin.site.register(Item)
 admin.site.register(Location, LocationAdmin)
 admin.site.register(InventoryItem, InventoryAdmin)
 admin.site.register(Hero, HeroAdmin)
+admin.site.register(Combatant, CombatantAdmin)

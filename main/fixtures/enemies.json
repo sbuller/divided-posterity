@@ -6,7 +6,14 @@
 			"variety": "[\"Giant\", \"Undead\", \"Kobold\"]",
 			"name": "Billy-Joe",
 			"gender": "m",
-			"count": 1
+			"count": 1,
+
+			"base_brawn" : 6,
+			"base_charm" : 2,
+			"base_finesse" : 1,
+			"base_lore" : 1,
+			"base_magery" : 1,
+			"base_stamina" : 9
 		}
 	},
 	{
@@ -16,7 +23,14 @@
 			"variety": "[\"Squirrels\"]",
 			"name": "Chimby, Chirly, and Flan",
 			"gender": "f",
-			"count": 3
+			"count": 3,
+
+			"base_brawn" : 2,
+			"base_charm" : 4,
+			"base_finesse" : 6,
+			"base_lore" : 2,
+			"base_magery" : 2,
+			"base_stamina" : 2
 		}
 	}
 ]
