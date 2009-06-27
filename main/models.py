@@ -82,16 +82,6 @@ class Effect(models.Model):
 	name = models.CharField(max_length=50)
 
 class Combatant(models.Model):
-	pass
-
-class EffectInstance(models.Model):
-	effect = models.ForeignKey(Effect)
-	target = models.ForeignKey(Combatant)
-	duration = models.IntegerField()
-	unit = models.CharField(max_length=1, choices=(
-		('a','Attack'),('c','Combat'),('d','Day'),('v','Adventure'),('r','Round of Combat')))
-
-class Combatant(models.Model):
 	hero = models.ForeignKey(Hero, null=True, blank=True, db_index=True)
 	enemy = models.ForeignKey(Enemy, null=True, blank=True, db_index=True)
 
@@ -102,10 +92,18 @@ class Combatant(models.Model):
 	magery = models.IntegerField()
 	stamina = models.IntegerField()
 
-	effects = models.ManyToManyField(Effect, through=EffectInstance)
+	effects = models.ManyToManyField(Effect, through='EffectInstance')
 
 	def __unicode__(self):
 		return (self.hero or self.enemy).__unicode__()
+
+class EffectInstance(models.Model):
+	effect = models.ForeignKey(Effect)
+	target = models.ForeignKey(Combatant)
+	duration = models.IntegerField()
+	unit = models.CharField(max_length=1, choices=(
+		('a','Attack'),('c','Combat'),('d','Day'),('v','Adventure'),('r','Round of Combat')))
+
 
 class Message(models.Model):
 	"""
