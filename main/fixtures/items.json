@@ -5,6 +5,7 @@
 		"fields": {
 			"name": "frying pan",
 			"article": "a",
+			"multiplename": "frying pans",
 			"image_url": "/static/images/items/frying_pan.png",
 			"variety": "[\"equip:weapon\",\"combat_usable\"]"
 		}
@@ -15,6 +16,7 @@
 		"fields": {
 			"name": "writhing mass",
 			"article": "a",
+			"multiplename": "writhing masses",
 			"image_url": "/static/images/items/writhing_mass.png",
 			"variety": "[\"combat_usable\"]"
 		}
@@ -25,6 +27,7 @@
 		"fields": {
 			"name": "solid gold hub cap",
 			"article": "a",
+			"multiplename": "solid gold hub caps",
 			"image_url": "/static/images/items/solid_gold_hubcap.png",
 			"variety": "[\"equip:offhand\"]"
 		}
@@ -35,6 +38,7 @@
 		"fields": {
 			"name": "sunglasses",
 			"article": "a pair of",
+			"multiplename": "pairs of sunglasses",
 			"image_url": "/static/images/items/sunglasses.png",
 			"variety": "[\"equip:face\"]"
 		}
@@ -45,6 +49,7 @@
 		"fields": {
 			"name": "pen",
 			"article": "a",
+			"multiplename": "pens",
 			"image_url": "/static/images/items/pen.png",
 			"variety": "[\"combat_usable\"]"
 		}
@@ -55,6 +60,7 @@
 		"fields": {
 			"name": "wheel",
 			"article": "a",
+			"multiplename": "wheels",
 			"image_url": "/static/images/items/wheel.png",
 			"variety": "[\"combat_usable\"]"
 		}
