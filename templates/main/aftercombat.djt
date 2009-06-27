@@ -7,9 +7,9 @@
 		<h1>Combat Over!</h1>
 		<h2>You {{combat.result}}</h2>
 		<p>The enemy gives you:
-		{% if items %}
+		{% if combat.winitems %}
 		<ul>
-		{% for item in items %}
+		{% for item in combat.winitems %}
 		<li>{{item.name}} <b>x</b>{{item.count}}</li>
 		{% endfor %}
 		</ul>

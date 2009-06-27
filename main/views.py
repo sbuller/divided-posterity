@@ -21,7 +21,7 @@ def startcombat(request):
 	if not 'location' in request.session:
 		request.session['location'] = random.choice(Location.objects.all())
 
-	combat = Combat(request.session['location'])
+	combat = Combat(request.session['location'], request.user)
 	request.session['combat'] = combat
 
 	return render_to_response('main/combat.djt',{'combat':combat})
@@ -55,23 +55,7 @@ def combat(request):
 
 @login_required
 def aftercombat(request):
-	combat = request.session['combat']
-	winitems = {}
-	if combat.won():
-		winitems[random.choice(Item.objects.all()).id] = 1
-		while random.choice([True,False]):
-			item = random.choice(Item.objects.all())
-			if not item.id in winitems:
-				winitems[item.id] = 1
-			else:
-				winitems[item.id] += 1
-	outputitems = []
-	keymap = Item.objects.in_bulk(winitems.keys())
-	owner = Hero.objects.get(user=request.user)
-	for key,value in winitems.iteritems():
-		outputitems.append({'count':value, 'name':keymap[key].name})
-		InventoryItem.add_item(owner,keymap[key],value)
-	return render_to_response('main/aftercombat.djt', {'combat': request.session['combat'], 'items': outputitems})
+	return render_to_response('main/aftercombat.djt', {'combat': request.session['combat']})
 
 @login_required
 def inventory(request):
