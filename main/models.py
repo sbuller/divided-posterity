@@ -73,6 +73,7 @@ class Message(models.Model):
 class Item(models.Model):
 	name = models.CharField(max_length=50)
 	article = models.CharField(max_length=20)
+	multiplename = models.CharField(max_length=50)
 	image_url = models.URLField()
 	variety = JSONField()
 	def __unicode__(self):
