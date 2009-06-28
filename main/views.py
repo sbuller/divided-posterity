@@ -65,6 +65,10 @@ def inventory(request):
 
 @login_required
 def locationMap(request, location_id=1):
+	places = {}
 	location = Location.objects.get(id=location_id)
+	for it in location.neighbors.all():
+		places[it.slug] = it.name
+	print places
 	request.session['location'] = location
-	return render_to_response('main/map.djt', {'location':location})
+	return render_to_response("main/maps/"+location.slug+".djt", {'location':location,'places':places})

@@ -1,0 +1,41 @@
+<html>
+	<head>
+		<title>A Title</title>
+		<meta http-equiv="Content-Script-Type" content="text/javascript">
+	</head>
+	<body>
+		<h1>The Map</h1>
+		<h2>You are at {{location.name}}</h2>
+
+		<table><tbody>
+			<tr>
+				<td>empty</td>
+				<td>
+					{% if places.witchs_cottage %}
+						<a href="#"> {{places.witchs_cottage}} </a>
+					{% else %}
+						empty
+					{% endif %}
+				</td>
+				<td>empty</td>
+			</tr>
+			<tr>
+				<td>empty</td>
+				<td>empty</td>
+				<td><a href="#">Fight Something!</a></td>
+			</tr>
+			<tr>
+				<td>empty</td>
+				<td>empty</td>
+				<td>
+					{% if places.yerts_hut %}
+						<a href="#"> {{places.yerts_hut}}</a>
+					{% else %}
+						empty
+					{% endif %}
+				</td>
+			</tr>
+		</tbody></table>
+		<a href="/">Back to index</a>
+	</body>
+</html>

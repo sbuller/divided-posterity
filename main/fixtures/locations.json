@@ -5,6 +5,7 @@
 		"fields": {
 			"name": "Root",
 			"neighbors": [2,3],
+			"slug": "root",
 			"platform": "[\"platform\"]",
 			"floor": "[\"floor\"]",
 			"wall": "[\"wall\"]",
@@ -18,6 +19,7 @@
 		"fields": {
 			"name": "Forest",
 			"neighbors": [1,4],
+			"slug": "forest",
 			"platform": "[\"stump\", \"low-hanging branch\"]",
 			"floor": "[\"ground\"]",
 			"wall": "[\"stand of trees\", \"ancient oak\"]",
@@ -31,6 +33,7 @@
 		"fields": {
 			"name": "Mountain",
 			"neighbors": [1,6],
+			"slug": "mountain",
 			"platform": "[\"giant rock\"]",
 			"floor": "[\"ground\", \"bare rock\"]",
 			"wall": "[\"sheer cliff face\"]",
@@ -44,6 +47,7 @@
 		"fields": {
 			"name": "Tree Village",
 			"neighbors": [2,5,7],
+			"slug": "tree_village",
 			"platform": "[\"tree stump\", \"fence post\"]",
 			"floor": "[\"ground\", \"roadside\", \"road\"]",
 			"wall": "[\"fence\", \"decorative cherry tree\"]",
@@ -57,6 +61,7 @@
 		"fields": {
 			"name": "Yert's Hut",
 			"neighbors": [4],
+			"slug": "yerts_hut",
 			"platform": "[\"lawn chair\", \"picnic table\"]",
 			"floor": "[\"ground\", \"verdent lawn\"]",
 			"wall": "[\"side of Yert's Hut\"]",
@@ -70,6 +75,7 @@
 		"fields": {
 			"name": "Helkea's Pass",
 			"neighbors": [3],
+			"slug": "helkeas_pass",
 			"platform": "[\"heap of rocks\"]",
 			"floor": "[\"trail\", \"side of the trail\", \"rocky ground\"]",
 			"wall": "[\"sheer cliff face\", \"guidepost\"]",
@@ -83,6 +89,7 @@
 		"fields": {
 			"name": "Witch's Cottage",
 			"neighbors": [4],
+			"slug": "witchs_cottage",
 			"platform": "[\"small wooden table\", \"small wooden chair\"]",
 			"floor": "[\"small wooden floor\", \"hardwood floor\"]",
 			"wall": "[\"small wooden wall\", \"small wood-burning stove\"]",
