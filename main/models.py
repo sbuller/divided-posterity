@@ -134,7 +134,7 @@ class Location(models.Model):
 	name = models.CharField(max_length=50)
 	enemies = models.ManyToManyField(Enemy, blank=True)
 	neighbors = models.ManyToManyField("self")
-	slug = models.CharField(max_length=50, unique=True)
+	slug = models.CharField(max_length=50, primary_key=True)
 	platform = JSONField()
 	floor = JSONField()
 	wall = JSONField()

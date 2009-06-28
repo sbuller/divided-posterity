@@ -10,19 +10,25 @@
 		<table><tbody>
 			<tr>
 				<td>empty</td>
-				<td>empty</td>
-				<td>empty</td>
-			</tr>
-			<tr>
 				<td>
-					{% if places.tree_village %}
-						<a href="#">{{places.tree_village}}</a>
+					{% if places.root %}
+						<a href="/map/{{places.root.slug}}">{{places.root.name}}</a>
 					{% else %}
 						empty
 					{% endif %}
 				</td>
 				<td>empty</td>
-				<td><a href="#">Fight Something!</a></td>
+			</tr>
+			<tr>
+				<td>
+					{% if places.tree_village %}
+						<a href="/map/{{places.tree_village.slug}}">{{places.tree_village.name}}</a>
+					{% else %}
+						empty
+					{% endif %}
+				</td>
+				<td>empty</td>
+				<td><a href="/map/{{location.slug}}">Fight Something!</a></td>
 			</tr>
 			<tr>
 				<td>empty</td>

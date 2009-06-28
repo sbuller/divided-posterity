@@ -64,11 +64,12 @@ def inventory(request):
 	return render_to_response('main/inventory.djt', {'items':inventory})
 
 @login_required
-def locationMap(request, location_id=1):
+def locationMap(request, location_id='root'):
 	places = {}
-	location = Location.objects.get(id=location_id)
+	location = Location.objects.get(slug=location_id)
 	for it in location.neighbors.all():
-		places[it.slug] = it.name
+		places[it.slug] = it
+		print it
 	print places
 	request.session['location'] = location
 	return render_to_response("main/maps/"+location.slug+".djt", {'location':location,'places':places})

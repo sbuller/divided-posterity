@@ -1,11 +1,10 @@
 [
 	{
 		"model": "main.Location",
-		"pk": 1,
+		"pk": "root",
 		"fields": {
 			"name": "Root",
-			"neighbors": [2,3],
-			"slug": "root",
+			"neighbors": ["forest","mountain"],
 			"platform": "[\"platform\"]",
 			"floor": "[\"floor\"]",
 			"wall": "[\"wall\"]",
@@ -15,11 +14,10 @@
 	},
 	{
 		"model": "main.Location",
-		"pk": 2,
+		"pk": "forest",
 		"fields": {
 			"name": "Forest",
-			"neighbors": [1,4],
-			"slug": "forest",
+			"neighbors": ["root","tree village"],
 			"platform": "[\"stump\", \"low-hanging branch\"]",
 			"floor": "[\"ground\"]",
 			"wall": "[\"stand of trees\", \"ancient oak\"]",
@@ -29,11 +27,10 @@
 	},
 	{
 		"model": "main.Location",
-		"pk": 3,
+		"pk": "mountain",
 		"fields": {
 			"name": "Mountain",
-			"neighbors": [1,6],
-			"slug": "mountain",
+			"neighbors": ["root","helkeas_pass"],
 			"platform": "[\"giant rock\"]",
 			"floor": "[\"ground\", \"bare rock\"]",
 			"wall": "[\"sheer cliff face\"]",
@@ -43,11 +40,10 @@
 	},
 	{
 		"model": "main.Location",
-		"pk": 4,
+		"pk": "tree_village",
 		"fields": {
 			"name": "Tree Village",
-			"neighbors": [2,5,7],
-			"slug": "tree_village",
+			"neighbors": ["forest","yerts_hut","witchs_cottage"],
 			"platform": "[\"tree stump\", \"fence post\"]",
 			"floor": "[\"ground\", \"roadside\", \"road\"]",
 			"wall": "[\"fence\", \"decorative cherry tree\"]",
@@ -57,11 +53,10 @@
 	},
 	{
 		"model": "main.Location",
-		"pk": 5,
+		"pk": "yerts_hut",
 		"fields": {
 			"name": "Yert's Hut",
-			"neighbors": [4],
-			"slug": "yerts_hut",
+			"neighbors": ["tree_village"],
 			"platform": "[\"lawn chair\", \"picnic table\"]",
 			"floor": "[\"ground\", \"verdent lawn\"]",
 			"wall": "[\"side of Yert's Hut\"]",
@@ -71,11 +66,10 @@
 	},
 	{
 		"model": "main.Location",
-		"pk": 6,
+		"pk": "helkeas_pass",
 		"fields": {
 			"name": "Helkea's Pass",
-			"neighbors": [3],
-			"slug": "helkeas_pass",
+			"neighbors": ["mountain"],
 			"platform": "[\"heap of rocks\"]",
 			"floor": "[\"trail\", \"side of the trail\", \"rocky ground\"]",
 			"wall": "[\"sheer cliff face\", \"guidepost\"]",
@@ -85,11 +79,10 @@
 	},
 	{
 		"model": "main.Location",
-		"pk": 7,
+		"pk": "witchs_cottage",
 		"fields": {
 			"name": "Witch's Cottage",
-			"neighbors": [4],
-			"slug": "witchs_cottage",
+			"neighbors": ["tree_village"],
 			"platform": "[\"small wooden table\", \"small wooden chair\"]",
 			"floor": "[\"small wooden floor\", \"hardwood floor\"]",
 			"wall": "[\"small wooden wall\", \"small wood-burning stove\"]",
