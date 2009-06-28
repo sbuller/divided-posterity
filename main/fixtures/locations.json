@@ -5,7 +5,7 @@
 		"fields": {
 			"name": "Root",
 			"parent": null,
-			"mappath": "/main/maps/root.djt",
+			"slug": "root",
 			"platform": "[\"platform\"]",
 			"floor": "[\"floor\"]",
 			"wall": "[\"wall\"]",
@@ -19,7 +19,7 @@
 		"fields": {
 			"name": "Forest",
 			"parent": 1,
-			"mappath": "/main/maps/forest.djt",
+			"slug": "forest",
 			"platform": "[\"stump\", \"low-hanging branch\"]",
 			"floor": "[\"ground\"]",
 			"wall": "[\"stand of trees\", \"ancient oak\"]",
@@ -33,7 +33,7 @@
 		"fields": {
 			"name": "Mountain",
 			"parent": 1,
-			"mappath": "/main/maps/mountain.djt",
+			"slug": "mountain",
 			"platform": "[\"giant rock\"]",
 			"floor": "[\"ground\", \"bare rock\"]",
 			"wall": "[\"sheer cliff face\"]",
@@ -47,7 +47,7 @@
 		"fields": {
 			"name": "Tree Village",
 			"parent": 2,
-			"mappath": "/main/maps/tree_village.djt",
+			"slug": "tree_village",
 			"platform": "[\"tree stump\", \"fence post\"]",
 			"floor": "[\"ground\", \"roadside\", \"road\"]",
 			"wall": "[\"fence\", \"decorative cherry tree\"]",
@@ -61,7 +61,7 @@
 		"fields": {
 			"name": "Yert's Hut",
 			"parent": 4,
-			"mappath": "/main/maps/yerts_hut.djt",
+			"slug": "yerts_hut",
 			"platform": "[\"lawn chair\", \"picnic table\"]",
 			"floor": "[\"ground\", \"verdent lawn\"]",
 			"wall": "[\"side of Yert's Hut\"]",
@@ -75,7 +75,7 @@
 		"fields": {
 			"name": "Helkea's Pass",
 			"parent": 3,
-			"mappath": "/main/maps/helkeas_pass.djt",
+			"slug": "helkeas_pass",
 			"platform": "[\"heap of rocks\"]",
 			"floor": "[\"trail\", \"side of the trail\", \"rocky ground\"]",
 			"wall": "[\"sheer cliff face\", \"guidepost\"]",
@@ -89,7 +89,7 @@
 		"fields": {
 			"name": "Witch's Cottage",
 			"parent": 4,
-			"mappath": "/main/maps/witchs_cottage.djt",
+			"slug": "witchs_cottage",
 			"platform": "[\"small wooden table\", \"small wooden chair\"]",
 			"floor": "[\"small wooden floor\", \"hardwood floor\"]",
 			"wall": "[\"small wooden wall\", \"small wood-burning stove\"]",

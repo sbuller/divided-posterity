@@ -137,7 +137,7 @@ class Location(models.Model):
 	name = models.CharField(max_length=50)
 	parent = models.ForeignKey('self', null=True, blank=True, db_index=True)
 	enemies = models.ManyToManyField(Enemy)
-	mappath = models.URLField()
+	slug = models.CharField(max_length=50, unique=True)
 	platform = JSONField()
 	floor = JSONField()
 	wall = JSONField()

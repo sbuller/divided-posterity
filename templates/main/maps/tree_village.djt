@@ -10,24 +10,30 @@
 		<table><tbody>
 			<tr>
 				<td>empty</td>
-				<td>empty</td>
-				<td>empty</td>
-			</tr>
-			<tr>
 				<td>
-					{% if places.tree_village %}
-						<a href="#">{{places.tree_village}}</a>
+					{% if places.witchs_cottage %}
+						<a href="#"> {{places.witchs_cottage}} </a>
 					{% else %}
 						empty
 					{% endif %}
 				</td>
+				<td>empty</td>
+			</tr>
+			<tr>
+				<td>empty</td>
 				<td>empty</td>
 				<td><a href="#">Fight Something!</a></td>
 			</tr>
 			<tr>
 				<td>empty</td>
 				<td>empty</td>
-				<td>empty</td>
+				<td>
+					{% if places.yerts_hut %}
+						<a href="#"> {{places.yerts_hut}}</a>
+					{% else %}
+						empty
+					{% endif %}
+				</td>
 			</tr>
 		</tbody></table>
 		<a href="/">Back to index</a>
