@@ -9,16 +9,6 @@ from JSONField import JSONField
 
 # Create your models here.
 
-
-class Item(models.Model):
-	name = models.CharField(max_length=50)
-	article = models.CharField(max_length=20)
-	multiplename = models.CharField(max_length=50)
-	image_url = models.URLField()
-	variety = JSONField()
-	def __unicode__(self):
-		return self.name
-
 class Enemy(models.Model):
 	"""
 	>>> en = Enemy.objects.create(variety='["a","b","c"]',count=1)
@@ -78,8 +68,6 @@ class Hero(models.Model):
 	base_magery = models.IntegerField()
 	base_stamina = models.IntegerField()
 
-	inventory = models.ManyToManyField(Item, through='InventoryItem')
-
 	def new_combatant(self):
 		c = Combatant(hero=self, enemy=None, brawn=self.base_brawn,
 			charm=self.base_charm, finesse=self.base_finesse,
@@ -133,10 +121,19 @@ class Message(models.Model):
 		c = Context(a)
 		return t.render(c)
 
+class Item(models.Model):
+	name = models.CharField(max_length=50)
+	article = models.CharField(max_length=20)
+	multiplename = models.CharField(max_length=50)
+	image_url = models.URLField()
+	variety = JSONField()
+	def __unicode__(self):
+		return self.name
+
 class Location(models.Model):
 	name = models.CharField(max_length=50)
-	parent = models.ForeignKey('self', null=True, blank=True, db_index=True)
-	enemies = models.ManyToManyField(Enemy)
+	enemies = models.ManyToManyField(Enemy, blank=True)
+	neighbors = models.ManyToManyField("self")
 	platform = JSONField()
 	floor = JSONField()
 	wall = JSONField()

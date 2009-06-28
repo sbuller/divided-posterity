@@ -66,7 +66,5 @@ def inventory(request):
 @login_required
 def locationMap(request, location_id=1):
 	location = Location.objects.get(id=location_id)
-	children = Location.objects.filter(parent=location)
-	siblings = Location.objects.filter(parent=location.parent).exclude(id=location_id)
 	request.session['location'] = location
-	return render_to_response('main/map.djt', {'location':location,'children':children,'siblings':siblings})
+	return render_to_response('main/map.djt', {'location':location})

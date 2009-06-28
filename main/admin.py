@@ -7,7 +7,7 @@ class MessageAdmin(admin.ModelAdmin):
 	list_display = ('action', 'message')
 
 class LocationAdmin(admin.ModelAdmin):
-	list_display = ('name', 'parent')
+	list_display = ('name',)
 
 class InventoryAdmin(admin.ModelAdmin):
 	list_display = ('owner', 'item', 'quantity')

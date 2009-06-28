@@ -4,7 +4,7 @@
 		"pk": 1,
 		"fields": {
 			"name": "Root",
-			"parent": null,
+			"neighbors": [2,3],
 			"platform": "[\"platform\"]",
 			"floor": "[\"floor\"]",
 			"wall": "[\"wall\"]",
@@ -17,7 +17,7 @@
 		"pk": 2,
 		"fields": {
 			"name": "Forest",
-			"parent": 1,
+			"neighbors": [1,4],
 			"platform": "[\"stump\", \"low-hanging branch\"]",
 			"floor": "[\"ground\"]",
 			"wall": "[\"stand of trees\", \"ancient oak\"]",
@@ -30,7 +30,7 @@
 		"pk": 3,
 		"fields": {
 			"name": "Mountain",
-			"parent": 1,
+			"neighbors": [1,6],
 			"platform": "[\"giant rock\"]",
 			"floor": "[\"ground\", \"bare rock\"]",
 			"wall": "[\"sheer cliff face\"]",
@@ -43,7 +43,7 @@
 		"pk": 4,
 		"fields": {
 			"name": "Tree Village",
-			"parent": 2,
+			"neighbors": [2,5,7],
 			"platform": "[\"tree stump\", \"fence post\"]",
 			"floor": "[\"ground\", \"roadside\", \"road\"]",
 			"wall": "[\"fence\", \"decorative cherry tree\"]",
@@ -56,7 +56,7 @@
 		"pk": 5,
 		"fields": {
 			"name": "Yert's Hut",
-			"parent": 4,
+			"neighbors": [4],
 			"platform": "[\"lawn chair\", \"picnic table\"]",
 			"floor": "[\"ground\", \"verdent lawn\"]",
 			"wall": "[\"side of Yert's Hut\"]",
@@ -69,7 +69,7 @@
 		"pk": 6,
 		"fields": {
 			"name": "Helkea's Pass",
-			"parent": 3,
+			"neighbors": [3],
 			"platform": "[\"heap of rocks\"]",
 			"floor": "[\"trail\", \"side of the trail\", \"rocky ground\"]",
 			"wall": "[\"sheer cliff face\", \"guidepost\"]",
@@ -82,7 +82,7 @@
 		"pk": 7,
 		"fields": {
 			"name": "Witch's Cottage",
-			"parent": 4,
+			"neighbors": [4],
 			"platform": "[\"small wooden table\", \"small wooden chair\"]",
 			"floor": "[\"small wooden floor\", \"hardwood floor\"]",
 			"wall": "[\"small wooden wall\", \"small wood-burning stove\"]",

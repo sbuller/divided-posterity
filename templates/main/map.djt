@@ -8,21 +8,11 @@
 		<h2>You are at {{location.name}}</h2>
 		<p>You see a {{location.platform|random}} and a {{location.tool|random}} on the {{location.floor|random}}. Next to a {{location.wall|random}} there is a {{location.hole|random}} in the {{location.floor|random}}.</p>
 		{% if children %}
-		<ul><h3>Sub locations</h3>
-		{% for child in children %}
-		<li><a href="{% url main.views.locationMap child.id %}">{{child.name}}</a></li>
+		<ul><h3>Neighbors</h3>
+		{% for neighbor in location.neighbors %}
+		<li><a href="{% url main.views.locationMap child.id %}">{{neighbor.name}}</a></li>
 		{% endfor %}
 		</ul>
-		{% endif %}
-		{% if siblings %}
-		<ul><h3>Sibling locations</h3>
-		{% for sibling in siblings %}
-		<li><a href="{% url main.views.locationMap sibling.id%}">{{sibling.name}}</a></li>
-		{% endfor %}
-		</ul>
-		{% endif %}
-		{% if location.parent %}
-		<a href="{% url main.views.locationMap location.parent.id %}">{{location.parent.name}}</a><br/>
 		{% endif %}
 		<a href="/">Back to index</a>
 	</body>
