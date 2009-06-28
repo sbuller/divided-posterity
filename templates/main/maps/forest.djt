@@ -1,0 +1,29 @@
+<html>
+	<head>
+		<title>A Title</title>
+		<meta http-equiv="Content-Script-Type" content="text/javascript">
+	</head>
+	<body>
+		<h1>The Map</h1>
+		<h2>You are at {{location.name}}</h2>
+
+		<table><tbody>
+			<tr>
+				<td>empty</td>
+				<td>empty</td>
+				<td>empty</td>
+			</tr>
+			<tr>
+				<td>empty</td>
+				<td>empty</td>
+				<td>empty</td>
+			</tr>
+			<tr>
+				<td>empty</td>
+				<td>empty</td>
+				<td>empty</td>
+			</tr>
+		</tbody></table>
+		<a href="/">Back to index</a>
+	</body>
+</html>
