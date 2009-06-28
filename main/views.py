@@ -24,7 +24,7 @@ def startcombat(request):
 	combat = Combat(request.session['location'], request.user)
 	request.session['combat'] = combat
 
-	return render_to_response('main/combat.djt',{'combat':combat})
+	return render_to_response('gen1/combat.djt',{'combat':combat})
 
 @login_required
 def combat(request):
@@ -51,7 +51,7 @@ def combat(request):
 	if combat.done:
 		return HttpResponseRedirect('/aftercombat')
 
-	return render_to_response('main/combat.djt', {'combat': combat})
+	return render_to_response('gen1/combat.djt', {'combat': combat})
 
 @login_required
 def aftercombat(request):
@@ -61,7 +61,7 @@ def aftercombat(request):
 def inventory(request):
 	owner = Hero.objects.get(user=request.user)
 	inventory = InventoryItem.objects.filter(owner=owner)
-	return render_to_response('main/inventory.djt', {'items':inventory})
+	return render_to_response('gen1/inventory.djt', {'items':inventory})
 
 @login_required
 def locationMap(request, location_id='root'):
