@@ -12,7 +12,7 @@
 				<td>empty</td>
 				<td>
 					{% if places.witchs_cottage %}
-						<a href="/map/{{places.witchs_cottage.id}}">{{places.witchs_cottage.name}} </a>
+						<a href="/map/{{places.witchs_cottage.slug}}">{{places.witchs_cottage.name}} </a>
 					{% else %}
 						empty
 					{% endif %}
@@ -21,10 +21,10 @@
 			</tr>
 			<tr>
 				<td>empty</td>
-				<td><a href="/map/{{location.id}}">Fight Something!</a></td>
+				<td><a href="/map/{{location.slug}}">Fight Something!</a></td>
 				<td>
 					{% if places.forest %}
-						<a href="/map/{{places.forest.id}}">{{places.forest.name}}</a>
+						<a href="/map/{{places.forest.slug}}">{{places.forest.name}}</a>
 					{% else %}
 						empty
 					{% endif %}
@@ -35,7 +35,7 @@
 				<td>empty</td>
 				<td>
 					{% if places.yerts_hut %}
-						<a href="/map/{{places.yerts_hut.id}}"> {{places.yerts_hut.name}}</a>
+						<a href="/map/{{places.yerts_hut.slug}}"> {{places.yerts_hut.name}}</a>
 					{% else %}
 						empty
 					{% endif %}
