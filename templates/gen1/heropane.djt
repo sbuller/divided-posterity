@@ -11,9 +11,12 @@
 			<div id="stats">
 				<h3 class="head1"><span class="toggle cancel"><img class="cancel" alt="[-]" src="/images/interface/downarrow.png" />Stats<img class="cancel" alt="[-]" src="/images/interface/downarrow.png" /></span></h3>
 					<div class="body1"><table class="centered"><tbody>
-						{% for stat in stats %}
-						<tr><td class="number" title="Base {{stat.stat}}: {{stat.base}}"><em class="{{stat.change}}">{{stat.value}}</em></td><td class="numbered">{{stat.stat}}</td></tr>
-						{% endfor %}
+						<tr><td class="number" title="Base Brawn: {{hero.base_brawn}}"><em class="{{stat.change}}">{{hero.base_brawn}}</em></td><td class="numbered">Brawn</td></tr>
+						<tr><td class="number" title="Base Magery: {{stat.base}}"><em class="{{stat.change}}">{{hero.base_magery}}</em></td><td class="numbered">Magery</td></tr>
+						<tr><td class="number" title="Base Stamina: {{stat.base}}"><em class="{{stat.change}}">{{hero.base_stamina}}</em></td><td class="numbered">Stamina</td></tr>
+						<tr><td class="number" title="Base Finesse: {{stat.base}}"><em class="{{stat.change}}">{{hero.base_finesse}}</em></td><td class="numbered">Finesse</td></tr>
+						<tr><td class="number" title="Base Charm: {{stat.base}}"><em class="{{stat.change}}">{{hero.base_charm}}</em></td><td class="numbered">Charm</td></tr>
+						<tr><td class="number" title="Base Lore: {{stat.base}}"><em class="{{stat.change}}">{{hero.base_lore}}</em></td><td class="numbered">Lore</td></tr>
 				</tbody></table></div>
 			</div>
 
