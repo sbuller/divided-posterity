@@ -33,7 +33,7 @@
 
 						<div class="bodyslot slot">
 							<div class="item equipped">
-								<div class="itemicon" style="background-image:url(/images/items/leatherhauberk.png);"></div> 
+								<div class="itemicon" style="background-image:url(/images/items/leatherhauberk.png);"></div>
 								<p>Leather Hauberk</p>
 								<p class="equipdata">(Shirt <a>[x]</a>)</p>
 							</div>
@@ -41,7 +41,7 @@
 
 						<div class="legsslot slot">
 							<div class="item equipped">
-								<div class="itemicon" style="background-image:url(/images/items/blackslacks.png);"></div> 
+								<div class="itemicon" style="background-image:url(/images/items/blackslacks.png);"></div>
 								<p>Black Slacks</p>
 								<p class="equipdata">(Pants <a>[x]</a>)</p>
 							</div>
@@ -52,7 +52,7 @@
 						<h2>Accessories</h2>
 						<div class="accsslot slot">
 							<div class="item equipped">
-								<div class="itemicon" style="background-image:url(/images/items/redbelt.png);"></div> 
+								<div class="itemicon" style="background-image:url(/images/items/redbelt.png);"></div>
 								<p>Red Belt</p>
 								<p class="equipdata">(*Belt <a>[x]</a>)</p>
 							</div>
@@ -60,7 +60,7 @@
 
 						<div class="accsslot slot">
 							<div class="item equipped">
-								<div class="itemicon" style="background-image:url(/images/items/bootsofstriding.png);"></div> 
+								<div class="itemicon" style="background-image:url(/images/items/bootsofstriding.png);"></div>
 								<p>Boots of Striding</p>
 								<p class="equipdata">(*Boots <a>[x]</a>)</p>
 							</div>
@@ -68,7 +68,7 @@
 
 						<div class="accsslot slot">
 							<div class="item equipped">
-								<div class="itemicon" style="background-image:url(/images/items/bloodstoneearrings.png);"></div> 
+								<div class="itemicon" style="background-image:url(/images/items/bloodstoneearrings.png);"></div>
 								<p>Bloodstone Earrings</p>
 								<p class="equipdata">(*Earring <a>[x]</a>)</p>
 							</div>
@@ -123,41 +123,17 @@
 			</ul> <!-- #inventorymenu -->
 
 			<div id="inventoryitems">
+			{% if items %}
+				{% for item in items %}
 				<div class="item">
-					<div class="itemicon" style="background-image:url(/images/items/partyhat.png);"></div> 
-					<p>Party Hat</p>
-					<p class="equipdata">[Hat]</p>
+					<div class="itemicon" style="background-image:url({{item.item.image_url}});"></div>
+					<p>{{item.quantity}} {{item.item.name}}{{item.quantity|pluralize}}</p>
+					<p class="equipdata">[{{item.item.variety}}]</p>
 				</div>
-
-				<div class="item">
-					<div class="itemicon" style="background-image:url(/images/items/partyhat.png);"></div> 
-					<p>Party Hat</p>
-					<p class="equipdata">[Hat]</p>
-				</div>
-
-				<div class="item">
-					<div class="itemicon" style="background-image:url(/images/items/partyhat.png);"></div> 
-					<p>Party Hat</p>
-					<p class="equipdata">[Hat]</p>
-				</div>
-
-				<div class="item">
-					<div class="itemicon" style="background-image:url(/images/items/partyhat.png);"></div> 
-					<p>Party Hat</p>
-					<p class="equipdata">[Hat]</p>
-				</div>
-
-				<div class="item">
-					<div class="itemicon" style="background-image:url(/images/items/partyhat.png);"></div> 
-					<p>Party Hat</p>
-					<p class="equipdata">[Hat]</p>
-				</div>
-
-				<div class="item">
-					<div class="itemicon" style="background-image:url(/images/items/partyhat.png);"></div> 
-					<p>Party Hat</p>
-					<p class="equipdata">[Hat]</p>
-				</div>
+				{% endfor %}
+			{% else %}
+				<p> Error: No items available at this time. </p>
+			{% endif %}
 			</div>
 		</div> <!--inventory-->
 {% endblock %}

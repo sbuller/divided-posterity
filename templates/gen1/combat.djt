@@ -72,13 +72,14 @@
 			</td></tr></tbody></table>
 
 			<table id="combattext" class="centered"><tbody><tr><td>
-				<p>A Menacing Starlet ambushes you.</p>
-				<p>This is a star that fell from the heavens when the world underwent transmogrification.
-					It's been through some tough times, and it's pumped to beat you down. Hiya!</p>
-				<p>It pokes you in the eye with its pointy corners. You decide to sue for damages.
-					12 damages, to be precise.</p>
-				<p>Battle moves towards higher ground. You scramble to the top of a hill, gaining a
-					slight combat advantage.</p>
+			<h1>Combat! Round {{combat.turn}}</h1>
+			{% if combat.messages %}
+				{% for paragraph in combat.messages %}
+					<p>{{paragraph}}</p>
+				{% endfor %}
+			{% else %}
+				<p> Error: No combat text available at this time. </p>
+			{% endif %}
 			</td></tr></tbody></table>
 
 			<table id="wellbeingbars" class="centered"><tbody><tr><td>
@@ -94,4 +95,17 @@
 				</div>
 			</td></tr></tbody></table>
 		</div> <!--combat-->
+		<form action="/combat" method="POST">
+			<label>You</label>
+			<input type="radio" name="youhit" value="true" checked="true">Hit</input>
+			<input type="radio" name="youhit" value="false">Miss</input>
+			<br />
+			<label>They</label>
+			<input type="radio" name="theyhit" value="true">Hit</input>
+			<input type="radio" name="theyhit" value="false" checked="true">Miss</input>
+			<br />
+			<input type="submit" value="Attack!" />
+			<input type="submit" name="win" value="win" />
+			<input type="submit" name="lose" value="lose" />
+		</form>
 {% endblock %}
