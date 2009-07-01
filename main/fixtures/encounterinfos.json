@@ -1,0 +1,20 @@
+[
+	{
+		"pk": 1, 
+		"model": "main.encounterinfo", 
+		"fields": {
+			"encounterrate": 2, 
+			"location": "yerts_hut", 
+			"encounter": 2
+		}
+	}, 
+	{
+		"pk": 2, 
+		"model": "main.encounterinfo", 
+		"fields": {
+			"encounterrate": 2, 
+			"location": "tree_village", 
+			"encounter": 1
+		}
+	}
+]
