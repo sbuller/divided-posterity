@@ -10,6 +10,12 @@ from JSONField import JSONField
 
 # Create your models here.
 
+class Skill(models.Model):
+	name = models.CharField(max_length=50)
+
+	def __unicode__(self):
+		return self.name
+
 class Enemy(models.Model):
 	"""
 	>>> en = Enemy.objects.create(variety='["a","b","c"]',count=1)
@@ -116,6 +122,7 @@ class Combatant(models.Model):
 	stamina = models.IntegerField()
 
 	effects = models.ManyToManyField(Effect, through='EffectInstance')
+	skills = models.ManyToManyField(Skill)
 
 	def _get_hero(self):
 		return Hero.objects.filter(combatant=self)[0]
@@ -238,9 +245,8 @@ class InventoryItem(models.Model):
 		except ObjectDoesNotExist:
 			cls(owner=owner, item=item, quantity=quantity).save()
 	add_item=classmethod(add_item)
-	
+
 class EncounterInfo(models.Model):
 	encounterrate = models.IntegerField()
 	location = models.ForeignKey(Location)
 	encounter = models.ForeignKey(Encounter)
-	
