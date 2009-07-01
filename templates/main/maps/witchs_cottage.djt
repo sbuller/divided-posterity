@@ -17,7 +17,7 @@
 			<tr>
 				<td>empty</td>
 				<td>empty</td>
-				<td><a href="/map/{{location.slug}}">Fight Something!</a></td>
+				<td><a href="{% url main.views.travel location_id=location.slug %}">Fight Something!</a></td>
 			</tr>
 			<tr>
 				<td>{{places|get_map_data:"tree_village"}}</td>

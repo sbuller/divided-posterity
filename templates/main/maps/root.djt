@@ -20,7 +20,7 @@
 				<td>empty</td>
 			</tr>
 			<tr>
-				<td><a href="/map/{{location.slug}}">Fight Something!</a></td>
+				<td><a href="{% url main.views.travel location_id=location.slug %}">Fight Something!</a></td>
 				<td>empty</td>
 				<td>empty</td>
 			</tr>

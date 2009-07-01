@@ -10,5 +10,5 @@ register = template.Library()
 def get_map_data(var, args):
 	for it in var:
 		if it.slug == args:
-			return SafeUnicode("<a href=\"/map/" + it.slug + "\">" + it.name + "</a>")
+			return SafeUnicode("<a href=\"/travel/" + it.slug + "\">" + it.name + "</a>")
 	return "empty"

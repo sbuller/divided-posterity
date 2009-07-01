@@ -16,6 +16,9 @@
 		{% else %}
 		nothing.
 		{% endif %}</p>
-		<a href="/">Back to index</a>
+		<ul>
+			<li><a href="/">Back to index</a></li>
+			<li><a href="/map">Back to {{combat.challenger.hero.location.name}}</a></li>
+		</ul>
 	</body>
 </html>

@@ -11,8 +11,8 @@ urlpatterns = patterns('dp.main.views',
 	(r'^startcombat$', 'startcombat'),
 	(r'^aftercombat$', 'aftercombat'),
 	(r'^inventory$', 'inventory'),
-	(r'^map$', 'locationMap',{'location_id':''}),
-	(r'^map/(?P<location_id>[\w\d]+)$', 'locationMap'),
+	(r'^map$', 'locationMap'),
+	(r'^travel/(?P<location_id>[\w\d]+)$', 'travel'),
 	# Example:
 	# (r'^dp/', include('dp.foo.urls')),
 
