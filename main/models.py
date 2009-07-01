@@ -130,17 +130,26 @@ class Item(models.Model):
 	def __unicode__(self):
 		return self.name
 
+class Encounter(models.Model):
+	name = models.CharField(max_length=50, null=True, blank=True)
+	description = models.CharField(max_length=100)
+	combatible = models.BooleanField()
+	enemy = models.ForeignKey(Enemy, null=True, blank=True)
+	def __unicode__(self):
+		return self.name or ("Battle of " + self.enemy.name)
+	
 class Location(models.Model):
 	name = models.CharField(max_length=50)
 	enemies = models.ManyToManyField(Enemy, blank=True)
-	neighbors = models.ManyToManyField("self")
+	neighbors = models.ManyToManyField("self", blank=True)
+	encounters = models.ManyToManyField(Encounter, blank=True, through="EncounterInfo")
 	slug = models.CharField(max_length=50, primary_key=True)
 	platform = JSONField()
 	floor = JSONField()
 	wall = JSONField()
 	tool = JSONField()
 	hole = JSONField()
-
+	
 	def __unicode__(self):
 		return self.name
 
@@ -202,3 +211,9 @@ class InventoryItem(models.Model):
 		except ObjectDoesNotExist:
 			cls(owner=owner, item=item, quantity=quantity).save()
 	add_item=classmethod(add_item)
+	
+class EncounterInfo(models.Model):
+	encounterrate = models.IntegerField()
+	location = models.ForeignKey(Location)
+	encounter = models.ForeignKey(Encounter)
+	
