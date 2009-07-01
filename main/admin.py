@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.contrib import admin
-from dp.main.models import Enemy, Message, Item, Location, InventoryItem, Hero, Combatant, Effect, EffectInstance, Encounter, EncounterInfo
+from dp.main.models import Enemy, Message, Item, Location, InventoryItem, Hero, Combatant, Effect, EffectInstance, Encounter, EncounterInfo, Skill
 #from django.contrib.sessions import session
 
 class MessageAdmin(admin.ModelAdmin):
@@ -44,3 +44,4 @@ admin.site.register(Effect, EffectAdmin)
 admin.site.register(EffectInstance, EffectInstanceAdmin)
 admin.site.register(Encounter, EncounterAdmin)
 admin.site.register(EncounterInfo, EncounterInfoAdmin)
+admin.site.register(Skill)

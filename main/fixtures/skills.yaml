@@ -1,0 +1,44 @@
+- model: main.Skill
+  pk: 1
+  fields:
+    name: 'Attack'
+- model: main.Skill
+  pk: 2
+  fields:
+    name: 'Lunge'
+- model: main.Skill
+  pk: 3
+  fields:
+    name: 'Poison Blade'
+- model: main.Skill
+  pk: 4
+  fields:
+    name: 'Plunge'
+- model: main.Skill
+  pk: 5
+  fields:
+    name: 'Defend'
+- model: main.Skill
+  pk: 6
+  fields:
+    name: 'Regenerate'
+- model: main.Skill
+  pk: 7
+  fields:
+    name: 'Flame Shield'
+- model: main.Skill
+  pk: 8
+  fields:
+    name: 'Energy Blast'
+- model: main.Skill
+  pk: 9
+  fields:
+    name: 'Barrier'
+- model: main.Skill
+  pk: 10
+  fields:
+    name: 'Dash'
+- model: main.Skill
+  pk: 11
+  fields:
+    name: 'Surrender'

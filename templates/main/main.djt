@@ -13,7 +13,9 @@
 			{% else %}
 			Uh oh - You don't have a hero. Maybe in the future we'll help you make one.
 			{% endif %}
+			{% if user.is_staff %}
 			<li><a href="/admin">Admin</a></li>
+			{% endif %}
 			<li><a href="/logout">Logout</a></li>
 		</ul>
 	</body>
