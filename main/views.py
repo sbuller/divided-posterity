@@ -21,7 +21,7 @@ def startcombat(request):
 	if not 'location' in request.session:
 		request.session['location'] = random.choice(Location.objects.all())
 
-	combat = Combat(request.session['location'], request.user)
+	combat = Hero.objects.get(user=request.user).new_pvm_combat(random.choice(Enemy.objects.all()))
 	request.session['combat'] = combat
 
 	return render_to_response('gen1/combat.djt',{'combat':combat}, RequestContext(request))
@@ -33,14 +33,14 @@ def combat(request):
 
 	if 'youhit' in request.POST:
 		if request.POST['youhit'] == 'true':
-			combat.youhit()
+			combat.challenger_hit()
 		else:
-			combat.youmiss()
+			combat.challenger_miss()
 	if 'theyhit' in request.POST:
 		if request.POST['theyhit'] == 'true':
-			combat.theyhit()
+			combat.opposition_hit()
 		else:
-			combat.theymiss()
+			combat.opposition_miss()
 
 	if 'win' in request.POST:
 		combat.win()
