@@ -84,6 +84,7 @@ class Hero(models.Model):
 	base_lore = models.IntegerField()
 	base_magery = models.IntegerField()
 	base_stamina = models.IntegerField()
+	location = models.ForeignKey('Location', default='tree_village')
 
 	inventory = models.ManyToManyField(Item, through='InventoryItem')
 
@@ -171,7 +172,7 @@ class Encounter(models.Model):
 	enemy = models.ForeignKey(Enemy, null=True, blank=True)
 	def __unicode__(self):
 		return self.name or ("Battle of " + self.enemy.name)
-	
+
 class Location(models.Model):
 	name = models.CharField(max_length=50)
 	enemies = models.ManyToManyField(Enemy, blank=True)
@@ -183,7 +184,7 @@ class Location(models.Model):
 	wall = JSONField()
 	tool = JSONField()
 	hole = JSONField()
-	
+
 	def __unicode__(self):
 		return self.name
 
