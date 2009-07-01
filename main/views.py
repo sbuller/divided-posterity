@@ -64,12 +64,16 @@ def inventory(request):
 	return render_to_response('gen1/inventory.djt', {'items':inventory}, RequestContext(request))
 
 @login_required
-def locationMap(request, location_id='root'):
+def locationMap(request, location_id=''):
 	places = {}
-	location = Location.objects.get(slug=location_id)
-	for it in location.neighbors.all():
+	hero = Hero.objects.filter(user=request.user)[0]
+	if (location_id != ''):
+		new_location = Location.objects.get(slug=location_id)
+		if (not new_location in hero.location.neighbors.all()):
+			return HttpResponse("What are you doing!?")
+		hero.location = new_location
+		hero.save()
+
+	for it in hero.location.neighbors.all():
 		places[it.slug] = it
-		print it
-	print places
-	request.session['location'] = location
-	return render_to_response("main/maps/"+location.slug+".djt", {'location':location,'places':places}, RequestContext(request))
+	return render_to_response("main/maps/"+hero.location.slug+".djt", {'location':hero.location,'places':places}, RequestContext(request))
