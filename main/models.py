@@ -3,6 +3,7 @@ from django.db import models
 from django.template import Context,Template
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
+from django.db.models.signals import pre_save
 
 import random
 from JSONField import JSONField
@@ -45,10 +46,11 @@ class Enemy(models.Model):
 	base_stamina = models.IntegerField()
 
 	def new_combatant(self):
-		c = Combatant(hero=None, enemy=self, brawn=self.base_brawn,
+		c = Combatant(enemy=self, brawn=self.base_brawn,
 			charm=self.base_charm, finesse=self.base_finesse,
 			lore=self.base_lore, magery=self.base_magery,
 			stamina=self.base_stamina)
+		c.save()
 		return c
 
 	def __unicode__(self):
@@ -78,26 +80,32 @@ class Hero(models.Model):
 	base_stamina = models.IntegerField()
 
 	inventory = models.ManyToManyField(Item, through='InventoryItem')
-	
+
+	combatant = models.ForeignKey('Combatant', db_index=True, blank=True, null=True)
+
 	def new_pvm_combat(self, enemy):
-		c = Combat(location=random.choice(Location.objects.all()), challenger=self.new_combatant(), opposition=enemy.new_combatant())
+		c = Combat(location=random.choice(Location.objects.all()), challenger=self.combatant, opposition=enemy.new_combatant())
 		return c
-		
-	def new_combatant(self):
-		c = Combatant(hero=self, enemy=None, brawn=self.base_brawn,
-			charm=self.base_charm, finesse=self.base_finesse,
-			lore=self.base_lore, magery=self.base_magery,
-			stamina=self.base_stamina)
-		return c
+
+	def _new_combatant(self):
+		if (not self.combatant):
+			c = Combatant(enemy=None, brawn=self.base_brawn,
+				charm=self.base_charm, finesse=self.base_finesse,
+				lore=self.base_lore, magery=self.base_magery,
+				stamina=self.base_stamina)
+			c.save()
+			self.combatant = c;
 
 	def __unicode__(self):
 		return self.name + " " + self.family_name
+def make_hero_combatant(sender, instance, **kwargs):
+	instance._new_combatant()
+pre_save.connect(make_hero_combatant, sender=Hero)
 
 class Effect(models.Model):
 	name = models.CharField(max_length=50)
 
 class Combatant(models.Model):
-	hero = models.ForeignKey(Hero, null=True, blank=True, db_index=True)
 	enemy = models.ForeignKey(Enemy, null=True, blank=True, db_index=True)
 
 	brawn = models.IntegerField()
@@ -108,6 +116,10 @@ class Combatant(models.Model):
 	stamina = models.IntegerField()
 
 	effects = models.ManyToManyField(Effect, through='EffectInstance')
+
+	def _get_hero(self):
+		return Hero.objects.filter(combatant=self)[0]
+	hero = property(_get_hero)
 
 	def __unicode__(self):
 		return (self.hero or self.enemy).__unicode__()
