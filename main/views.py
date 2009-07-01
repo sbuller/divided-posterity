@@ -68,7 +68,7 @@ def locationMap(request, location_id=''):
 	hero = Hero.objects.filter(user=request.user)[0]
 	if (location_id != ''):
 		new_location = Location.objects.get(slug=location_id)
-		if (not new_location in hero.location.neighbors.all()):
+		if (not new_location in hero.location.neighbors.all() and new_location != hero.location):
 			return HttpResponse("What are you doing!?")
 		hero.location = new_location
 		hero.save()
