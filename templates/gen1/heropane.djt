@@ -1,5 +1,5 @@
 			<h2>{{hero.name}} (#{{hero.id}})</h2>
-			<h3>Level 14 {{hero.cclass}}</h3>
+			<h3>Level 14 {{hero.variety}}</h3>
 
 			<div id="avatar">
 				<h3 class="head1"><span class="toggle cancel"><img class="cancel" alt="[-]" src="/images/interface/downarrow.png" />Avatar<img class="cancel" alt="[-]" src="/images/interface/downarrow.png" /></span></h3>
@@ -38,7 +38,7 @@
 			</div>
 
 			<div id="effects">
-				<h3 class="head1"><span class="toggle cancel"><img class="cancel" alt="[-]" src="/images/interface/downarrow.png" />Other Effects<img class="cancel" alt="[-]" src="/images/interface/downarrow.png" /></span></h3>
+				<h3 class="head1"><span class="toggle cancel"><img class="cancel" alt="[-]" src="/images/interface/downarrow.png" />Effects<img class="cancel" alt="[-]" src="/images/interface/downarrow.png" /></span></h3>
 				<div class="body1"><table class="centered"><tbody>
 					<tr><td class="number">5</td><td class="numbered">Hot! Hot! Hot!</td></tr>
 					<tr><td class="number">5</td><td class="numbered">Open for Business</td></tr>

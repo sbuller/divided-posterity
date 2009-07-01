@@ -26,7 +26,7 @@
 		</div>
 
 		<div id="messagepane">
-			Message Pane
+			<a href="/">Index/Main</a>
 		</div>
 
 		<div id="chatpane">
