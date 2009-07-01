@@ -2,5 +2,7 @@
 from models import Hero
 
 def hero(request):
-	hero = Hero.objects.get(user=request.user)
-	return {'hero':hero}
+	if (request.user.is_authenticated()):
+		hero = Hero.objects.filter(user=request.user)[0]
+		return {'hero':hero}
+	return {}

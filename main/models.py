@@ -3,6 +3,7 @@ from django.db import models
 from django.template import Context,Template
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
+from django.db.models.signals import pre_save
 
 import random
 from JSONField import JSONField
@@ -45,12 +46,22 @@ class Enemy(models.Model):
 	base_stamina = models.IntegerField()
 
 	def new_combatant(self):
-		c = Combatant(hero=None, enemy=self, brawn=self.base_brawn,
+		c = Combatant(enemy=self, brawn=self.base_brawn,
 			charm=self.base_charm, finesse=self.base_finesse,
 			lore=self.base_lore, magery=self.base_magery,
 			stamina=self.base_stamina)
+		c.save()
 		return c
 
+	def __unicode__(self):
+		return self.name
+
+class Item(models.Model):
+	name = models.CharField(max_length=50)
+	article = models.CharField(max_length=20)
+	multiplename = models.CharField(max_length=50)
+	image_url = models.URLField()
+	variety = JSONField()
 	def __unicode__(self):
 		return self.name
 
@@ -68,21 +79,33 @@ class Hero(models.Model):
 	base_magery = models.IntegerField()
 	base_stamina = models.IntegerField()
 
-	def new_combatant(self):
-		c = Combatant(hero=self, enemy=None, brawn=self.base_brawn,
-			charm=self.base_charm, finesse=self.base_finesse,
-			lore=self.base_lore, magery=self.base_magery,
-			stamina=self.base_stamina)
+	inventory = models.ManyToManyField(Item, through='InventoryItem')
+
+	combatant = models.ForeignKey('Combatant', db_index=True, blank=True, null=True)
+
+	def new_pvm_combat(self, enemy):
+		c = Combat(location=random.choice(Location.objects.all()), challenger=self.combatant, opposition=enemy.new_combatant())
 		return c
+
+	def _new_combatant(self):
+		if (not self.combatant):
+			c = Combatant(enemy=None, brawn=self.base_brawn,
+				charm=self.base_charm, finesse=self.base_finesse,
+				lore=self.base_lore, magery=self.base_magery,
+				stamina=self.base_stamina)
+			c.save()
+			self.combatant = c;
 
 	def __unicode__(self):
 		return self.name + " " + self.family_name
+def make_hero_combatant(sender, instance, **kwargs):
+	instance._new_combatant()
+pre_save.connect(make_hero_combatant, sender=Hero)
 
 class Effect(models.Model):
 	name = models.CharField(max_length=50)
 
 class Combatant(models.Model):
-	hero = models.ForeignKey(Hero, null=True, blank=True, db_index=True)
 	enemy = models.ForeignKey(Enemy, null=True, blank=True, db_index=True)
 
 	brawn = models.IntegerField()
@@ -93,6 +116,10 @@ class Combatant(models.Model):
 	stamina = models.IntegerField()
 
 	effects = models.ManyToManyField(Effect, through='EffectInstance')
+
+	def _get_hero(self):
+		return Hero.objects.filter(combatant=self)[0]
+	hero = property(_get_hero)
 
 	def __unicode__(self):
 		return (self.hero or self.enemy).__unicode__()
@@ -130,24 +157,33 @@ class Item(models.Model):
 	def __unicode__(self):
 		return self.name
 
+class Encounter(models.Model):
+	name = models.CharField(max_length=50, null=True, blank=True)
+	description = models.CharField(max_length=100)
+	combatible = models.BooleanField()
+	enemy = models.ForeignKey(Enemy, null=True, blank=True)
+	def __unicode__(self):
+		return self.name or ("Battle of " + self.enemy.name)
+	
 class Location(models.Model):
 	name = models.CharField(max_length=50)
 	enemies = models.ManyToManyField(Enemy, blank=True)
-	neighbors = models.ManyToManyField("self")
+	neighbors = models.ManyToManyField("self", blank=True)
+	encounters = models.ManyToManyField(Encounter, blank=True, through="EncounterInfo")
 	slug = models.CharField(max_length=50, primary_key=True)
 	platform = JSONField()
 	floor = JSONField()
 	wall = JSONField()
 	tool = JSONField()
 	hole = JSONField()
-
+	
 	def __unicode__(self):
 		return self.name
 
 class Combat:
-	def __init__(self, location, user):
-		self.hero = Hero.objects.get(user=user)
-		self.enemy = random.choice(Enemy.objects.all())
+	def __init__(self, location, challenger, opposition):
+		self.challenger = challenger
+		self.opposition = opposition
 		self.turn = 0
 		self.done = False
 		self.location = location
@@ -163,7 +199,7 @@ class Combat:
 			else:
 				winitems[item] += 1
 		for key,value in winitems.iteritems():
-			InventoryItem.add_item(self.hero,key,value)
+			InventoryItem.add_item(self.challenger.hero,key,value)
 		self.done = True
 		self.winitems = winitems
 		self.result = 'won'
@@ -178,16 +214,16 @@ class Combat:
 	def next_round(self):
 		self.turn += 1
 		who_message = random.choice(Message.objects.filter(action='who'))
-		self.messages = [who_message.transmogrify({'en':self.enemy, 'loc':self.location})]
+		self.messages = [who_message.transmogrify({'en':self.opposition.enemy, 'loc':self.location})]
 
 	def addmessage(self, action):
 		message = random.choice(Message.objects.filter(action=action))
-		self.messages.append(message.transmogrify({'en':self.enemy, 'loc':self.location}))
+		self.messages.append(message.transmogrify({'en':self.opposition.enemy, 'loc':self.location}))
 
-	def youhit(self): self.addmessage('you hit')
-	def youmiss(self): self.addmessage('you miss')
-	def theyhit(self): self.addmessage('enemy hits')
-	def theymiss(self): self.addmessage('enemy misses')
+	def challenger_hit(self): self.addmessage('you hit')
+	def challenger_miss(self): self.addmessage('you miss')
+	def opposition_hit(self): self.addmessage('enemy hits')
+	def opposition_miss(self): self.addmessage('enemy misses')
 
 class InventoryItem(models.Model):
 	owner = models.ForeignKey(Hero, db_index=True)
@@ -202,3 +238,9 @@ class InventoryItem(models.Model):
 		except ObjectDoesNotExist:
 			cls(owner=owner, item=item, quantity=quantity).save()
 	add_item=classmethod(add_item)
+	
+class EncounterInfo(models.Model):
+	encounterrate = models.IntegerField()
+	location = models.ForeignKey(Location)
+	encounter = models.ForeignKey(Encounter)
+	
