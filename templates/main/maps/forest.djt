@@ -2,6 +2,7 @@
 	<head>
 		<title>A Title</title>
 		<meta http-equiv="Content-Script-Type" content="text/javascript">
+		{% load dp_extras %}
 	</head>
 	<body>
 		<h1>The Map</h1>
@@ -10,23 +11,11 @@
 		<table><tbody>
 			<tr>
 				<td>empty</td>
-				<td>
-					{% if places.root %}
-						<a href="/map/{{places.root.slug}}">{{places.root.name}}</a>
-					{% else %}
-						empty
-					{% endif %}
-				</td>
+				<td>{{places|get_map_data:"root"}}</td>
 				<td>empty</td>
 			</tr>
 			<tr>
-				<td>
-					{% if places.tree_village %}
-						<a href="/map/{{places.tree_village.slug}}">{{places.tree_village.name}}</a>
-					{% else %}
-						empty
-					{% endif %}
-				</td>
+				<td>{{places|get_map_data:"tree_village"}}</td>
 				<td>empty</td>
 				<td><a href="/map/{{location.slug}}">Fight Something!</a></td>
 			</tr>
