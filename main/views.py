@@ -5,7 +5,7 @@ from django.http import HttpResponse,HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.contrib.auth.decorators import login_required
 
-from models import Message, Enemy, Item, Location, Combat, InventoryItem, Hero
+from models import Message, Enemy, Item, Location, Combat, InventoryItem, Hero, EncounterInfo
 
 import random, json
 
@@ -17,9 +17,11 @@ def index(request):
 		return render_to_response('main/index.djt')
 
 @login_required
-def startcombat(request):
+def startcombat(request, enemy=None):
 	hero = Hero.objects.get(user=request.user)
-	combat = hero.new_pvm_combat(random.choice(Enemy.objects.all()))
+	if not enemy:
+		enemy = random.choice(Enemy.objects.all())
+	combat = hero.new_pvm_combat(enemy)
 	return render_to_response('gen1/combat.djt',{'combat':combat}, RequestContext(request))
 
 @login_required
@@ -88,5 +90,23 @@ def travel(request, location_id):
 		return HttpResponse("What are you doing!?")
 	hero.location = new_location
 	hero.save()
-
-	return startcombat(request)
+	
+	encounter_infos = EncounterInfo.objects.filter(location=hero.location)
+	
+	total=0
+	for it in encounter_infos:
+		total = total + it.encounter_rate
+	num = random.randint(1,total)
+	
+	for it in encounter_infos:
+		if num >= 0:
+			num = num - it.encounter_rate
+			encounter_info = it
+	
+	if not encounter_info:
+		return HttpResponse("Error. No random encounter generated.")
+	
+	if encounter_info.is_combat:
+		return startcombat(request,encounter_info.enemy)
+	else:
+		return HttpResponse(encounter_info.encounter)
