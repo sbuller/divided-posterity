@@ -57,13 +57,15 @@ def aftercombat(request):
 	hero = Hero.objects.filter(user=request.user)[0]
 	combat = hero.combat
 	if combat.challenger.enemy:
-		combat.challenger.delete()
-		combat.challenger=None
+		challenger = combat.challenger
+		combat.challenger = None
 		combat.save()
+		challenger.delete()
 	if combat.opposition.enemy:
-		combat.opposition.delete()
-		combat.opposition=None
+		opposition = combat.opposition
+		combat.opposition = None
 		combat.save()
+		opposition.delete()
 	return render_to_response('main/aftercombat.djt', {'combat': combat}, RequestContext(request))
 
 @login_required
