@@ -8,7 +8,7 @@ class Encounter(models.Model):
 		app_label = 'main'
 		
 	name = models.CharField(max_length=50, null=True, blank=True)
-	description = models.CharField(max_length=500)
+	description = models.TextField()
 	
 	def __unicode__(self):
 		return self.name
