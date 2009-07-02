@@ -197,11 +197,12 @@ class Location(models.Model):
 		return self.name
 
 class Combat(models.Model):
-	challenger = models.ForeignKey('Combatant', related_name="challenger_combatant", db_index=True)
-	opposition = models.ForeignKey('Combatant', related_name="opposition_combatant")
+	challenger = models.ForeignKey('Combatant', related_name="challenger_combatant", blank=True, null=True, db_index=True)
+	opposition = models.ForeignKey('Combatant', related_name="opposition_combatant", blank=True, null=True)
 	turn = models.IntegerField(default=0)
 	done = models.BooleanField(default=False)
 	location = models.ForeignKey('Location')
+	winitems = JSONField()
 	
 	messages = JSONField()
 	
