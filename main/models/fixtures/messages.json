@@ -68,7 +68,7 @@
 		"pk": 9,
 		"fields": {
 			"action": "who",
-			"message": "You are fighting {{en.name}}, the {{en.variety|join:\" \"}}."
+			"message": "You are fighting {{en.name}}, the {{en.variety|random}}."
 		}
 	},
 	{
