@@ -4,38 +4,38 @@ from dp.main.models import Enemy, Message, Item, Location, InventoryItem, Hero, 
 #from django.contrib.sessions import session
 
 class MessageAdmin(admin.ModelAdmin):
-	list_display = ('action', 'message')
+	list_display = ('id','action','message')
 
 class LocationAdmin(admin.ModelAdmin):
 	list_display = ('name',)
 
 class InventoryAdmin(admin.ModelAdmin):
-	list_display = ('owner', 'item', 'quantity')
+	list_display = ('id','owner','item','quantity')
 
 class CombatantAdmin(admin.ModelAdmin):
-	list_display = ('hero', 'enemy')
+	list_display = ('id','hero', 'enemy')
 
 class HeroAdmin(admin.ModelAdmin):
-	list_display = ('name', 'family_name', 'user', 'gender', 'variety')
+	list_display = ('name','family_name','user','gender','variety')
 
 class EnemyAdmin(admin.ModelAdmin):
-	list_display = ('name', 'variety', 'count', 'gender')
+	list_display = ('name','variety','count','gender')
 
 class EffectAdmin(admin.ModelAdmin):
 	list_display = ('name',)
 
 class EffectInstanceAdmin(admin.ModelAdmin):
-	list_display = ('target', 'effect', 'duration', 'unit')
+	list_display = ('id','target','effect','duration','unit')
 
 class EncounterAdmin(admin.ModelAdmin):
 	list_display=('name','description','combatible','enemy')
-	
+
 class EncounterInfoAdmin(admin.ModelAdmin):
-	list_display=('encounter','location')
-	
+	list_display=('id','encounter','location')
+
 class CombatAdmin(admin.ModelAdmin):
-	list_display=('challenger','opposition')
-	
+	list_display=('id','challenger','opposition')
+
 admin.site.register(Enemy, EnemyAdmin)
 admin.site.register(Message, MessageAdmin)
 admin.site.register(Item)

@@ -20,7 +20,9 @@ class Combatant(models.Model):
 
 	def _get_hero(self):
 		from hero import Hero
-		return Hero.objects.filter(combatant=self)[0]
+		if Hero.objects.filter(combatant=self):
+			return Hero.objects.filter(combatant=self)[0]
+		return None
 	hero = property(_get_hero)
 
 	def __unicode__(self):
