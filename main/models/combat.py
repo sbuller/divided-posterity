@@ -3,6 +3,7 @@ from django.db import models
 
 import random
 from JSONField import JSONField
+from PickledObjectField import PickledObjectField
 
 from item import Item, InventoryItem
 from message import Message
@@ -15,7 +16,7 @@ class Combat(models.Model):
 	turn = models.IntegerField(default=0)
 	done = models.BooleanField(default=False)
 	location = models.ForeignKey('Location')
-	winitems = JSONField()
+	winitems = PickledObjectField()
 
 	messages = JSONField()
 

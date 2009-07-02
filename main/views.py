@@ -43,10 +43,10 @@ def combat(request):
 		combat.win()
 	elif 'lose' in request.POST:
 		combat.lose()
-		
+
 
 	combat.save()
-	
+
 	if combat.done:
 		return HttpResponseRedirect('/aftercombat')
 
@@ -81,10 +81,10 @@ def locationMap(request):
 def travel(request, location_id):
 	hero = Hero.objects.filter(user=request.user)[0]
 	new_location = Location.objects.get(slug=location_id)
-	
+
 	if (not new_location in hero.location.neighbors.all() and new_location != hero.location):
 		return HttpResponse("What are you doing!?")
 	hero.location = new_location
 	hero.save()
-	
+
 	return startcombat(request)
