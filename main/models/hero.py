@@ -3,8 +3,6 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import pre_save
 
-import random
-
 class Hero(models.Model):
 	class Meta:
 		app_label = 'main'
@@ -29,8 +27,7 @@ class Hero(models.Model):
 
 	def new_pvm_combat(self, enemy):
 		from combat import Combat
-		from location import Location
-		c = Combat(location=random.choice(Location.objects.all()), challenger=self.combatant, opposition=enemy.new_combatant())
+		c = Combat(location=self.location, challenger=self.combatant, opposition=enemy.new_combatant())
 		c.save()
 		oldcombat = self.combat
 		self.combat = c
