@@ -32,8 +32,11 @@ class Hero(models.Model):
 		from location import Location
 		c = Combat(location=random.choice(Location.objects.all()), challenger=self.combatant, opposition=enemy.new_combatant())
 		c.save()
+		oldcombat = self.combat
 		self.combat = c
 		self.save()
+		if oldcombat:
+			oldcombat.delete()
 		return c
 
 	def _new_combatant(self):
