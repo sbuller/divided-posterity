@@ -84,14 +84,20 @@ class Hero(models.Model):
 	base_lore = models.IntegerField()
 	base_magery = models.IntegerField()
 	base_stamina = models.IntegerField()
+	
+	combat = models.ForeignKey('Combat', blank=True, null=True)
 	location = models.ForeignKey('Location', default='tree_village')
+	combatant = models.ForeignKey('Combatant', db_index=True, blank=True, null=True)
 
 	inventory = models.ManyToManyField(Item, through='InventoryItem')
 
-	combatant = models.ForeignKey('Combatant', db_index=True, blank=True, null=True)
+	
 
 	def new_pvm_combat(self, enemy):
 		c = Combat(location=random.choice(Location.objects.all()), challenger=self.combatant, opposition=enemy.new_combatant())
+		c.save()
+		self.combat = c
+		self.save()
 		return c
 
 	def _new_combatant(self):
@@ -101,7 +107,9 @@ class Hero(models.Model):
 				lore=self.base_lore, magery=self.base_magery,
 				stamina=self.base_stamina)
 			c.save()
-			self.combatant = c;
+			self.combatant = c
+			self.save()
+			return c
 
 	def __unicode__(self):
 		return self.name + " " + self.family_name
@@ -188,15 +196,15 @@ class Location(models.Model):
 	def __unicode__(self):
 		return self.name
 
-class Combat:
-	def __init__(self, location, challenger, opposition):
-		self.challenger = challenger
-		self.opposition = opposition
-		self.turn = 0
-		self.done = False
-		self.location = location
-		self.next_round()
-
+class Combat(models.Model):
+	challenger = models.ForeignKey('Combatant', related_name="challenger_combatant", db_index=True)
+	opposition = models.ForeignKey('Combatant', related_name="opposition_combatant")
+	turn = models.IntegerField(default=0)
+	done = models.BooleanField(default=False)
+	location = models.ForeignKey('Location')
+	
+	messages = JSONField()
+	
 	def win(self):
 		winitems = {}
 		winitems[random.choice(Item.objects.all())] = 1
@@ -211,6 +219,7 @@ class Combat:
 		self.done = True
 		self.winitems = winitems
 		self.result = 'won'
+		self.save()
 
 	def won(self):
 		return self.result == 'won'
@@ -218,15 +227,18 @@ class Combat:
 	def lose(self):
 		self.done = True
 		self.result = 'lost'
+		self.save()
 
 	def next_round(self):
 		self.turn += 1
 		who_message = random.choice(Message.objects.filter(action='who'))
 		self.messages = [who_message.transmogrify({'en':self.opposition.enemy, 'loc':self.location})]
+		self.save()
 
 	def addmessage(self, action):
 		message = random.choice(Message.objects.filter(action=action))
 		self.messages.append(message.transmogrify({'en':self.opposition.enemy, 'loc':self.location}))
+		self.save()
 
 	def challenger_hit(self): self.addmessage('you hit')
 	def challenger_miss(self): self.addmessage('you miss')

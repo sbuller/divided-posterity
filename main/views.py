@@ -18,17 +18,14 @@ def index(request):
 
 @login_required
 def startcombat(request):
-	if not 'location' in request.session:
-		request.session['location'] = random.choice(Location.objects.all())
-
-	combat = Hero.objects.get(user=request.user).new_pvm_combat(random.choice(Enemy.objects.all()))
-	request.session['combat'] = combat
-
+	hero = Hero.objects.get(user=request.user)
+	combat = hero.new_pvm_combat(random.choice(Enemy.objects.all()))
 	return render_to_response('gen1/combat.djt',{'combat':combat}, RequestContext(request))
 
 @login_required
 def combat(request):
-	combat = request.session['combat']
+	hero = Hero.objects.filter(user=request.user)[0]
+	combat = hero.combat
 	combat.next_round()
 
 	if 'youhit' in request.POST:
@@ -46,8 +43,10 @@ def combat(request):
 		combat.win()
 	elif 'lose' in request.POST:
 		combat.lose()
+		
 
-	request.session['combat'] = combat
+	combat.save()
+	
 	if combat.done:
 		return HttpResponseRedirect('/aftercombat')
 
@@ -55,7 +54,9 @@ def combat(request):
 
 @login_required
 def aftercombat(request):
-	return render_to_response('main/aftercombat.djt', {'combat': request.session['combat']}, RequestContext(request))
+	hero = Hero.objects.filter(user=request.user)[0]
+	combat = hero.combat
+	return render_to_response('main/aftercombat.djt', {'combat': combat}, RequestContext(request))
 
 @login_required
 def inventory(request):
