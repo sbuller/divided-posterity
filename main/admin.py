@@ -28,10 +28,10 @@ class EffectInstanceAdmin(admin.ModelAdmin):
 	list_display = ('id','target','effect','duration','unit')
 
 class EncounterAdmin(admin.ModelAdmin):
-	list_display=('name','description','combatible','enemy')
+	list_display=('name','description')
 
 class EncounterInfoAdmin(admin.ModelAdmin):
-	list_display=('id','encounter','location')
+	list_display=('id','location','is_combat','enemy','encounter','encounter_rate')
 
 class CombatAdmin(admin.ModelAdmin):
 	list_display=('id','challenger','opposition')

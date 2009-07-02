@@ -4,17 +4,7 @@
 		"pk": 1,
 		"fields": {
 			"name": "The out-of-reach branch",
-			"description": "The branch hangs looms over you",
-			"combatible": 0
-		}
-	},
-	{
-		"model": "main.Encounter",
-		"pk": 2,
-		"fields": {
-			"description": "Battle",
-			"combatible": 1,
-			"enemy": 1
+			"description": "The branch looms over you"
 		}
 	}
 ]
