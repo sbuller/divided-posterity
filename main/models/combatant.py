@@ -17,6 +17,7 @@ class Combatant(models.Model):
 
 	effects = models.ManyToManyField('Effect', through='EffectInstance')
 	skills = models.ManyToManyField(Skill)
+	combat = models.ForeignKey('Combat', blank=True, null=True)
 
 	def _get_hero(self):
 		from hero import Hero
@@ -24,6 +25,17 @@ class Combatant(models.Model):
 			return Hero.objects.filter(combatant=self)[0]
 		return None
 	hero = property(_get_hero)
+
+	def new_pvm_combat(self, enemy, location):
+		from combat import Combat
+		c = Combat(location=location, challenger=self, opposition=enemy.new_combatant())
+		c.save()
+		oldcombat = self.combat
+		self.combat = c
+		self.save()
+		if oldcombat:
+			oldcombat.delete()
+		return c
 
 	def __unicode__(self):
 		return (self.hero or self.enemy).__unicode__()

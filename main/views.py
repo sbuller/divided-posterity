@@ -27,7 +27,7 @@ def startcombat(request, enemy=None):
 @login_required
 def combat(request):
 	hero = Hero.objects.filter(user=request.user)[0]
-	combat = hero.combat
+	combat = hero.combatant.combat
 	combat.next_round()
 
 	if 'youhit' in request.POST:
@@ -57,13 +57,13 @@ def combat(request):
 @login_required
 def aftercombat(request):
 	hero = Hero.objects.filter(user=request.user)[0]
-	combat = hero.combat
-	if combat.challenger.enemy:
+	combat = hero.combatant.combat
+	if combat.challenger and combat.challenger.enemy:
 		challenger = combat.challenger
 		combat.challenger = None
 		combat.save()
 		challenger.delete()
-	if combat.opposition.enemy:
+	if combat.opposition and combat.opposition.enemy:
 		opposition = combat.opposition
 		combat.opposition = None
 		combat.save()
@@ -84,28 +84,28 @@ def locationMap(request):
 @login_required
 def travel(request, location_id):
 	hero = Hero.objects.filter(user=request.user)[0]
-	new_location = Location.objects.get(slug=location_id)
+	destination = Location.objects.get(slug=location_id)
 
-	if (not new_location in hero.location.neighbors.all() and new_location != hero.location):
+	if (not destination in hero.location.neighbors.all() and destination != hero.location):
 		return HttpResponse("What are you doing!?")
-	hero.location = new_location
+	hero.destination = destination
 	hero.save()
-	
-	encounter_infos = EncounterInfo.objects.filter(location=hero.location)
-	
+
+	encounter_infos = EncounterInfo.objects.filter(location=hero.destination)
+
 	total=0
 	for it in encounter_infos:
 		total = total + it.encounter_rate
 	num = random.randint(1,total)
-	
+
 	for it in encounter_infos:
 		if num >= 0:
 			num = num - it.encounter_rate
 			encounter_info = it
-	
+
 	if not encounter_info:
 		return HttpResponse("Error. No random encounter generated.")
-	
+
 	if encounter_info.is_combat:
 		return startcombat(request,encounter_info.enemy)
 	else:

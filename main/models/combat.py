@@ -11,8 +11,8 @@ from message import Message
 class Combat(models.Model):
 	class Meta:
 		app_label = 'main'
-	challenger = models.ForeignKey('Combatant', related_name="challenger_combatant", blank=True, null=True, db_index=True)
-	opposition = models.ForeignKey('Combatant', related_name="opposition_combatant", blank=True, null=True)
+	challenger = models.ForeignKey('Combatant', related_name="challenger_combat", blank=True, null=True, db_index=True)
+	opposition = models.ForeignKey('Combatant', related_name="opposition_combat", blank=True, null=True)
 	turn = models.IntegerField(default=0)
 	done = models.BooleanField(default=False)
 	location = models.ForeignKey('Location')
@@ -34,6 +34,11 @@ class Combat(models.Model):
 		self.done = True
 		self.winitems = winitems
 		self.result = 'won'
+		hero = self.challenger.hero
+		if (hero.destination):
+			hero.location = hero.destination
+			#hero.destination = None
+			hero.save()
 		self.save()
 
 	def won(self):
@@ -42,6 +47,7 @@ class Combat(models.Model):
 	def lose(self):
 		self.done = True
 		self.result = 'lost'
+		#self.challenger.hero.update(destination=None)
 		self.save()
 
 	def next_round(self):

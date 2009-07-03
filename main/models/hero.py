@@ -19,22 +19,14 @@ class Hero(models.Model):
 	base_magery = models.IntegerField()
 	base_stamina = models.IntegerField()
 
-	combat = models.ForeignKey('Combat', blank=True, null=True)
-	location = models.ForeignKey('Location', default='tree_village')
+	destination = models.ForeignKey('Location', null=True, blank=True, related_name='incoming_heroes')
+	location = models.ForeignKey('Location', default='tree_village', related_name='populace')
 	combatant = models.ForeignKey('Combatant', db_index=True, blank=True, null=True)
 
 	inventory = models.ManyToManyField('Item', through='InventoryItem')
 
 	def new_pvm_combat(self, enemy):
-		from combat import Combat
-		c = Combat(location=self.location, challenger=self.combatant, opposition=enemy.new_combatant())
-		c.save()
-		oldcombat = self.combat
-		self.combat = c
-		self.save()
-		if oldcombat:
-			oldcombat.delete()
-		return c
+		return self.combatant.new_pvm_combat(enemy, self.destination)
 
 	def _new_combatant(self):
 		if (not self.combatant):
