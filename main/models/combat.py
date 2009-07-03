@@ -11,8 +11,8 @@ from message import Message
 class Combat(models.Model):
 	class Meta:
 		app_label = 'main'
-	challenger = models.ForeignKey('Combatant', related_name="challenger_combat", blank=True, null=True, db_index=True)
-	opposition = models.ForeignKey('Combatant', related_name="opposition_combat", blank=True, null=True)
+	challenger = models.OneToOneField('Combatant', related_name="challenger_combat", blank=True, null=True, db_index=True)
+	opposition = models.OneToOneField('Combatant', related_name="opposition_combat", blank=True, null=True)
 	turn = models.IntegerField(default=0)
 	done = models.BooleanField(default=False)
 	location = models.ForeignKey('Location')

@@ -21,7 +21,7 @@ class Hero(models.Model):
 
 	destination = models.ForeignKey('Location', null=True, blank=True, related_name='incoming_heroes')
 	location = models.ForeignKey('Location', default='tree_village', related_name='populace')
-	combatant = models.ForeignKey('Combatant', db_index=True, blank=True, null=True)
+	combatant = models.OneToOneField('Combatant', db_index=True, blank=True, null=True)
 
 	inventory = models.ManyToManyField('Item', through='InventoryItem')
 

@@ -19,13 +19,6 @@ class Combatant(models.Model):
 	skills = models.ManyToManyField(Skill)
 	combat = models.ForeignKey('Combat', blank=True, null=True)
 
-	def _get_hero(self):
-		from hero import Hero
-		if Hero.objects.filter(combatant=self):
-			return Hero.objects.filter(combatant=self)[0]
-		return None
-	hero = property(_get_hero)
-
 	def new_pvm_combat(self, enemy, location):
 		from combat import Combat
 		c = Combat(location=location, challenger=self, opposition=enemy.new_combatant())
