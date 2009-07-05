@@ -13,7 +13,12 @@ class InventoryAdmin(admin.ModelAdmin):
 	list_display = ('id','owner','item','quantity')
 
 class CombatantAdmin(admin.ModelAdmin):
-	list_display = ('id','hero', 'enemy')
+	list_display = ('id','hero','enemy')
+	def hero(self, obj):
+		try:
+			return obj.hero
+		except:
+			return None
 
 class HeroAdmin(admin.ModelAdmin):
 	list_display = ('name','family_name','user','gender','variety')

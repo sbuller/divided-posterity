@@ -1,5 +1,17 @@
 [
 	{
+		"model": "main.Combatant",
+		"pk": 1,
+		"fields": {
+			"brawn": 2,
+			"charm": 6,
+			"finesse": 3,
+			"lore": 4,
+			"magery": 1,
+			"stamina": 3
+		}
+	},
+	{
 		"model": "main.Hero",
 		"pk": 1,
 		"fields": {

@@ -11,7 +11,7 @@ import random, json
 
 def index(request):
 	if request.user.is_authenticated():
-		hero = Hero.objects.get(user=request.user)
+		hero = Hero.objects.filter(user=request.user)[0]
 		return render_to_response('main/main.djt', {}, RequestContext(request))
 	else:
 		return render_to_response('main/index.djt')
@@ -27,7 +27,7 @@ def startcombat(request, enemy=None):
 @login_required
 def combat(request):
 	hero = Hero.objects.filter(user=request.user)[0]
-	combat = hero.combatant.combat
+	combat = hero.combat
 	combat.next_round()
 
 	if 'youhit' in request.POST:
@@ -57,7 +57,7 @@ def combat(request):
 @login_required
 def aftercombat(request):
 	hero = Hero.objects.filter(user=request.user)[0]
-	combat = hero.combatant.combat
+	combat = hero.combat
 	if combat.challenger and combat.challenger.enemy:
 		challenger = combat.challenger
 		combat.challenger = None

@@ -2,8 +2,9 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import pre_save
+from combatant import Combatant
 
-class Hero(models.Model):
+class Hero(Combatant):
 	class Meta:
 		app_label = 'main'
 	name = models.CharField(max_length=50)
@@ -21,12 +22,11 @@ class Hero(models.Model):
 
 	destination = models.ForeignKey('Location', null=True, blank=True, related_name='incoming_heroes')
 	location = models.ForeignKey('Location', default='tree_village', related_name='populace')
-	combatant = models.OneToOneField('Combatant', db_index=True, blank=True, null=True)
 
 	inventory = models.ManyToManyField('Item', through='InventoryItem')
 
 	def new_pvm_combat(self, enemy):
-		return self.combatant.new_pvm_combat(enemy, self.destination)
+		return super(Hero,self).new_pvm_combat(enemy, self.destination)
 
 	def _new_combatant(self):
 		if (not self.combatant):
@@ -42,6 +42,3 @@ class Hero(models.Model):
 
 	def __unicode__(self):
 		return self.name + " " + self.family_name
-def make_hero_combatant(sender, instance, **kwargs):
-	instance._new_combatant()
-pre_save.connect(make_hero_combatant, sender=Hero)
