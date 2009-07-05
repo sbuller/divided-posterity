@@ -33,6 +33,12 @@ class Combatant(models.Model):
 			oldcombat.delete()
 		return c
 
+	def loot(self):
+		try:
+			return self.hero.loot()
+		except:
+			return self.enemy.loot()
+
 	def __unicode__(self):
 		try:
 			return self.hero.__unicode__()

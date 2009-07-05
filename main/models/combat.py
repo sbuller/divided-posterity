@@ -26,16 +26,9 @@ class Combat(models.Model):
 		return Combatant.objects.filter(combat=self, enemy__isnull=True)[0].hero
 
 	def doitems(self):
-		winitems = {}
-		winitems[random.choice(Item.objects.all())] = 1
-		while random.choice([True,False]):
-			item = random.choice(Item.objects.all())
-			if not item in winitems:
-				winitems[item] = 1
-			else:
-				winitems[item] += 1
-		for key,value in winitems.iteritems():
-			InventoryItem.add_item(self.hero(),key,value)
+		winitems = self.enemies()[0].loot()
+		for key,value in winitems.items():
+			InventoryItem.add_item(self.hero(),value['item'],value['count'])
 		self.winitems = winitems
 		self.save()
 

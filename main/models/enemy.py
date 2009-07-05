@@ -50,5 +50,20 @@ class Enemy(models.Model):
 		c.save()
 		return c
 
+	def loot(self):
+		from item import Item,InventoryItem
+		import random
+		items = Item.objects.all()
+		winitems = {}
+		newitem = random.choice(items)
+		winitems[newitem.pk] = {'item':newitem, 'count':1}
+		while random.choice([True,False]):
+			newitem = random.choice(items)
+			if not newitem.pk in winitems:
+				winitems[newitem.pk] = {'item':newitem, 'count':1}
+			else:
+				winitems[newitem.pk]['count'] += 1
+		return winitems
+
 	def __unicode__(self):
 		return self.name

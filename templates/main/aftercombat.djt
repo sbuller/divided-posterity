@@ -9,8 +9,8 @@
 		<p>The enemy gives you:
 		{% if combat.winitems %}
 		<ul>
-		{% for item,count in combat.winitems.items %}
-		<li>{{item.name}} <b>x</b>{{count}}</li>
+		{% for key,value in combat.winitems.items %}
+		<li>{{value.item.name}} <b>x</b>{{value.count}}</li>
 		{% endfor %}
 		</ul>
 		{% else %}
