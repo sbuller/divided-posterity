@@ -28,17 +28,5 @@ class Hero(Combatant):
 	def new_pvm_combat(self, enemy):
 		return super(Hero,self).new_pvm_combat(enemy, self.destination)
 
-	def _new_combatant(self):
-		if (not self.combatant):
-			from combatant import Combatant
-			c = Combatant(enemy=None, brawn=self.base_brawn,
-				charm=self.base_charm, finesse=self.base_finesse,
-				lore=self.base_lore, magery=self.base_magery,
-				stamina=self.base_stamina)
-			c.save()
-			self.combatant = c
-			self.save()
-			return c
-
 	def __unicode__(self):
 		return self.name + " " + self.family_name

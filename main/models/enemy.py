@@ -42,11 +42,11 @@ class Enemy(models.Model):
 	base_magery = models.IntegerField()
 	base_stamina = models.IntegerField()
 
-	def new_combatant(self):
+	def new_combatant(self, combat):
 		c = Combatant(enemy=self, brawn=self.base_brawn,
 			charm=self.base_charm, finesse=self.base_finesse,
 			lore=self.base_lore, magery=self.base_magery,
-			stamina=self.base_stamina)
+			stamina=self.base_stamina, combat=combat)
 		c.save()
 		return c
 

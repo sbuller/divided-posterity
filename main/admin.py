@@ -39,7 +39,7 @@ class EncounterInfoAdmin(admin.ModelAdmin):
 	list_display=('id','location','is_combat','enemy','encounter','encounter_rate')
 
 class CombatAdmin(admin.ModelAdmin):
-	list_display=('id','challenger','opposition')
+	list_display=('id',)
 
 admin.site.register(Enemy, EnemyAdmin)
 admin.site.register(Message, MessageAdmin)

@@ -18,7 +18,7 @@
 		{% endif %}</p>
 		<ul>
 			<li><a href="/">Back to index</a></li>
-			<li><a href="/map">Back to {{combat.challenger.hero.location.name}}</a></li>
+			<li><a href="/map">Back to {{combat.hero.location.name}}</a></li>
 		</ul>
 	</body>
 </html>

@@ -7,12 +7,11 @@ from PickledObjectField import PickledObjectField
 
 from item import Item, InventoryItem
 from message import Message
+from combatant import Combatant
 
 class Combat(models.Model):
 	class Meta:
 		app_label = 'main'
-	challenger = models.OneToOneField('Combatant', related_name="challenger_combat", blank=True, null=True, db_index=True)
-	opposition = models.OneToOneField('Combatant', related_name="opposition_combat", blank=True, null=True)
 	turn = models.IntegerField(default=0)
 	done = models.BooleanField(default=False)
 	location = models.ForeignKey('Location')
@@ -20,7 +19,13 @@ class Combat(models.Model):
 
 	messages = JSONField()
 
-	def win(self):
+	def enemies(self):
+		return Combatant.objects.filter(combat=self,team__startswith="_enemy")
+
+	def hero(self):
+		return Combatant.objects.filter(combat=self, enemy__isnull=True)[0].hero
+
+	def doitems(self):
 		winitems = {}
 		winitems[random.choice(Item.objects.all())] = 1
 		while random.choice([True,False]):
@@ -30,11 +35,16 @@ class Combat(models.Model):
 			else:
 				winitems[item] += 1
 		for key,value in winitems.iteritems():
-			InventoryItem.add_item(self.challenger.hero,key,value)
-		self.done = True
+			InventoryItem.add_item(self.hero(),key,value)
 		self.winitems = winitems
-		self.result = 'won'
-		hero = self.challenger.hero
+		self.save()
+
+	def win(self):
+		self.done = True
+		self.doitems()
+		for enemy in self.enemies():
+			enemy.delete()
+		hero = self.hero()
 		if (hero.destination):
 			hero.location = hero.destination
 			#hero.destination = None
@@ -42,7 +52,7 @@ class Combat(models.Model):
 		self.save()
 
 	def won(self):
-		return self.result == 'won'
+		return len(self.enemies()) == 0
 
 	def lose(self):
 		self.done = True
@@ -53,12 +63,12 @@ class Combat(models.Model):
 	def next_round(self):
 		self.turn += 1
 		who_message = random.choice(Message.objects.filter(action='who'))
-		self.messages = [who_message.transmogrify({'en':self.opposition.enemy, 'loc':self.location})]
+		self.messages = [who_message.transmogrify({'en':self.enemies()[0].enemy, 'loc':self.location})]
 		self.save()
 
 	def addmessage(self, action):
 		message = random.choice(Message.objects.filter(action=action))
-		self.messages.append(message.transmogrify({'en':self.opposition.enemy, 'loc':self.location}))
+		self.messages.append(message.transmogrify({'en':self.enemies()[0].enemy, 'loc':self.location}))
 		self.save()
 
 	def challenger_hit(self): self.addmessage('you hit')

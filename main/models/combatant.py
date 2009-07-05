@@ -8,6 +8,8 @@ class Combatant(models.Model):
 		app_label = 'main'
 	enemy = models.ForeignKey('Enemy', null=True, blank=True, db_index=True)
 
+	team = models.CharField(max_length=50, default="_enemy")
+
 	brawn = models.IntegerField()
 	charm = models.IntegerField()
 	finesse = models.IntegerField()
@@ -21,14 +23,18 @@ class Combatant(models.Model):
 
 	def new_pvm_combat(self, enemy, location):
 		from combat import Combat
-		c = Combat(location=location, challenger=self, opposition=enemy.new_combatant())
+		c = Combat(location=location)
 		c.save()
 		oldcombat = self.combat
 		self.combat = c
+		enemy.new_combatant(combat=c)
 		self.save()
 		if oldcombat:
 			oldcombat.delete()
 		return c
 
 	def __unicode__(self):
-		return (self.hero or self.enemy).__unicode__()
+		try:
+			return self.hero.__unicode__()
+		except:
+			return self.enemy.__unicode__()
