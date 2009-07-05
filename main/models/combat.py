@@ -47,7 +47,6 @@ class Combat(models.Model):
 		hero = self.hero()
 		if (hero.destination):
 			hero.location = hero.destination
-			#hero.destination = None
 			hero.save()
 		self.save()
 
@@ -57,7 +56,6 @@ class Combat(models.Model):
 	def lose(self):
 		self.done = True
 		self.result = 'lost'
-		#self.challenger.hero.update(destination=None)
 		self.save()
 
 	def next_round(self):
