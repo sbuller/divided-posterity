@@ -35,9 +35,13 @@ class Combatant(models.Model):
 
 	def loot(self):
 		try:
-			return self.hero.loot()
+			self.hero.loot(self.combat)
 		except:
-			return self.enemy.loot()
+			self.enemy.loot(self.combat, self)
+
+	def spoils(self):
+		from item import ItemDrop
+		return ItemDrop.objects.filter(combat=self.combat)
 
 	def __unicode__(self):
 		try:

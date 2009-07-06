@@ -5,12 +5,12 @@
 	</head>
 	<body>
 		<h1>Combat Over!</h1>
-		<h2>You {{combat.result}}</h2>
+		<h2>You {{hero.combat.won|pluralize:"Won,Lost"}}</h2>
 		<p>The enemy gives you:
-		{% if combat.winitems %}
+		{% if hero.spoils %}
 		<ul>
-		{% for key,value in combat.winitems.items %}
-		<li>{{value.item.name}} <b>x</b>{{value.count}}</li>
+		{% for itemdrop in hero.spoils %}
+		<li>{{itemdrop.item.name}} <b>x</b>{{itemdrop.quantity}}</li>
 		{% endfor %}
 		</ul>
 		{% else %}
@@ -18,7 +18,7 @@
 		{% endif %}</p>
 		<ul>
 			<li><a href="/">Back to index</a></li>
-			<li><a href="/map">Back to {{combat.hero.location.name}}</a></li>
+			<li><a href="/map">Back to {{hero.location.name}}</a></li>
 		</ul>
 	</body>
 </html>

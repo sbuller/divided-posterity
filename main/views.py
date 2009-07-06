@@ -57,8 +57,7 @@ def combat(request):
 @login_required
 def aftercombat(request):
 	hero = Hero.objects.filter(user=request.user)[0]
-	combat = hero.combat
-	return render_to_response('main/aftercombat.djt', {'combat': combat}, RequestContext(request))
+	return render_to_response('main/aftercombat.djt', {'hero': hero}, RequestContext(request))
 
 @login_required
 def inventory(request):
