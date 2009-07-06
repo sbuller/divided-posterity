@@ -9,6 +9,7 @@
 			"lore": 4,
 			"magery": 1,
 			"stamina": 3,
+			"gender" : "m",
 			"team": "lewis"
 		}
 	},
@@ -19,7 +20,6 @@
 			"name" : "Marley",
 			"variety" : "Book Crook",
 			"family_name" : "Lewis",
-			"gender" : "m",
 			"user" : 1,
 
 			"base_brawn" : 2,

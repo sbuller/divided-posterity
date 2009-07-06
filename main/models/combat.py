@@ -57,12 +57,17 @@ class Combat(models.Model):
 		self.messages = [who_message.transmogrify({'en':self.enemies()[0].enemy, 'loc':self.location})]
 		self.save()
 
-	def addmessage(self, action):
+	def addmessage(self, action, actor, target):
 		message = random.choice(Message.objects.filter(action=action))
-		self.messages.append(message.transmogrify({'en':self.enemies()[0].enemy, 'loc':self.location}))
+		self.messages.append(message.transmogrify({'actor':actor,'target':target, 'loc':self.location}))
 		self.save()
 
-	def challenger_hit(self): self.addmessage('you hit')
-	def challenger_miss(self): self.addmessage('you miss')
-	def opposition_hit(self): self.addmessage('enemy hits')
-	def opposition_miss(self): self.addmessage('enemy misses')
+	def challenger_hit(self):
+		self.addmessage('attack hits',actor=self.hero(), target=self.enemies()[0])
+	def challenger_miss(self):
+		self.addmessage('attack misses',actor=self.hero(), target=self.enemies()[0])
+	def opposition_hit(self):
+		self.addmessage('attack hits',actor=self.enemies()[0], target=self.hero())
+	def opposition_miss(self):
+		self.addmessage('attack misses',actor=self.enemies()[0], target=self.hero())
+		

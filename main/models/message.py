@@ -16,6 +16,6 @@ class Message(models.Model):
 	message = models.TextField()
 
 	def transmogrify(self, a):
-		t = Template(self.message)
+		t = Template("{% load dp_extras %}" + self.message)
 		c = Context(a)
 		return t.render(c)

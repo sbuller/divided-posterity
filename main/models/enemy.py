@@ -46,7 +46,8 @@ class Enemy(models.Model):
 		c = Combatant(enemy=self, brawn=self.base_brawn,
 			charm=self.base_charm, finesse=self.base_finesse,
 			lore=self.base_lore, magery=self.base_magery,
-			stamina=self.base_stamina, combat=combat)
+			stamina=self.base_stamina, combat=combat, 
+			gender=self.gender, count=self.count)
 		c.save()
 		return c
 

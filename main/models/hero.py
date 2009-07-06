@@ -10,7 +10,6 @@ class Hero(Combatant):
 	name = models.CharField(max_length=50)
 	variety = models.CharField(max_length=50)
 	family_name = models.CharField(max_length=50)
-	gender = models.CharField(max_length=1, choices=(('m','Male'),('f','Female')))
 	user = models.ForeignKey(User, db_index=True)
 
 	base_brawn = models.IntegerField()

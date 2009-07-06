@@ -10,6 +10,9 @@ class Combatant(models.Model):
 
 	team = models.CharField(max_length=50, default="_enemy")
 
+	gender = models.CharField(max_length=1, choices=(('m','Male'),('f','Female'),('n','Neutral'),('r','Randomly male or female')))
+	count = models.IntegerField(default=1)
+	
 	brawn = models.IntegerField()
 	charm = models.IntegerField()
 	finesse = models.IntegerField()
@@ -21,6 +24,8 @@ class Combatant(models.Model):
 	skills = models.ManyToManyField(Skill)
 	combat = models.ForeignKey('Combat', blank=True, null=True)
 
+	player_pov = False
+	
 	def new_pvm_combat(self, enemy, location):
 		from combat import Combat
 		c = Combat(location=location)

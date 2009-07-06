@@ -3,64 +3,64 @@
 		"model": "main.Message",
 		"pk": 1,
 		"fields": {
-			"action": "enemy hits",
-			"message": "{{en.ey|capfirst}} hit{{en.count|pluralize:\"s,\"}} you from atop a {{loc.platform|random}}."
+			"action": "attack hits",
+			"message": "{{actor|pronoun:\"ey\"|capfirst}} hit{{actor|conj:\"s,,\"}} {{target|pronoun:\"em\"}} from atop a {{loc.platform|random}}."
 		}
 	},
 	{
 		"model": "main.Message",
 		"pk": 2,
 		"fields": {
-			"action": "enemy hits",
-			"message": "You are wounded by {{en.eir}} vicious strike{{en.count|pluralize}}."
+			"action": "attack hits",
+			"message": "{{target|pronoun:\"ey\"|capfirst}} {{target|conj:\"is,are,are\"}} wounded by {{actor|pronoun:\"eir\"}} vicious strike{{actor.count|pluralize}}."
 		}
 	},
 	{
 		"model": "main.Message",
 		"pk": 3,
 		"fields": {
-			"action": "enemy misses",
-			"message": "{{en.ey|capfirst}} tr{{en.count|pluralize:\"ies,y\"}} to hit you, but miss{{en.count|pluralize:\"es,\"}}. {{en.ey|capfirst}} go{{en.count|pluralize:\"es,\"}} into the corner to cry."
+			"action": "attack misses",
+			"message": "{{actor|pronoun:\"ey\"|capfirst}} tr{{actor|conj:\"ies,y,y\"}} to hit {{target|pronoun:\"em\"}}, but miss{{actor|conj:\"es,,\"}}. {{actor|pronoun:\"ey\"|capfirst}} go{{actor|conj:\"es,,\"}} into the corner to cry."
 		}
 	},
 	{
 		"model": "main.Message",
 		"pk": 4,
 		"fields": {
-			"action": "enemy misses",
-			"message": "You deftly dodge {{en.eir}} attack{{en.count|pluralize}}."
+			"action": "attack misses",
+			"message": "{{target|pronoun:\"ey\"|capfirst}} deftly dodge{{actor|conj:\"s,,\"}} {{actor|pronoun:\"eir\"}} attack{{actor.count|pluralize}}."
 		}
 	},
 	{
 		"model": "main.Message",
 		"pk": 5,
 		"fields": {
-			"action": "you hit",
-			"message": "You swing your weapon. It connects!"
+			"action": "attack hits",
+			"message": "{{actor|pronoun:\"ey\"|capfirst}} swing{{actor|conj:\"s,,\"}} {{actor|pronoun:\"eir\"}} weapon{{actor.count|pluralize}}. {{actor.count|pluralize:\"It connects,They connect\"}}!"
 		}
 	},
 	{
 		"model": "main.Message",
 		"pk": 6,
 		"fields": {
-			"action": "you hit",
-			"message": "You shoot {{en.em}} for some damage."
+			"action": "attack hits",
+			"message": "{{actor|pronoun\"ey\"}} shoot{{actor|conj:\"s,,\"}} {{target|pronoun:\"em\"}} for some damage."
 		}
 	},
 	{
 		"model": "main.Message",
 		"pk": 7,
 		"fields": {
-			"action": "you miss",
-			"message": "Your swing goes wide."
+			"action": "attack misses",
+			"message": "{{actor|pronoun:\"eir\"|capfirst}} swing{{actor.count|pluralize:\" goes,s go\"}} wide."
 		}
 	},
 	{
 		"model": "main.Message",
 		"pk": 8,
 		"fields": {
-			"action": "you miss",
-			"message": "You miss {{en.em}} by a mile."
+			"action": "attack misses",
+			"message": "{{actor|pronoun:\"ey\"}} miss{{actor|conj:\"es,,\"}} {{target|pronoun:\"em\"}} by a mile."
 		}
 	},
 	{
@@ -76,7 +76,7 @@
 		"pk": 10,
 		"fields": {
 			"action": "who",
-			"message": "{{en.name}} {{en.count|pluralize:\"is,are\"}} standing here, looking menacing."
+			"message": "{{en.name|capfirst}} {{en.count|pluralize:\"is,are\"}} standing here, looking menacing."
 		}
 	},
 	{
