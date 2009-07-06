@@ -9,6 +9,14 @@ from models import Message, Enemy, Item, Location, Combat, InventoryItem, Hero, 
 
 import random, json
 
+def not_during_combat(fn):
+	def wrap(*args, **kwargs):
+		hero = Hero.objects.filter(user=args[0].user)[0]
+		if (hero.combat and not hero.combat.done):
+			return HttpResponseRedirect('/combat')
+		return fn(*args,**kwargs)
+	return wrap
+
 def index(request):
 	if request.user.is_authenticated():
 		hero = Hero.objects.filter(user=request.user)[0]
@@ -55,6 +63,7 @@ def combat(request):
 	return render_to_response('gen1/combat.djt', {'combat': combat}, RequestContext(request))
 
 @login_required
+@not_during_combat
 def aftercombat(request):
 	hero = Hero.objects.filter(user=request.user)[0]
 	return render_to_response('main/aftercombat.djt', {'hero': hero}, RequestContext(request))
@@ -66,11 +75,13 @@ def inventory(request):
 	return render_to_response('gen1/inventory.djt', {'items':inventory}, RequestContext(request))
 
 @login_required
+@not_during_combat
 def locationMap(request):
 	hero = Hero.objects.filter(user=request.user)[0]
 	return render_to_response("main/maps/"+hero.location.slug+".djt", {'location':hero.location,'places':hero.location.neighbors.all()}, RequestContext(request))
 
 @login_required
+@not_during_combat
 def travel(request, location_id):
 	hero = Hero.objects.filter(user=request.user)[0]
 	destination = Location.objects.get(slug=location_id)
