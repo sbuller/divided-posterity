@@ -22,7 +22,9 @@ class Combatant(models.Model):
 
 	effects = models.ManyToManyField('Effect', through='EffectInstance')
 	skills = models.ManyToManyField(Skill)
-	combat = models.ForeignKey('Combat', blank=True, null=True)
+	combat = models.ForeignKey('Combat', blank=True, null=True, db_index=True)
+
+	alive = models.BooleanField(default=True)
 
 	player_pov = False
 	
@@ -40,9 +42,13 @@ class Combatant(models.Model):
 
 	def loot(self):
 		try:
-			return self.hero.loot()
+			self.hero.loot(self.combat)
 		except:
-			return self.enemy.loot()
+			self.enemy.loot(self.combat, self)
+
+	def spoils(self):
+		from item import ItemDrop
+		return ItemDrop.objects.filter(combat=self.combat)
 
 	def __unicode__(self):
 		try:

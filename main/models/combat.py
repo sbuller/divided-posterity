@@ -15,7 +15,6 @@ class Combat(models.Model):
 	turn = models.IntegerField(default=0)
 	done = models.BooleanField(default=False)
 	location = models.ForeignKey('Location')
-	winitems = PickledObjectField()
 
 	messages = JSONField()
 
@@ -26,17 +25,18 @@ class Combat(models.Model):
 		return Combatant.objects.filter(combat=self, enemy__isnull=True)[0].hero
 
 	def doitems(self):
-		winitems = self.enemies()[0].loot()
-		for key,value in winitems.items():
-			InventoryItem.add_item(self.hero(),value['item'],value['count'])
-		self.winitems = winitems
-		self.save()
+		from item import ItemDrop
+		winitems = ItemDrop.objects.filter(combat=self)
+		for itemdrop in winitems:
+			InventoryItem.add_item(self.hero(),itemdrop.item,itemdrop.quantity)
 
 	def win(self):
 		self.done = True
-		self.doitems()
 		for enemy in self.enemies():
-			enemy.delete()
+			enemy.alive=False
+			enemy.save()
+			enemy.loot()
+		self.doitems()
 		hero = self.hero()
 		if (hero.destination):
 			hero.location = hero.destination
@@ -44,7 +44,8 @@ class Combat(models.Model):
 		self.save()
 
 	def won(self):
-		return len(self.enemies()) == 0
+		surviving_enemies = Combatant.objects.filter(combat=self, alive=True, team__startswith="_enemy")
+		return len(surviving_enemies) == 0
 
 	def lose(self):
 		self.done = True
