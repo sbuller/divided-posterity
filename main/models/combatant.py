@@ -19,7 +19,9 @@ class Combatant(models.Model):
 
 	effects = models.ManyToManyField('Effect', through='EffectInstance')
 	skills = models.ManyToManyField(Skill)
-	combat = models.ForeignKey('Combat', blank=True, null=True)
+	combat = models.ForeignKey('Combat', blank=True, null=True, db_index=True)
+
+	alive = models.BooleanField(default=True)
 
 	def new_pvm_combat(self, enemy, location):
 		from combat import Combat

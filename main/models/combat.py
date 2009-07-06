@@ -33,6 +33,8 @@ class Combat(models.Model):
 	def win(self):
 		self.done = True
 		for enemy in self.enemies():
+			enemy.alive=False
+			enemy.save()
 			enemy.loot()
 		self.doitems()
 		hero = self.hero()
@@ -42,7 +44,8 @@ class Combat(models.Model):
 		self.save()
 
 	def won(self):
-		return len(self.enemies()) == 0
+		surviving_enemies = Combatant.objects.filter(combat=self, alive=True, team__startswith="_enemy")
+		return len(surviving_enemies) == 0
 
 	def lose(self):
 		self.done = True
