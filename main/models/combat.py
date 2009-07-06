@@ -21,15 +21,15 @@ class Combat(models.Model):
 	def enemies(self):
 		return Combatant.objects.filter(combat=self,team__startswith="_enemy")
 
-	def hero(self):
+	def heros(self):
 		from hero import Hero
-		return Hero.objects.filter(combat=self)[0]
+		return Hero.objects.filter(combat=self)
 
 	def doitems(self):
 		from item import ItemDrop
 		winitems = ItemDrop.objects.filter(combat=self)
 		for itemdrop in winitems:
-			InventoryItem.add_item(self.hero(),itemdrop.item,itemdrop.quantity)
+			InventoryItem.add_item(self.heros()[0],itemdrop.item,itemdrop.quantity)
 
 	def win(self):
 		self.done = True
@@ -38,7 +38,7 @@ class Combat(models.Model):
 			enemy.save()
 			enemy.loot()
 		self.doitems()
-		hero = self.hero()
+		hero = self.heros()[0]
 		if (hero.destination):
 			hero.location = hero.destination
 			hero.save()
@@ -65,10 +65,10 @@ class Combat(models.Model):
 		self.save()
 
 	def challenger_hit(self):
-		self.addmessage('attack hits',actor=self.hero(), target=self.enemies()[0])
+		self.addmessage('attack hits',actor=self.heros()[0], target=self.enemies()[0])
 	def challenger_miss(self):
-		self.addmessage('attack misses',actor=self.hero(), target=self.enemies()[0])
+		self.addmessage('attack misses',actor=self.heros()[0], target=self.enemies()[0])
 	def opposition_hit(self):
-		self.addmessage('attack hits',actor=self.enemies()[0], target=self.hero())
+		self.addmessage('attack hits',actor=self.enemies()[0], target=self.heros()[0])
 	def opposition_miss(self):
-		self.addmessage('attack misses',actor=self.enemies()[0], target=self.hero())
+		self.addmessage('attack misses',actor=self.enemies()[0], target=self.heros()[0])
