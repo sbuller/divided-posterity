@@ -8,7 +8,6 @@ admin.autodiscover()
 urlpatterns = patterns('dp.main.views',
 	(r'^$', 'index'),
 	(r'^combat$', 'combat'),
-	(r'^startcombat$', 'startcombat'),
 	(r'^aftercombat$', 'aftercombat'),
 	(r'^inventory$', 'inventory'),
 	(r'^map$', 'locationMap'),

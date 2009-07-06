@@ -7,7 +7,6 @@
 		<ul>
 			{% if hero %}
 			You're playing as {{hero.name}} {{hero.family_name}}.
-			<li><a href="/startcombat">Combat</a></li>
 			<li><a href="/inventory">Inventory</a></li>
 			<li><a href="/map">Map</a></li>
 			{% else %}
