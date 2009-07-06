@@ -44,7 +44,7 @@
 		"pk": 6,
 		"fields": {
 			"action": "attack hits",
-			"message": "{{actor|pronoun\"ey\"}} shoot{{actor|conj:\"s,,\"}} {{target|pronoun:\"em\"}} for some damage."
+			"message": "{{actor|pronoun:\"ey\"|capfirst}} shoot{{actor|conj:\"s,,\"}} {{target|pronoun:\"em\"}} for some damage."
 		}
 	},
 	{
