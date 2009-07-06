@@ -22,7 +22,8 @@ class Combat(models.Model):
 		return Combatant.objects.filter(combat=self,team__startswith="_enemy")
 
 	def hero(self):
-		return Combatant.objects.filter(combat=self, enemy__isnull=True)[0].hero
+		from hero import Hero
+		return Hero.objects.filter(combat=self)[0]
 
 	def doitems(self):
 		from item import ItemDrop
@@ -71,4 +72,3 @@ class Combat(models.Model):
 		self.addmessage('attack hits',actor=self.enemies()[0], target=self.hero())
 	def opposition_miss(self):
 		self.addmessage('attack misses',actor=self.enemies()[0], target=self.hero())
-		
