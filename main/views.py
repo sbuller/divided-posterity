@@ -25,6 +25,7 @@ def index(request):
 		return render_to_response('main/index.djt')
 
 @login_required
+@not_during_combat
 def startcombat(request, enemy=None):
 	hero = Hero.objects.get(user=request.user)
 	if not enemy:
