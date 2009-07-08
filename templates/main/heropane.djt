@@ -20,23 +20,6 @@
 				</tbody></table></div>
 			</div>
 
-			<div id="buffs">
-				<h3 class="head1"><span class="toggle cancel"><img class="cancel" alt="[-]" src="/images/interface/downarrow.png" />Buffs<img class="cancel" alt="[-]" src="/images/interface/downarrow.png" /></span></h3>
-				<div class="body1"><table class="centered"><tbody>
-					<!--tr><td>Adrenaline Rush</td></tr>
-					<tr><td>Eyes of the Eagle</td></tr>
-					<tr><td>Sonnet of Suffrage</td></tr>
-					<tr><td>Shelter of Sand<em class="caster"> (<a href="#">TheMe</a>)</em></td></tr-->
-					{% for buff in buffs %}
-						{% ifequal buff.source buff.target %}
-					<tr><td>{{ buff.buffname }}</td></tr>
-						{% else %}
-					<tr><td>{{ buff.buffname }}<em class="caster"> (<a href="#">{{ buff.sourcename }}</a>)</em></td></tr>
-						{% endifequal %}
-					{% endfor %}
-				</tbody></table></div>
-			</div>
-
 			<div id="effects">
 				<h3 class="head1"><span class="toggle cancel"><img class="cancel" alt="[-]" src="/images/interface/downarrow.png" />Effects<img class="cancel" alt="[-]" src="/images/interface/downarrow.png" /></span></h3>
 				<div class="body1"><table class="centered"><tbody>
