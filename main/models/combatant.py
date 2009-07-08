@@ -12,7 +12,7 @@ class Combatant(models.Model):
 
 	gender = models.CharField(max_length=1, choices=(('m','Male'),('f','Female'),('n','Neutral'),('r','Randomly male or female')))
 	count = models.IntegerField(default=1)
-	
+
 	brawn = models.IntegerField()
 	charm = models.IntegerField()
 	finesse = models.IntegerField()
@@ -27,7 +27,7 @@ class Combatant(models.Model):
 	alive = models.BooleanField(default=True)
 
 	player_pov = False
-	
+
 	def base_stat(self, stat):
 		try:
 			return self.hero.__getattribute__("base_"+stat)
@@ -52,20 +52,10 @@ class Combatant(models.Model):
 		from effect import Modifier
 		from django.db.models import Q
 		import math
-		query = None
 		tot = {}
 		for var in variables:
-			if var in ['brawn','charm','finesse','lore','magery','stamina']:
 				tot[var] = 0
-				if query is None:
-					query = Q(variable=var)
-				else:
-					query |= Q(variable=var)
-		if query is None:
-			query = Q(combatant=self)
-		else:
-			query &= Q(combatant=self)
-		mods = Modifier.objects.filter(query)
+		mods = Modifier.objects.filter(Q(variable__in=variables)&Q(combatant=self))
 		for mod in mods:
 			tot[mod.variable] += self._modify(mod.value, self.__getattribute__("b"+mod.variable), mod.function)
 		for k in tot.keys():
