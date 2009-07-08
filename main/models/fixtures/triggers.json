@@ -3,8 +3,10 @@
 		"model": "main.Trigger",
 		"pk": 1,
 		"fields": {
+			"combatant": 1,
 			"trigger_name": "challenger_hit",
-			"action": "some kinda script ran"
+			"action": 1,
+			"value": "{\"x\":2}"
 		}
 	}
 ]
