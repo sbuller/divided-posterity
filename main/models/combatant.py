@@ -47,17 +47,40 @@ class Combatant(models.Model):
 			return value * base_stat
 		else:
 			return 0
-			
+
+	def update_vars(self, variables = ['brawn','charm','finesse','lore','magery','stamina']):
+		from effect import Modifier
+		from django.db.models import Q
+		import math
+		query = None
+		tot = {}
+		for var in variables:
+			if var in ['brawn','charm','finesse','lore','magery','stamina']:
+				tot[var] = 0
+				if query is None:
+					query = Q(variable=var)
+				else:
+					query |= Q(variable=var)
+		if query is None:
+			query = Q(combatant=self)
+		else:
+			query &= Q(combatant=self)
+		mods = Modifier.objects.filter(query)
+		for mod in mods:
+			tot[mod.variable] += self._modify(mod.value, self.__getattribute__("b"+mod.variable), mod.function)
+		for k in tot.keys():
+			self.__setattr__(k, self.__getattribute__("b"+k) + int(math.ceil(tot[k])))
+		self.save()
+
 	def update_var(self, variable):
 		from effect import Modifier
 		import math
 		if variable in ['brawn','charm','finesse','lore','magery','stamina']:
-			self.__setattr__(variable, self.__getattribute__("b"+variable))
 			mods = Modifier.objects.filter(combatant=self, variable=variable)
+			tot = 0
 			for mod in mods:
-				self.__setattr__(variable, self.__getattribute__(variable) +
-					self._modify(mod.value, self.__getattribute__("b"+variable), mod.function))
-			self.__setattr__(variable, int(math.ceil(self.__getattribute__(variable))))
+				tot += self._modify(mod.value, self.__getattribute__("b"+variable), mod.function)
+			self.__setattr__(variable, self.__getattribute__("b"+variable) + int(math.ceil(tot)))
 			self.save()
 
 	def new_pvm_combat(self, enemy, location):
