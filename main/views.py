@@ -39,6 +39,11 @@ def combat(request):
 	combat = hero.combat
 	combat.next_round()
 
+	if 'skill' in request.GET:
+		skill = hero.skills.filter(pk=request.GET['skill'])
+		if len(skill):
+			skill[0].invoke(actor=hero, x=5)
+
 	if 'youhit' in request.POST:
 		if request.POST['youhit'] == 'true':
 			combat.challenger_hit()

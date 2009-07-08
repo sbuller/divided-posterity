@@ -6,8 +6,11 @@ class Skill(models.Model):
 	class Meta:
 		app_label = 'main'
 	name = models.CharField(max_length=50)
-	action = models.ForeignKey(Action,null=True)
+	action = models.ForeignKey(Action)
 	image_url = models.URLField()
+
+	def invoke(self, **kwargs):
+		exec(self.action.code, kwargs)
 
 	def __unicode__(self):
 		return self.name

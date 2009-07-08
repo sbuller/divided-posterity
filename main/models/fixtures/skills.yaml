@@ -3,53 +3,64 @@
   fields:
     name: 'Attack'
     image_url: /static/images/skills/attack.png
+    action: 1
 - model: main.Skill
   pk: 2
   fields:
     name: 'Lunge'
     image_url: /static/images/skills/lunge.png
+    action: 1
 - model: main.Skill
   pk: 3
   fields:
     name: 'Poison Blade'
     image_url: /static/images/skills/poisonblade.png
+    action: 1
 - model: main.Skill
   pk: 4
   fields:
     name: 'Plunge'
     image_url: /static/images/skills/plunge.png
+    action: 1
 - model: main.Skill
   pk: 5
   fields:
     name: 'Defend'
     image_url: /static/images/skills/defend.png
+    action: 1
 - model: main.Skill
   pk: 6
   fields:
     name: 'Regenerate'
     image_url: /static/images/skills/regenerate.png
+    action: 1
 - model: main.Skill
   pk: 7
   fields:
     name: 'Flame Shield'
     image_url: /static/images/skills/flameshield.png
+    action: 1
 - model: main.Skill
   pk: 8
   fields:
     name: 'Energy Blast'
     image_url: /static/images/skills/energyblast.png
+    action: 1
 - model: main.Skill
   pk: 9
   fields:
     name: 'Barrier'
     image_url: /static/images/skills/barrier.png
+    action: 1
 - model: main.Skill
   pk: 10
   fields:
     name: 'Dash'
     image_url: /static/images/skills/dash.png
+    action: 1
 - model: main.Skill
   pk: 11
   fields:
     name: 'Surrender'
     image_url: /static/images/skills/surrender.png
+    action: 1
