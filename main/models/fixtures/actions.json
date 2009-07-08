@@ -1,0 +1,9 @@
+[
+	{
+		"model": "main.Action",
+		"pk": 1,
+		"fields": {
+			"code": "print x"
+		}
+	}
+]
