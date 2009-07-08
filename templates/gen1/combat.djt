@@ -2,54 +2,13 @@
 
 {% block viewpane %}
 		<div id="combat">
-			<table id="skillrepository" class="centered"><tbody><tr><td>
-				<div class="repository body1">
-						<img src="/images/skills/surrender.png" alt="[s]" title="Surrender"/>
-						<img src="/images/skills/poisonblade.png" alt="[P]" title="Poison Blade"/>
-						<img src="/images/skills/defend.png" alt="[d]" title="Defend"/>
-						<img src="/images/skills/energyblast.png" alt="[E]" title="Energy Blast"/>
-						<img src="/images/skills/dash.png" alt="[d]" title="Dash"/>
-						<img src="/images/skills/poisonblade.png" alt="[P]" title="Poison Blade"/>
-						<img src="/images/skills/flameshield.png" alt="[f]" title="Flame Shield"/>
-						<img src="/images/skills/barrier.png" alt="[b]" title="Barrier"/>
-						<img src="/images/skills/plunge.png" alt="[P]" title="Plunge"/>
-						<img src="/images/skills/energyblast.png" alt="[E]" title="Energy Blast"/>
-						<img src="/images/skills/regenerate.png" alt="[r]" title="Regenerate"/>
-						<img src="/images/skills/attack.png" alt="[A]" title="Attack"/>
-						<img src="/images/skills/lunge.png" alt="[L]" title="Lunge"/>
-						<img src="/images/skills/poisonblade.png" alt="[P]" title="Poison Blade"/>
-						<img src="/images/skills/plunge.png" alt="[P]" title="Plunge"/>
-						<img src="/images/skills/defend.png" alt="[d]" title="Defend"/>
-						<img src="/images/skills/regenerate.png" alt="[r]" title="Regenerate"/>
-						<img src="/images/skills/flameshield.png" alt="[f]" title="Flame Shield"/>
-						<img src="/images/skills/energyblast.png" alt="[E]" title="Energy Blast"/>
-						<img src="/images/skills/barrier.png" alt="[b]" title="Barrier"/>
-						<img src="/images/skills/dash.png" alt="[d]" title="Dash"/>
-						<img src="/images/skills/surrender.png" alt="[s]" title="Surrender"/>
-						<img src="/images/skills/regenerate.png" alt="[r]" title="Regenerate"/>
-						<img src="/images/skills/barrier.png" alt="[b]" title="Barrier"/>
-						<img src="/images/skills/plunge.png" alt="[P]" title="Plunge"/>
-						<img src="/images/skills/flameshield.png" alt="[f]" title="Flame Shield"/>
-						<img src="/images/skills/surrender.png" alt="[s]" title="Surrender" class="last"/>
-				<div class="first tab head1">Items</div>
-				<div class="selected tab head1">Skills</div>
-				<div class="last tab head1">Hide</div>
-			</td></tr></tbody></table>
 
 			<table id="skillbar" class="centered"><tbody><tr><td>
 				<div class="repository">
 					<img src="/images/interface/scrollleft.png" alt="(&lt;]" title="Previous Page" class="scroll"/>
-					<img src="/images/skills/attack.png" alt="[A]" title="Attack"/>
-					<img src="/images/skills/lunge.png" alt="[L]" title="Lunge"/>
-					<img src="/images/skills/poisonblade.png" alt="[P]" title="Poison Blade" class="unavailable"/>
-					<img src="/images/skills/plunge.png" alt="[P]" title="Plunge" class="unavailable"/>
-					<img src="/images/skills/defend.png" alt="[d]" title="Defend"/>
-					<img src="/images/skills/regenerate.png" alt="[r]" title="Regenerate"/>
-					<img src="/images/skills/flameshield.png" alt="[f]" title="Flame Shield"/>
-					<img src="/images/skills/energyblast.png" alt="[E]" title="Energy Blast" class="unavailable"/>
-					<img src="/images/skills/barrier.png" alt="[b]" title="Barrier"/>
-					<img src="/images/skills/dash.png" alt="[d]" title="Dash"/>
-					<img src="/images/skills/surrender.png" alt="[s]" title="Surrender"/>
+					{% for skill in hero.skills.all %}
+					<img src="{{skill.image_url}}" alt="[s]" title="{{skill.name}}"/>
+					{% endfor %}
 					<img src="/images/interface/scrollright.png" alt="[&gt;)" title="Next Page" class="scroll last"/>
 				</div>
 			</td></tr></tbody></table>
