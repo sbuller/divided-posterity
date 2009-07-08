@@ -18,7 +18,8 @@
 			"article": "a",
 			"multiplename": "writhing masses",
 			"image_url": "/static/images/items/writhing_mass.png",
-			"variety": "[\"combat_usable\"]"
+			"variety": "[\"combat_usable\"]",
+			"inventory_data": "{\"modifier\":[[\"brawn\",\"c\",3]]}"
 		}
 	},
 	{

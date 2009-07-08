@@ -24,3 +24,4 @@ class Modifier(models.Model):
 	value = models.FloatField()
 	function = models.CharField(max_length=50)
 	invitem = models.ForeignKey('InventoryItem', db_index=True)
+	combatant = models.ForeignKey('Combatant', db_index=True)

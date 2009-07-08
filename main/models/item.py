@@ -12,6 +12,7 @@ class Item(models.Model):
 	multiplename = models.CharField(max_length=50)
 	image_url = models.URLField()
 	variety = JSONField()
+	inventory_data = JSONField()
 	def __unicode__(self):
 		return self.name
 
@@ -33,7 +34,14 @@ class InventoryItem(MultiItem):
 			prior.quantity += quantity
 			prior.save()
 		except ObjectDoesNotExist:
-			cls(owner=owner, item=item, quantity=quantity).save()
+			invitem = cls(owner=owner, item=item, quantity=quantity)
+			invitem.save()
+			data = item.inventory_data
+			if data and 'modifier' in data:
+				modifiers = data['modifier']
+				from effect import Modifier
+				for mod in modifiers:
+					Modifier(variable=mod[0], function=mod[1], value=mod[2], invitem=invitem, combatant=owner).save()
 	add_item=classmethod(add_item)
 
 class ItemDrop(MultiItem):
