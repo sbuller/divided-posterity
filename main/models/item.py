@@ -42,6 +42,8 @@ class InventoryItem(MultiItem):
 				from effect import Modifier
 				for mod in modifiers:
 					Modifier(variable=mod[0], function=mod[1], value=mod[2], invitem=invitem, combatant=owner).save()
+				for stat in ['brawn','charm','finesse','lore','magery','stamina']:
+					owner.update_var(stat)
 	add_item=classmethod(add_item)
 
 class ItemDrop(MultiItem):

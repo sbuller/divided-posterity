@@ -28,6 +28,38 @@ class Combatant(models.Model):
 
 	player_pov = False
 	
+	def base_stat(self, stat):
+		try:
+			return self.hero.__getattribute__("base_"+stat)
+		except:
+			return self.enemy.__getattribute__("base_"+stat)
+	bbrawn = property(lambda s: s.base_stat("brawn"))
+	bcharm = property(lambda s: s.base_stat("charm"))
+	bfinesse = property(lambda s: s.base_stat("finesse"))
+	blore = property(lambda s: s.base_stat("lore"))
+	bmagery = property(lambda s: s.base_stat("magery"))
+	bstamina = property(lambda s: s.base_stat("stamina"))
+
+	def _modify(self, value, base_stat, function="c"):
+		if function == 'c':
+			return value
+		elif function == 'x':
+			return value * base_stat
+		else:
+			return 0
+			
+	def update_var(self, variable):
+		from effect import Modifier
+		import math
+		if variable in ['brawn','charm','finesse','lore','magery','stamina']:
+			self.__setattr__(variable, self.__getattribute__("b"+variable))
+			mods = Modifier.objects.filter(combatant=self, variable=variable)
+			for mod in mods:
+				self.__setattr__(variable, self.__getattribute__(variable) +
+					self._modify(mod.value, self.__getattribute__("b"+variable), mod.function))
+			self.__setattr__(variable, int(math.ceil(self.__getattribute__(variable))))
+			self.save()
+
 	def new_pvm_combat(self, enemy, location):
 		from combat import Combat
 		c = Combat(location=location)
