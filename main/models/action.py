@@ -5,3 +5,6 @@ class Action(models.Model):
 	class Meta:
 		app_label = 'main'
 	code = models.TextField()
+
+	def invoke(self, vars):
+		exec(code, vars)
