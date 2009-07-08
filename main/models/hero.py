@@ -24,6 +24,20 @@ class Hero(Combatant):
 
 	inventory = models.ManyToManyField('Item', through='InventoryItem')
 
+	def _creaseness(self,stat):
+		diff = self.__getattribute__(stat) - self.__getattribute__("base_"+stat)
+		if diff<0:
+			return "decreased"
+		elif diff>0:
+			return "increased"
+		return "uncreased"
+	tpl_brawn_change = lambda s: s._creaseness("brawn")
+	tpl_charm_change = lambda s: s._creaseness("charm")
+	tpl_finesse_change = lambda s: s._creaseness("finesse")
+	tpl_lore_change = lambda s: s._creaseness("lore")
+	tpl_magery_change = lambda s: s._creaseness("magery")
+	tpl_stamina_change = lambda s: s._creaseness("stamina")
+
 	def new_pvm_combat(self, enemy):
 		return super(Hero,self).new_pvm_combat(enemy, self.destination)
 

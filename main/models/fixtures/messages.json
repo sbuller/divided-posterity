@@ -28,7 +28,7 @@
 		"pk": 4,
 		"fields": {
 			"action": "attack misses",
-			"message": "{{target|pronoun:\"ey\"|capfirst}} deftly dodge{{actor|conj:\"s,,\"}} {{actor|pronoun:\"eir\"}} attack{{actor.count|pluralize}}."
+			"message": "{{target|pronoun:\"ey\"|capfirst}} deftly dodge{{target|conj:\"s,,\"}} {{actor|pronoun:\"eir\"}} attack{{actor.count|pluralize}}."
 		}
 	},
 	{
