@@ -111,3 +111,14 @@ def travel(request, location_id):
 		return startcombat(request,encounter_info.enemy)
 	else:
 		return HttpResponse(encounter_info.encounter)
+		
+@login_required
+@not_during_combat
+def flush_inventory(request):
+	if 'flush' in request.POST:
+		hero = Hero.objects.filter(user=request.user)[0]
+		print hero
+		items = InventoryItem.objects.filter(owner=hero)
+		print items
+		items.delete()
+	return HttpResponseRedirect('/inventory')

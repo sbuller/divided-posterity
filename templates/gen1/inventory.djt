@@ -3,6 +3,9 @@
 {% block viewpane %}
 		<div id="inventory">
 			<h1>Inventory</h1>
+			<form action="/destroyeverything" method="post">
+				<input type="submit" name="flush" value="flush" />
+			</form>
 			<div> <!--for hr-->
 				<table class="centered"><tbody><tr><td>
 					<div id="showweapons" class="showequipped">
