@@ -16,3 +16,11 @@ class EffectInstance(models.Model):
 	duration = models.IntegerField()
 	unit = models.CharField(max_length=1, choices=(
 		('a','Attack'),('c','Combat'),('d','Day'),('v','Adventure'),('r','Round of Combat')))
+
+class Modifier(models.Model):
+	class Meta:
+		app_label = 'main'
+	variable = models.CharField(max_length=50, db_index=True)
+	value = models.FloatField()
+	function = models.CharField(max_length=50)
+	invitem = models.ForeignKey('InventoryItem', db_index=True)
