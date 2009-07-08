@@ -9,3 +9,4 @@ from message import Message
 from combat import Combat
 from location import Location
 from encounter import Encounter, EncounterInfo
+from trigger import Trigger

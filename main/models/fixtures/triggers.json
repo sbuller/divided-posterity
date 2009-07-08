@@ -1,0 +1,10 @@
+[
+	{
+		"model": "main.Trigger",
+		"pk": 1,
+		"fields": {
+			"trigger_name": "challenger_hit",
+			"action": "some kinda script ran"
+		}
+	}
+]
