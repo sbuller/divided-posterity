@@ -20,9 +20,9 @@ def not_during_combat(fn):
 def index(request):
 	if request.user.is_authenticated():
 		hero = Hero.objects.filter(user=request.user)[0]
-		return render_to_response('main/main.djt', {}, RequestContext(request))
+		return render_to_response('main.djt', {}, RequestContext(request))
 	else:
-		return render_to_response('main/index.djt')
+		return render_to_response('index.djt')
 
 @login_required
 @not_during_combat
@@ -31,7 +31,7 @@ def startcombat(request, enemy=None):
 	if not enemy:
 		enemy = random.choice(Enemy.objects.all())
 	combat = hero.new_pvm_combat(enemy)
-	return render_to_response('gen1/combat.djt',{'combat':combat}, RequestContext(request))
+	return render_to_response('combat.djt',{'combat':combat}, RequestContext(request))
 
 @login_required
 def combat(request):
@@ -61,25 +61,25 @@ def combat(request):
 	if combat.done:
 		return HttpResponseRedirect('/aftercombat')
 
-	return render_to_response('gen1/combat.djt', {'combat': combat}, RequestContext(request))
+	return render_to_response('combat.djt', {'combat': combat}, RequestContext(request))
 
 @login_required
 @not_during_combat
 def aftercombat(request):
 	hero = Hero.objects.filter(user=request.user)[0]
-	return render_to_response('main/aftercombat.djt', {'hero': hero}, RequestContext(request))
+	return render_to_response('aftercombat.djt', {'hero': hero}, RequestContext(request))
 
 @login_required
 def inventory(request):
 	owner = Hero.objects.get(user=request.user)
 	inventory = InventoryItem.objects.filter(owner=owner)
-	return render_to_response('gen1/inventory.djt', {'items':inventory}, RequestContext(request))
+	return render_to_response('inventory.djt', {'items':inventory}, RequestContext(request))
 
 @login_required
 @not_during_combat
 def locationMap(request):
 	hero = Hero.objects.filter(user=request.user)[0]
-	return render_to_response("main/maps/"+hero.location.slug+".djt", {'location':hero.location,'places':hero.location.neighbors.all()}, RequestContext(request))
+	return render_to_response("maps/"+hero.location.slug+".djt", {'location':hero.location,'places':hero.location.neighbors.all()}, RequestContext(request))
 
 @login_required
 @not_during_combat
@@ -111,7 +111,7 @@ def travel(request, location_id):
 		return startcombat(request,encounter_info.enemy)
 	else:
 		return HttpResponse(encounter_info.encounter)
-		
+
 @login_required
 @not_during_combat
 def flush_inventory(request):
