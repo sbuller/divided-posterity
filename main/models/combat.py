@@ -8,7 +8,7 @@ from PickledObjectField import PickledObjectField
 from item import Item, InventoryItem
 from message import Message
 from combatant import Combatant
-from trigger import InvokeTriggers
+from trigger import Trigger
 
 class Combat(models.Model):
 	class Meta:
@@ -67,7 +67,7 @@ class Combat(models.Model):
 
 	def challenger_hit(self):
 		self.addmessage('attack hits',actor=self.heros()[0], target=self.enemies()[0])
-		InvokeTriggers("challenger_hit")
+		Trigger.invoke_triggers(self.heros()[0], "challenger_hit")
 	def challenger_miss(self):
 		self.addmessage('attack misses',actor=self.heros()[0], target=self.enemies()[0])
 	def opposition_hit(self):

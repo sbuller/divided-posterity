@@ -11,7 +11,8 @@ class Trigger(models.Model):
 	value = JSONField()
 	trigger_name = models.CharField(max_length=50)
 
-def InvokeTriggers(trigger_name):
-	all_triggers = Trigger.objects.filter(trigger_name=trigger_name)
-	for trigger in all_triggers:
-		exec(trigger.action.code, trigger.value)
+	@classmethod
+	def invoke_triggers(cls, combatant, trigger_name):
+		all_triggers = Trigger.objects.filter(combatant=combatant, trigger_name=trigger_name)
+		for trigger in all_triggers:
+			exec(trigger.action.code, trigger.value)
