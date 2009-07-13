@@ -60,7 +60,6 @@ def combat(request):
 	elif 'lose' in request.POST:
 		combat.lose()
 
-
 	combat.save()
 
 	if combat.done:

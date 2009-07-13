@@ -1,3 +1,4 @@
+#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
 #template syntax:
@@ -22,17 +23,19 @@
 
 import random
 
+DEFAULT_PRIMITIVES = { #t=template, v=vowel, vg=vowel group, c=consonant, cgb=beginning-of-word consonant group, cge=end-of-word consonant group, s=syllable, n=name
+	't':'((B|c)(v|V)|c?v)((EB|B)v|E(v|||)|s(v|||))',
+	'v':'a,e,i,o,u,y',
+	'vg':'ae,ai,au,ea,ew,ia,oe',
+	'c':'b,c,d,f,g,h,j,k,l,m,n,p,qu,r,s,t,v,w,x,y,z',
+	'cgb':'bl,br,bw,ch,cl,cr,cw,dr,dw,fl,fr,gh,gl,gn,gr,gw,kh,kl,kn,kr,kw,ph,pl,pr,ps,rh,sc,sch,scr,sh,shr,sk,skr,sl,sm,sn,sp,spl,spr,st,str,sw,th,tr,tw,wh,wr,zh',
+	'cge':'ch,ck,ct,ff,ft,gh,ght,ld,ll,lm,lp,lt,mb,mn,mp,nd,ng,nk,nt,nst,nx,nz,ph,pt,rb,rch,rd,rg,rk,rl,rlst,rlt,rlth,rm,rn,rnt,rsh,rsp,rst,rt,rth,sh,sk,st,th',
+	's':'ash,brom,chum,dan,dar,dock,faze,gamm,gler,grim,han,ine,ish,jar,jem,lash,lim,lom,nock,ock,ore,phiz,plad,prem,quin,quol,rath,sham,shrie,thar,thow,ton,ulf,wan,whel,yen,yul,zhul',
+	'n':'steve,dave,eldon'
+}
+
 class NameGen():
-	def __init__(self, dic={ #t=template, v=vowel, vg=vowel group, c=consonant, cgb=beginning-of-word consonant group, cge=end-of-word consonant group, s=syllable, n=name
-		't':'((B|c)(v|V)|c?v)((EB|B)v|E(v|||)|s(v|||))',
-		'v':'a,e,i,o,u,y',
-		'vg':'ae,ai,au,ea,ew,ia,oe',
-		'c':'b,c,d,f,g,h,j,k,l,m,n,p,qu,r,s,t,v,w,x,y,z',
-		'cgb':'bl,br,bw,ch,cl,cr,cw,dr,dw,fl,fr,gh,gl,gn,gr,gw,kh,kl,kn,kr,kw,ph,pl,pr,ps,rh,sc,sch,scr,sh,shr,sk,skr,sl,sm,sn,sp,spl,spr,st,str,sw,th,tr,tw,wh,wr,zh',
-		'cge':'ch,ck,ct,ff,ft,gh,ght,ld,ll,lm,lp,lt,mb,mn,mp,nd,ng,nk,nt,nst,nx,nz,ph,pt,rb,rch,rd,rg,rk,rl,rlst,rlt,rlth,rm,rn,rnt,rsh,rsp,rst,rt,rth,sh,sk,st,th',
-		's':'ash,brom,chum,dan,dar,dock,faze,gamm,gler,grim,han,ine,ish,jar,jem,lash,lim,lom,nock,ock,ore,phiz,plad,prem,quin,quol,rath,sham,shrie,thar,thow,ton,ulf,wan,whel,yen,yul,zhul',
-		'n':'steve,dave,eldon'
-	}):
+	def __init__(self, dic=DEFAULT_PRIMITIVES):
 		self.templ = dic['t'].split(',')
 		self.v = dic['v'].split(',')
 		self.c = dic['c'].split(',')
@@ -93,3 +96,17 @@ class NameGen():
 
 	def gen_name(self):
 		return self.gen_names(1)[0]
+
+if __name__ == '__main__':
+	import sys, os
+	if 2==len(sys.argv):
+		names = NameGen().gen_names(int(sys.argv[1]))
+	else:
+		print NameGen().gen_name()
+		sys.exit(0)
+
+	if sys.stdout.isatty():
+		height, width = map(int,os.popen('stty size', 'r').read().split())
+		print '\n'.join(names)
+	else:
+		print '\n'.join(names)
