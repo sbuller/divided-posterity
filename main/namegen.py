@@ -98,7 +98,7 @@ class NameGen():
 		return self.gen_names(1)[0]
 
 if __name__ == '__main__':
-	import sys, os
+	import sys, os, math
 	if 2==len(sys.argv):
 		names = NameGen().gen_names(int(sys.argv[1]))
 	else:
@@ -106,7 +106,30 @@ if __name__ == '__main__':
 		sys.exit(0)
 
 	if sys.stdout.isatty():
+		def max_len(array):
+			return max(map(len,array))
+
 		height, width = map(int,os.popen('stty size', 'r').read().split())
-		print '\n'.join(names)
+		min_cols = width/(max_len(names)+1)
+		max_cols = min([int(width/5),len(names)])
+		awesome = []
+		for i in xrange(min_cols,max_cols+1):
+			inx = range(0,len(names),int(math.ceil(len(names)/float(i))))
+			col_width = []
+			for it in inx:
+				col_width.append(max_len(names[it:it+int(math.ceil(len(names)/float(i)))])+1)
+			if sum(col_width) <= width:
+				awesome.append(col_width)
+			else:
+				awesome.append(False)
+		cw = filter(None,awesome).pop()
+		num_cols = len(cw)
+		num_rows = int(math.ceil(len(names)/float(num_cols)))
+		for row in xrange(num_rows):
+			for col in xrange(num_cols):
+				i = row + col*num_rows
+				if i < len(names):
+					print names[i].ljust(cw[col]-1),
+			print
 	else:
 		print '\n'.join(names)
