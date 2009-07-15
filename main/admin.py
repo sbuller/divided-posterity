@@ -43,8 +43,8 @@ class CombatAdmin(admin.ModelAdmin):
 class TriggerAdmin(admin.ModelAdmin):
 	list_display=('combatant','trigger_name', 'action')
 
-class CombatantSkillAdmin(admin.ModelAdmin)
-	list_display=('combatant', 'skill', 'slot', 'mastery_level'
+class CombatantSkillAdmin(admin.ModelAdmin):
+	list_display=('combatant', 'skill', 'slot', 'mastery_level')
 
 admin.site.register(Enemy, EnemyAdmin)
 admin.site.register(Message, MessageAdmin)
@@ -63,4 +63,4 @@ admin.site.register(ItemDrop)
 admin.site.register(Modifier)
 admin.site.register(Trigger,TriggerAdmin)
 admin.site.register(Action)
-admin.site.regiseter(CombatantSkill,CombatantSkillAdmin)
+admin.site.register(CombatantSkill,CombatantSkillAdmin)
