@@ -29,7 +29,7 @@ def index(request):
 def startcombat(request, enemy=None):
 	hero = Hero.objects.get(user=request.user)
 	combat = hero.new_pvm_combat(enemy)
-	return render_to_response('combat.djt',{'combat':combat, 'messages':hero.combat_messages[combat.turn]}, RequestContext(request))
+	return render_to_response('combat.djt',{'combat':combat, 'messages':hero.combat_messages[str(combat.turn)]}, RequestContext(request))
 
 @login_required
 def combat(request):

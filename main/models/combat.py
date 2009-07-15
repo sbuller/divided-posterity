@@ -64,6 +64,6 @@ class Combat(models.Model):
 	def add_message(self, action, context):
 		message = random.choice(Message.objects.filter(action=action))
 		for hero in self.heros():
-			hero.combat_messages[str(self.turn)].append(message.transmogrify(context))
+			hero.combat_messages[str(self.turn)].append(message.transmogrify(context, pov=hero))
 			hero.save()
 		self.save()
