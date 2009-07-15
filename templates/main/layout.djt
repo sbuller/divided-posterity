@@ -6,7 +6,7 @@
 		<meta http-equiv="Content-Script-Type" content="text/javascript" />
 		<link rel="shortcut icon" href="/favicon.ico" />
 		<link rel="stylesheet" href="/stylesheets/base.css" type="text/css" media="screen" charset="utf-8" />
-		<link rel="stylesheet" href="/stylesheets/default.css" type="text/css" media="screen" charset="utf-8" />
+		<link rel="stylesheet" href="/stylesheets/gen1.css" type="text/css" media="screen" charset="utf-8" />
 		<link rel="stylesheet" href="/stylesheets/chat.css" type="text/css" media="screen" charset="utf-8" />
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js"></script>
 		<script type="text/javascript" src="/js/jquery-ui-personalized-1.5.min.js"></script>
