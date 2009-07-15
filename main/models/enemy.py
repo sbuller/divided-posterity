@@ -35,13 +35,18 @@ class Enemy(models.Model):
 		skill.invoke(actor=combatant, target=target, skill=skill)
 
 	def new_combatant(self, combat):
+		def add_skill_to_combatant(skill, combatant):
+			from combatantskill import CombatantSkill
+			CombatantSkill(skill = skill, mastery_level=1, combatant=combatant).save()
+
 		c = Combatant(enemy=self, brawn=self.base_brawn,
 			charm=self.base_charm, finesse=self.base_finesse,
 			lore=self.base_lore, magery=self.base_magery,
 			stamina=self.base_stamina, combat=combat,
 			gender=self.gender, count=self.count)
 		c.save()
-		c.skills=self.t_skills.all()
+		for skill in self.t_skills.all():
+			add_skill_to_combatant(skill, c)
 		return c
 
 	def loot(self, combat, dropper):

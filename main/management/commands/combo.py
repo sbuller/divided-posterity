@@ -6,4 +6,4 @@ class Command(NoArgsCommand):
 	def handle_noargs(self, **options):
 		call_command('reset', 'main', noinput=True)
 		call_command('syncdb', noinput=True)
-		call_command('loaddata', 'items', 'messages', 'enemies', 'locations', 'heros', 'encounters', 'encounterinfos', 'skills', 'triggers', 'actions')
+		call_command('loaddata', 'items', 'messages', 'enemies', 'locations', 'heros', 'encounters', 'encounterinfos', 'skills', 'triggers', 'actions', 'combatantskills')
