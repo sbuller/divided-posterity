@@ -7,4 +7,4 @@ class Action(models.Model):
 	code = models.TextField()
 
 	def invoke(self, vars):
-		exec(code, vars)
+		exec(self.code, vars)

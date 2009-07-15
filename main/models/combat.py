@@ -59,7 +59,7 @@ class Combat(models.Model):
 		self.messages = []
 		self.save()
 
-	def addmessage(self, action, actor, target):
+	def add_message(self, action, context):
 		message = random.choice(Message.objects.filter(action=action))
-		self.messages.append(message.transmogrify({'actor':actor,'target':target, 'loc':self.location}))
+		self.messages.append(message.transmogrify(context))
 		self.save()

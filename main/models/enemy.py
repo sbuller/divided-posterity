@@ -30,9 +30,11 @@ class Enemy(models.Model):
 
 	def perform_action(self, combatant, combat):
 		import random
+		from combatantskill import CombatantSkill
 		skill = random.choice(combatant.skills.all())
 		target = random.choice(Combatant.objects.filter(combat=combat).exclude(team=combatant.team))
-		skill.invoke(actor=combatant, target=target, skill=skill)
+		cskill = CombatantSkill.objects.filter(combatant=combatant, skill=skill)[0]
+		skill.invoke(actor=combatant, target=target, cskill=cskill, combat=combat)
 
 	def new_combatant(self, combat):
 		def add_skill_to_combatant(skill, combatant):

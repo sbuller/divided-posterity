@@ -4,7 +4,7 @@
 		"pk": 1,
 		"fields": {
 			"action": "attack hits",
-			"message": "{{actor|pronoun:\"ey\"|capfirst}} hit{{actor|conj:\"s,,\"}} {{target|pronoun:\"em\"}} from atop a {{loc.platform|random}}."
+			"message": "{{actor|pronoun:\"ey\"|capfirst}} hit{{actor|conj:\"s,,\"}} {{target|pronoun:\"em\"}} from atop a {{combat.location.platform|random}}."
 		}
 	},
 	{

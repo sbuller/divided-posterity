@@ -5,7 +5,7 @@ from django.http import HttpResponse,HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.contrib.auth.decorators import login_required
 
-from models import Message, Enemy, Item, Location, Combat, InventoryItem, Hero, EncounterInfo
+from models import Message, Enemy, Item, Location, Combat, InventoryItem, Hero, EncounterInfo, CombatantSkill
 
 import random, json
 
@@ -42,7 +42,8 @@ def combat(request):
 	if 'skill' in request.POST:
 		skill = hero.skills.filter(pk=request.POST['skill'])
 		if len(skill):
-			skill[0].invoke(actor=hero, target=combat.enemies()[0], skill=skill[0])
+			cskill=CombatantSkill.objects.filter(combatant=hero, skill=skill[0])[0]
+			skill[0].invoke(actor=hero, target=combat.enemies()[0], cskill=cskill, combat=combat)
 
 	for en in combat.enemies():
 		en.enemy.perform_action(en, combat)

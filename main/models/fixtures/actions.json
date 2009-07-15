@@ -1,9 +1,16 @@
 [
 	{
 		"model": "main.Action",
+		"pk": 2,
+		"fields": {
+			"code": "print actor.entity.name, 'uses', cskill.skill.name, 'on', target.entity.name"
+		}
+	},
+	{
+		"model": "main.Action",
 		"pk": 1,
 		"fields": {
-			"code": "print actor.entity.name, 'uses', skill, 'on', target.entity.name"
+			"code": "import random\naction = random.choice(['attack hits','attack misses'])"
 		}
 	}
 ]
