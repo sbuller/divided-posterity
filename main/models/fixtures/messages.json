@@ -62,29 +62,6 @@
 			"action": "attack misses",
 			"message": "{{actor|pronoun:\"ey\"|capfirst}} miss{{actor|conj:\"es,,\"}} {{target|pronoun:\"em\"}} by a mile."
 		}
-	},
-	{
-		"model": "main.Message",
-		"pk": 9,
-		"fields": {
-			"action": "who",
-			"message": "You are fighting {{en.name}}, the {{en.variety|random}}."
-		}
-	},
-	{
-		"model": "main.Message",
-		"pk": 10,
-		"fields": {
-			"action": "who",
-			"message": "{{en.name|capfirst}} {{en.count|pluralize:\"is,are\"}} standing here, looking menacing."
-		}
-	},
-	{
-		"model": "main.Message",
-		"pk": 11,
-		"fields": {
-			"action": "loot",
-			"message": "You stand over your fallen foe{{en.count|pluralize}}. Among {{en.eir}} possessions you find {{item.article}} {{item.name}}."
-		}
+	}
 	}
 ]

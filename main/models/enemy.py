@@ -28,23 +28,6 @@ class Enemy(models.Model):
 
 	t_skills = models.ManyToManyField(Skill)
 
-	def unspivak(self, x):
-		table = [ #m,f,n,p
-			['him','her','it','them'], #em
-			['he','she','it','they'], #ey
-			['his','her','its','their'], #eir
-			['his','hers','its','theirs'], #eirs
-			['himself','herself','itself','themselves'] #emself
-		]
-		gender = ['m','f','n','p']
-		val = table[x][(3,gender.index(self.gender))[not self.count-1]]
-		return val
-	em = property(lambda s: s.unspivak(0))
-	ey = property(lambda s: s.unspivak(1))
-	eir = property(lambda s: s.unspivak(2))
-	eirs = property(lambda s: s.unspivak(3))
-	emself = property(lambda s: s.unspivak(4))
-
 	def new_combatant(self, combat):
 		c = Combatant(enemy=self, brawn=self.base_brawn,
 			charm=self.base_charm, finesse=self.base_finesse,

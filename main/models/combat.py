@@ -56,8 +56,7 @@ class Combat(models.Model):
 
 	def next_round(self):
 		self.turn += 1
-		who_message = random.choice(Message.objects.filter(action='who'))
-		self.messages = [who_message.transmogrify({'en':self.enemies()[0].enemy, 'loc':self.location})]
+		self.messages = []
 		self.save()
 
 	def addmessage(self, action, actor, target):

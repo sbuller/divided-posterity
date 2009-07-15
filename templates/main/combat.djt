@@ -10,11 +10,11 @@
 					<img src="/images/interface/scrollright.png" alt="[&gt;)" title="Next Page" class="scroll last"/>
 				</div>
 			</td></tr></tbody></table>
-
+{% for en in combat.enemies %}
 			<table id="enemy" class="centered"><tbody><tr><td>
 				<img id="enemyimage" src="/images/npc/menacingstarlet.png" alt="[Enemy]"/>
-				<h4>A Menacing Starlet</h4>
-				<h3>Level 13 Celestial</h3>
+				<h4>{{en.enemy.name|capfirst}}</h4>
+				<h3>Level 13 {{en.enemy.variety|join:" "}}</h3>
 				<p>Projected Battle Terrain</p>
 				<table class="centered"><tbody><tr><td>
 					<div class="neutral terrain startcombat" title="Commence Combat!">
@@ -27,7 +27,7 @@
 					</div>
 				</td></tr></tbody></table>
 			</td></tr></tbody></table>
-
+{% endfor %}
 			<table id="combattext" class="centered"><tbody><tr><td>
 				<h1>Combat! Round {{combat.turn}}</h1>
 			{% if combat.messages %}{% for paragraph in combat.messages %}
