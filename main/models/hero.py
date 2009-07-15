@@ -18,7 +18,9 @@ class Hero(Combatant):
 	base_lore = models.IntegerField()
 	base_magery = models.IntegerField()
 	base_stamina = models.IntegerField()
-
+	
+	#equipped_items = models.ManyToManyField('Item',through='EquippedItem')
+	
 	destination = models.ForeignKey('Location', null=True, blank=True, related_name='incoming_heroes')
 	location = models.ForeignKey('Location', default='tree_village', related_name='populace')
 

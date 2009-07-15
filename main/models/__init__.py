@@ -12,3 +12,4 @@ from encounter import Encounter, EncounterInfo
 from trigger import Trigger
 from action import Action
 from combatantskill import CombatantSkill
+from equippeditem import EquippedItem
