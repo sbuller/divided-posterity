@@ -13,7 +13,9 @@
 			"base_finesse" : 1,
 			"base_lore" : 1,
 			"base_magery" : 1,
-			"base_stamina" : 9
+			"base_stamina" : 9,
+
+			"t_skills":[1]
 		}
 	},
 	{
@@ -30,7 +32,9 @@
 			"base_finesse" : 6,
 			"base_lore" : 2,
 			"base_magery" : 2,
-			"base_stamina" : 2
+			"base_stamina" : 2,
+
+			"t_skills":[1]
 		}
 	},
 	{
@@ -47,7 +51,9 @@
 			"base_finesse" : 5,
 			"base_lore" : 12,
 			"base_magery" : 2,
-			"base_stamina" : 4
+			"base_stamina" : 4,
+
+			"t_skills":[1]
 		}
 	},
 	{
@@ -64,7 +70,9 @@
 			"base_finesse" : 7,
 			"base_lore" : 6,
 			"base_magery" : 4,
-			"base_stamina" : 2
+			"base_stamina" : 2,
+
+			"t_skills":[1]
 		}
 	},
 	{
@@ -81,7 +89,9 @@
 			"base_finesse" : 1,
 			"base_lore" : 1,
 			"base_magery" : 1,
-			"base_stamina" : 1
+			"base_stamina" : 1,
+
+			"t_skills":[1]
 		}
 	},
 	{
@@ -98,7 +108,9 @@
 			"base_finesse" : 4,
 			"base_lore" : 4,
 			"base_magery" : 9,
-			"base_stamina" : 6
+			"base_stamina" : 6,
+
+			"t_skills":[1]
 		}
 	},
 	{
@@ -115,7 +127,9 @@
 			"base_finesse" : 6,
 			"base_lore" : 6,
 			"base_magery" : 6,
-			"base_stamina" : 6
+			"base_stamina" : 6,
+
+			"t_skills":[1]
 		}
 	}
 ]
