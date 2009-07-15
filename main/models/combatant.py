@@ -22,7 +22,7 @@ class Combatant(models.Model):
 	stamina = models.IntegerField()
 
 	effects = models.ManyToManyField('Effect', through='EffectInstance')
-	skills = models.ManyToManyField(Skill)
+	skills = models.ManyToManyField('Skill', through='CombatantSkill')
 	combat = models.ForeignKey('Combat', blank=True, null=True, db_index=True)
 
 	alive = models.BooleanField(default=True)

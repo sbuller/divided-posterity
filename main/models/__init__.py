@@ -11,3 +11,4 @@ from location import Location
 from encounter import Encounter, EncounterInfo
 from trigger import Trigger
 from action import Action
+from combatant import CombatantSkill
