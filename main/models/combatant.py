@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.db import models
+from django.core.exceptions import ObjectDoesNotExist
 
 from skill import Skill
 
@@ -28,17 +29,19 @@ class Combatant(models.Model):
 
 	player_pov = False
 
-	def base_stat(self, stat):
+	#Django already overrides this function, so it sort of breaks things.
+	#def __getattr__(self, name):
+		#try:
+			#return self.entity.__getattribute__(name)
+		#except ObjectDoesNotExist:
+			#return super(Combatant,self).__getattr__(name)
+
+	def _get_entity(self):
 		try:
-			return self.hero.__getattribute__("base_"+stat)
+			return self.hero
 		except:
-			return self.enemy.__getattribute__("base_"+stat)
-	bbrawn = property(lambda s: s.base_stat("brawn"))
-	bcharm = property(lambda s: s.base_stat("charm"))
-	bfinesse = property(lambda s: s.base_stat("finesse"))
-	blore = property(lambda s: s.base_stat("lore"))
-	bmagery = property(lambda s: s.base_stat("magery"))
-	bstamina = property(lambda s: s.base_stat("stamina"))
+			return self.enemy
+	entity = property(_get_entity)
 
 	def _modify(self, value, base_stat, function="c"):
 		if function == 'c':
@@ -57,9 +60,9 @@ class Combatant(models.Model):
 				tot[var] = 0
 		mods = Modifier.objects.filter(Q(variable__in=variables)&Q(combatant=self))
 		for mod in mods:
-			tot[mod.variable] += self._modify(mod.value, self.__getattribute__("b"+mod.variable), mod.function)
+			tot[mod.variable] += self._modify(mod.value, self.entity.__getattribute__("base_"+mod.variable), mod.function)
 		for k in tot.keys():
-			self.__setattr__(k, self.__getattribute__("b"+k) + int(math.ceil(tot[k])))
+			self.__setattr__(k, self.entity.__getattribute__("base_"+k) + int(math.ceil(tot[k])))
 		self.save()
 
 	def update_var(self, variable):
@@ -69,8 +72,8 @@ class Combatant(models.Model):
 			mods = Modifier.objects.filter(combatant=self, variable=variable)
 			tot = 0
 			for mod in mods:
-				tot += self._modify(mod.value, self.__getattribute__("b"+variable), mod.function)
-			self.__setattr__(variable, self.__getattribute__("b"+variable) + int(math.ceil(tot)))
+				tot += self._modify(mod.value, self.entity.__getattribute__("base_"+variable), mod.function)
+			self.__setattr__(variable, self.entity.__getattribute__("base_"+variable) + int(math.ceil(tot)))
 			self.save()
 
 	def new_pvm_combat(self, enemy, location):
