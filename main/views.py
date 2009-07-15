@@ -39,8 +39,8 @@ def combat(request):
 	combat = hero.combat
 	combat.next_round()
 
-	if 'skill' in request.GET:
-		skill = hero.skills.filter(pk=request.GET['skill'])
+	if 'skill' in request.POST:
+		skill = hero.skills.filter(pk=request.POST['skill'])
 		if len(skill):
 			skill[0].invoke(actor=hero, x=5)
 

@@ -3,12 +3,12 @@
 {% block viewpane %}
 		<div id="combat">
 
-			<table id="skillbar" class="centered"><tbody><tr><td>
+			<table id="skillbar" class="centered"><tbody><tr><td><form action="/combat" method="POST">
 				<div class="repository">
 					<img src="/images/interface/scrollleft.png" alt="(&lt;]" title="Previous Page" class="scroll"/>{% for skill in hero.skills.all %}
-					<a href="/combat?skill={{skill.id}}"><img src="{{skill.image_url}}" alt="[s]" title="{{skill.name}}"/></a>{% endfor %}
+					<input type="image" name="skill" value="{{skill.id}}" src="{{skill.image_url}}" alt="[s]" title="{{skill.name}}"/>{% endfor %}
 					<img src="/images/interface/scrollright.png" alt="[&gt;)" title="Next Page" class="scroll last"/>
-				</div>
+				</div></form>
 			</td></tr></tbody></table>
 {% for en in combat.enemies %}
 			<table id="enemy" class="centered"><tbody><tr><td>
