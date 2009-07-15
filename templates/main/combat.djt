@@ -30,7 +30,7 @@
 {% endfor %}
 			<table id="combattext" class="centered"><tbody><tr><td>
 				<h1>Combat! Round {{combat.turn}}</h1>
-			{% if combat.messages %}{% for paragraph in combat.messages %}
+			{% if messages %}{% for paragraph in messages %}
 				<p>{{paragraph}}</p>{% endfor %}
 			{% else %}
 				<p> Error: No combat text available at this time. </p>

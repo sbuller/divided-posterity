@@ -3,6 +3,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import pre_save
 from combatant import Combatant
+from JSONField import JSONField
 
 class Hero(Combatant):
 	class Meta:
@@ -18,9 +19,11 @@ class Hero(Combatant):
 	base_lore = models.IntegerField()
 	base_magery = models.IntegerField()
 	base_stamina = models.IntegerField()
-	
+
+	combat_messages = JSONField()
+
 	#equipped_items = models.ManyToManyField('Item',through='EquippedItem')
-	
+
 	destination = models.ForeignKey('Location', null=True, blank=True, related_name='incoming_heroes')
 	location = models.ForeignKey('Location', default='tree_village', related_name='populace')
 
@@ -41,6 +44,8 @@ class Hero(Combatant):
 	tpl_stamina_change = lambda s: s._creaseness("stamina")
 
 	def new_pvm_combat(self, enemy):
+		self.combat_messages = {'0':[]}
+		self.save()
 		return super(Hero,self).new_pvm_combat(enemy, self.destination)
 
 	def __unicode__(self):
