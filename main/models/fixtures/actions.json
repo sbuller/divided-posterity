@@ -3,7 +3,7 @@
 		"model": "main.Action",
 		"pk": 1,
 		"fields": {
-			"code": "print x"
+			"code": "print actor.entity.name, 'uses', skill, 'on', target.entity.name"
 		}
 	}
 ]

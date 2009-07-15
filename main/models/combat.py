@@ -63,13 +63,3 @@ class Combat(models.Model):
 		message = random.choice(Message.objects.filter(action=action))
 		self.messages.append(message.transmogrify({'actor':actor,'target':target, 'loc':self.location}))
 		self.save()
-
-	def challenger_hit(self):
-		self.addmessage('attack hits',actor=self.heros()[0], target=self.enemies()[0])
-		Trigger.invoke_triggers(self.heros()[0], "challenger_hit")
-	def challenger_miss(self):
-		self.addmessage('attack misses',actor=self.heros()[0], target=self.enemies()[0])
-	def opposition_hit(self):
-		self.addmessage('attack hits',actor=self.enemies()[0], target=self.heros()[0])
-	def opposition_miss(self):
-		self.addmessage('attack misses',actor=self.enemies()[0], target=self.heros()[0])

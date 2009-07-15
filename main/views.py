@@ -42,18 +42,10 @@ def combat(request):
 	if 'skill' in request.GET:
 		skill = hero.skills.filter(pk=request.GET['skill'])
 		if len(skill):
-			skill[0].invoke(actor=hero, x=5)
+			skill[0].invoke(actor=hero, target=combat.enemies()[0], skill=skill[0])
 
-	if 'youhit' in request.POST:
-		if request.POST['youhit'] == 'true':
-			combat.challenger_hit()
-		else:
-			combat.challenger_miss()
-	if 'theyhit' in request.POST:
-		if request.POST['theyhit'] == 'true':
-			combat.opposition_hit()
-		else:
-			combat.opposition_miss()
+	for en in combat.enemies():
+		en.enemy.perform_action(en, combat)
 
 	if 'win' in request.POST:
 		combat.win()

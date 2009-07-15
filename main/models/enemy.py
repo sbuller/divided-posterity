@@ -28,6 +28,12 @@ class Enemy(models.Model):
 
 	t_skills = models.ManyToManyField(Skill)
 
+	def perform_action(self, combatant, combat):
+		import random
+		skill = random.choice(combatant.skills.all())
+		target = random.choice(Combatant.objects.filter(combat=combat).exclude(team=combatant.team))
+		skill.invoke(actor=combatant, target=target, skill=skill)
+
 	def new_combatant(self, combat):
 		c = Combatant(enemy=self, brawn=self.base_brawn,
 			charm=self.base_charm, finesse=self.base_finesse,

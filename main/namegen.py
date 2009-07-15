@@ -29,7 +29,7 @@ DEFAULT_PRIMITIVES = { #t=template, v=vowel, vg=vowel group, c=consonant, cgb=be
 	'vg':'ae,ai,au,ea,ew,ia,oe',
 	'c':'b,c,d,f,g,h,j,k,l,m,n,p,qu,r,s,t,v,w,x,y,z',
 	'cgb':'bl,br,bw,ch,cl,cr,cw,dr,dw,fl,fr,gh,gl,gn,gr,gw,kh,kl,kn,kr,kw,ph,pl,pr,ps,rh,sc,sch,scr,sh,shr,sk,skr,sl,sm,sn,sp,spl,spr,st,str,sw,th,tr,tw,wh,wr,zh',
-	'cge':'ch,ck,ct,ff,ft,gh,ght,ld,ll,lm,lp,lt,mb,mn,mp,nd,ng,nk,nt,nst,nx,nz,ph,pt,rb,rch,rd,rg,rk,rl,rlst,rlt,rlth,rm,rn,rnt,rsh,rsp,rst,rt,rth,sh,sk,st,th',
+	'cge':'ch,ck,ct,ff,ft,gh,ght,lch,ld,ll,lm,lp,lsk,lt,lth,mb,mn,mp,nch,nd,ng,ngth,nk,nt,nth,nst,nx,nz,ph,pt,rb,rch,rd,rg,rk,rl,rlst,rlt,rlth,rm,rn,rnt,rnth,rsh,rsp,rst,rt,rth,sh,sk,st,th',
 	's':'ash,brom,chum,dan,dar,dock,faze,gamm,gler,grim,han,ine,ish,jar,jem,lash,lim,lom,nock,ock,ore,phiz,plad,prem,quin,quol,rath,sham,shrie,thar,thow,ton,ulf,wan,whel,yen,yul,zhul',
 	'n':'steve,dave,eldon'
 }
