@@ -15,7 +15,11 @@ class Message(models.Model):
 	action = models.CharField(max_length=50, db_index=True)
 	message = models.TextField()
 
-	def transmogrify(self, a):
+	def transmogrify(self, a, pov=None):
 		t = Template("{% load dp_extras %}" + self.message)
+		if a['actor'].id == pov.id:
+			a['actor'].player_pov = True
+		if a['target'].id == pov.id:
+			a['target'].player_pov = True
 		c = Context(a)
 		return t.render(c)

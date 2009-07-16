@@ -56,10 +56,14 @@ class Combat(models.Model):
 
 	def next_round(self):
 		self.turn += 1
-		self.messages = []
 		self.save()
+		for hero in self.heros():
+			hero.combat_messages[str(self.turn)] = []
+			hero.save()
 
 	def add_message(self, action, context):
 		message = random.choice(Message.objects.filter(action=action))
-		self.messages.append(message.transmogrify(context))
+		for hero in self.heros():
+			hero.combat_messages[str(self.turn)].append(message.transmogrify(context, pov=hero))
+			hero.save()
 		self.save()

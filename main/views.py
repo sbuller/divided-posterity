@@ -28,10 +28,8 @@ def index(request):
 @not_during_combat
 def startcombat(request, enemy=None):
 	hero = Hero.objects.get(user=request.user)
-	if not enemy:
-		enemy = random.choice(Enemy.objects.all())
 	combat = hero.new_pvm_combat(enemy)
-	return render_to_response('combat.djt',{'combat':combat}, RequestContext(request))
+	return render_to_response('combat.djt',{'combat':combat, 'messages':hero.combat_messages[str(combat.turn)]}, RequestContext(request))
 
 @login_required
 def combat(request):
@@ -39,6 +37,7 @@ def combat(request):
 	combat = hero.combat
 	combat.next_round()
 
+	hero = Hero.objects.filter(user=request.user)[0]
 	if 'skill' in request.POST:
 		skill = hero.skills.filter(pk=request.POST['skill'])
 		if len(skill):
@@ -58,7 +57,9 @@ def combat(request):
 	if combat.done:
 		return HttpResponseRedirect('/aftercombat')
 
-	return render_to_response('combat.djt', {'combat': combat}, RequestContext(request))
+	hero = Hero.objects.filter(user=request.user)[0]
+	messages = hero.combat_messages[str(combat.turn)]
+	return render_to_response('combat.djt', {'combat': combat, 'messages':messages}, RequestContext(request))
 
 @login_required
 @not_during_combat
