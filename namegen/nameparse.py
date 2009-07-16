@@ -100,8 +100,7 @@ def name_parser():
 
 	def p_sequence_sequence(p):
 		'''sequence : sequence part'''
-		p[1][1].append(p[2])
-		p[0] = ('SEQUENCE', p[1][1])
+		p[0] = ('SEQUENCE', p[1][1] + [p[2]])
 
 	def p_group(p):
 		'''group : '(' sequence ')'
@@ -120,13 +119,11 @@ def name_parser():
 
 	def p_choices_seq(p):
 		'''choice : sequence '|' choice'''
-		p[3][1].insert(0,('OPTION',p[1],None))
-		p[0] = p[3]
+		p[0] = ('CHOICE', [('OPTION',p[1],None)] + p[3][1])
 
 	def p_choices(p):
 		'''choice : sequence '|' percent choice'''
-		p[4][1].insert(0,('OPTION',p[1],p[3]))
-		p[0] = p[4]
+		p[0] = ('CHOICE', [('OPTION',p[1],p[3])] +p[4][1])
 
 	def p_part_set(p):
 		'''part : primitive IDENTIFIER
@@ -147,15 +144,35 @@ def name_parser():
 
 	return yacc.yacc()
 
+def make_string(data):
+	if data == None:
+		return 'nil'
+	elif isinstance(data, tuple):
+		string = '('
+		for n in data:
+			string += make_string(n) + ' '
+		return string[:-1] + ')'
+	elif isinstance(data, str):
+		return data
+	elif isinstance(data, list):
+		string = '(list'
+		for n in data:
+			string += ' ' + make_string(n)
+		return string + ')'
+	elif isinstance(data, int):
+		return str(data)
+
 if __name__ == '__main__':
 	import pprint
 	pp = pprint.PrettyPrinter(indent=3)
 	parser = name_parser()
-	pp.pprint(parser.parse("((c[y](v||)(c|v?)|{art})v&[x]s|12%E|c|CV?nB)[e]", lexer=name_lexer()))
+	thing = parser.parse('((B|c)(v|V)|c?v)((EB|B)v|E(v|||)|s(v|||))', lexer=name_lexer())
+	#pp.pprint(parser.parse("((c[y](v||)(c|v?)|{art})v&[x]s|12%E|c|CV?nB)[e]", lexer=name_lexer()))
 	#pp.pprint(parser.parse('((B|c)(v|V)|c?v)((EB|B)v|E(v|||)|s(v|||))', lexer=name_lexer()))
-	while 1:
-		try:
-			s = raw_input('pattern > ')
-		except EOFError:
-			break
-		pp.pprint(parser.parse(s))
+	print make_string(thing)
+	#while 1:
+		#try:
+			#s = raw_input('pattern > ')
+		#except EOFError:
+			#break
+		#pp.pprint(parser.parse(s))
