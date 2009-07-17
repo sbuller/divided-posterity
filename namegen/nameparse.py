@@ -146,12 +146,15 @@ def name_parser():
 
 def make_string(data):
 	if data == None:
-		return 'nil'
+		return '#f'
 	elif isinstance(data, tuple):
-		string = '('
-		for n in data:
-			string += make_string(n) + ' '
-		return string[:-1] + ')'
+		string = '(list'
+		if data[0] != "CODE":
+			for n in data:
+				string += ' ' + make_string(n)
+		else:
+			string += " CODE \""+data[1]+"\""
+		return string + ')'
 	elif isinstance(data, str):
 		return data
 	elif isinstance(data, list):

@@ -44,7 +44,7 @@ def evaluate(node, dictionary):
 		if num>total:
 			return evaluate(random.choice(options_residue), dictionary)
 		for option in options_explicit:
-			if option[1] <= num:
+			if option[1] >= num:
 				return evaluate(option[0], dictionary)
 		return "NO OPTION"
 	def do_sequence():
