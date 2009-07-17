@@ -1,4 +1,4 @@
-(list
+(define DEFAULT_PRIMITIVES (list
 	(cons "v" (list
 		"a" "e" "i" "o" "u" "y"))
 	(cons "V" (list
@@ -13,3 +13,4 @@
 		"ash" "brom" "chum" "dan" "dar" "dock" "faze" "gamm" "gler" "grim" "han" "ine" "ish" "jar" "jem" "lash" "lim" "lom" "nock" "ock" "ore" "phiz" "plad" "prem" "quin" "quol" "rath" "sham" "shrie" "thar" "thow" "ton" "ulf" "wan" "whel" "yen" "yul" "zhul"))
 	(cons "n" (list
 		"steve" "dave" "eldon")))
+)
