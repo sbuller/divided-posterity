@@ -1,4 +1,4 @@
-(define dictionary ())
+(define dictionary (list))
 (define DEFAULT_PRIMITIVES (load "default_primitives.scm"))
   
 (define (execute x)
@@ -14,8 +14,8 @@
 	
 (define (choice l)
 ;(write "Choice")
-	(define options_explicit ())
-	(define options_residue ())
+	(define options_explicit (list))
+	(define options_residue (list))
 	(define total 0)
 	(for-each
 		(lambda (it)
@@ -42,15 +42,15 @@
 				options_explicit)))
 		(execute n))
 		
-(define (sequence l)
+(define (sequence l . str)
 ;(write "Sequence")
-	(define result "")
-	(for-each
-		(lambda (it)
-			(set! result (string-append result
-				(execute it))))
-		l)
-	result)
+	(if (null? l)
+		(if (null? str)
+			""
+			(car str))
+		(if (> (length str) 0)
+			(sequence (cdr l) (string-append (car str) (execute (car l))))
+			(sequence (cdr l) (execute (car l))))))
 	
 (define (optional part chance)
 ;(write "Optional")
@@ -75,14 +75,16 @@
 	(define n (cdr (assoc name DEFAULT_PRIMITIVES)))
 	(define num (random (length n)))
 	(list-ref n num))
-	
+
 (define (literal str)
 (write "Literal")
 	str)
 	
 (define template (load "template.scm"))
 
-(define (gen)
-	(execute template))
+(define (gen num l)
+	(if (<= num 0)
+		l
+		(gen (- num 1) (append l (list (execute template))))))
 	
 (execute template)
