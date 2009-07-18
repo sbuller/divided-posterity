@@ -5,6 +5,7 @@ class Action(models.Model):
 	class Meta:
 		app_label = 'main'
 	code = models.TextField()
+	name = models.CharField(max_length=50)
 
 	def invoke(self, vars):
 		exec(self.code, vars)
@@ -31,7 +32,7 @@ class Action(models.Model):
 
 		Trigger.invoke_triggers(target, "receive attack")
 		Trigger.invoke_triggers(actor, "deal attack")
-		if stats['accuracy'] != False and (stats['accuracy'] == True or stats['accuracy'] / target.charm >= 2 * random.random()):
+		if stats['accuracy'] != False and (stats['accuracy'] == True or stats['accuracy'] * 2.0 / 3.0 / target.charm >= random.random()):
 			Trigger.invoke_triggers(target, "receive hit")
 			Trigger.invoke_triggers(actor, "deal hit")
 		else:
@@ -40,14 +41,14 @@ class Action(models.Model):
 			return False
 
 		if stats['exact_damage'] == False:
-			damage = int(math.ceil(stats['might'] * stats['weapon'] / target.stamina * (0.8 + 0.4 * random.random())))
+			damage = int(math.ceil(stats['might'] * stats['weapon'] * (0.8 + 0.4 * random.random()) / target.stamina))
 			damage += stats['plus_damage']
 		else:
 			damage = stats['exact_damage']
 
 		if damage > 0:
 			if stats['critical'] != False:
-				if stats['critical'] == True or (stats['critical']-target.lore)/target.lore >= 4 * random.random():
+				if stats['critical'] == True or 0.25 * (stats['critical']-target.lore)/target.lore >= random.random():
 					damage *= 1.5
 			target.hp -= damage
 			target.save()

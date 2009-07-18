@@ -3,14 +3,16 @@
 		"model": "main.Action",
 		"pk": 2,
 		"fields": {
-			"code": "print actor.entity.name, 'uses', cskill.skill.name, 'on', target.entity.name"
+			"name": "die?",
+			"code": "if combatant.hp <= 0:\n combatant.alive = False\n combatant.save()"
 		}
 	},
 	{
 		"model": "main.Action",
 		"pk": 1,
 		"fields": {
-			"code": "n = Action.generic_attack(actor=actor, target=target)\nif n != False:\n action = \"attack hits\"\nelse:\n action = \"attack misses\"\ncontext['damage'] = n"
+			"name": "skill_attack",
+			"code": "n = Action.generic_attack(actor=actor, target=target, stats={})\nif n != False:\n action = \"attack hits\"\nelse:\n action = \"attack misses\"\ncontext['damage'] = n"
 		}
 	}
 ]

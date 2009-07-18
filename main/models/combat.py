@@ -19,12 +19,25 @@ class Combat(models.Model):
 
 	messages = JSONField()
 
+	def teams_alive(self):
+		all_teams = [team for team in map(lambda x: x.__getattribute__("team"), self.combatants().filter(alive=True))]
+		teams = {}
+		for team in all_teams:
+			if not team in teams:
+				teams[team] = 1
+			else:
+				teams[team] += 1
+		return teams
+
 	def enemies(self):
 		return Combatant.objects.filter(combat=self,team__startswith="_enemy")
 
 	def heros(self):
 		from hero import Hero
 		return Hero.objects.filter(combat=self)
+
+	def combatants(self):
+		return Combatant.objects.filter(combat=self)
 
 	def doitems(self):
 		from item import ItemDrop
@@ -55,6 +68,9 @@ class Combat(models.Model):
 		self.save()
 
 	def init_combat(self):
+		from hero import Hero
+		from action import Action
+		act = Action.objects.filter(id=2).all()[0]
 		for hero in self.heros():
 			hero.max_hp = hero.base_brawn + hero.base_charm + hero.base_finesse + hero.base_lore + hero.base_magery + hero.base_stamina
 			hero.hp = hero.max_hp
@@ -62,6 +78,7 @@ class Combat(models.Model):
 			hero.mp = 0
 			hero.alive = True
 			hero.save()
+			Trigger(combatant = hero, trigger_name="receive damage", action=act, combat=self, value={}).save()
 		for en in self.enemies():
 			en.max_hp = en.enemy.base_brawn + en.enemy.base_charm + en.enemy.base_finesse + en.enemy.base_lore + en.enemy.base_magery + en.enemy.base_stamina
 			en.hp = en.max_hp
@@ -69,6 +86,7 @@ class Combat(models.Model):
 			en.mp = 0
 			en.alive = True
 			en.save()
+			Trigger(combatant = en, trigger_name="receive damage", action=act, combat=self, value={}).save()
 
 	def next_round(self):
 		self.turn += 1
@@ -90,7 +108,6 @@ class Combat(models.Model):
 			coms[num].mp += mp_remaining - len(rnums)
 			coms[num].mp = min(coms[num].mp, coms[num].max_mp)
 			coms[num].save()
-			print coms[num].mp
 
 
 	def add_message(self, action, context):

@@ -47,6 +47,12 @@ def combat(request):
 	for en in combat.enemies():
 		en.enemy.perform_action(en, combat)
 
+	if len(combat.teams_alive().keys()) == 1:
+		if combat.teams_alive().keys()[0] == hero.team:
+			combat.win()
+		else:
+			combat.lose()
+
 	if 'win' in request.POST:
 		combat.win()
 	elif 'lose' in request.POST:

@@ -21,11 +21,11 @@ class Combatant(models.Model):
 	magery = models.IntegerField()
 	stamina = models.IntegerField()
 
-	hp = models.IntegerField(default = 100)
-	max_hp = models.IntegerField(default = 100)
+	hp = models.IntegerField(blank=True, null=True)
+	max_hp = models.IntegerField(blank=True, null=True)
 
-	mp = models.IntegerField(default = 0)
-	max_mp = models.IntegerField(default = 25)
+	mp = models.IntegerField(blank=True, null=True)
+	max_mp = models.IntegerField(blank=True, null=True)
 
 	effects = models.ManyToManyField('Effect', through='EffectInstance')
 	skills = models.ManyToManyField('Skill', through='CombatantSkill')
