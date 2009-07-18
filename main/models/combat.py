@@ -54,12 +54,43 @@ class Combat(models.Model):
 		self.result = 'lost'
 		self.save()
 
+	def init_combat(self):
+		for hero in self.heros():
+			hero.max_hp = hero.base_brawn + hero.base_charm + hero.base_finesse + hero.base_lore + hero.base_magery + hero.base_stamina
+			hero.hp = hero.max_hp
+			hero.max_mp = hero.max_hp / 4
+			hero.mp = 0
+			hero.alive = True
+			hero.save()
+		for en in self.enemies():
+			en.max_hp = en.enemy.base_brawn + en.enemy.base_charm + en.enemy.base_finesse + en.enemy.base_lore + en.enemy.base_magery + en.enemy.base_stamina
+			en.hp = en.max_hp
+			en.max_mp = en.max_hp / 4
+			en.mp = 0
+			en.alive = True
+			en.save()
+
 	def next_round(self):
 		self.turn += 1
 		self.save()
 		for hero in self.heros():
 			hero.combat_messages[str(self.turn)] = []
 			hero.save()
+		combatants = Combatant.objects.filter(combat=self, alive=True).all()
+		total = 0
+		coms = {}
+		for c in combatants:
+			total += c.magery
+			coms[total] = c
+		num_mp = 5 * len(combatants)
+		rnums = map(random.randint, [1] * num_mp, [total] * num_mp)
+		for num in coms.keys():
+			mp_remaining = len(rnums)
+			rnums = [elem for elem in rnums if elem > num]
+			coms[num].mp += mp_remaining - len(rnums)
+			coms[num].save()
+			print coms[num].mp
+
 
 	def add_message(self, action, context):
 		message = random.choice(Message.objects.filter(action=action))

@@ -11,6 +11,7 @@ class Action(models.Model):
 
 	@classmethod
 	def generic_attack(cls, actor, target, stats={}):
+		#returns damage dealt (False on miss)
 		#case accuracy: True, attack hits, False: attack misses, else: roll some dice
 		#case critical: True, critical hit, False: normal damage, else: roll some dice
 		#case exact_damage: False: roll some dice, else: damage = exact_damage
@@ -28,14 +29,14 @@ class Action(models.Model):
 			if not k in stats:
 				stats[k] = v
 
-		Trigger.invoke_triggers(target, "get attacked")
-		Trigger.invoke_triggers(actor, "attack")
-		if stats['accuracy'] != False:
-			if stats['accuracy'] == True or stats['accuracy'] / target.charm >= 2 * random.random():
-				pass
-			else:
-				return False
+		Trigger.invoke_triggers(target, "receive attack")
+		Trigger.invoke_triggers(actor, "deal attack")
+		if stats['accuracy'] != False and (stats['accuracy'] == True or stats['accuracy'] / target.charm >= 2 * random.random()):
+			Trigger.invoke_triggers(target, "receive hit")
+			Trigger.invoke_triggers(actor, "deal hit")
 		else:
+			Trigger.invoke_triggers(target, "receive miss")
+			Trigger.invoke_triggers(actor, "deal miss")
 			return False
 
 		if stats['exact_damage'] == False:
@@ -50,7 +51,7 @@ class Action(models.Model):
 					damage *= 1.5
 			target.hp -= damage
 			target.save()
-			Trigger.invoke_triggers(target, "take damage")
+			Trigger.invoke_triggers(target, "receive damage")
 			Trigger.invoke_triggers(actor, "deal damage")
 		else:
 			damage = 0

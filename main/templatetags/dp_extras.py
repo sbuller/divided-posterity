@@ -12,7 +12,7 @@ def get_map_data(var, arg):
 		if it.slug == arg:
 			return SafeUnicode("<a href=\"/travel/" + it.slug + "\">" + it.name + "</a>")
 	return "empty"
-	
+
 @register.filter
 def pronoun(var, arg):
 	table = [ #m,f,n,p,y
@@ -33,3 +33,6 @@ def conj(var, arg):
 	args= arg.split(",")
 	return args[var.player_pov*2 or not (not var.count-1)]
 
+@register.filter
+def percent(var, arg):
+	return var.__getattribute__(arg) * 100.0 / var.__getattribute__("max_"+arg)

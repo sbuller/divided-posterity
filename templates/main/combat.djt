@@ -1,4 +1,5 @@
 {% extends "layout.djt" %}
+{% load dp_extras %}
 
 {% block viewpane %}
 		<div id="combat">
@@ -39,14 +40,14 @@
 
 			<table id="wellbeingbars" class="centered"><tbody><tr><td>
 				<div id="health" class="bar">
-					<div class="barfill" style="width:{{wellbeing.percenthp}}%;">
+					<div class="barfill" style="width:{{hero|percent:"hp"}}%;">
 					</div>
-					<h3>Health: {{wellbeing.hp}} / {{hero.hp}}</h3>
+					<h3>Health: {{hero.hp}} / {{hero.max_hp}}</h3>
 				</div>
 				<div id="energy" class="bar">
-					<div class="barfill" style="width:{{wellbeing.percentmp}}%;">
+					<div class="barfill" style="width:{{hero|percent:"mp"}}%;">
 					</div>
-					<h3>Energy: {{wellbeing.mp}} / {{hero.mp}}</h3>
+					<h3>Energy: {{hero.mp}} / {{hero.max_mp}}</h3>
 				</div>
 			</td></tr></tbody></table>
 		</div> <!--combat-->

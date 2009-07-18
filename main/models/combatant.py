@@ -92,6 +92,7 @@ class Combatant(models.Model):
 		self.save()
 		if oldcombat:
 			oldcombat.delete()
+		c.init_combat()
 		return c
 
 	def loot(self):
