@@ -10,7 +10,7 @@
 		"model": "main.Action",
 		"pk": 1,
 		"fields": {
-			"code": "import random\naction = random.choice(['attack hits','attack misses'])"
+			"code": "n = Action.generic_attack(actor=actor, target=target)\nif n != False:\n action = \"attack hits\"\nelse:\n action = \"attack misses\"\ncontext['damage'] = n"
 		}
 	}
 ]

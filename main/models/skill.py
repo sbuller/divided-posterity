@@ -11,6 +11,7 @@ class Skill(models.Model):
 
 	def invoke(self, **kwargs):
 		kwargs['context']={}
+		kwargs['Action'] = Action
 		exec(self.action.code, kwargs)
 		if 'combat' in kwargs.keys() and 'action' in kwargs.keys():
 			context = kwargs['context']

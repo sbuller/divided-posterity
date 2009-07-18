@@ -16,18 +16,18 @@ class Action(models.Model):
 		#case critical: True, critical hit, False: normal damage, else: roll some dice
 		#case exact_damage: False: roll some dice, else: damage = exact_damage
 		import random, math
-		from main import Trigger
+		from trigger import Trigger
 		DEFAULT_STATS = {
 			"accuracy": actor.finesse,
 			"critical": actor.lore,
 			"exact_damage": False,
 			"might": actor.brawn,
-			"weap": 15, #actor.weapon_power
+			"weapon": 3, #actor.weapon_power
 			"plus_damage": 0,
 		}
-		for k,v in DEFAULT_STATS:
+		for k in DEFAULT_STATS.keys():
 			if not k in stats:
-				stats[k] = v
+				stats[k] = DEFAULT_STATS[k]
 
 		Trigger.invoke_triggers(target, "receive attack")
 		Trigger.invoke_triggers(actor, "deal attack")

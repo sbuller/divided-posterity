@@ -58,14 +58,14 @@ class Combat(models.Model):
 		for hero in self.heros():
 			hero.max_hp = hero.base_brawn + hero.base_charm + hero.base_finesse + hero.base_lore + hero.base_magery + hero.base_stamina
 			hero.hp = hero.max_hp
-			hero.max_mp = hero.max_hp / 4
+			hero.max_mp = max(10, hero.max_hp/4)
 			hero.mp = 0
 			hero.alive = True
 			hero.save()
 		for en in self.enemies():
 			en.max_hp = en.enemy.base_brawn + en.enemy.base_charm + en.enemy.base_finesse + en.enemy.base_lore + en.enemy.base_magery + en.enemy.base_stamina
 			en.hp = en.max_hp
-			en.max_mp = en.max_hp / 4
+			en.max_mp = max(10, en.max_hp/4)
 			en.mp = 0
 			en.alive = True
 			en.save()
@@ -88,6 +88,7 @@ class Combat(models.Model):
 			mp_remaining = len(rnums)
 			rnums = [elem for elem in rnums if elem > num]
 			coms[num].mp += mp_remaining - len(rnums)
+			coms[num].mp = min(coms[num].mp, coms[num].max_mp)
 			coms[num].save()
 			print coms[num].mp
 
