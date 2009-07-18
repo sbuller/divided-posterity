@@ -17,5 +17,12 @@
   fields:
     skill: 7
     mastery_level: 2
+    slot: 4
+    combatant: 1
+- model: main.CombatantSkill
+  pk: 4
+  fields:
+    skill: 4
+    mastery_level: 1
     slot: 3
     combatant: 1

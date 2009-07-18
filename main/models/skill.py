@@ -6,10 +6,13 @@ class Skill(models.Model):
 	class Meta:
 		app_label = 'main'
 	name = models.CharField(max_length=50)
+	mp_cost = models.IntegerField()
 	action = models.ForeignKey(Action)
 	image_url = models.URLField()
 
 	def invoke(self, **kwargs):
+		kwargs['actor'].mp -= self.mp_cost
+		kwargs['actor'].save()
 		kwargs['context']={}
 		kwargs['Action'] = Action
 		exec(self.action.code, kwargs)

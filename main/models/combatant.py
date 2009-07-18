@@ -93,6 +93,7 @@ class Combatant(models.Model):
 		if oldcombat:
 			oldcombat.delete()
 		c.init_combat()
+		c.next_round()
 		return c
 
 	def loot(self):

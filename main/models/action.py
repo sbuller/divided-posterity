@@ -30,6 +30,9 @@ class Action(models.Model):
 			if not k in stats:
 				stats[k] = DEFAULT_STATS[k]
 
+		print "actor:", actor, "target:", target
+		print "stats:", stats
+
 		Trigger.invoke_triggers(target, "receive attack")
 		Trigger.invoke_triggers(actor, "deal attack")
 		if stats['accuracy'] != False and (stats['accuracy'] == True or stats['accuracy'] * 2.0 / 3.0 / target.charm >= random.random()):
@@ -49,7 +52,7 @@ class Action(models.Model):
 		if damage > 0:
 			if stats['critical'] != False:
 				if stats['critical'] == True or 0.25 * (stats['critical']-target.lore)/target.lore >= random.random():
-					damage *= 1.5
+					damage = int(math.ceil(damage * 1.5))
 			target.hp -= damage
 			target.save()
 			Trigger.invoke_triggers(target, "receive damage")

@@ -4,7 +4,7 @@
 		"pk": 1,
 		"fields": {
 			"action": "attack hits",
-			"message": "{{actor|pronoun:\"ey\"|capfirst}} hit{{actor|conj:\"s,,\"}} {{target|pronoun:\"em\"}} from atop a {{combat.location.platform|random}}."
+			"message": "{{actor|pronoun:\"ey\"|capfirst}} hit{{actor|conj:\"s,,\"}} {{target|pronoun:\"em\"}} for {{damage}} damage from atop a {{combat.location.platform|random}}."
 		}
 	},
 	{
@@ -12,7 +12,7 @@
 		"pk": 2,
 		"fields": {
 			"action": "attack hits",
-			"message": "{{target|pronoun:\"ey\"|capfirst}} {{target|conj:\"is,are,are\"}} wounded by {{actor|pronoun:\"eir\"}} vicious strike{{actor.count|pluralize}}."
+			"message": "{{target|pronoun:\"ey\"|capfirst}} {{target|conj:\"is,are,are\"}} wounded by {{actor|pronoun:\"eir\"}} vicious strike{{actor.count|pluralize}}. {{target|pronoun:\"ey\"|capfirst}} take{{target|conj:\"s,,\"}} {{damage}} damage from the assault{{actor.count|pluralize}}"
 		}
 	},
 	{
@@ -36,7 +36,7 @@
 		"pk": 5,
 		"fields": {
 			"action": "attack hits",
-			"message": "{{actor|pronoun:\"ey\"|capfirst}} swing{{actor|conj:\"s,,\"}} {{actor|pronoun:\"eir\"}} weapon{{actor.count|pluralize:\". It connects,s. They connect\"}}!"
+			"message": "{{actor|pronoun:\"ey\"|capfirst}} swing{{actor|conj:\"s,,\"}} {{actor|pronoun:\"eir\"}} weapon{{actor.count|pluralize:\". It connects,s. They connect\"}}! {{target|pronoun:\"ey\"|capfirst}} take{{target|conj:\"s,,\"}} {{damage}} damage."
 		}
 	},
 	{
@@ -44,7 +44,7 @@
 		"pk": 6,
 		"fields": {
 			"action": "attack hits",
-			"message": "{{actor|pronoun:\"ey\"|capfirst}} shoot{{actor|conj:\"s,,\"}} {{target|pronoun:\"em\"}} for some damage."
+			"message": "{{actor|pronoun:\"ey\"|capfirst}} shoot{{actor|conj:\"s,,\"}} {{target|pronoun:\"em\"}} for {{damage}} damage."
 		}
 	},
 	{

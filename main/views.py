@@ -29,20 +29,20 @@ def index(request):
 def startcombat(request, enemy=None):
 	hero = Hero.objects.get(user=request.user)
 	combat = hero.new_pvm_combat(enemy)
-	return render_to_response('combat.djt',{'combat':combat, 'messages':hero.combat_messages[str(combat.turn)]}, RequestContext(request))
+	return render_to_response('combat.djt',{'combat':combat, 'messages':hero.combat_messages[str(combat.turn-1)]}, RequestContext(request))
 
 @login_required
 def combat(request):
 	hero = Hero.objects.filter(user=request.user)[0]
 	combat = hero.combat
-	combat.next_round()
 
 	hero = Hero.objects.filter(user=request.user)[0]
 	if 'skill' in request.POST:
 		skill = hero.skills.filter(pk=request.POST['skill'])
 		if len(skill):
 			cskill=CombatantSkill.objects.filter(combatant=hero, skill=skill[0])[0]
-			skill[0].invoke(actor=hero, target=combat.enemies()[0], cskill=cskill, combat=combat)
+			if skill[0].mp_cost <= hero.mp:
+				skill[0].invoke(actor=hero, target=combat.enemies()[0], cskill=cskill, combat=combat)
 
 	for en in combat.enemies():
 		en.enemy.perform_action(en, combat)
@@ -63,8 +63,9 @@ def combat(request):
 	if combat.done:
 		return HttpResponseRedirect('/aftercombat')
 
+	combat.next_round()
 	hero = Hero.objects.filter(user=request.user)[0]
-	messages = hero.combat_messages[str(combat.turn)]
+	messages = hero.combat_messages[str(combat.turn-1)]
 	return render_to_response('combat.djt', {'combat': combat, 'messages':messages}, RequestContext(request))
 
 @login_required
