@@ -21,6 +21,12 @@ class Combatant(models.Model):
 	magery = models.IntegerField()
 	stamina = models.IntegerField()
 
+	hp = models.IntegerField(default = 100)
+	max_hp = models.IntegerField(default = 100)
+
+	mp = models.IntegerField(default = 0)
+	max_mp = models.IntegerField(default = 25)
+
 	effects = models.ManyToManyField('Effect', through='EffectInstance')
 	skills = models.ManyToManyField('Skill', through='CombatantSkill')
 	combat = models.ForeignKey('Combat', blank=True, null=True, db_index=True)
