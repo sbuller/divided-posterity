@@ -70,7 +70,7 @@ class Combat(models.Model):
 	def init_combat(self):
 		from hero import Hero
 		from action import Action
-		act = Action.objects.filter(id=2).all()[0]
+		act = Action.objects.filter(name="die?").all()[0]
 		for hero in self.heros():
 			hero.max_hp = hero.base_brawn + hero.base_charm + hero.base_finesse + hero.base_lore + hero.base_magery + hero.base_stamina
 			hero.hp = hero.max_hp
@@ -98,6 +98,7 @@ class Combat(models.Model):
 		total = 0
 		coms = {}
 		for c in combatants:
+			Trigger.invoke_triggers(c, "end of round")
 			total += c.magery
 			coms[total] = c
 		num_mp = 5 * len(combatants)

@@ -10,12 +10,15 @@ class Trigger(models.Model):
 	action = models.ForeignKey('Action')
 	value = JSONField()
 	trigger_name = models.CharField(max_length=50, db_index=True)
-	effect = models.ForeignKey('Effect', blank=True, null=True)
+	effect_instance = models.ForeignKey('EffectInstance', blank=True, null=True)
 	combat = models.ForeignKey('Combat', blank=True, null=True)
 
 	@classmethod
 	def invoke_triggers(cls, combatant, trigger_name):
+		from action import Action
 		all_triggers = Trigger.objects.filter(combatant=combatant, trigger_name=trigger_name)
 		for trigger in all_triggers:
-			trigger.value['combatant'] = combatant
+			trigger.value['target'] = combatant
+			trigger.value['Action'] = Action
+			trigger.value['trigger'] = trigger
 			exec(trigger.action.code, trigger.value)

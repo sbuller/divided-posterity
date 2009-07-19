@@ -12,7 +12,7 @@
 		"pk": 2,
 		"fields": {
 			"name": "die?",
-			"code": "if combatant.hp <= 0:\n combatant.alive = False\n combatant.save()"
+			"code": "if target.hp <= 0:\n target.alive = False\n target.save()"
 		}
 	},
 	{
@@ -22,9 +22,23 @@
 			"name": "skill_plunge",
 			"code": "if len(target.effects.filter(name=\"stun\")) != 0:\n s = 1.0\nelse:\n s = 0.5\nn = Action.generic_attack(actor=actor, target=target, stats={\"accuracy\": s * actor.finesse, \"plus_damage\": actor.brawn / 2})\nif n != False:\n action = \"attack hits\"\nelse:\n action = \"attack misses\"\ncontext[\"damage\"] = n"
 		}
+	},
+	{
+		"model": "main.Action",
+		"pk": 4,
+		"fields": {
+			"name": "skill_poison_blade",
+			"code": "n = Action.generic_attack(actor=actor, target=target, stats={})\nif n != False:\n action = \"poison blade hits\"\n target.add_triggered_effect(effect_name=\"poison_blade\", duration=1, unit=\"v\", trigger_value={\"damage\":actor.finesse/2})\nelse:\n action = \"attack misses\"\ncontext['damage'] = n"
+		}
+	},
+	{
+		"model": "main.Action",
+		"pk": 5,
+		"fields": {
+			"name": "effect-poison-blade",
+			"code": "Action.damage(target, damage)"
+		}
 	}
 ]
-
-
 
 

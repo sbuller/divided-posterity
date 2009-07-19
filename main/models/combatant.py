@@ -42,6 +42,14 @@ class Combatant(models.Model):
 		#except ObjectDoesNotExist:
 			#return super(Combatant,self).__getattr__(name)
 
+	def add_triggered_effect(self, effect_name, duration, unit, trigger_value={}):
+		from trigger import Trigger
+		from effect import Effect, EffectInstance
+		e = Effect.objects.filter(name=effect_name).all()[0]
+		ei = EffectInstance(effect=e, target=self, duration=duration, unit=unit)
+		ei.save()
+		Trigger(combatant=self, action=e.action, trigger_name=e.trigger_name, value=trigger_value, effect_instance=ei).save()
+
 	def _get_entity(self):
 		try:
 			return self.hero
