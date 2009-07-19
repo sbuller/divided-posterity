@@ -18,7 +18,8 @@ class Trigger(models.Model):
 		from action import Action
 		all_triggers = Trigger.objects.filter(combatant=combatant, trigger_name=trigger_name)
 		for trigger in all_triggers:
-			trigger.value['target'] = combatant
-			trigger.value['Action'] = Action
-			trigger.value['trigger'] = trigger
-			exec(trigger.action.code, trigger.value)
+			value = trigger.value.copy()
+			value['target'] = combatant
+			value['Action'] = Action
+			value['trigger'] = trigger
+			exec(trigger.action.code, value)

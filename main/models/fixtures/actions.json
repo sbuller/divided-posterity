@@ -28,7 +28,7 @@
 		"pk": 4,
 		"fields": {
 			"name": "skill_poison_blade",
-			"code": "n = Action.generic_attack(actor=actor, target=target, stats={})\nif n != False:\n action = \"poison blade hits\"\n target.add_triggered_effect(effect_name=\"poison_blade\", duration=1, unit=\"v\", trigger_value={\"damage\":actor.finesse/2})\nelse:\n action = \"attack misses\"\ncontext['damage'] = n"
+			"code": "n = Action.generic_attack(actor=actor, target=target, stats={})\nif n != False:\n action = \"poison blade hits\"\n target.add_triggered_effect(effect_name=\"poison_blade\", duration=1, unit=\"v\", trigger_value={\"damage\":actor.finesse})\nelse:\n action = \"attack misses\"\ncontext['damage'] = n"
 		}
 	},
 	{
@@ -36,7 +36,7 @@
 		"pk": 5,
 		"fields": {
 			"name": "effect-poison-blade",
-			"code": "Action.damage(target, damage)"
+			"code": "if damage>=1:\n Action.damage(target, damage)\n trigger.value[\"damage\"]-=1\n trigger.save()\nelse:\n trigger.effect_instance.delete()"
 		}
 	}
 ]
