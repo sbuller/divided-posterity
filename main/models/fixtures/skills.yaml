@@ -17,7 +17,7 @@
   fields:
     name: 'Poison Blade'
     image_url: /static/images/skills/poisonblade.png
-    action: 1
+    action: 4
     mp_cost: 5
 - model: main.Skill
   pk: 4

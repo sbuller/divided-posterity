@@ -62,5 +62,13 @@
 			"action": "attack misses",
 			"message": "{{actor|pronoun:\"ey\"|capfirst}} miss{{actor|conj:\"es,,\"}} {{target|pronoun:\"em\"}} by a mile."
 		}
+	},
+	{
+		"model": "main.Message",
+		"pk": 9,
+		"fields": {
+			"action": "poison blade hits",
+			"message": "{{actor|pronoun:\"ey\"|capfirst}} dip{{actor|conj:\"s,,\"}} {{actor|pronoun:\"eir\"}} weapon{{actor.count|pluralize}} into a vial of glistening black liquid. {{actor|pronoun:\"ey\"|capfirst}} lash out at {{target|pronoun:\"em\"}}, and score {{actor.count|pluralize:\"a hit,some hits\"}}, dealing {{damage}} damage. The poison looks like it's taking effect already."
+		}
 	}
 ]

@@ -44,6 +44,12 @@ def combat(request):
 			if skill[0].mp_cost <= hero.mp:
 				skill[0].invoke(actor=hero, target=combat.enemies()[0], cskill=cskill, combat=combat)
 
+	if len(combat.teams_alive().keys()) == 1:
+		if combat.teams_alive().keys()[0] == hero.team:
+			combat.win()
+		else:
+			combat.lose()
+
 	for en in combat.enemies():
 		en.enemy.perform_action(en, combat)
 

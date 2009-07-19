@@ -7,6 +7,8 @@ class Effect(models.Model):
 	class Meta:
 		app_label = 'main'
 	name = models.CharField(max_length=50)
+	action = models.ForeignKey('Action', blank=True, null=True)
+	trigger_name = models.CharField(max_length=50)
 
 class EffectInstance(models.Model):
 	class Meta:

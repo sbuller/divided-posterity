@@ -11,6 +11,16 @@ class Action(models.Model):
 		exec(self.code, vars)
 
 	@classmethod
+	def damage(cls, target, amount, actor=None):
+		from trigger import Trigger
+		target.hp -= amount
+		target.save()
+		print "damage:",amount,"target:",target,"hp left:",target.hp
+		Trigger.invoke_triggers(target, "receive damage")
+		if actor:
+			Trigger.invoke_triggers(actor, "deal damage")
+
+	@classmethod
 	def generic_attack(cls, actor, target, stats={}):
 		#returns damage dealt (False on miss)
 		#case accuracy: True, attack hits, False: attack misses, else: roll some dice
@@ -30,8 +40,8 @@ class Action(models.Model):
 			if not k in stats:
 				stats[k] = DEFAULT_STATS[k]
 
-		print "actor:", actor, "target:", target
-		print "stats:", stats
+		#print "actor:", actor, "target:", target
+		#print "stats:", stats
 
 		Trigger.invoke_triggers(target, "receive attack")
 		Trigger.invoke_triggers(actor, "deal attack")
@@ -53,10 +63,7 @@ class Action(models.Model):
 			if stats['critical'] != False:
 				if stats['critical'] == True or 0.25 * (stats['critical']-target.lore)/target.lore >= random.random():
 					damage = int(math.ceil(damage * 1.5))
-			target.hp -= damage
-			target.save()
-			Trigger.invoke_triggers(target, "receive damage")
-			Trigger.invoke_triggers(actor, "deal damage")
+			Action.damage(target, damage)
 		else:
 			damage = 0
 

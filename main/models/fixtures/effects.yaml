@@ -1,0 +1,6 @@
+- model: main.Effect
+  pk: 1
+  fields:
+    name: 'poison_blade'
+    action: 5
+    trigger_name: 'end of round'
