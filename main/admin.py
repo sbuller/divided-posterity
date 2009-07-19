@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.contrib import admin
-from dp.main.models import Enemy, Message, Item, Location, InventoryItem, Hero, Combatant, Effect, EffectInstance, Encounter, EncounterInfo, Skill, Combat, ItemDrop, Modifier, Trigger, Action, CombatantSkill
+from dp.main.models import Enemy, Message, Item, Location, InventoryItem, Hero, Combatant, Effect, EffectInstance, NonCombat, EncounterInfo, Skill, Combat, ItemDrop, Modifier, Trigger, Action, CombatantSkill
 
 class MessageAdmin(admin.ModelAdmin):
 	list_display = ('id','action','message')
@@ -31,7 +31,7 @@ class EffectAdmin(admin.ModelAdmin):
 class EffectInstanceAdmin(admin.ModelAdmin):
 	list_display = ('id','target','effect','duration','unit')
 
-class EncounterAdmin(admin.ModelAdmin):
+class NonCombatAdmin(admin.ModelAdmin):
 	list_display=('name','description')
 
 class EncounterInfoAdmin(admin.ModelAdmin):
@@ -55,7 +55,7 @@ admin.site.register(Hero, HeroAdmin)
 admin.site.register(Combatant, CombatantAdmin)
 admin.site.register(Effect, EffectAdmin)
 admin.site.register(EffectInstance, EffectInstanceAdmin)
-admin.site.register(Encounter, EncounterAdmin)
+admin.site.register(NonCombat, NonCombatAdmin)
 admin.site.register(EncounterInfo, EncounterInfoAdmin)
 admin.site.register(Skill)
 admin.site.register(Combat, CombatAdmin)

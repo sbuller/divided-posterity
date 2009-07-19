@@ -8,7 +8,7 @@ from combatant import Combatant
 from message import Message
 from combat import Combat
 from location import Location
-from encounter import Encounter, EncounterInfo
+from encounter import NonCombat, EncounterInfo
 from trigger import Trigger
 from action import Action
 from combatantskill import CombatantSkill

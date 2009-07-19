@@ -115,7 +115,7 @@ def travel(request, location_id):
 	if encounter_info.is_combat:
 		return startcombat(request,encounter_info.enemy)
 	else:
-		return HttpResponse(encounter_info.encounter)
+		return render_to_response(encounter_info.encounter.template_path, {'location':hero.location,'places':hero.location.neighbors.all()}, RequestContext(request))
 
 @login_required
 @not_during_combat
