@@ -38,16 +38,16 @@ class Action(models.Model):
 			"weapon": 3, #actor.weapon_power
 			"plus_damage": 0,
 		}
-		for k in DEFAULT_STATS.keys():
-			if not k in stats:
-				stats[k] = DEFAULT_STATS[k]
+		stats_in = stats
+		stats = DEFAULT_STATS.copy()
+		stats.update(stats_in)
 
 		#print "actor:", actor, "target:", target
 		#print "stats:", stats
 
 		Trigger.invoke_triggers(target, "receive attack")
 		Trigger.invoke_triggers(actor, "deal attack")
-		if stats['accuracy'] != None and float(stats['accuracy']) * 2.0 / 3.0 / target.charm >= random.random():
+		if (stats['accuracy'] != None) and (float(stats['accuracy']) * 2.0 / 3.0 / target.charm >= random.random()):
 			Trigger.invoke_triggers(target, "receive hit")
 			Trigger.invoke_triggers(actor, "deal hit")
 		else:
