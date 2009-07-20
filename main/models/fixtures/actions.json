@@ -12,7 +12,7 @@
 		"pk": 2,
 		"fields": {
 			"name": "die?",
-			"code": "if target.hp <= 0:\n target.alive = False\n target.save()"
+			"code": "if target.hp <= 0:\n target.alive = False\n target.hp = 0\n target.save()"
 		}
 	},
 	{
