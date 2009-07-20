@@ -52,15 +52,6 @@
 			</td></tr></tbody></table>
 		</div> <!--combat-->
 		<form action="/combat" method="POST">
-			<label>You</label>
-			<input type="radio" name="youhit" value="true" checked="true">Hit</input>
-			<input type="radio" name="youhit" value="false">Miss</input>
-			<br />
-			<label>They</label>
-			<input type="radio" name="theyhit" value="true">Hit</input>
-			<input type="radio" name="theyhit" value="false" checked="true">Miss</input>
-			<br />
-			<input type="submit" value="Attack!" />
 			<input type="submit" name="win" value="win" />
 			<input type="submit" name="lose" value="lose" />
 		</form>
