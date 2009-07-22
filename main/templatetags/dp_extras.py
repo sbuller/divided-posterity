@@ -36,3 +36,23 @@ def conj(var, arg):
 @register.filter
 def percent(var, arg):
 	return var.__getattribute__(arg) * 100.0 / var.__getattribute__("max_"+arg)
+
+@register.filter
+def oldbar(var, arg):
+	val = (var.__getattribute__(arg+"_exp") - var.__getattribute__(arg+"_exp_gain")) * 100.0 / var.__getattribute__("max_"+arg+"_exp")
+	if val < 0:
+		return 0
+	return val
+
+@register.filter
+def newbar(var, arg):
+	if oldbar(var,arg) == 0:
+		return var.__getattribute__(arg+"_exp") * 100.0 / var.__getattribute__("max_"+arg+"_exp")
+	else:
+		return var.__getattribute__(arg+"_exp_gain") * 100.0 / var.__getattribute__("max_"+arg+"_exp")
+
+@register.filter
+def stat_up(var, arg):
+	if var.__getattribute__(arg+"_up"):
+		return SafeUnicode("<em> +" + str(var.__getattribute__(arg+"_up")) + "!</em>")
+	return ""

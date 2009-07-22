@@ -45,18 +45,34 @@ class Combat(models.Model):
 		for itemdrop in winitems:
 			InventoryItem.add_item(self.heros()[0],itemdrop.item,itemdrop.quantity)
 
-	def win(self):
+	def win(self, winning_team):
 		self.done = True
-		for enemy in self.enemies():
-			enemy.alive=False
-			enemy.save()
+		for enemy in self.enemies().exclude(team=winning_team):
 			enemy.loot()
 		self.doitems()
 		hero = self.heros()[0]
 		if (hero.destination):
 			hero.location = hero.destination
 			hero.save()
+		self.award_exp(hero)
 		self.save()
+
+	def award_exp(self, hero):
+		old_stats = {
+			"brawn": hero.base_brawn,
+			"charm": hero.base_charm,
+			"finesse": hero.base_finesse,
+			"lore": hero.base_lore,
+			"magery": hero.base_magery,
+			"stamina":  hero.base_stamina
+		}
+		d = {"brawn":0, "charm":0, "finesse":0, "lore":0, "magery":0, "stamina":0}
+		exp = hero.add_experience(sum(map(lambda s: s.__getattribute__("max_hp"), self.enemies().all())))
+		d.update(exp)
+		for k,v in d.items():
+			hero.__dict__[k+"_exp_gain"] = v
+			hero.__dict__[k+"_up"] = hero.__dict__["base_"+k] - old_stats[k]
+		hero.save()
 
 	def won(self):
 		surviving_enemies = Combatant.objects.filter(combat=self, alive=True, team__startswith="_enemy")

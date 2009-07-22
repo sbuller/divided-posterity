@@ -27,6 +27,20 @@ class Hero(Combatant):
 	magery_exp = models.IntegerField(default=0)
 	stamina_exp = models.IntegerField(default=0)
 
+	brawn_exp_gain = models.IntegerField(default=0)
+	charm_exp_gain = models.IntegerField(default=0)
+	finesse_exp_gain = models.IntegerField(default=0)
+	lore_exp_gain = models.IntegerField(default=0)
+	magery_exp_gain = models.IntegerField(default=0)
+	stamina_exp_gain = models.IntegerField(default=0)
+	
+	brawn_up = models.IntegerField(default=0)
+	charm_up = models.IntegerField(default=0)
+	finesse_up = models.IntegerField(default=0)
+	lore_up = models.IntegerField(default=0)
+	magery_up = models.IntegerField(default=0)
+	stamina_up = models.IntegerField(default=0)
+
 	combat_messages = JSONField()
 
 	#equipped_items = models.ManyToManyField('Item',through='EquippedItem')
@@ -35,6 +49,18 @@ class Hero(Combatant):
 	location = models.ForeignKey('Location', default='tree_village', related_name='populace')
 
 	inventory = models.ManyToManyField('Item', through='InventoryItem')
+
+	def total_exp_gain(self):
+		return self.brawn_exp_gain + self.charm_exp_gain + self.finesse_exp_gain + self.lore_exp_gain + self.magery_exp_gain + self.stamina_exp_gain
+
+	def _max_stat_exp(self, stat):
+		return 2 * self.__dict__["base_"+stat] + 1
+	max_brawn_exp = property(lambda s: s._max_stat_exp("brawn"))
+	max_charm_exp = property(lambda s: s._max_stat_exp("charm"))
+	max_finesse_exp = property(lambda s: s._max_stat_exp("finesse"))
+	max_lore_exp = property(lambda s: s._max_stat_exp("lore"))
+	max_magery_exp = property(lambda s: s._max_stat_exp("magery"))
+	max_stamina_exp = property(lambda s: s._max_stat_exp("stamina"))
 
 	def _creaseness(self,stat):
 		diff = self.__getattribute__(stat) - self.__getattribute__("base_"+stat)
@@ -52,29 +78,31 @@ class Hero(Combatant):
 
 	def add_experience(self, d, stat=None):
 		if isinstance(d, dict):
-			print d
 			d2 = []
 			for s, amt in d.items():
 				self.__dict__[s+"_exp"] += amt
-				while self.__dict__[s+"_exp"] > 2 * self.__dict__["base_"+s] + 1:
+				while self.__dict__[s+"_exp"] >= 2 * self.__dict__["base_"+s] + 1:
 					self.__dict__[s+"_exp"] -= 2 * self.__dict__["base_"+s] + 1
 					self.__dict__["base_"+s] += 1
 					if not s in d2:
 						d2.append(s)
 			self.save()
 			self.update_vars(d2)
+			return d
 		elif isinstance(d, int):
 			if stat:
-				self.add_experience({stat:d})
+				return self.add_experience({stat:d})
 			else:
 				import random
-				rnums = [0] + map(random.randint, [0]*5, [d+4]*5) + [d+4]
+				rnums = [0] + map(random.randint, [0]*5, [d]*5) + [d]
 				rnums.sort()
 				s = ['brawn','charm','finesse','lore','magery','stamina']
 				stats = {}
 				for i in xrange(6):
 					stats[s[i]] = rnums[i+1]-rnums[i]
-				self.add_experience(stats)
+				return self.add_experience(stats)
+		else:
+			return None
 
 	def new_pvm_combat(self, enemy):
 		self.combat_messages = [[]]

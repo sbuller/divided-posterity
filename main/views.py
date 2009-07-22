@@ -46,7 +46,7 @@ def combat(request):
 
 	if len(combat.teams_alive().keys()) == 1:
 		if combat.teams_alive().keys()[0] == hero.team:
-			combat.win()
+			combat.win(combat.teams_alive().keys()[0])
 		else:
 			combat.lose()
 
@@ -55,12 +55,12 @@ def combat(request):
 
 	if len(combat.teams_alive().keys()) == 1:
 		if combat.teams_alive().keys()[0] == hero.team:
-			combat.win()
+			combat.win(combat.teams_alive().keys()[0])
 		else:
 			combat.lose()
 
 	if 'win' in request.POST:
-		combat.win()
+		combat.win(hero.team)
 	elif 'lose' in request.POST:
 		combat.lose()
 
