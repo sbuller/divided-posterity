@@ -127,8 +127,19 @@ def travel(request, location_id):
 @not_during_combat
 def do(request, encounter=None):
 	hero = Hero.objects.filter(user=request.user)[0]
+	d = {'request': request}
 	if encounter:
+		if encounter.action:
+			exec(encounter.action.code, d)
+		hero.non_combat = encounter
+		hero.save()
 		return render_to_response(encounter.template_path, {'location':hero.location,'places':hero.location.neighbors.all()}, RequestContext(request))
+	if hero.non_combat.form_process:
+		exec(hero.non_combat.form_process.code, d)
+	if d['non_combat']:
+		return do(request, d['non_combat'])
+	elif d['combat']:
+		return startcombat(request, d['combat'])
 	return HttpResponseRedirect('/map')
 
 @login_required
