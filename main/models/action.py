@@ -70,3 +70,6 @@ class Action(models.Model):
 			damage = 0
 
 		return damage
+
+	def __unicode__(self):
+		return self.name
