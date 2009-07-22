@@ -43,6 +43,8 @@ class Hero(Combatant):
 
 	combat_messages = JSONField()
 
+	non_combat = models.ForeignKey('NonCombat', null=True, blank=True)
+
 	#equipped_items = models.ManyToManyField('Item',through='EquippedItem')
 
 	destination = models.ForeignKey('Location', null=True, blank=True, related_name='incoming_heroes')

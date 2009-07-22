@@ -46,6 +46,12 @@ class TriggerAdmin(admin.ModelAdmin):
 class CombatantSkillAdmin(admin.ModelAdmin):
 	list_display=('combatant', 'skill', 'slot', 'mastery_level')
 
+class ActionAdmin(admin.ModelAdmin):
+	list_display=('name',)
+	def save_model(self, request, obj, form, change):
+		obj.code = obj.code.replace('\r','')
+		obj.save()
+
 admin.site.register(Enemy, EnemyAdmin)
 admin.site.register(Message, MessageAdmin)
 admin.site.register(Item)
@@ -62,5 +68,5 @@ admin.site.register(Combat, CombatAdmin)
 admin.site.register(ItemDrop)
 admin.site.register(Modifier)
 admin.site.register(Trigger,TriggerAdmin)
-admin.site.register(Action)
+admin.site.register(Action,ActionAdmin)
 admin.site.register(CombatantSkill,CombatantSkillAdmin)

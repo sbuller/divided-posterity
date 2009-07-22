@@ -12,6 +12,7 @@ urlpatterns = patterns('dp.main.views',
 	(r'^inventory$', 'inventory'),
 	(r'^map$', 'locationMap'),
 	(r'^travel/(?P<location_id>[\w\d]+)$', 'travel'),
+	(r'^do$', 'do'),
 	# Example:
 	# (r'^dp/', include('dp.foo.urls')),
 
