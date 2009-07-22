@@ -44,7 +44,7 @@ class Hero(Combatant):
 	tpl_stamina_change = lambda s: s._creaseness("stamina")
 
 	def new_pvm_combat(self, enemy):
-		self.combat_messages = {'0':[]}
+		self.combat_messages = [[]]
 		self.save()
 		return super(Hero,self).new_pvm_combat(enemy, self.destination)
 

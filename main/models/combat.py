@@ -92,7 +92,7 @@ class Combat(models.Model):
 		self.turn += 1
 		self.save()
 		for hero in self.heros():
-			hero.combat_messages[str(self.turn)] = []
+			hero.combat_messages.append([])
 			hero.save()
 		combatants = Combatant.objects.filter(combat=self, alive=True).all()
 		total = 0
@@ -114,6 +114,6 @@ class Combat(models.Model):
 	def add_message(self, action, context):
 		message = random.choice(Message.objects.filter(action=action))
 		for hero in self.heros():
-			hero.combat_messages[str(self.turn)].append(message.transmogrify(context, pov=hero))
+			hero.combat_messages[self.turn].append(message.transmogrify(context, pov=hero))
 			hero.save()
 		self.save()

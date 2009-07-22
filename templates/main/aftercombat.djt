@@ -111,24 +111,22 @@
 				<table class="centered"><tbody><tr><td>
 					<h3 class="head1">Combat Log</h3>
 					<div class="body1">
-						<table><tbody><tr>
-							<td><div class="neutral terrain startcombat" /></td>
-							<td><p>Lost initiative</p>
-								<p>Lost 12 health. (Attack)</p></td>
-						</tr><tr>
-							<td><div class="good terrain" /></td>
-							<td><p>Dealt 14 damage. (Attack)</p>
-								<p>Evaded attack. (Jump Kick)</p></td>
-						</tr><tr>
-							<td><div class="good terrain powerup" /></td>
-							<td><p>Dealt 31 damage. (Fireball)</p>
-								<p>Rover found an item. (Rubber Bone)</p>
-								<p>Lost 19 health. (Roundhouse Kick)</p></td>
-						</tr><tr>
-							<td><div class="bad terrain" /></td>
-							<td><p>Missed enemy. (Attack)</p>
-								<p>Lost 26 Health. (Feint)</p></td>
-						</tr></tbody></table>
+						<table><tbody>
+						{% for m in hero.combat_messages %}
+						{% if m %}
+							<tr title="Round {{forloop.counter0}}">
+								<td>
+									<div class="neutral terrain{% if forloop.first %} startcombat{% endif %}" />
+								</td>
+								<td>
+								{% for message in m %}
+									<p>{{message}}</p>
+								{% endfor %}
+								</td>
+							</tr>
+						{% endif %}
+						{% endfor %}
+						</tbody></table>
 					</div>
 				</td></tr></tbody></table>
 				</div> <!--combatlog-->

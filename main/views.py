@@ -29,7 +29,7 @@ def index(request):
 def startcombat(request, enemy=None):
 	hero = Hero.objects.get(user=request.user)
 	combat = hero.new_pvm_combat(enemy)
-	return render_to_response('combat.djt',{'combat':combat, 'messages':hero.combat_messages[str(combat.turn-1)]}, RequestContext(request))
+	return render_to_response('combat.djt',{'combat':combat, 'messages':hero.combat_messages[combat.turn-1]}, RequestContext(request))
 
 @login_required
 def combat(request):
@@ -71,7 +71,7 @@ def combat(request):
 
 	combat.next_round()
 	hero = Hero.objects.filter(user=request.user)[0]
-	messages = hero.combat_messages[str(combat.turn-1)]
+	messages = hero.combat_messages[combat.turn-1]
 	return render_to_response('combat.djt', {'combat': combat, 'messages':messages}, RequestContext(request))
 
 @login_required
