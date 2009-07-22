@@ -20,6 +20,13 @@ class Hero(Combatant):
 	base_magery = models.IntegerField()
 	base_stamina = models.IntegerField()
 
+	brawn_exp = models.IntegerField(default=0)
+	charm_exp = models.IntegerField(default=0)
+	finesse_exp = models.IntegerField(default=0)
+	lore_exp = models.IntegerField(default=0)
+	magery_exp = models.IntegerField(default=0)
+	stamina_exp = models.IntegerField(default=0)
+
 	combat_messages = JSONField()
 
 	#equipped_items = models.ManyToManyField('Item',through='EquippedItem')
@@ -43,8 +50,34 @@ class Hero(Combatant):
 	tpl_magery_change = lambda s: s._creaseness("magery")
 	tpl_stamina_change = lambda s: s._creaseness("stamina")
 
+	def add_experience(self, d, stat=None):
+		if isinstance(d, dict):
+			print d
+			d2 = []
+			for s, amt in d.items():
+				self.__dict__[s+"_exp"] += amt
+				while self.__dict__[s+"_exp"] > 2 * self.__dict__["base_"+s] + 1:
+					self.__dict__[s+"_exp"] -= 2 * self.__dict__["base_"+s] + 1
+					self.__dict__["base_"+s] += 1
+					if not s in d2:
+						d2.append(s)
+			self.save()
+			self.update_vars(d2)
+		elif isinstance(d, int):
+			if stat:
+				self.add_experience({stat:d})
+			else:
+				import random
+				rnums = [0] + map(random.randint, [0]*5, [d+4]*5) + [d+4]
+				rnums.sort()
+				s = ['brawn','charm','finesse','lore','magery','stamina']
+				stats = {}
+				for i in xrange(6):
+					stats[s[i]] = rnums[i+1]-rnums[i]
+				self.add_experience(stats)
+
 	def new_pvm_combat(self, enemy):
-		self.combat_messages = {'0':[]}
+		self.combat_messages = [[]]
 		self.save()
 		return super(Hero,self).new_pvm_combat(enemy, self.destination)
 
