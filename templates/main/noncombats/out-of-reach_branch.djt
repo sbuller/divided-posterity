@@ -1,6 +1,10 @@
 {% extends "layout.djt" %}
 
 {% block viewpane %}
+<form action="/do" method="POST">
+<input type="submit" value="1" />
+<input type="submit" value="2" />
+</form>
 <p><a href="/map">Return to {{hero.location.name}}.</a></p>
 <p><a href="{% url dp.main.views.travel hero.location.slug %}">Adventure again.</a></p>
 {% endblock %}

@@ -136,9 +136,9 @@ def do(request, encounter=None):
 		return render_to_response(encounter.template_path, {'location':hero.location,'places':hero.location.neighbors.all()}, RequestContext(request))
 	if hero.non_combat.form_process:
 		exec(hero.non_combat.form_process.code, d)
-	if d['non_combat']:
+	if 'non_combat' in d:
 		return do(request, d['non_combat'])
-	elif d['combat']:
+	elif 'combat' in d:
 		return startcombat(request, d['combat'])
 	return HttpResponseRedirect('/map')
 
