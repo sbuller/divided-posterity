@@ -6,13 +6,13 @@
 				<div class="header centeredtext">
 					<h1 class=head1>Combat Complete!</h1>
 					<p><a href="/map">Return to {{hero.location.name}}.</a></p>
-					<p><a href="{% url dp.main.views.travel hero.location.slug %}">Adventure again.</a></p>
+					<p><a href="{% url dp.main.views.travel hero.destination.slug %}">Adventure again.</a></p>
 				</div>
 
 				<div id="rewardexperience" class="body1">
 					<h3>Experience:</h3>
 					<p>{{hero.total_exp_gain}} XP earned</p>
-					
+
 					<div>
 						<div class="brawn bar" title="{{hero.brawn_exp}}/{{hero.max_brawn_exp}}">
 							<div class="barfill" style="width:{{hero|oldbar:"brawn"}}%;"></div>
