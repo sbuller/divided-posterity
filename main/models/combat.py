@@ -119,7 +119,9 @@ class Combat(models.Model):
 			coms[total] = c
 		num_mp = 5 * len(combatants)
 		rnums = map(random.randint, [1] * num_mp, [total] * num_mp)
-		for num in coms.keys():
+		keys = coms.keys()
+		keys.sort()
+		for num in keys:
 			mp_remaining = len(rnums)
 			rnums = [elem for elem in rnums if elem > num]
 			coms[num].mp += mp_remaining - len(rnums)
