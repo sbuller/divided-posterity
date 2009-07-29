@@ -39,7 +39,7 @@ class Combat(models.Model):
 	def combatants(self):
 		return Combatant.objects.filter(combat=self)
 
-	def doitems(self):
+	def do_items(self):
 		from item import ItemDrop
 		winitems = ItemDrop.objects.filter(combat=self)
 		for itemdrop in winitems:
@@ -49,7 +49,7 @@ class Combat(models.Model):
 		self.done = True
 		for enemy in self.enemies().exclude(team=winning_team):
 			enemy.loot()
-		self.doitems()
+		self.do_items()
 		hero = self.heros()[0]
 		if (hero.destination):
 			hero.location = hero.destination
@@ -58,20 +58,9 @@ class Combat(models.Model):
 		self.save()
 
 	def award_exp(self, hero):
-		old_stats = {
-			"brawn": hero.base_brawn,
-			"charm": hero.base_charm,
-			"finesse": hero.base_finesse,
-			"lore": hero.base_lore,
-			"magery": hero.base_magery,
-			"stamina":  hero.base_stamina
-		}
-		d = {"brawn":0, "charm":0, "finesse":0, "lore":0, "magery":0, "stamina":0}
 		exp = hero.add_experience(sum(map(lambda s: s.__getattribute__("max_hp"), self.enemies().all())))
-		d.update(exp)
-		for k,v in d.items():
+		for k,v in exp.items():
 			hero.__dict__[k+"_exp_gain"] = v
-			hero.__dict__[k+"_up"] = hero.__dict__["base_"+k] - old_stats[k]
 		hero.save()
 
 	def won(self):
@@ -93,6 +82,8 @@ class Combat(models.Model):
 			hero.max_mp = max(10, hero.max_hp/4)
 			hero.mp = 0
 			hero.alive = True
+			for stat in ['brawn','charm','finesse','lore','magery','stamina']:
+				hero.__dict__[stat+"_exp_gain"] = 0
 			hero.save()
 			Trigger(combatant = hero, trigger_name="receive damage", action=act, combat=self, value={}).save()
 		for en in self.enemies():

@@ -34,13 +34,6 @@ class Hero(Combatant):
 	magery_exp_gain = models.IntegerField(default=0)
 	stamina_exp_gain = models.IntegerField(default=0)
 
-	brawn_up = models.IntegerField(default=0)
-	charm_up = models.IntegerField(default=0)
-	finesse_up = models.IntegerField(default=0)
-	lore_up = models.IntegerField(default=0)
-	magery_up = models.IntegerField(default=0)
-	stamina_up = models.IntegerField(default=0)
-
 	combat_messages = JSONField()
 
 	non_combat = models.ForeignKey('NonCombat', null=True, blank=True)
@@ -55,6 +48,24 @@ class Hero(Combatant):
 	def total_exp_gain(self):
 		return self.brawn_exp_gain + self.charm_exp_gain + self.finesse_exp_gain + self.lore_exp_gain + self.magery_exp_gain + self.stamina_exp_gain
 
+	def _stat_up(self, stat):
+		upness = 0
+		remainder = self.__dict__[stat+"_exp_gain"]
+		value = self.__dict__["base_"+stat]
+		exp = self.__dict__[stat+"_exp"]
+		while remainder > exp:
+			upness += 1
+			remainder -= value * 2 - 1
+			value -= 1
+			exp = value * 2 - 1
+		return upness
+	brawn_up = property(lambda s: s._stat_up("brawn"))
+	charm_up = property(lambda s: s._stat_up("charm"))
+	finesse_up = property(lambda s: s._stat_up("finesse"))
+	lore_up = property(lambda s: s._stat_up("lore"))
+	magery_up = property(lambda s: s._stat_up("magery"))
+	stamina_up = property(lambda s: s._stat_up("stamina"))
+	
 	def _max_stat_exp(self, stat):
 		return 2 * self.__dict__["base_"+stat] + 1
 	max_brawn_exp = property(lambda s: s._max_stat_exp("brawn"))
