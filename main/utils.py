@@ -8,7 +8,10 @@ def distribute(total, weights):
 
 	probs = [elem/total_weight for elem in weights][:-1]
 	for it in probs:
-		e = random.binomial(remainder, it/prob_left)
+		if remainder > 0:
+			e = random.binomial(remainder, it/prob_left)
+		else:
+			e = 0
 		a.append(e)
 		remainder -= e
 		prob_left -= it

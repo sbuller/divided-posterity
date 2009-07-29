@@ -55,9 +55,9 @@ class Hero(Combatant):
 		exp = self.__dict__[stat+"_exp"]
 		while remainder > exp:
 			upness += 1
-			remainder -= value * 2 - 1
-			value -= 1
+			remainder -= exp
 			exp = value * 2 - 1
+			value -= 1
 		return upness
 	brawn_up = property(lambda s: s._stat_up("brawn"))
 	charm_up = property(lambda s: s._stat_up("charm"))
