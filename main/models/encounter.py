@@ -9,7 +9,7 @@ class NonCombat(models.Model):
 		app_label = 'main'
 
 	name = models.CharField(max_length=50, null=True, blank=True)
-	template_path = models.FilePathField(path='',recursive=True,max_length=100)
+	template_path = models.CharField(max_length=100)
 	action = models.ForeignKey('Action', null=True, blank=True, related_name='action_noncombats')
 	form_process = models.ForeignKey('Action', null=True, blank=True, related_name='form_noncombats')
 	description = models.TextField()
