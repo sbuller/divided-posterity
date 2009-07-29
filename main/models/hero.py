@@ -33,7 +33,7 @@ class Hero(Combatant):
 	lore_exp_gain = models.IntegerField(default=0)
 	magery_exp_gain = models.IntegerField(default=0)
 	stamina_exp_gain = models.IntegerField(default=0)
-	
+
 	brawn_up = models.IntegerField(default=0)
 	charm_up = models.IntegerField(default=0)
 	finesse_up = models.IntegerField(default=0)
@@ -95,13 +95,11 @@ class Hero(Combatant):
 			if stat:
 				return self.add_experience({stat:d})
 			else:
-				import random
-				rnums = [0] + map(random.randint, [0]*5, [d]*5) + [d]
-				rnums.sort()
+				from main.utils import distribute
+				weights = [1,3,2,2,1,1]
+				exp = distribute(d, weights)
 				s = ['brawn','charm','finesse','lore','magery','stamina']
-				stats = {}
-				for i in xrange(6):
-					stats[s[i]] = rnums[i+1]-rnums[i]
+				stats = dict(zip(s,exp))
 				return self.add_experience(stats)
 		else:
 			return None

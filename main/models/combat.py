@@ -105,28 +105,20 @@ class Combat(models.Model):
 			Trigger(combatant = en, trigger_name="receive damage", action=act, combat=self, value={}).save()
 
 	def next_round(self):
+		from main.utils import distribute
 		self.turn += 1
 		self.save()
 		for hero in self.heros():
 			hero.combat_messages.append([])
 			hero.save()
 		combatants = Combatant.objects.filter(combat=self, alive=True).all()
-		total = 0
-		coms = {}
-		for c in combatants:
-			Trigger.invoke_triggers(c, "end of round")
-			total += c.magery
-			coms[total] = c
+		magerys = map(lambda s: s.__getattribute__("magery"), combatants)
 		num_mp = 5 * len(combatants)
-		rnums = map(random.randint, [1] * num_mp, [total] * num_mp)
-		keys = coms.keys()
-		keys.sort()
-		for num in keys:
-			mp_remaining = len(rnums)
-			rnums = [elem for elem in rnums if elem > num]
-			coms[num].mp += mp_remaining - len(rnums)
-			coms[num].mp = min(coms[num].mp, coms[num].max_mp)
-			coms[num].save()
+		mp_gains = distribute(num_mp, magerys)
+		for i in xrange(len(combatants)):
+			combatants[i].mp = min(combatants[i].max_mp, combatants[i].mp + mp_gains[i])
+			combatants[i].save()
+			Trigger.invoke_triggers(combatants[i], "end of round")
 
 
 	def add_message(self, action, context):
