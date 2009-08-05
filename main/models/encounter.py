@@ -13,6 +13,11 @@ class NonCombat(models.Model):
 	action = models.ForeignKey('Action', null=True, blank=True, related_name='action_noncombats')
 	form_process = models.ForeignKey('Action', null=True, blank=True, related_name='form_noncombats')
 	description = models.TextField()
+	is_exclusive = models.BooleanField(default=True)
+
+	@property
+	def is_terminal(self):
+		return form_process == None
 
 	def __unicode__(self):
 		return self.name
