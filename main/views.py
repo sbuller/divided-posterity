@@ -9,10 +9,10 @@ from models import Message, Enemy, Item, Location, Combat, InventoryItem, Hero, 
 
 import random, json
 
-def not_during_combat(fn):
+def not_while_busy(fn):
 	def wrap(*args, **kwargs):
 		hero = Hero.objects.filter(user=args[0].user)[0]
-		if (hero.combat and not hero.combat.done):
+		if (hero.combat and not hero.combat.done) or (hero.non_combat and hero.non_combat.is_exclusive):
 			return HttpResponseRedirect('/combat')
 		return fn(*args,**kwargs)
 	return wrap
@@ -25,7 +25,7 @@ def index(request):
 		return render_to_response('index.djt')
 
 @login_required
-@not_during_combat
+@not_while_busy
 def startcombat(request, enemy=None):
 	hero = Hero.objects.get(user=request.user)
 	combat = hero.new_pvm_combat(enemy)
@@ -75,7 +75,6 @@ def combat(request):
 	return render_to_response('combat.djt', {'combat': combat, 'messages':messages}, RequestContext(request))
 
 @login_required
-@not_during_combat
 def aftercombat(request):
 	hero = Hero.objects.filter(user=request.user)[0]
 	return render_to_response('aftercombat.djt', {'hero': hero}, RequestContext(request))
@@ -87,13 +86,13 @@ def inventory(request):
 	return render_to_response('inventory.djt', {'items':inventory}, RequestContext(request))
 
 @login_required
-@not_during_combat
+@not_while_busy
 def locationMap(request):
 	hero = Hero.objects.filter(user=request.user)[0]
 	return render_to_response("maps/"+hero.location.slug+".djt", {'location':hero.location,'places':hero.location.neighbors.all()}, RequestContext(request))
 
 @login_required
-@not_during_combat
+@not_while_busy
 def travel(request, location_id):
 	hero = Hero.objects.filter(user=request.user)[0]
 	destination = Location.objects.get(slug=location_id)
@@ -124,7 +123,7 @@ def travel(request, location_id):
 		return do(request, encounter_info.encounter)
 
 @login_required
-@not_during_combat
+@not_while_busy
 def do(request, encounter=None):
 	hero = Hero.objects.filter(user=request.user)[0]
 	d = {'request': request}
@@ -143,7 +142,7 @@ def do(request, encounter=None):
 	return HttpResponseRedirect('/map')
 
 @login_required
-@not_during_combat
+@not_while_busy
 def flush_inventory(request):
 	if 'flush' in request.POST:
 		hero = Hero.objects.filter(user=request.user)[0]
