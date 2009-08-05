@@ -36,9 +36,6 @@ class Hero(Combatant):
 
 	combat_messages = JSONField()
 
-	def is_busy(self):
-		return (self.combat and not self.combat.done) or (self.non_combat and self.non_combat.is_exclusive)
-
 	non_combat = models.ForeignKey('NonCombat', null=True, blank=True)
 
 	#equipped_items = models.ManyToManyField('Item',through='EquippedItem')

@@ -38,6 +38,14 @@
 			"name": "effect-poison-blade",
 			"code": "if damage>=1:\n Action.damage(target, damage)\n trigger.value[\"damage\"]-=1\n trigger.save()\nelse:\n trigger.effect_instance.delete()"
 		}
+	},
+	{
+		"model": "main.Action",
+		"pk": 6,
+		"fields": {
+			"name": "dummy",
+			"code": "print \"dummy action'd!\""
+		}
 	}
 ]
 

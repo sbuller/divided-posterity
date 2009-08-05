@@ -12,8 +12,10 @@ import random
 def not_while_busy(fn):
 	def wrap(*args, **kwargs):
 		hero = Hero.objects.filter(user=args[0].user)[0]
-		if hero.is_busy():
+		if (hero.combat and not hero.combat.done):
 			return HttpResponseRedirect('/combat')
+		elif  (hero.non_combat and hero.non_combat.is_exclusive):
+			return HttpResponseRedirect('/do')
 		return fn(*args,**kwargs)
 	return wrap
 
@@ -125,23 +127,31 @@ def travel(request, location_id):
 		return do(request, encounter_info.encounter)
 
 @login_required
-@not_while_busy
 def do(request, encounter=None):
 	hero = Hero.objects.filter(user=request.user)[0]
 	d = {'request': request}
 	if encounter:
 		if encounter.action:
 			exec(encounter.action.code, d)
-		hero.non_combat = encounter
-		hero.save()
+		if not encounter.is_terminal:
+			hero.non_combat = encounter
+			hero.save()
 		return render_to_response(encounter.template_path, {'location':hero.location,'places':hero.location.neighbors.all()}, RequestContext(request))
-	if hero.non_combat.form_process:
-		exec(hero.non_combat.form_process.code, d)
-	if 'non_combat' in d:
-		return do(request, d['non_combat'])
-	elif 'combat' in d:
-		return startcombat(request, d['combat'])
-	return HttpResponseRedirect('/map')
+	if not hero.non_combat:
+		return HttpResponse("No NonCombat found. You probably shouldn't be here.")
+	if (not hero.non_combat.is_terminal) and request.POST:
+		try:
+			exec(hero.non_combat.form_process.code, d)
+			hero.non_combat = None
+			hero.save()
+			if 'non_combat' in d:
+				return do(request, d['non_combat'])
+			elif 'combat' in d:
+				return startcombat(request, d['combat'])
+			return HttpResponseRedirect('/map')
+		except:
+			pass
+	return render_to_response(hero.non_combat.template_path, {'location':hero.location,'places':hero.location.neighbors.all()}, RequestContext(request))
 
 @login_required
 @not_while_busy
