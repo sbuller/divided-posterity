@@ -7,12 +7,12 @@ from django.contrib.auth.decorators import login_required
 
 from models import Message, Enemy, Item, Location, Combat, InventoryItem, Hero, EncounterInfo, CombatantSkill
 
-import random, json
+import random
 
 def not_while_busy(fn):
 	def wrap(*args, **kwargs):
 		hero = Hero.objects.filter(user=args[0].user)[0]
-		if (hero.combat and not hero.combat.done) or (hero.non_combat and hero.non_combat.is_exclusive):
+		if hero.is_busy():
 			return HttpResponseRedirect('/combat')
 		return fn(*args,**kwargs)
 	return wrap
@@ -49,6 +49,7 @@ def combat(request):
 			combat.win(combat.teams_alive().keys()[0])
 		else:
 			combat.lose()
+		return HttpResponseRedirect('/aftercombat')
 
 	for en in combat.enemies():
 		en.enemy.perform_action(en, combat)
@@ -58,6 +59,7 @@ def combat(request):
 			combat.win(combat.teams_alive().keys()[0])
 		else:
 			combat.lose()
+		return HttpResponseRedirect('/aftercombat')
 
 	if 'win' in request.POST:
 		combat.win(hero.team)
