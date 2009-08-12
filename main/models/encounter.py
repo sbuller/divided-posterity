@@ -17,7 +17,7 @@ class NonCombat(models.Model):
 
 	@property
 	def is_terminal(self):
-		return form_process == None
+		return self.form_process == None
 
 	def __unicode__(self):
 		return self.name

@@ -5,7 +5,8 @@
 		"fields": {
 			"name": "The out-of-reach branch",
 			"description": "The branch looms over you",
-			"template_path": "noncombats/out-of-reach_branch.djt"
+			"template_path": "noncombats/out-of-reach_branch.djt",
+			"form_process": 6
 		}
 	}
 ]
