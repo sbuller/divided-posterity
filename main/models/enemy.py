@@ -7,13 +7,13 @@ from combatant import Combatant
 from skill import Skill
 
 class Enemy(models.Model):
-	class Meta:
-		app_label = 'main'
 	"""
 	>>> en = Enemy.objects.create(variety='["a","b","c"]',count=1)
 	>>> " ".join(en.variety)
 	u'a b c'
 	"""
+	class Meta:
+		app_label = 'main'
 	variety = JSONField()
 	name = models.CharField(max_length=50)
 	count = models.IntegerField()
