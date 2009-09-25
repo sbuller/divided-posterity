@@ -1,0 +1,52 @@
+[
+	{
+		"model": "main.Action",
+		"pk": 1,
+		"fields": {
+			"name": "skill_attack",
+			"code": "n = Action.generic_attack(actor=actor, target=target, stats={})\nif n != None:\n action = \"attack hits\"\nelse:\n action = \"attack misses\"\ncontext['damage'] = n"
+		}
+	},
+	{
+		"model": "main.Action",
+		"pk": 2,
+		"fields": {
+			"name": "die?",
+			"code": "if target.hp <= 0:\n target.alive = False\n target.hp = 0\n target.save()"
+		}
+	},
+	{
+		"model": "main.Action",
+		"pk": 3,
+		"fields": {
+			"name": "skill_plunge",
+			"code": "if len(target.effects.filter(name=\"stun\")) != 0:\n s = 1.0\nelse:\n s = 0.5\nn = Action.generic_attack(actor=actor, target=target, stats={\"accuracy\": s * actor.finesse, \"plus_damage\": actor.brawn / 2})\nif n != None:\n action = \"attack hits\"\nelse:\n action = \"attack misses\"\ncontext[\"damage\"] = n"
+		}
+	},
+	{
+		"model": "main.Action",
+		"pk": 4,
+		"fields": {
+			"name": "skill_poison_blade",
+			"code": "n = Action.generic_attack(actor=actor, target=target, stats={})\nif n != None:\n action = \"poison blade hits\"\n target.add_triggered_effect(effect_name=\"poison_blade\", duration=1, unit=\"v\", trigger_value={\"damage\":actor.finesse})\nelse:\n action = \"attack misses\"\ncontext['damage'] = n"
+		}
+	},
+	{
+		"model": "main.Action",
+		"pk": 5,
+		"fields": {
+			"name": "effect-poison-blade",
+			"code": "if damage>=1:\n Action.damage(target, damage)\n trigger.value[\"damage\"]-=1\n trigger.save()\nelse:\n trigger.effect_instance.delete()"
+		}
+	},
+	{
+		"model": "main.Action",
+		"pk": 6,
+		"fields": {
+			"name": "dummy",
+			"code": "print \"dummy action'd!\""
+		}
+	}
+]
+
+

@@ -1,0 +1,13 @@
+<html>
+	<head>
+		<title>Divided Posterity - Index</title>
+	</head>
+	<body>
+		<ul>
+			<li><a href="/login">Log In</a></li>
+			<li><a href="/signup">Sign Up</a></li>
+			<li><a href="/static/about.html">About</a></li>
+			<li><a href="/donate">Send us lots of Money</a></li>
+		</ul>
+	</body>
+</html>

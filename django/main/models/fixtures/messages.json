@@ -1,0 +1,74 @@
+[
+	{
+		"model": "main.Message",
+		"pk": 1,
+		"fields": {
+			"action": "attack hits",
+			"message": "{{actor|pronoun:\"ey\"|capfirst}} hit{{actor|conj:\"s,,\"}} {{target|pronoun:\"em\"}} for {{damage}} damage from atop a {{combat.location.platform|random}}."
+		}
+	},
+	{
+		"model": "main.Message",
+		"pk": 2,
+		"fields": {
+			"action": "attack hits",
+			"message": "{{target|pronoun:\"ey\"|capfirst}} {{target|conj:\"is,are,are\"}} wounded by {{actor|pronoun:\"eir\"}} vicious strike{{actor.count|pluralize}}. {{target|pronoun:\"ey\"|capfirst}} take{{target|conj:\"s,,\"}} {{damage}} damage from the assault{{actor.count|pluralize}}"
+		}
+	},
+	{
+		"model": "main.Message",
+		"pk": 3,
+		"fields": {
+			"action": "attack misses",
+			"message": "{{actor|pronoun:\"ey\"|capfirst}} tr{{actor|conj:\"ies,y,y\"}} to hit {{target|pronoun:\"em\"}}, but miss{{actor|conj:\"es,,\"}}. {{actor|pronoun:\"ey\"|capfirst}} go{{actor|conj:\"es,,\"}} into the corner to cry."
+		}
+	},
+	{
+		"model": "main.Message",
+		"pk": 4,
+		"fields": {
+			"action": "attack misses",
+			"message": "{{target|pronoun:\"ey\"|capfirst}} deftly dodge{{target|conj:\"s,,\"}} {{actor|pronoun:\"eir\"}} attack{{actor.count|pluralize}}."
+		}
+	},
+	{
+		"model": "main.Message",
+		"pk": 5,
+		"fields": {
+			"action": "attack hits",
+			"message": "{{actor|pronoun:\"ey\"|capfirst}} swing{{actor|conj:\"s,,\"}} {{actor|pronoun:\"eir\"}} weapon{{actor.count|pluralize:\". It connects,s. They connect\"}}! {{target|pronoun:\"ey\"|capfirst}} take{{target|conj:\"s,,\"}} {{damage}} damage."
+		}
+	},
+	{
+		"model": "main.Message",
+		"pk": 6,
+		"fields": {
+			"action": "attack hits",
+			"message": "{{actor|pronoun:\"ey\"|capfirst}} shoot{{actor|conj:\"s,,\"}} {{target|pronoun:\"em\"}} for {{damage}} damage."
+		}
+	},
+	{
+		"model": "main.Message",
+		"pk": 7,
+		"fields": {
+			"action": "attack misses",
+			"message": "{{actor|pronoun:\"eir\"|capfirst}} swing{{actor.count|pluralize:\" goes,s go\"}} wide."
+		}
+	},
+	{
+		"model": "main.Message",
+		"pk": 8,
+		"fields": {
+			"action": "attack misses",
+			"message": "{{actor|pronoun:\"ey\"|capfirst}} miss{{actor|conj:\"es,,\"}} {{target|pronoun:\"em\"}} by a mile."
+		}
+	},
+	{
+		"model": "main.Message",
+		"pk": 9,
+		"fields": {
+			"action": "poison blade hits",
+			"message": "{{actor|pronoun:\"ey\"|capfirst}} dip{{actor|conj:\"s,,\"}} {{actor|pronoun:\"eir\"}} weapon{{actor.count|pluralize}} into a vial of glistening black liquid. {{actor|pronoun:\"ey\"|capfirst}} lash out at {{target|pronoun:\"em\"}}, and score {{actor.count|pluralize:\"a hit,some hits\"}}, dealing {{damage}} damage. The poison looks like it's taking effect already."
+		}
+	}
+]

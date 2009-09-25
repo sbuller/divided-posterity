@@ -1,0 +1,69 @@
+[
+	{
+		"model": "main.Item",
+		"pk": 1,
+		"fields": {
+			"name": "frying pan",
+			"article": "a",
+			"multiplename": "frying pans",
+			"image_url": "/static/images/items/frying_pan.png",
+			"variety": "[\"equip:weapon\",\"combat_usable\"]"
+		}
+	},
+	{
+		"model": "main.Item",
+		"pk": 2,
+		"fields": {
+			"name": "writhing mass",
+			"article": "a",
+			"multiplename": "writhing masses",
+			"image_url": "/static/images/items/writhing_mass.png",
+			"variety": "[\"combat_usable\"]",
+			"inventory_data": "{\"modifier\":[[\"brawn\",\"c\",3]]}"
+		}
+	},
+	{
+		"model": "main.Item",
+		"pk": 3,
+		"fields": {
+			"name": "solid gold hub cap",
+			"article": "a",
+			"multiplename": "solid gold hub caps",
+			"image_url": "/static/images/items/solid_gold_hubcap.png",
+			"variety": "[\"equip:offhand\"]"
+		}
+	},
+	{
+		"model": "main.Item",
+		"pk": 4,
+		"fields": {
+			"name": "sunglasses",
+			"article": "a pair of",
+			"multiplename": "pairs of sunglasses",
+			"image_url": "/static/images/items/sunglasses.png",
+			"variety": "[\"equip:face\"]"
+		}
+	},
+	{
+		"model": "main.Item",
+		"pk": 5,
+		"fields": {
+			"name": "pen",
+			"article": "a",
+			"multiplename": "pens",
+			"image_url": "/static/images/items/pen.png",
+			"variety": "[\"combat_usable\"]"
+		}
+	},
+	{
+		"model": "main.Item",
+		"pk": 6,
+		"fields": {
+			"name": "wheel",
+			"article": "a",
+			"multiplename": "wheels",
+			"image_url": "/static/images/items/wheel.png",
+			"variety": "[\"combat_usable\"]"
+		}
+	}
+]

@@ -1,0 +1,33 @@
+[
+	{
+		"model": "main.Combatant",
+		"pk": 1,
+		"fields": {
+			"brawn": 2,
+			"charm": 6,
+			"finesse": 3,
+			"lore": 4,
+			"magery": 1,
+			"stamina": 3,
+			"gender" : "m",
+			"team": "lewis"
+		}
+	},
+	{
+		"model": "main.Hero",
+		"pk": 1,
+		"fields": {
+			"name" : "Marley",
+			"variety" : "Book Crook",
+			"family_name" : "Lewis",
+			"user" : 1,
+
+			"base_brawn" : 2,
+			"base_charm" : 4,
+			"base_finesse" : 3,
+			"base_lore" : 3,
+			"base_magery" : 2,
+			"base_stamina" : 2
+		}
+	}
+]

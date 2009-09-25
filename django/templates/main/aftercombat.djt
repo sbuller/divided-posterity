@@ -1,0 +1,130 @@
+{% extends "layout.djt" %}
+{% load dp_extras %}
+
+{% block viewpane %}
+			<div id="aftercombat">
+				<div class="header centeredtext">
+					<h1 class=head1>Combat Complete!</h1>
+					<p><a href="/map">Return to {{hero.location.name}}.</a></p>
+					<p><a href="{% url dp.main.views.travel hero.destination.slug %}">Adventure again.</a></p>
+				</div>
+
+				<div id="rewardexperience" class="body1">
+					<h3>Experience:</h3>
+					<p>{{hero.total_exp_gain}} XP earned</p>
+
+					<div>
+						<div class="brawn bar" title="{{hero.brawn_exp}}/{{hero.max_brawn_exp}}">
+							<div class="barfill" style="width:{{hero|oldbar:"brawn"}}%;"></div>
+							<div class="increase barfill" style="width:{{hero|newbar:"brawn"}}%;"></div>
+						</div>
+						<p>{{hero.base_brawn}} Brawn{{hero|stat_up:"brawn"}}</p>
+					</div>
+					<div>
+						<div class="charm bar" title="{{hero.charm_exp}}/{{hero.max_charm_exp}}">
+							<div class="barfill" style="width:{{hero|oldbar:"charm"}}%;"></div>
+							<div class="increase barfill" style="width:{{hero|newbar:"charm"}}%;"></div>
+						</div>
+						<p>{{hero.base_charm}} Charm{{hero|stat_up:"charm"}}</p>
+					</div>
+					<div>
+						<div class="finesse bar" title="{{hero.finesse_exp}}/{{hero.max_finesse_exp}}">
+							<div class="barfill" style="width:{{hero|oldbar:"finesse"}}%;"></div>
+							<div class="increase barfill" style="width:{{hero|newbar:"finesse"}}%;"></div>
+						</div>
+						<p>{{hero.base_finesse}} Finesse{{hero|stat_up:"finesse"}}</p>
+					</div>
+					<div>
+						<div class="lore bar" title="{{hero.lore_exp}}/{{hero.max_lore_exp}}">
+							<div class="barfill" style="width:{{hero|oldbar:"lore"}}%;"></div>
+							<div class="increase barfill" style="width:{{hero|newbar:"lore"}}%;"></div>
+						</div>
+						<p>{{hero.base_lore}} Lore{{hero|stat_up:"lore"}}</p>
+					</div>
+					<div>
+						<div class="magery bar" title="{{hero.magery_exp}}/{{hero.max_magery_exp}}">
+							<div class="barfill" style="width:{{hero|oldbar:"magery"}}%;"></div>
+							<div class="increase barfill" style="width:{{hero|newbar:"magery"}}%;"></div>
+						</div>
+						<p>{{hero.base_magery}} Magery{{hero|stat_up:"magery"}}</p>
+					</div>
+					<div>
+						<div class="stamina bar" title="{{hero.stamina_exp}}/{{hero.max_stamina_exp}}">
+							<div class="barfill" style="width:{{hero|oldbar:"stamina"}}%;"></div>
+							<div class="increase barfill" style="width:{{hero|newbar:"stamina"}}%;"></div>
+						</div>
+						<p>{{hero.base_stamina}} Stamina{{hero|stat_up:"stamina"}}</p>
+					</div>
+
+					<h3>Skills:</h3>
+					<div>
+						<div class="skill bar">
+							<div class="barfill" style="width:50%;"></div>
+							<div class="increase barfill" style="width:5%;"></div>
+						</div>
+						<p>Novice Fireball</p>
+					</div>
+
+					<div>
+						<div class="skill bar">
+							<div class="barfill" style="width:14%;"></div>
+							<div class="increase barfill" style="width:1%;"></div>
+						</div>
+						<p>Acolyte Lunge</p>
+					</div>
+
+					<div>
+						<div class="skill bar">
+							<div class="barfill" style="width:55%;"></div>
+							<div class="increase barfill" style="width:5%;"></div>
+						</div>
+						<p>Novice Eyes of the Eagle</p>
+					</div>
+				</div> <!--rewardexperience-->
+
+				<div id="enemy">
+					<h3>Foe Defeated:</h3>
+					<p>Menacing Starlet</p>
+					<img id="enemyimage" src="/images/npc/menacingstarlet.png" alt="[Enemy]" />
+				</div>
+
+				<div id="Loot">
+					<h3>Loot:</h3>
+					{% if hero.spoils %}
+						{% for itemdrop in hero.spoils %}
+						<div class="item">
+							<div class="itemicon" style="background-image:url({{itemdrop.item.image_url}});"></div>
+							<p>{{itemdrop.quantity}} {{itemdrop.item.name}}{{itemdrop.quantity|pluralize}}</p>
+							<p class="equipdata">[{{itemdrop.item.variety}}]</p>
+						</div>
+						{% endfor %}
+					{% else %}
+						<p> Error: No items available at this time. </p>
+					{% endif %}
+				</div>
+
+				<div id="combatlog">
+				<table class="centered"><tbody><tr><td>
+					<h3 class="head1">Combat Log</h3>
+					<div class="body1">
+						<table><tbody>
+						{% for m in hero.combat_messages %}
+						{% if m %}
+							<tr title="Round {{forloop.counter0}}">
+								<td>
+									<div class="neutral terrain{% if forloop.first %} startcombat{% endif %}" />
+								</td>
+								<td>
+								{% for message in m %}
+									<p>{{message}}</p>
+								{% endfor %}
+								</td>
+							</tr>
+						{% endif %}
+						{% endfor %}
+						</tbody></table>
+					</div>
+				</td></tr></tbody></table>
+				</div> <!--combatlog-->
+			</div> <!--aftercombat-->
+{% endblock %}

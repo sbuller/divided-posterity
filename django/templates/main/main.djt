@@ -1,0 +1,18 @@
+{% extends "layout.djt" %}
+
+{% block viewpane %}
+Hello {{user.username}}.
+<ul>
+	{% if hero %}
+	You're playing as {{hero.name}} {{hero.family_name}}.
+	<li><a href="/inventory">Inventory</a></li>
+	<li><a href="/map">Map</a></li>
+	{% else %}
+	Uh oh - You don't have a hero. Maybe in the future we'll help you make one.
+	{% endif %}
+	{% if user.is_staff %}
+	<li><a href="/admin">Admin</a></li>
+	{% endif %}
+	<li><a href="/logout">Logout</a></li>
+</ul>
+{% endblock %}

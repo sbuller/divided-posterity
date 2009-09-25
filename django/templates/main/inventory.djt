@@ -1,0 +1,142 @@
+{% extends "layout.djt" %}
+
+{% block viewpane %}
+		<div id="inventory">
+			<h1>Inventory</h1>
+			<form action="/destroyeverything" method="post">
+				<input type="submit" name="flush" value="flush" />
+			</form>
+			<div> <!--for hr-->
+				<table class="centered"><tbody><tr><td>
+					<div id="showweapons" class="showequipped">
+						<h2>Hand Held</h2>
+						<div class="righthandslot slot">
+							<div class="item equipped">
+								<div class="itemicon" style="background-image:url(/images/items/sandblastedspear.png);"></div>
+								<p>Sandblasted Spear Of Smiting</p>
+								<p class="equipdata">(Left &amp; Right <a>[x]</a>)</p>
+							</div>
+						</div>
+						<div class="lefthandslot invalid">
+							<div class="item">
+								<p>&nbsp;</p>
+								<p class="equipdata">&nbsp;<a>&nbsp;</a></p>
+							</div>
+						</div>
+					</div>
+					<div id="showarmour" class="showequipped">
+						<h2>Armour</h2>
+						<div class="headslot slot">
+							<div class="item equipped">
+								<div class="itemicon" style="background-image:url(/images/items/partyhat.png);"></div>
+								<p>Party Hat</p>
+								<p class="equipdata">(Hat <a>[x]</a>)</p>
+							</div>
+						</div>
+
+						<div class="bodyslot slot">
+							<div class="item equipped">
+								<div class="itemicon" style="background-image:url(/images/items/leatherhauberk.png);"></div>
+								<p>Leather Hauberk</p>
+								<p class="equipdata">(Shirt <a>[x]</a>)</p>
+							</div>
+						</div>
+
+						<div class="legsslot slot">
+							<div class="item equipped">
+								<div class="itemicon" style="background-image:url(/images/items/blackslacks.png);"></div>
+								<p>Black Slacks</p>
+								<p class="equipdata">(Pants <a>[x]</a>)</p>
+							</div>
+						</div>
+					</div>
+
+					<div id="showaccessories" class="showequipped">
+						<h2>Accessories</h2>
+						<div class="accsslot slot">
+							<div class="item equipped">
+								<div class="itemicon" style="background-image:url(/images/items/redbelt.png);"></div>
+								<p>Red Belt</p>
+								<p class="equipdata">(*Belt <a>[x]</a>)</p>
+							</div>
+						</div>
+
+						<div class="accsslot slot">
+							<div class="item equipped">
+								<div class="itemicon" style="background-image:url(/images/items/bootsofstriding.png);"></div>
+								<p>Boots of Striding</p>
+								<p class="equipdata">(*Boots <a>[x]</a>)</p>
+							</div>
+						</div>
+
+						<div class="accsslot slot">
+							<div class="item equipped">
+								<div class="itemicon" style="background-image:url(/images/items/bloodstoneearrings.png);"></div>
+								<p>Bloodstone Earrings</p>
+								<p class="equipdata">(*Earring <a>[x]</a>)</p>
+							</div>
+						</div>
+					</div>
+					<!--div id="unequip">
+						<div class="item">
+							<p>Drag stuff here&nbsp;</p>
+							<p class="equipdata">to unequip it&nbsp;<a>&nbsp;</a></p>
+						</div>
+					</div-->
+				</td></tr></tbody></table>
+				<hr class="clearboth" />
+			</div>
+
+
+			<ul id="inventorymenu">
+				<li>
+					<a class="head1">Consumables</a>
+					<ul>
+						<li><a class="head2">types of consumables</a></li>
+					</ul>
+				</li>
+				<li>
+					<a class="head1">Equipment</a>
+					<ul>
+						<li><a class="head2">Hats</a></li>
+						<li><a class="head2">Shirts</a></li>
+						<li><a class="head2">Weapons</a></li>
+						<li><a class="head2">Pants</a></li>
+						<li><a class="head2">Accessories</a></li>
+					</ul>
+				</li>
+				<li>
+					<a class="head1">Pets</a>
+					<ul>
+						<li><a class="head2">types of pets</a></li>
+					</ul>
+				</li>
+				<li>
+					<a class="head1">Vehicles</a>
+					<ul>
+						<li><a class="head2">types of vehicles</a></li>
+					</ul>
+				</li>
+				<li>
+					<a class="head1">Key Items</a>
+					<ul>
+						<li><a class="head2">types of key items</a></li>
+					</ul>
+				</li>
+			</ul> <!-- #inventorymenu -->
+
+			<div id="inventoryitems">
+			{% if items %}
+				{% for item in items %}
+				<div class="item">
+					<div class="itemicon" style="background-image:url({{item.item.image_url}});"></div>
+					<p>{{item.quantity}} {{item.item.name}}{{item.quantity|pluralize}}</p>
+					<p class="equipdata">[{{item.item.variety}}]</p>
+				</div>
+				{% endfor %}
+			{% else %}
+				<p> Error: No items available at this time. </p>
+			{% endif %}
+			</div>
+		</div> <!--inventory-->
+{% endblock %}
